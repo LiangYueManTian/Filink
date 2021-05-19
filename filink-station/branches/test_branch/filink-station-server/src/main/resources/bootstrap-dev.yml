@@ -1,0 +1,124 @@
+#spring:
+#  application:
+#    name: filink-user
+#
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: FILINK-CONFIG
+#      profile: dev
+
+#注册服务
+eureka:
+  client:
+    service-url:
+      #      向两个eureka注册
+#      defaultZone: http://10.5.24.141:8762/eureka/
+      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+
+server:
+  port: 7463
+spring:
+  redis:
+    host: 10.5.24.142
+    database: 0
+    port: 6379
+    password: filink
+
+#mongodb
+  data:
+    mongodb:
+      uri: mongodb://39.98.72.132:3309/filink_sensor
+
+  application:
+    name: filink-station-server
+
+  cloud:
+    instance-count: 3
+    instance-index: 0
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.24.224:9092
+          zkNodes: 10.5.24.224:2181
+      bindings:
+#       udp消费者
+        station_udp_input:
+          destination: station_udp_input
+          group: station23213
+          contentType: application/json
+
+#       指令重发消费者
+        station_cmd_resend:
+          destination: filink_cmd_resend
+          group: station1
+          contentType: application/json
+
+#       指令请求消费者
+        station_request_input:
+          destination: station_udp_request
+          group: station1231
+          contentType: application/json
+
+#       udp发送者
+        station_udp_output:
+          destination: station_udp_input
+          contentType: application/json
+
+#       告警发送者
+        station_alarm_output:
+          destination: filink_alarm_info
+          contentType: application/json
+
+#       告警图片发送者
+        alarm_pic_output:
+          destination: filink_alarm_pic
+          contentType: application/json
+
+#       webSocket
+        web_socket_output:
+          destination: filink_websocket
+          contentType: application/json
+        upgrade_file_input:
+          destination: filink_upgrade_output
+          group: filink_station_server
+          contentType: application/json
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+    test:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: false
+
+
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+constant:
+  port: 8080
+  retryCount: 2
+  retryCycle: 60000
+
+readLogFilePath: /aa

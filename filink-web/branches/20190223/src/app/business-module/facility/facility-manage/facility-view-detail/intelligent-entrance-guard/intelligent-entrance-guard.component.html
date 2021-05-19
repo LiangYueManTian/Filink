@@ -1,0 +1,84 @@
+<nz-card nzTitle="智能门禁详情" [nzExtra]="extraTemplate">
+  <div style="display: flex;height: 382px">
+    <div style="flex: 1">
+      <p>控制盒信息</p>
+      <ul>
+        <li *ngFor="let item of infoData">
+          <span class="label" >{{item.label}}</span>
+          <span class="value" [ngClass]="item.fill" [ngStyle]="{background:item.bgColor?item.bgColor:'none'}">
+            {{item.value}}
+          </span>
+            <i style="vertical-align: middle" *ngIf="item.iconClass" [class]="'icon-l iconfont '+item.iconClass"></i>
+        </li>
+      </ul>
+    </div>
+
+    <div style="flex: 1 ;border-left: 1px solid #cccccc;border-right: 1px solid #cccccc;padding: 0 10px">
+      <p>门锁状态</p>
+      <div class="lock-top" style="display: flex;justify-content: flex-end;align-items: center;">
+        <span>周</span>
+        <span>月</span>
+        <span>年</span>
+        <span style="display: inline-block;
+    width: 218px;"><nz-range-picker [nzStyle]="{width:'218px'}" [(ngModel)]="_dateRange"
+                                    (ngModelChange)="onChange($event)"
+                                    ></nz-range-picker></span>
+      </div>
+      <div class="lock-middle">
+        <p class="lock-sum">开锁次数</p>
+        <p class="number">12321</p>
+        <div>
+          <div echarts [options]="option" class="lock-chart"></div>
+        </div>
+      </div>
+      <div style="text-align: right;margin-bottom: 10px">
+        <button class="open-lock" [disabled]="(!indeterminate)&&(!allChecked)" nz-button style="height: 20px;" (click)="openLock()"> 远程开锁</button>
+      </div>
+      <div class="lock-bottom">
+        <div class="lock-status">
+          <span class="select hidden" style=""><label [nzDisabled]="lockInfo.length===0" nz-checkbox
+                                               [nzIndeterminate]="indeterminate" [(ngModel)]="allChecked"
+                                               (nzCheckedChange)="checkAll($event)">门名称</label></span>
+          <span>锁状态</span>
+          <span>门状态</span>
+        </div>
+        <div class="lock-status" *ngFor="let item of lockInfo ">
+          <span class="select hidden" style="">
+            <label nz-checkbox [(ngModel)]="item.checked" (nzCheckedChange)="checkItem($event)" >
+            <span nz-tooltip [nzTitle]="item.doorName">{{item.doorName}}</span>
+            </label>
+          </span>
+          <span>
+            <i class="icon-l" [ngClass]="item.lockStatus === '1' ? 'icon-lock-opening' : 'icon-lock-normal'"></i>
+            {{item.lockStatus ==='1'?'锁开':'锁关'}}</span>
+          <span><i class="icon-l" [ngClass]="item.doorStatus === '1' ? 'icon-door-opening' : 'icon-door-normal'"></i>
+            {{item.doorStatus ==='1'?'门开':'门关'}}</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1;padding: 0 10px">
+      <p>传感信息</p>
+      <div class="lock-top" style="display: flex;justify-content: flex-end;align-items: center;">
+        <span>周</span>
+        <span>月</span>
+        <span>年</span>
+        <span style="display: inline-block;
+    width: 218px;"><nz-range-picker [nzStyle]="{width:'218px'}" [(ngModel)]="dateRange"
+                                    (ngModelChange)="onChange($event)"
+                                    ></nz-range-picker></span>
+      </div>
+      <div style="height: 300px">
+        <div echarts [options]="_option" class="sense-chart"></div>
+      </div>
+      <div style="display: flex;justify-content: space-around">
+        <span>温度: {{lockControlInfo.actualValue.temperature}}℃ <i class="icon-fiLink-l iconfont fiLink-temperature"></i></span>
+        <span>湿度 {{lockControlInfo.actualValue.humidity}}% <i class="icon-fiLink-l iconfont fiLink-humidity"></i></span>
+        <span>水浸 {{lockControlInfo.actualValue.leach}}% <i class="icon-fiLink-l iconfont fiLink-water-immersion"></i></span>
+        <span>倾斜 {{lockControlInfo.actualValue.lean}}° <i class="icon-fiLink-l icon-tilt iconfont fiLink-tilt"></i></span>
+      </div>
+    </div>
+  </div>
+</nz-card>
+<ng-template #extraTemplate>
+  <span class="update-time">{{language.updateTime}} {{currentTime}}</span>
+</ng-template>

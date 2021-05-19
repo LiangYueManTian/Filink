@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmOrderRuleDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmOrderRule">
+        <id column="id" property="id"/>
+        <result column="order_name" property="orderName"/>
+        <result column="order_type" property="orderType"/>
+        <result column="trigger_type" property="triggerType"/>
+        <result column="status" property="status"/>
+        <result column="completion_time" property="completionTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+
+        <!--<collection property="alarmOrderRuleNameList"
+                    ofType="com.fiberhome.filink.alarmsetserver.bean.AlarmOrderRuleName">
+            <result column="rule_id" property="ruleId"/>
+            <result column="alarm_name_id" property="alarmNameId"/>
+
+            <association property="alarmName" javaType="com.fiberhome.filink.alarmsetserver.bean.AlarmName">
+                <result column="alarm_id" property="id"/>
+                <result column="alarm_name" property="alarmName"/>
+            </association>
+        </collection>-->
+
+        <collection property="alarmOrderRuleNameList" ofType="string" javaType="java.util.Set"
+                    column="rule_id" select="findAlarmName">
+        </collection>
+
+        <!--<collection property="alarmOrderDeviceType" ofType="string" javaType="java.util.Set"
+                    column="rule_id" select="findDeviceType">
+        </collection>-->
+        <collection property="alarmOrderRuleDeviceTypeList"
+                    ofType="com.fiberhome.filink.alarmsetserver.bean.AlarmOrderRuleDeviceType">
+            <result column="rule_id" property="ruleId"/>
+            <result column="device_type_id" property="deviceTypeId"/>
+        </collection>
+
+        <collection property="alarmOrderRuleArea" ofType="string" javaType="java.util.Set"
+                    column="rule_id" select="findArea">
+        </collection>
+    </resultMap>
+
+    <select id="findAlarmName" parameterType="string" resultType="string">
+        SELECT alarm_name_id FROM alarm_order_rule_name WHERE rule_id=#{ruleId}
+    </select>
+
+    <select id="findDeviceType" parameterType="string" resultType="string">
+        SELECT device_type_id FROM alarm_order_rule_device_type WHERE rule_id=#{ruleId}
+    </select>
+
+    <select id="findArea" parameterType="string" resultType="string">
+        SELECT area_id FROM alarm_order_rule_area WHERE rule_id=#{ruleId}
+    </select>
+
+    <update id="deleteAlarmOrderRule">
+        UPDATE alarm_order_rule SET is_deleted="1" where id IN
+        <foreach collection="array" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateAlarmOrderRuleStatus">
+        UPDATE alarm_order_rule SET status = #{status} WHERE id IN
+        <foreach collection="idArray" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <sql id="BaseResultSql">
+        aor.id,aor.order_name,aor.order_type,aor.trigger_type,aor.status,aor.completion_time,aor.remark,
+        aor.create_time,aor.create_user,aor.update_time,aor.update_user,aorn.alarm_name_id,
+        aora.rule_id,aordt.rule_id,aorn.rule_id,aordt.device_type_id,aora.area_id
+    </sql>
+
+    <sql id="BaseResultInfo">
+        aor.id,aor.order_name,aor.order_type,aor.trigger_type,aor.status,aor.completion_time,aor.remark,
+        aor.create_time,aor.create_user,aor.update_time,aor.update_user
+    </sql>
+
+    <select id="queryAlarmOrderRuleList" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmOrderRuleDto"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_order_rule as aor
+        LEFT JOIN alarm_order_rule_area as aora ON aor.id=aora.rule_id
+        LEFT JOIN alarm_order_rule_device_type as aordt ON aor.id=aordt.rule_id
+        LEFT JOIN alarm_order_rule_name as aorn ON aor.id=aorn.rule_id
+        <where>
+            is_deleted=#{isDeleted}
+            <if test="orderName != null">
+                AND aor.order_name LIKE concat('%',#{orderName},'%')
+            </if>
+            <if test="orderTypeList != null">
+                AND aor.order_type IN
+                <foreach collection="orderTypeList" item="orderTypeList" open="(" separator="," close=")">
+                    #{orderTypeList}
+                </foreach>
+            </if>
+            <if test="triggerTypeArray != null">
+                AND aor.trigger_type IN
+                <foreach collection="triggerTypeArray" item="triggerTypeArray" open="(" separator="," close=")">
+                    #{triggerTypeArray}
+                </foreach>
+            </if>
+            <if test="statusArray != null">
+                AND aor.status IN
+                <foreach collection="statusArray" item="statusArray" open="(" separator="," close=")">
+                    #{statusArray}
+                </foreach>
+            </if>
+            <if test="completionTime != null">
+                AND aor.completion_time = #{completionTime}
+            </if>
+            <if test="remark != null">
+                AND aor.remark LIKE concat('%',#{remark},'%')
+            </if>
+            <if test="createTime != null and createTimeEnd != null">
+                AND aor.create_time BETWEEN #{createTime} AND #{createTimeEnd}
+            </if>
+            <if test="updateTime != null and updateTimeEnd != null">
+                AND aor.update_time BETWEEN #{updateTime} AND #{updateTimeEnd}
+            </if>
+            <if test="deviceTypeId != null and deviceTypeId.size() > 0">
+                AND aordt.device_type_id IN
+                <foreach collection="deviceTypeId" item="deviceTypeId" open="(" separator="," close=")">
+                    #{deviceTypeId}
+                </foreach>
+            </if>
+            <if test="alarmOrderRuleNameList != null and alarmOrderRuleNameList.size() > 0">
+                AND aorn.alarm_name_id IN
+                <foreach collection="alarmOrderRuleNameList" item="alarmOrderRuleNameList" open="(" separator="," close=")">
+                    #{alarmOrderRuleNameList}
+                </foreach>
+            </if>
+            <if test="alarmOrderRuleArea != null and alarmOrderRuleArea.size() > 0">
+                AND aora.area_id IN
+                <foreach collection="alarmOrderRuleArea" item="alarmOrderRuleArea" open="(" separator="," close=")">
+                    #{alarmOrderRuleArea}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY aor.id
+        <if test="sortProperties == 'orderName' and sort != null">
+            ORDER BY aor.order_name ${sort}
+        </if>
+        <if test="sortProperties == 'orderTypeList' and sort != null">
+            ORDER BY aor.order_type ${sort}
+        </if>
+        <if test="sortProperties == 'triggerType' and sort != null">
+            ORDER BY aor.trigger_type ${sort}
+        </if>
+        <if test="sortProperties == 'status' and sort != null">
+            ORDER BY aor.status ${sort}
+        </if>
+        <if test="sortProperties == 'completionTime' and sort != null">
+            ORDER BY aor.completion_time ${sort}
+        </if>
+        <if test="sortProperties == 'remark' and sort != null">
+            ORDER BY aor.remark ${sort}
+        </if>
+        <if test="sortProperties == 'createTime' and sort != null">
+            ORDER BY aor.create_time ${sort}
+        </if>
+        <if test="sortProperties == 'updateTime' and sort != null">
+            ORDER BY aor.update_time ${sort}
+        </if>
+        <if test="sortProperties == 'alarmOrderRuleNameList' and sort != null">
+            ORDER BY aorn.alarm_name_id ${sort}
+        </if>
+        <if test="sortProperties == 'deviceTypeId' and sort != null">
+            ORDER BY aordt.device_type_id ${sort}
+        </if>
+        <if test="sortProperties == alarmOrderRuleArea and sort != null">
+            ORDER BY aora.area_id ${sort}
+        </if>
+        <if test="sort == null and sortProperties == null">
+            ORDER BY aor.create_time DESC
+        </if>
+    </select>
+
+    <select id="queryAlarmOrderRuleById" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmOrderRuleDto"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_order_rule as aor
+        LEFT JOIN alarm_order_rule_area as aora ON aor.id=aora.rule_id
+        LEFT JOIN alarm_order_rule_device_type as aordt ON aor.id=aordt.rule_id
+        LEFT JOIN alarm_order_rule_name as aorn ON aor.id=aorn.rule_id
+        <where>
+            is_deleted="0" AND aor.id=#{id}
+        </where>
+    </select>
+
+    <select id="queryAlarmOrderRuleFeign" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmOrderCondition"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_order_rule as aor
+        LEFT JOIN alarm_order_rule_area as aora ON aor.id=aora.rule_id
+        LEFT JOIN alarm_order_rule_device_type as aordt ON aor.id=aordt.rule_id
+        LEFT JOIN alarm_order_rule_name as aorn ON aor.id=aorn.rule_id
+        <where>
+            is_deleted="0"
+            <if test="id != null">
+                AND aor.id = #{id}
+            </if>
+            <if test="areaId != null">
+                AND aora.area_id = #{areaId}
+            </if>
+            <if test="deviceType != null">
+                AND aordt.device_type_id = #{deviceType}
+            </if>
+            <if test="alarmName != null">
+                AND aorn.alarm_name_id = #{alarmName}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryAlarmOrderRuleLists" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmOrderRuleDto"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultInfo"/>
+        FROM alarm_order_rule as aor
+        <where>
+            is_deleted="0" AND status=1
+        </where>
+    </select>
+</mapper>

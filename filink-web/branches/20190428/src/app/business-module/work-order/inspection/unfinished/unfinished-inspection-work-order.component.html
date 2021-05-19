@@ -1,0 +1,150 @@
+<div class="box-warp">
+  <div class="table-container" id="warp">
+    <xc-table [dataSet]="_dataSet"
+              [pageBean]="pageBean"
+              [tableConfig]="tableConfig"
+              (pageChange)="pageChange($event)">
+    </xc-table>
+</div>
+</div>
+<!--退单重新生成底部按钮-->
+<ng-template #footerTemp>
+  <div class="btn-container">
+    <button class="link-button-order" nz-button nzType="primary" style="margin-right: 10px"
+            (click)="singleBackConfirm(this.returnID)">{{InspectionLanguage.handleOk}}
+    </button>
+    <button class="link-button-order" nz-button nzType="primary" style="margin-right: 10px"
+            (click)="regenerate()">{{InspectionLanguage.regenerate}}
+    </button>
+    <button class="link-button-order" nz-button nzType="danger"
+            (click)="closeSingleBackConfirmModal()">{{InspectionLanguage.handleCancel}}</button>
+  </div>
+</ng-template>
+
+<!--查看-->
+<nz-modal [(nzVisible)]="isVisible"
+          [nzMaskClosable]="false"
+          [nzWidth]="1200"
+          [nzTitle]="title"
+          (nzOnCancel)="close()"
+          [nzFooter]="modalFooter">
+
+  <xc-table [dataSet]="see_dataSet"
+            [pageBean]="seePageBean"
+            [tableConfig]="seeTableConfig"
+            (pageChange)="seePageChange($event)">
+  </xc-table>
+
+  <ng-template #modalFooter>
+    <button class="link-button" nz-button nzType="primary" (click)="close()">{{InspectionLanguage.handleOk}}</button>
+    <button class="link-button" nz-button nzType="danger" (click)="close()">{{InspectionLanguage.handleCancel}}</button>
+  </ng-template>
+</nz-modal>
+
+<!--进度弹框-->
+<nz-modal [(nzVisible)]="scheduleIsVisible"
+          [nzMaskClosable]="false"
+          [nzWidth]="1200"
+          [nzTitle]="title"
+          (nzOnCancel)="close()"
+          [nzFooter]="scheduleModalFooter">
+
+  <xc-table [dataSet]="schedule_dataSet"
+            [pageBean]="schedulePageBean"
+            [tableConfig]="scheduleTableConfig"
+            (pageChange)="schedulePageChange($event)">
+  </xc-table>
+
+  <ng-template #scheduleModalFooter>
+    <div style="float: left;margin-left: 10px ">
+      <span>{{InspectionLanguage.completedInspection}}: </span><span>{{Patroled}}</span>
+      <span style="margin-left: 10px">{{InspectionLanguage.notInspected}}: </span><span>{{notInspected}}</span>
+    </div>
+    <button class="link-button" nz-button nzType="primary" (click)="close()">{{InspectionLanguage.handleOk}}</button>
+    <button class="link-button" nz-button nzType="danger" (click)="close()">{{InspectionLanguage.handleCancel}}</button>
+  </ng-template>
+</nz-modal>
+
+<!--进度-->
+<ng-template #schedule let-data="data">
+  <div title="{{data.progressSpeed}}">
+    <!--<a style="color: gray" (click)="showCompleted(data)" [ngStyle]="data.rowStyle">{{data.progressSpeed}}</a>-->
+    <a (click)="showCompleted(data)">
+      <nz-progress [nzPercent]="data.progressSpeed" nzSize="small"></nz-progress>
+    </a>
+  </div>
+</ng-template>
+
+<!--责任人单位-->
+<xc-tree-area-selector
+  [(xcVisible)]="isUnitVisible"
+  (selectDataChange)="selectDataChange($event)"
+  [treeSelectorConfig]="treeSelectorConfig">
+</xc-tree-area-selector>
+<!--工单类型-->
+<ng-template #statusTemp let-data="data">
+  <div class="hidden" title="{{data.statusName}}" [ngStyle]="data.rowStyle">
+    <span [ngClass]="data.statusClass"
+    style="margin-right: 5px;">
+    </span>
+    {{data.statusName}}
+  </div>
+</ng-template>
+
+<!--筛选部门-->
+<ng-template #UnitNameSearch let-filterValue = "filterValue">
+  <!--<span class="area-name" (click)="showModal(filterValue)" [title]="selectUnitName" aria-placeholder="请输入">{{selectUnitName}}</span>-->
+  <input class="area-name" (click)="showModal(filterValue)"
+         [title]="selectUnitName" type="text" [placeholder]="InspectionLanguage.pleaseChoose"
+          [(ngModel)]="selectUnitName">
+</ng-template>
+
+<xc-tree-selector
+  [(xcVisible)]="responsibleUnitIsVisible"
+  (selectDataChange)="departmentSelectDataChange($event)"
+  [treeSelectorConfig]="treeSelectorConfig">
+</xc-tree-selector>
+
+<!--&lt;!&ndash;设施类型小图标&ndash;&gt;-->
+<!--<ng-template #deviceTypeTemp let-data="data">-->
+  <!--<i [ngClass]="data['iconClass']" class="device-type-icon"></i>-->
+  <!--<span class="status-text" [title]="data['deviceType']">{{data['deviceType']}}</span>-->
+<!--</ng-template>-->
+
+<!-- 责任人 -->
+<ng-template #roleTemp let-data="data">
+  <span class="widthStyle" title="{{data.assign?.userName}}">{{data.assign?.userName}}</span>
+</ng-template>
+
+<!--点击退单modal主体内容-->
+<ng-template #SingleBackTemp>
+  <p style="height: 100px">是否确认退单此工单！</p>
+</ng-template>
+
+<!--剩余天数筛选-->
+<ng-template #remainingDaysFilter let-filterValue = "filterValue">
+  <div style="display: flex;justify-content: space-between">
+    <input class="input_1" type="text" style="" [placeholder]="InspectionLanguage.pleaseEnter"
+           [(ngModel)]="filterValue.filterValue">
+
+    <xc-nz-select [(ngModel)]="lastDaySelectValue">
+      <xc-nz-option [nzLabel]="'大于'" [nzValue]="'gt'"></xc-nz-option>
+      <xc-nz-option [nzLabel]="'等于'" [nzValue]="'eq'"></xc-nz-option>
+      <xc-nz-option [nzLabel]="'小于'" [nzValue]="'lt'"></xc-nz-option>
+    </xc-nz-select>
+  </div>
+</ng-template>
+
+<!--巡检数量筛选-->
+<ng-template #inspectionQuantityFilter let-filterValue = "filterValue">
+  <div style="display: flex;justify-content: space-between">
+    <input class="input_1" type="text" style="" [placeholder]="InspectionLanguage.pleaseEnter"
+           [(ngModel)]="filterValue.filterValue">
+
+    <xc-nz-select  [(ngModel)]="deviceCountSelectValue">
+      <xc-nz-option [nzLabel]="'大于'" [nzValue]="'gt'"></xc-nz-option>
+      <xc-nz-option [nzLabel]="'等于'" [nzValue]="'eq'"></xc-nz-option>
+      <xc-nz-option [nzLabel]="'小于'" [nzValue]="'lt'"></xc-nz-option>
+    </xc-nz-select>
+  </div>
+</ng-template>

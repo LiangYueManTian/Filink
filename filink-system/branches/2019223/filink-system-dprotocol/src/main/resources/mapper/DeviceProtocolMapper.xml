@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.dprotocol.dao.DeviceProtocolDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.dprotocol.bean.DeviceProtocol">
+        <id column="protocol_id" property="protocolId"/>
+        <result column="protocol_name" property="protocolName"/>
+        <result column="file_name" property="fileName"/>
+        <result column="file_length" property="fileLength"/>
+        <result column="file_download_url" property="fileDownloadUrl"/>
+        <result column="hardware_version" property="hardwareVersion"/>
+        <result column="software_version" property="softwareVersion"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <!--新增设施协议-->
+    <insert id="addDeviceProtocol" parameterType="com.fiberhome.filink.dprotocol.bean.DeviceProtocol">
+        INSERT INTO device_protocol
+        (
+        protocol_id, protocol_name, file_name, file_length, file_download_url, hardware_version,
+        software_version, create_user
+        )
+        VALUES
+        (
+        #{protocolId},#{protocolName},#{fileName},#{fileLength},#{fileDownloadUrl},#{hardwareVersion},
+        #{softwareVersion},#{createUser}
+        )
+    </insert>
+    <!--修改设施协议-->
+    <update id="deleteDeviceProtocol" parameterType="com.fiberhome.filink.dprotocol.bean.DeviceProtocol">
+        UPDATE device_protocol SET is_deleted = '1', file_download_url = #{fileDownloadUrl},
+        update_user = #{updateUser} WHERE protocol_id = #{protocolId}
+    </update>
+    <!--批量删除设施协议-->
+    <update id="batchDeleteDeviceProtocolList">
+        UPDATE device_protocol
+        SET is_deleted = '1', update_user = #{updateUser}, file_download_url = CASE protocol_id
+        <foreach collection="list" item="item" index="index" separator="" close="" open="">
+            when #{item.protocolId} then #{item.fileDownloadUrl}
+        </foreach>
+        END
+        WHERE is_deleted != '1'
+        AND protocol_id IN
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.protocolId}
+        </foreach>
+    </update>
+<!--查询设施协议列表-->
+    <select id="queryDeviceProtocolList" resultMap="BaseResultMap">
+        SELECT protocol_id, protocol_name, hardware_version, software_version,
+         file_name, file_download_url FROM device_protocol
+        WHERE is_deleted != '1' ORDER BY create_time DESC
+    </select>
+<!--根据ID查询设施协议-->
+    <select id="getDeviceProtocolById" resultMap="BaseResultMap" parameterType="string">
+        SELECT protocol_id, protocol_name, hardware_version, software_version, file_download_url FROM device_protocol
+        WHERE protocol_id = #{protocolId} AND is_deleted != '1'
+    </select>
+    <!--根据ID集合查询设施协议List-->
+    <select id="getDeviceProtocolListById" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT protocol_id, protocol_name, hardware_version, software_version, file_download_url FROM device_protocol
+        WHERE is_deleted != '1' AND protocol_id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+<!--根据软硬件版本查询设施协议-->
+    <select id="queryDeviceProtocolByVersion" resultType="string"
+            parameterType="com.fiberhome.filink.dprotocol.bean.DeviceProtocol">
+        SELECT protocol_id FROM device_protocol
+        WHERE hardware_version = #{hardwareVersion} AND software_version = #{softwareVersion} AND is_deleted != '1'
+    </select>
+    <!--根据名称查询设施协议-->
+    <select id="queryDeviceProtocolByName" resultType="string" parameterType="string">
+        SELECT protocol_id FROM device_protocol
+        WHERE protocol_name = #{protocolName} AND is_deleted != '1'
+    </select>
+
+</mapper>

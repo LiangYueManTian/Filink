@@ -1,0 +1,8 @@
+2019-08-07 17:42:06.586 [main] INFO  c.f.f.p.s.i.PicRelationInfoServiceImpl
+                -删除图片记录成功
+2019-08-07 17:42:06.723 [main] INFO  c.f.f.p.s.i.PicRelationInfoServiceImpl
+                -删除图片成功
+2019-08-07 17:42:07.097 [main] ERROR c.f.filink.picture.utils.HandleFile
+                -s.png删除失败
+2019-08-07 17:42:07.107 [main] INFO  c.f.filink.picture.utils.HandleFile
+                ----------------------Remote update build file progress--------------------return-----true

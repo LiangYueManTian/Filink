@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmOrderRuleDeviceTypeDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmOrderRuleDeviceType">
+        <result column="rule_id" property="ruleId" />
+        <result column="device_type_id" property="deviceTypeId" />
+    </resultMap>
+
+    <insert id="addAlarmOrderDeviceType">
+        INSERT INTO alarm_order_rule_device_type (rule_id, device_type_id) VALUE
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.ruleId},
+            #{item.deviceTypeId}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="batchDeleteAlarmOrderDeviceType">
+        DELETE FROM alarm_order_rule_device_type WHERE rule_id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <delete id="deleteAlarmOrderDeviceType">
+        DELETE FROM alarm_order_rule_device_type WHERE rule_id=#{ruleId}
+    </delete>
+
+
+    <select id="queryAlarmOrderRuleDeviceTypeById" resultMap="BaseResultMap">
+        SELECT rule_id, device_type_id FROM alarm_order_rule_device_type WHERE rule_id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,374 @@
+<!--头部按钮-->
+<div class="table-top-button" *ngIf="(tableConfig.topButtons && tableConfig.topButtons.length > 0)
+          ||configurableColumn.length>0
+          ||tableConfig.showSearchSwitch">
+  <div style="flex: 1">
+    <button [appAccessPermission]="item.permissionCode" [class]="'left-button link-button '+item.className" nz-button
+            [nzType]="item.btnType || 'primary'"
+            *ngFor="let item of tableConfig.topButtons let index = index"
+            [disabled]="item.canDisabled&& allUnChecked"
+            style=""
+            (click)="topHandle(item)">
+      <i *ngIf="item.iconClassName" [class]="'iconfont '+item.iconClassName"></i>
+      {{item.text}}
+    </button>
+    <!--<span *ngIf="tableConfig.topCustomButton">-->
+    <!--<ng-template [ngTemplateOutlet]="tableConfig.topCustomButton"-->
+    <!--[ngTemplateOutletContext]="{data:dataSet}"></ng-template>-->
+    <!--</span>-->
+    <xc-nz-select style="width: 130px;" [nzPlaceHolder]="language.common.selectArea" [(ngModel)]="selectedValue"
+               (ngModelChange)="openChildren($event)">
+
+      <xc-nz-option *ngFor="let item of selectedOption;let index = index"
+                 [nzValue]="index" [nzLabel]="item.label"></xc-nz-option>
+    </xc-nz-select>
+  </div>
+
+  <!--过滤-->
+  <div style="padding-right:10px" *ngIf="tableConfig.showSearchSwitch">
+    <span nz-tooltip [nzTitle]="language.table.filter" style=""
+          (click)="openTableSearch()">
+      <i class="icon-l iconfont fiLink-filter"></i></span>
+  </div>
+
+  <!--设置列-->
+  <div style="padding-right: 10px" *ngIf="configurableColumn&&configurableColumn.length">
+    <nz-dropdown [nzClickHide]="false" [(nzVisible)]="setColumnVisible" nzTrigger="click" (nzVisibleChange)="dropDownChange($event)">
+      <span style="" nz-dropdown>
+        <i nz-tooltip [nzTitle]="language.table.setColumn" class="icon-l iconfont fiLink-columns-setting"></i></span>
+      <ul nz-menu class="column-setting-list">
+        <ng-container *ngFor="let _item of configurableColumn">
+          <li nz-menu-item>
+            <label nz-checkbox
+                   style="width: 100%"
+                   [ngModel]="!_item.hidden"
+                   (ngModelChange)="configurableColumnChange($event,_item)">
+              <span>{{_item.title}}</span>
+            </label>
+          </li>
+        </ng-container>
+      </ul>
+      <button class="save-col" (click)="saveColumn()" nz-button [nzType]="'primary'">{{language.common.saveColumnSetting}}</button>
+    </nz-dropdown>
+  </div>
+
+  <!--导出-->
+  <div style="padding-right:10px" *ngIf="tableConfig.showSearchExport">
+    <span nz-tooltip [nzTitle]="language.table.export" style="" (click)="clickExport()">
+      <i class="icon-l iconfont fiLink-export"></i></span>
+  </div>
+
+  <!--打印-->
+  <div style="padding-right:10px" *ngIf="!tableConfig.notShowPrint">
+    <span nz-tooltip [(nzVisible)]="printVisible" [nzTitle]="language.table.print" style="" (click)="printList()">
+      <i class="icon-l iconfont fiLink-stamp"></i></span>
+  </div>
+
+  <!--表格右上区的按钮-->
+  <div style="" *ngIf="tableConfig.rightTopButtons&&tableConfig.rightTopButtons.length>0">
+    <span style="padding-right: 10px"
+          *ngFor="let button of tableConfig.rightTopButtons"
+          nz-tooltip [nzTitle]="button.text"
+          (click)="topHandle(button)"
+    >
+      <i *ngIf="button.iconClassName" class="icon-l iconfont " [ngClass]="button.iconClassName"></i>
+      <!--{{button.text}}-->
+    </span>
+  </div>
+</div>
+
+<!--表格主体区域-->
+<div [id]="tableId" class="xc-table virtual-table" [class.no-auto-width]="tableConfig.isDraggable" [ngClass]="{'table-dragging':dragging}">
+  <nz-table #nzTable
+            #borderedTable
+            [nzShowSizeChanger]="tableConfig.showSizeChanger"
+            [nzLoading]="tableConfig.isLoading"
+            [nzData]="__dataSet"
+            [nzTotal]="pageBean.Total"
+            [(nzPageIndex)]="pageBean.pageIndex"
+            [(nzPageSize)]="pageBean.pageSize"
+            [nzFrontPagination]="false"
+            (nzPageIndexChange)="refreshStatus($event)"
+            (nzPageSizeChange)="refreshStatus($event)"
+            [nzPageSizeOptions]="tableConfig.pageSizeOptions||[10,20,30,40]"
+            #rowSelectionTable
+            nzShowQuickJumper
+            [nzVirtualScroll]="true"
+            [nzVirtualItemSize]="30"
+            [nzVirtualMaxBufferPx]="nzVirtualMaxBufferPx"
+            [nzVirtualMinBufferPx]="nzVirtualMaxBufferPx"
+            [nzShowTotal]="totalTemplate"
+            [nzBordered]="tableConfig.bordered"
+            [nzShowPagination]="tableConfig.showPagination"
+            #middleTable
+            [nzScroll]="tableConfig.scroll"
+            [nzHideOnSinglePage]="tableConfig.hideOnSinglePage"
+            [nzSimple]="tableConfig.simplePage"
+            [nzNoResult]="nzNoResult"
+  >
+    <thead [nzSingleSort]="true">
+
+    <!--表头-->
+    <tr>
+      <ng-container *ngFor="let config of tableConfig.columnConfig let index = index">
+        <ng-container [ngSwitch]="config.type">
+          <th nzShowExpand *ngSwitchCase="'expend'"
+              [class.ant-table-th-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+              nzWidth="{{config.width+'px'}}"
+              [class.ant-table-th-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+              [nzLeft]="config.fixedStyle?.style?.left"
+              [nzRight]="config.fixedStyle?.style?.right"
+          ></th>
+          <th *ngSwitchCase="'select'" nzShowCheckbox
+              [nzShowRowSelection]="tableConfig.showRowSelection && dataSet.length>0
+              &&tableConfig.columnConfig[0].type!=='expend'"
+              [nzLeft]="config.fixedStyle?.style?.left"
+              [nzRight]="config.fixedStyle?.style?.right"
+              nzWidth="{{config.width+'px'}}"
+              [nzDisabled]="dataSet.length===0"
+              [nzSelections]="listOfSelection" [(nzChecked)]="allChecked"
+              [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)">
+          </th>
+          <ng-container *ngSwitchDefault>
+            <th *ngIf="!config.hidden" style="user-select:none;position: relative"
+                [nzLeft]="config.fixedStyle?.style?.left"
+                [nzRight]="config.fixedStyle?.style?.right"
+                (mousemove)="handleMouseMove($event,config)"
+                (mousedown)="handleMouseDown($event,config)"
+                (mouseout)="handleMouseOut($event,config)"
+                [nzShowSort]="config.isShowSort"
+                [nzSortKey]="config.searchKey || config.key"
+                [nzShowFilter]="config.isShowFilter"
+                (nzSortChange)="sort($event,config.searchKey || config.key)"
+                [nzFilters]="config.filterList||[]" (nzFilterChange)="handleFilter(config,$event)"
+                [nzCustomFilter]="config.isCustomFilter"
+                nzWidth="{{config.width+'px'}}">
+              <!--{{config.title}}-->
+              <span style="display: inline-block;margin-top: 5px" class="table-text-td" [title]="config.title">{{config.title}}</span>
+
+              <ng-template [ngTemplateOutlet]="config.template"></ng-template>
+              <div class="table-drag-line"
+                   *ngIf="tableConfig.isDraggable&&!tableConfig.bordered&&index<tableConfig.columnConfig.length-1">
+                <div></div>
+              </div>
+            </th>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </tr>
+
+    <!--表头查询-->
+    <tr *ngIf="tableConfig.showSearch" class="table-search">
+      <ng-container [ngTemplateOutlet]="tableConfig.searchTemplate?tableConfig.searchTemplate:defaultSearchTemplate"
+                    [ngTemplateOutletContext]="{columnConfig:tableConfig.columnConfig}"
+      ></ng-container>
+    </tr>
+    </thead>
+    <tbody>
+    <!--表格每一行-->
+    <ng-template nz-virtual-scroll let-data let-index="index">
+      <tr>
+        <ng-template [ngTemplateOutlet]="tdTemplate"
+                     [ngTemplateOutletContext]="{columnConfig:tableConfig.columnConfig,childData:data,index:index}"></ng-template>
+      </tr>
+    </ng-template>
+    <tr *ngIf="nzTable.data.length===0">
+      <td class="xc-no-data" [attr.colspan]="2">{{language.table.noData}}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <!--表格左下角的按钮处理事件和头部的按钮一样-->
+  <div class="table-left-button" [class.table-left-button-position]="!tableConfig.showPagination||!(dataSet.length>0)">
+    <button nz-button
+            [class]="'left-button link-button '+button.className"
+            *ngFor="let button of tableConfig.leftBottomButtons"
+            [disabled]="button.canDisabled&& allUnChecked"
+            [nzType]="button.btnType || 'danger'"
+            (click)="topHandle(button)"
+    >
+      <i *ngIf="button.iconClassName" class="icon " [class]="button.iconClassName"></i>
+      {{button.text}}
+    </button>
+  </div>
+
+  <!--列宽拖拽参照线-->
+  <div class="resize-proxy" [class.resize-proxy-height]="!tableConfig.showPagination" [id]="resizeProxyId"
+       [hidden]="!resizeProxyShow"></div>
+</div>
+
+<!--组合搜索默认子模板-->
+<ng-template #searchTemplate let-config="config">
+  <form novalidate (submit)="handleSearch()">
+    <ng-container [ngSwitch]="config.searchConfig.type"
+    >
+      <div *ngSwitchCase="'input'">
+        <input name="{{config.key}}" type="text" [(ngModel)]="queryTerm.get(config.key).filterValue" nz-input
+               placeholder="{{language.form.inputPlaceholder}}">
+      </div>
+      <div *ngSwitchCase="'select'">
+        <nz-select *ngIf="config.searchConfig.selectType==='multiple'" name="{{config.key}}" style="width: 100%;line-height: 1"
+                   [nzMaxTagCount]="0"
+                   [nzMaxTagPlaceholder]="tagPlaceHolder"
+                   [(ngModel)]="queryTerm.get(config.key).filterValue"
+                   (ngModelChange)="selectChange($event,config.searchConfig.selectInfo)"
+                   [nzMode]="config.searchConfig.selectType||'default'"
+                   [nzAllowClear]="(!config.searchConfig.notAllowClear)"
+                   [nzPlaceHolder]="language.form.selectPlaceholder">
+          <ng-container *ngFor="let option of config.searchConfig.selectInfo">
+            <nz-option [nzValue]="option[config.searchConfig.value]||option.value"
+                       [nzLabel]="option[config.searchConfig.label]||option.label">
+            </nz-option>
+          </ng-container>
+        </nz-select>
+        <xc-nz-select *ngIf="config.searchConfig.selectType!=='multiple'" name="{{config.key}}" style="width: 100%;"
+                   [(ngModel)]="queryTerm.get(config.key).filterValue"
+                   [nzMode]="config.searchConfig.selectType||'default'"
+                   [nzAllowClear]="(!config.searchConfig.notAllowClear)"
+                   [nzPlaceHolder]="language.form.selectPlaceholder">
+          <ng-container *ngFor="let option of config.searchConfig.selectInfo">
+            <xc-nz-option [nzValue]="option[config.searchConfig.value]||option.value"
+                       [nzLabel]="option[config.searchConfig.label]||option.label">
+            </xc-nz-option>
+          </ng-container>
+        </xc-nz-select>
+        <ng-template #tagPlaceHolder let-selectedList>
+        <span [title]="selectedList | selectValue:config.searchConfig">
+          {{selectedList | selectValue:config.searchConfig}}
+        </span>
+        </ng-template>
+      </div>
+      <div *ngSwitchCase="'date'" style="display: flex">
+        <div style="flex: 1">
+          <nz-date-picker [nzShowTime]="true" style="width: 100%" [(ngModel)]="searchDate[config.key]"
+                          (ngModelChange)="onChange($event, config.key)"></nz-date-picker>
+        </div>
+        <div style="width: 70px;">
+          <nz-select style="width: 100%" [(ngModel)]="queryTerm.get(config.key).operator">
+            <nz-option nzValue="gt" nzLabel="{{language.table.gt}}"></nz-option>
+            <nz-option nzValue="lt" nzLabel="{{language.table.lt}}"></nz-option>
+            <nz-option nzValue="eq" nzLabel="{{language.table.eq}}"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+      <div *ngSwitchCase="'dateRang'">
+        <!--<xc-date-picker [rangValue]="rangDateValue[config.key]"-->
+        <!--(rangValueChange)="rangValueChange($event,config.key)"></xc-date-picker>-->
+        <nz-range-picker
+          nzShowTime
+          [ngModel]="rangDateValue[config.key]"
+          (ngModelChange)="rangValueChange($event,config.key)"
+        ></nz-range-picker>
+      </div>
+      <div *ngSwitchCase="'render'">
+        <ng-template [ngTemplateOutlet]="config.searchConfig.renderTemplate"
+                     [ngTemplateOutletContext]="{filterValue:queryTerm.get(config.key)}"
+        ></ng-template>
+      </div>
+      <div *ngSwitchCase="'operate'">
+      <span style="margin-right: 10px;cursor: pointer" nz-tooltip [nzTitle]="language.table.search"
+            (click)="handleSearch()">
+        <i class="icon-fiLink iconfont fiLink-search"></i>
+      </span>
+        <span *ngIf="config.searchConfig.customSearchHandle" style="margin-right: 10px;cursor: pointer" nz-tooltip
+              [nzTitle]="language.table.searchTemp"
+              (click)="config.searchConfig.customSearchHandle()">
+        <i class="icon-fiLink iconfont fiLink-search-template"></i>
+      </span>
+        <span style="margin-right: 10px;cursor: pointer" (click)="handleRest()" nz-tooltip
+              [nzTitle]="language.table.reset">
+        <i class="icon-fiLink iconfont fiLink-reset"></i></span>
+      </div>
+    </ng-container>
+  </form>
+</ng-template>
+
+<!--组合搜索默认父模板-->
+<ng-template #defaultSearchTemplate let-columnConfig="columnConfig">
+  <ng-container *ngFor="let config of columnConfig let index = index">
+    <th *ngIf="!config.hidden"
+        [nzLeft]="config.fixedStyle?.style?.left"
+        [nzRight]="config.fixedStyle?.style?.right"
+    >
+      <div *ngIf="config.searchable">
+        <ng-container [ngTemplateOutlet]="searchTemplate" [ngTemplateOutletContext]="{config:config}"></ng-container>
+      </div>
+    </th>
+  </ng-container>
+</ng-template>
+
+<!--分总条数模版-->
+<ng-template #totalTemplate let-total>
+  {{language.table.Total}} <span style="color: #36cfc9">{{total}}</span> {{language.table.items}}
+</ng-template>
+
+<!--每行的模板-->
+<ng-template #trTemplate let-columnConfig="columnConfig" let-data="data">
+  <ng-container *ngFor="let childData of data[tableConfig.columnConfig[0].expendDataKey] let sIndex = index">
+
+    <tr [nzExpand]="!data.expand">
+      <ng-template [ngTemplateOutlet]="tdTemplate"
+                   [ngTemplateOutletContext]="{columnConfig:columnConfig,childData:childData}"></ng-template>
+    </tr>
+    <ng-template *ngIf="childData[tableConfig.columnConfig[0].expendDataKey]" [ngTemplateOutlet]="trTemplate"
+                 [ngTemplateOutletContext]="{columnConfig:tableConfig.columnConfig,data:childData}"></ng-template>
+  </ng-container>
+</ng-template>
+
+<!--td模版-->
+<ng-template #tdTemplate let-columnConfig="columnConfig" let-childData="childData" let-index="index">
+  <ng-container *ngFor="let config of columnConfig">
+    <ng-container [ngSwitch]="config.type">
+      <td [nzShowExpand]="childData[config.expendDataKey]&&childData[config.expendDataKey].length>0"
+          *ngSwitchCase="'expend'" [(nzExpand)]="childData.expand"
+          (nzExpandChange)="tableCollapse(childData[config.expendDataKey],$event,index)"
+          [nzLeft]="config.fixedStyle?.style?.left"
+          [nzRight]="config.fixedStyle?.style?.right"
+      ></td>
+      <td *ngSwitchCase="'select'" nzShowCheckbox [(nzChecked)]="childData.checked"
+          [nzLeft]="config.fixedStyle?.style?.left"
+          [nzRight]="config.fixedStyle?.style?.right"
+          (nzCheckedChange)="refreshCheckStatus($event,childData)"></td>
+      <ng-container *ngSwitchCase="'render'">
+        <td *ngIf="!config.hidden"
+            [nzLeft]="config.fixedStyle?.style?.left"
+            [nzRight]="config.fixedStyle?.style?.right"
+        >
+          <ng-template [ngTemplateOutlet]="config.renderTemplate"
+                       [ngTemplateOutletContext]="{data:childData}"></ng-template>
+        </td>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <td *ngIf="!config.hidden" [(nzExpand)]="childData.expand"
+            [nzLeft]="config.fixedStyle?.style?.left"
+            [nzRight]="config.fixedStyle?.style?.right"
+        >
+          <ng-container *ngIf="config.key">
+            <span style="display: inline-block;margin-top: 5px;"
+                  [class.row-active]="childData['rowActive']"
+                  class="table-text-td"
+                  [title]="(childData['areaNameTitle'])||(childData[config.key] | dynamic: config.pipe : config.pipeParam)">{{childData[config.key] | dynamic: config.pipe : config.pipeParam}}</span>
+
+          </ng-container>
+          <ng-container *ngIf="!config.key">
+            <ng-container *ngFor="let item of tableConfig.operation;let index = index">
+              <button [appAccessPermission]="item.permissionCode" class="operate-btn"
+                      style="color: #1890ff; cursor: pointer;margin-right: 10px;"
+                      nz-tooltip [nzTitle]="item.text"
+                      (click)="handle(item,index,childData)" *ngIf="!item.key || childData[item.key]">
+                <i class="icon-fiLink iconfont" [ngClass]="item.className" style=""></i>
+              </button>
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #exportTemp>
+  <nz-radio-group [(ngModel)]="exportRadioValue">
+    <label class="radio-label" nz-radio [nzValue]="0"><i class="radio-font iconfont fiLink-Excel"></i></label>
+    <label class="radio-label" nz-radio [nzValue]="1"><i class="radio-font iconfont fiLink-CSV"></i></label>
+    <label class="radio-label" nz-radio nzValue="HTML"><i class="radio-font iconfont fiLink-HTML"></i></label>
+  </nz-radio-group>
+</ng-template>

@@ -1,0 +1,280 @@
+2019-05-07 09:55:42.252 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-05-07 09:55:42.410 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-05-07 09:55:42.411 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-05-07 09:55:42.547 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-05-07 09:55:42.548 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-05-07 09:55:42.850 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-05-07 09:55:43.055 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-05-07 09:55:43.055 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-05-07 09:55:43.055 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-05-07 09:55:43.056 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-05-07 09:55:43.056 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-05-07 09:55:43.057 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-05-07 09:55:43.057 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-05-07 09:55:43.305 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-05-07 09:55:43.308 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-05-07 09:55:43.312 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1557194143311 with initial instances count: 5
+2019-05-07 09:55:43.489 [main] WARN  o.s.c.c.c.DiscoveryClientConfigServiceBootstrapConfiguration
+                -Could not locate configserver via discovery
+java.lang.IllegalStateException: No instances found of configserver (FILINK-CONFIG-SERVER)
+	at org.springframework.cloud.config.client.ConfigServerInstanceProvider.getConfigServerInstance(ConfigServerInstanceProvider.java:25)
+	at org.springframework.cloud.config.client.DiscoveryClientConfigServiceBootstrapConfiguration.refresh(DiscoveryClientConfigServiceBootstrapConfiguration.java:80)
+	at org.springframework.cloud.config.client.DiscoveryClientConfigServiceBootstrapConfiguration.startup(DiscoveryClientConfigServiceBootstrapConfiguration.java:66)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:256)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:883)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.bootstrapServiceContext(BootstrapApplicationListener.java:187)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.onApplicationEvent(BootstrapApplicationListener.java:102)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.onApplicationEvent(BootstrapApplicationListener.java:68)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:122)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:74)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:54)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:296)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:20)
+2019-05-07 09:58:55.639 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-05-07 09:58:55.805 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-05-07 09:58:55.805 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-05-07 09:58:55.934 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-05-07 09:58:55.934 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-05-07 09:58:56.251 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-05-07 09:58:56.452 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-05-07 09:58:56.453 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-05-07 09:58:56.453 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-05-07 09:58:56.453 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-05-07 09:58:56.453 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-05-07 09:58:56.453 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-05-07 09:58:56.454 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-05-07 09:58:56.698 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-05-07 09:58:56.701 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-05-07 09:58:56.706 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1557194336706 with initial instances count: 7
+2019-05-07 09:58:56.881 [main] WARN  o.s.c.c.c.DiscoveryClientConfigServiceBootstrapConfiguration
+                -Could not locate configserver via discovery
+java.lang.IllegalStateException: No instances found of configserver (FILINK-CONFIG-SERVER)
+	at org.springframework.cloud.config.client.ConfigServerInstanceProvider.getConfigServerInstance(ConfigServerInstanceProvider.java:25)
+	at org.springframework.cloud.config.client.DiscoveryClientConfigServiceBootstrapConfiguration.refresh(DiscoveryClientConfigServiceBootstrapConfiguration.java:80)
+	at org.springframework.cloud.config.client.DiscoveryClientConfigServiceBootstrapConfiguration.startup(DiscoveryClientConfigServiceBootstrapConfiguration.java:66)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:256)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:883)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.bootstrapServiceContext(BootstrapApplicationListener.java:187)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.onApplicationEvent(BootstrapApplicationListener.java:102)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.onApplicationEvent(BootstrapApplicationListener.java:68)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:122)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:74)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:54)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:296)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:20)
+2019-05-07 10:00:56.300 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-05-07 10:00:56.441 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-05-07 10:00:56.441 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-05-07 10:00:56.575 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-05-07 10:00:56.575 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-05-07 10:00:56.880 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-05-07 10:00:57.079 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-05-07 10:00:57.079 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-05-07 10:00:57.079 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-05-07 10:00:57.079 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-05-07 10:00:57.079 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-05-07 10:00:57.079 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-05-07 10:00:57.080 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-05-07 10:00:57.305 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-05-07 10:00:57.308 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-05-07 10:00:57.311 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1557194457311 with initial instances count: 6
+2019-05-07 10:00:57.492 [main] WARN  o.s.c.c.c.DiscoveryClientConfigServiceBootstrapConfiguration
+                -Could not locate configserver via discovery
+java.lang.IllegalStateException: No instances found of configserver (FILINK-CONFIG-SERVER)
+	at org.springframework.cloud.config.client.ConfigServerInstanceProvider.getConfigServerInstance(ConfigServerInstanceProvider.java:25)
+	at org.springframework.cloud.config.client.DiscoveryClientConfigServiceBootstrapConfiguration.refresh(DiscoveryClientConfigServiceBootstrapConfiguration.java:80)
+	at org.springframework.cloud.config.client.DiscoveryClientConfigServiceBootstrapConfiguration.startup(DiscoveryClientConfigServiceBootstrapConfiguration.java:66)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:256)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:883)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.bootstrapServiceContext(BootstrapApplicationListener.java:187)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.onApplicationEvent(BootstrapApplicationListener.java:102)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.onApplicationEvent(BootstrapApplicationListener.java:68)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:122)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:74)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:54)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:296)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:20)
+2019-05-07 13:08:50.351 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-05-07 13:08:50.524 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-05-07 13:08:50.524 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-05-07 13:08:50.640 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-05-07 13:08:50.641 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-05-07 13:08:50.871 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-05-07 13:08:51.098 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-05-07 13:08:51.098 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-05-07 13:08:51.099 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-05-07 13:08:51.099 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-05-07 13:08:51.099 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-05-07 13:08:51.099 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-05-07 13:08:51.100 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-05-07 13:08:51.315 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-05-07 13:08:51.318 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-05-07 13:08:51.321 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1557205731321 with initial instances count: 7
+2019-05-07 13:08:51.503 [main] WARN  o.s.c.c.c.DiscoveryClientConfigServiceBootstrapConfiguration
+                -Could not locate configserver via discovery
+java.lang.IllegalStateException: No instances found of configserver (FILINK-CONFIG-SERVER)
+	at org.springframework.cloud.config.client.ConfigServerInstanceProvider.getConfigServerInstance(ConfigServerInstanceProvider.java:25)
+	at org.springframework.cloud.config.client.DiscoveryClientConfigServiceBootstrapConfiguration.refresh(DiscoveryClientConfigServiceBootstrapConfiguration.java:80)
+	at org.springframework.cloud.config.client.DiscoveryClientConfigServiceBootstrapConfiguration.startup(DiscoveryClientConfigServiceBootstrapConfiguration.java:66)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:256)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:883)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:134)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.bootstrapServiceContext(BootstrapApplicationListener.java:187)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.onApplicationEvent(BootstrapApplicationListener.java:102)
+	at org.springframework.cloud.bootstrap.BootstrapApplicationListener.onApplicationEvent(BootstrapApplicationListener.java:68)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:122)
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:74)
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:54)
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:296)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:20)

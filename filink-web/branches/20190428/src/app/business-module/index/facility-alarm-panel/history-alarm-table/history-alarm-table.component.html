@@ -1,0 +1,14 @@
+<xc-table [dataSet]="_dataSet"
+          [pageBean]="pageBean"
+          [tableConfig]="tableConfig">
+</xc-table>
+
+<ng-template #alarmNameTemp let-data="data">
+  <div class="hidden" title="{{data.alarmName}}">
+    <span class="box-color-icon"
+          [ngStyle]="data.style"
+          style="display: inline-block;margin-right: 5px;">
+    </span>
+    {{data.alarmName}}
+  </div>
+</ng-template>

@@ -1,0 +1,7 @@
+com\fiberhome\filink\ossapi\upload\UploadFile.class
+com\fiberhome\filink\ossapi\api\FdfsFeign$MultipartSupportConfig.class
+com\fiberhome\filink\ossapi\api\FdfsFeign.class
+com\fiberhome\filink\ossapi\bean\ImageUploadBean.class
+com\fiberhome\filink\ossapi\fallback\FdfsFeignFallback.class
+com\fiberhome\filink\ossapi\bean\FileBean.class
+com\fiberhome\filink\ossapi\bean\ImageUrl.class

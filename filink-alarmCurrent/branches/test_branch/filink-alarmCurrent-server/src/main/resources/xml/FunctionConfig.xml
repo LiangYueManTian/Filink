@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+    <functionCode functionId="1701401">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}update current alarm note current alarm note name is ${alarmName}
+            </detailInfoTemplate>
+            <optName>updateAlarmRemark</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}修改了当前告警备注:${alarmName}</detailInfoTemplate>
+            <optName>修改当前告警备注</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701402">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}update the confirmation status of the current alarm
+                the confirmation status of the current alarm name is ${alarmName}
+            </detailInfoTemplate>
+            <optName>updateAlarmConfirmStatus</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}修改了当前告警的确认状态:${alarmName}</detailInfoTemplate>
+            <optName>修改当前告警的确认状态</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701403">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}update Clear status of the current alarm
+                Clear status of the current alarm name is ${alarmName}
+            </detailInfoTemplate>
+            <optName>updateAlarmCleanStatus</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}修改了当前告警的清除状态:${alarmName}</detailInfoTemplate>
+            <optName>修改当前告警的清除状态</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701801">
+        <language type="US">
+            <detailInfoTemplate>Task Of Alarm Current Cast To Alarm History is ${alarmName}
+            </detailInfoTemplate>
+            <optName>alarmCurrentCastAlarmHistoryTask</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>当前告警转历史告警定时任务:${alarmName}</detailInfoTemplate>
+            <optName>当前告警转历史告警定时任务</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701802">
+        <language type="US">
+            <detailInfoTemplate>System Add Alarm current Alarm current is ${alarmName}
+            </detailInfoTemplate>
+            <optName>addAlarmInfo</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>System新增了当前告警:${alarmName}</detailInfoTemplate>
+            <optName>新增当前告警</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701803">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}update Current alarm template Current alarm template is ${templateName}
+            </detailInfoTemplate>
+            <optName>updateAlarmTemplate</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}修改了当前告警模板:${templateName}</detailInfoTemplate>
+            <optName>修改当前告警模板</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701804">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}add Current alarm template Current alarm template is ${templateName}
+            </detailInfoTemplate>
+            <optName>addAlarmTemplate</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}新增了当前告警模板:${templateName}</detailInfoTemplate>
+            <optName>新增当前告警模板</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701805">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}delete Current alarm template Current alarm template is ${templateName}
+            </detailInfoTemplate>
+            <optName>batchDeleteAlarmTemplate</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}删除了当前告警模板:${templateName}</detailInfoTemplate>
+            <optName>删除当前告警模板</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701811">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}update alarm statistics template alarm statistics template is ${templateName}
+            </detailInfoTemplate>
+            <optName>updateAlarmTemplate</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}修改了告警统计模板:${templateName}</detailInfoTemplate>
+            <optName>修改告警统计模板</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701812">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}add alarm statistics template alarm statistics template is ${templateName}
+            </detailInfoTemplate>
+            <optName>addAlarmTemplate</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}新增了告警统计模板:${templateName}</detailInfoTemplate>
+            <optName>新增告警统计模板</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1701813">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}delete alarm statistics template alarm statistics template is ${templateName}
+            </detailInfoTemplate>
+            <optName>batchDeleteAlarmTemplate</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}删除了告警统计模板:${templateName}</detailInfoTemplate>
+            <optName>删除告警统计模板</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1705005">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+            <optName>List export</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+            <optName>当前告警列表导出</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1705008">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+            <optName>List export</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+            <optName>告警统计列表导出</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1705007">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+            <optName>List export</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+            <optName>告警设施数量统计列表导出</optName>
+        </language>
+    </functionCode>
+</functionCodes>

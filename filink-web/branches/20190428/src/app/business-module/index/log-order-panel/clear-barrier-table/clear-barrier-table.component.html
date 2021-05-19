@@ -1,0 +1,12 @@
+<xc-table [dataSet]="_dataSet"
+          [pageBean]="pageBean"
+          [tableConfig]="tableConfig">
+</xc-table>
+
+<ng-template #statusTemp let-data="data">
+  <div class="hidden" title="{{data.statusName}}">
+    <span [ngClass]="data.statusClass">
+    </span>
+    {{data.statusName}}
+  </div>
+</ng-template>

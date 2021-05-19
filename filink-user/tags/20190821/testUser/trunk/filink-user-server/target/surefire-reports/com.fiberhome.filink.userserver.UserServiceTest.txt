@@ -1,0 +1,50 @@
+-------------------------------------------------------------------------------
+Test set: com.fiberhome.filink.userserver.UserServiceTest
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 0, Errors: 14, Skipped: 0, Time elapsed: 0.143 sec <<< FAILURE! - in com.fiberhome.filink.userserver.UserServiceTest
+queryUserByNmae(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.114 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+Caused by: java.lang.ClassNotFoundException: javax.persistence.Entity
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+
+modifyPWD(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+addUser(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+queryUserInfoByIdTest(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+deleteUserOne(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+deleteUserTwo(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+updateUser(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+updateUserStatusOne(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+queryUserInfoByIdTestOne(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+queryUserByField(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+updateUserStatus(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+deleteUserThree(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.006 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+deleteUser(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+
+deleteUserZero(com.fiberhome.filink.userserver.UserServiceTest)  Time elapsed: 0.004 sec  <<< ERROR!
+java.lang.NoClassDefFoundError: javax/persistence/Entity
+

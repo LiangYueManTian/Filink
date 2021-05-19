@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.systemcommons.dao.PlatformAppInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.systemcommons.bean.PlatformAppInfo">
+        <id column="platform_app_id" property="platformAppId" />
+        <result column="platform_type" property="platformType" />
+        <result column="app_id" property="appId" />
+        <result column="secret_key" property="secretKey" />
+        <result column="app_name" property="appName" />
+        <result column="manufacturer_id" property="manufacturerId" />
+        <result column="manufacturer_name" property="manufacturerName"/>
+        <result column="device_type" property="deviceType" />
+        <result column="model" property="model" />
+        <result column="protocol_type" property="protocolType" />
+    </resultMap>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="DtoResultMap" type="com.fiberhome.filink.systemcommons.dto.PlatformAppInfoDto">
+        <result column="platform_type" property="platformType" />
+        <result column="app_id" property="appId" />
+        <result column="app_name" property="appName" />
+    </resultMap>
+    <!--根据应用/产品 ID获取应用/产品信息-->
+    <select id="findPlatformAppInfoByAppId" resultMap="BaseResultMap" parameterType="string">
+        SELECT platform_app_id, platform_type, app_id, secret_key, app_name, manufacturer_id,
+        manufacturer_name, device_type, model, protocol_type FROM platform_app_info
+        WHERE app_id = #{appId}
+    </select>
+    <!--根据平台类型获取应用/产品信息-->
+    <select id="findPlatformAppInfoMapByType" resultMap="BaseResultMap" parameterType="Integer">
+        SELECT platform_app_id, platform_type, app_id, secret_key, app_name, manufacturer_id,
+        manufacturer_name, device_type, model, protocol_type FROM platform_app_info
+        WHERE platform_type = #{platformType}
+    </select>
+    <!--获取应用/产品信息-->
+    <select id="findPlatformAppInfoAll" resultMap="DtoResultMap">
+        SELECT platform_type, app_id, app_name FROM platform_app_info
+    </select>
+</mapper>

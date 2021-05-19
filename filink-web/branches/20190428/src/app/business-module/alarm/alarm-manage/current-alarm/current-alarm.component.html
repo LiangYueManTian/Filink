@@ -1,0 +1,84 @@
+<div class="box-warp">
+  <div style="width: 100%;">
+    <xc-table #table [dataSet]="_dataSet"
+       [pageBean]="pageBean"
+       [tableConfig]="tableConfig"
+       (pageChange)="pageChange($event)">
+    </xc-table>
+  </div>
+</div>
+
+<ng-template #alarmFixedLevelTemp let-data="data">
+  <div *ngIf="data.alarmFixedLevel === '1'" style="display: flex"><div class="box-icon" [ngStyle]="data.style"></div> <span style="margin-left: 5px">{{this.language.urgent}}</span></div>
+  <div *ngIf="data.alarmFixedLevel === '2'" style="display: flex"><div class="box-icon"  [ngStyle]="data.style"></div><span style="margin-left: 5px">{{this.language.main}}</span></div>
+  <div *ngIf="data.alarmFixedLevel === '3'" style="display: flex"><div class="box-icon"  [ngStyle]="data.style"></div><span style="margin-left: 5px">{{this.language.secondary}}</span></div>
+  <div *ngIf="data.alarmFixedLevel === '4'" style="display: flex"><div class="box-icon"  [ngStyle]="data.style"></div><span style="margin-left: 5px">{{this.language.prompt}}</span></div>
+</ng-template>
+
+<ng-template #isCleanTemp let-data="data">
+  <div *ngIf="data.alarmCleanStatus ===3">{{this.language.noClean}}</div>
+  <div *ngIf="data.alarmCleanStatus ===1">{{this.language.isClean}}</div>
+  <div *ngIf="data.alarmCleanStatus ===2">{{this.language.deviceClean}}</div>
+</ng-template>
+
+<ng-template #isConfirmTemp let-data="data">
+  <div *ngIf="data.alarmConfirmStatus ===1">{{this.language.isConfirm}}</div>
+  <div *ngIf="data.alarmConfirmStatus ===2">{{this.language.noConfirm}}</div>
+</ng-template>
+
+<ng-template #alarmSourceTypeTemp let-data="data">
+  <div *ngIf="data.alarmSourceTypeId === '001'">{{this.language.opticalBox}}</div>
+  <div *ngIf="data.alarmSourceTypeId === '030'">{{this.language.well}}</div>
+  <div *ngIf="data.alarmSourceTypeId === '060'">{{this.language.distributionFrame}}</div>
+  <div *ngIf="data.alarmSourceTypeId === '090'">{{this.language.junctionBox}}</div>
+  <div *ngIf="data.alarmSourceTypeId === '150'">{{this.language.splittingBox}}</div>
+</ng-template>
+
+<!-- 修改备注弹框 -->
+<nz-modal
+  class="updateRemarkPopUp"
+  [(nzVisible)]="display.remarkTable"
+  [nzTitle]="language.updateRemark"
+  [nzMaskClosable]="false"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="display.remarkTable=false">
+  <ng-template #modalTitle>
+  {{language.updateRemark}}
+</ng-template>
+<ng-template #modalContent>
+  <xc-form [column]="formColumnRemark" (formInstance)="formInstanceRemark($event)"></xc-form>
+</ng-template>
+<ng-template #modalFooter>
+  <button nz-button nzType="primary" [disabled]="!formStatusRemark.getValid()" (click)="updateAlarmRemark();display.remarkTable=false">{{language.okText}}</button>
+  <button nz-button nzType="default" (click)="display.remarkTable=false">{{language.cancelText}}</button>
+</ng-template>
+</nz-modal>
+
+<!-- 按照模板查询 -->
+<div class="box-warp" *ngIf="display.templateTable">
+  <app-template-table (resultAndClose)="templateTable($event)"></app-template-table>
+</div>
+
+<!-- 创建工单 -->
+<app-create-work-order *ngIf="display.creationWorkOrder"
+                       [creationWorkOrderData]="creationWorkOrderData"
+                       (close)="display.creationWorkOrder=false"></app-create-work-order>
+
+
+<!-- 告警名称 -->
+<ng-template #alarmName let-filterValue = "filterValue">
+  <app-alarm-name [alarmNameConfig]='alarmNameConfig' [filterValue]="filterValue"></app-alarm-name>
+</ng-template>
+
+<!-- 区域 -->
+<ng-template #areaSelector let-data="data" let-filterValue = "filterValue">
+  <app-area [areaConfig]='areaConfig' [filterValue]="filterValue"></app-area>
+</ng-template>
+
+<!-- 告警对象 -->
+<ng-template #department let-filterValue = "filterValue">
+  <app-alarm-object [alarmObjectConfig]="alarmObjectConfig" [filterValue]="filterValue"></app-alarm-object>
+</ng-template>
+
+

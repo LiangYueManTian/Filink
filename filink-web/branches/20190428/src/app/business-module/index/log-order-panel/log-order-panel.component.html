@@ -1,0 +1,30 @@
+<div class="log-order-panel-container">
+  <div class="facility-log">
+    <div class="facility-log-title">
+      <div class="facility-log-title-text">{{indexLanguage.facilityLog}}</div>
+      <div class="facility-log-title-more" (click)="goToFacilityLogList()">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="facility-log-table">
+      <app-facility-log-table [facilityId]="facilityId"></app-facility-log-table>
+    </div>
+  </div>
+  <div class="facility-log">
+    <div class="facility-log-title">
+      <div class="facility-log-title-text">{{indexLanguage.clearBarrierWorkOrderTitle}}</div>
+      <div class="facility-log-title-more" (click)="goToClearBarrierList()">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="facility-log-table">
+      <app-clear-barrier-table [facilityId]="facilityId"></app-clear-barrier-table>
+    </div>
+  </div>
+  <div class="facility-log">
+    <div class="facility-log-title">
+      <div class="facility-log-title-text">{{indexLanguage.inspectionWorkOrderTitle}}</div>
+      <div class="facility-log-title-more" (click)="goToInspectionList()">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="facility-log-table">
+      <app-inspection-table [facilityId]="facilityId"></app-inspection-table>
+    </div>
+  </div>
+</div>
+

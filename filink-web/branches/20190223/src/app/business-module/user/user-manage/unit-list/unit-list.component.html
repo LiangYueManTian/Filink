@@ -1,0 +1,32 @@
+<div class="box-warp">
+  <xc-table [dataSet]="_dataSet"
+            [pageBean]="pageBean"
+            [tableConfig]="tableConfig"
+            (pageChange)="pageChange($event)">
+  </xc-table>
+</div>
+
+<!-- 单位级别 -->
+<ng-template #deptLevelTemp let-data="data">
+  <span class="dept-level"
+        [class.level-one]="data.deptLevel===deptLevel.DEPT_LEVEL_ONE"
+        [class.level-two]="data.deptLevel===deptLevel.DEPT_LEVEL_TWO"
+        [class.level-three]="data.deptLevel===deptLevel.DEPT_LEVEL_THREE"
+        [class.level-four]="data.deptLevel===deptLevel.DEPT_LEVEL_FOUR"
+        [class.level-five]="data.deptLevel===deptLevel.DEPT_LEVEL_FIVE">
+    {{data['deptLevel']===deptLevel.DEPT_LEVEL_ONE?language.config.DEPT_LEVEL_ONE
+    :data['deptLevel']===deptLevel.DEPT_LEVEL_TWO? language.config.DEPT_LEVEL_TWO
+    :data['deptLevel']===deptLevel.DEPT_LEVEL_THREE? language.config.DEPT_LEVEL_THREE
+    :data['deptLevel']===deptLevel.DEPT_LEVEL_FOUR? language.config.DEPT_LEVEL_FOUR
+    :data['deptLevel']===deptLevel.DEPT_LEVEL_FIVE? language.config.DEPT_LEVEL_FIVE
+    :''}}
+  </span>
+</ng-template>
+
+
+<ng-template #DeptNameTemp let-data="data">  
+  <!-- <span>{{data.parmentDeparmentName?data.parmentDeparmentName:data.deptName}}</span> -->
+  <span>{{data.parmentDeparmentName}}</span>
+</ng-template>
+
+

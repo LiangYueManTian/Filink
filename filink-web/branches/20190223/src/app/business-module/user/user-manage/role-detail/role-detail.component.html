@@ -1,0 +1,14 @@
+<div class="user-detail">
+  <div>
+    <span class="pageTitle">
+      {{pageTitle}}
+    </span>
+  </div>
+  <div>
+      <xc-form [column]="formColumn" (formInstance)="formInstance($event)"></xc-form>
+        <div style="padding-left: 20px;padding-top:40px; padding-bottom:10px;">
+             <button class="link-button" nz-button nzType="primary" style="margin-right: 20px" [nzLoading]="isLoading" (click)="submit()" [disabled]="!formStatus.getValid()">{{language.okText}}</button>
+             <button class="link-button" nz-button nzType="danger" (click)="goBack()">{{language.cancelText}}</button>
+        </div>
+  </div>
+</div>

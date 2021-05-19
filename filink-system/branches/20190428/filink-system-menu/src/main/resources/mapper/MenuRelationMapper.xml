@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.menu.dao.MenuRelationDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="baseResultMap" type="com.fiberhome.filink.menu.bean.MenuRelation">
+        <id column="menu_relation_id" property="menuRelationId"/>
+        <result column="menu_template_id" property="menuTemplateId"/>
+        <result column="menu_id" property="menuId"/>
+        <result column="menu_sort" property="menuSort"/>
+        <result column="is_show" property="isShow"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+    <resultMap id="menuInfoResultMap" type="com.fiberhome.filink.menu.bean.MenuInfo">
+        <id column="menu_id" property="menuId"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="menu_href" property="menuHref"/>
+        <result column="parent_menu_id" property="parentMenuId"/>
+        <result column="menu_level" property="menuLevel"/>
+        <result column="menu_sort" property="menuSort"/>
+        <result column="image_url" property="imageUrl"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_show" property="isShow"/>
+        <result column="menu_template_id" property="menuTemplateId"/>
+    </resultMap>
+
+    <resultMap id="findChildren" type="com.fiberhome.filink.menu.dto.MenuInfoTree" extends="menuInfoResultMap">
+        <collection property="children" ofType="com.fiberhome.filink.menu.dto.MenuInfoTree"
+                    javaType="java.util.ArrayList"
+                    select="selectChildren"
+                    column="{menuId =menu_id,menuTemplateId=menu_template_id}"
+        >
+        </collection>
+    </resultMap>
+
+
+    <sql id="leftJoincolumnMenu_info">
+        i.menu_id,i.menu_name,i.menu_href,
+         i.parent_menu_id,i.menu_level,i.image_url ,
+         i.create_user ,i.create_time ,i.update_user ,
+         i.update_time , r.menu_sort ,r.is_show
+    </sql>
+
+    <!--子节点查询-->
+    <select id="selectChildren" resultMap="findChildren" parameterType="com.fiberhome.filink.menu.bean.MenuInfo">
+        SELECT
+        DISTINCT
+        <include refid="leftJoincolumnMenu_info"></include>, r.menu_template_id
+        FROM
+        menu_relation r LEFT JOIN menu_info i ON r.menu_id = i.menu_id
+        WHERE i.parent_menu_id = #{menuId} AND r.is_deleted !=1 AND r.menu_template_id = #{menuTemplateId} ORDER BY
+        r.menu_sort ASC;
+    </select>
+
+    <!--新增关系表-->
+    <insert id="insertMenuRelations" parameterType="list">
+        INSERT INTO menu_relation
+        (menu_relation_id,menu_template_id,menu_id,menu_sort,is_show,is_deleted)
+        values
+        <foreach collection="list" item="menuRelationList" index="index" separator=",">
+            (
+            #{menuRelationList.menuRelationId},#{menuRelationList.menuTemplateId},#{menuRelationList.menuId},
+            #{menuRelationList.menuSort},#{menuRelationList.isShow},#{menuRelationList.isDeleted}
+            )
+        </foreach>
+    </insert>
+    <!--与info表左连接查询详细信息-->
+    <select id="selectMenuRelationAndMenuInfo" parameterType="string" resultMap="findChildren">
+        SELECT
+        DISTINCT
+        <include refid="leftJoincolumnMenu_info"></include>,r.menu_template_id
+        FROM
+        menu_relation r LEFT JOIN menu_info i ON r.menu_id = i.menu_id
+        WHERE r.menu_template_id = #{menuTemplateId} AND i.menu_level = 1 AND r.is_deleted !=1 ORDER BY r.menu_sort ASC;
+    </select>
+
+    <!--与info表左连接查询详细信息并过滤不展示信息-->
+    <select id="getShowMenuTemplate"  resultMap="menuInfoResultMap">
+        SELECT
+        DISTINCT
+        <include refid="leftJoincolumnMenu_info"></include>,r.menu_template_id
+        FROM
+        menu_relation r LEFT JOIN menu_info i ON r.menu_id = i.menu_id
+        WHERE r.menu_template_id = #{menuTemplateId}  AND r.is_deleted !=1 AND r.is_show IN (1,2)
+        ORDER BY r.menu_sort ASC;
+    </select>
+
+
+</mapper>

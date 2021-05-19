@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+    <functionCode functionId="1402001">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} open the num:${slotNum} lock of the ${deviceName}</detailInfoTemplate>
+            <optName>remote unlock</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}对设施:${deviceName}的${slotNum}号门锁进行了开锁操作</detailInfoTemplate>
+            <optName>远程开锁</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1402002">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} update num : ${slotNum} of the device ${deviceName}</detailInfoTemplate>
+            <optName>update lock state</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}修改了设施:${deviceName} ${slotNum}号门锁状态</detailInfoTemplate>
+            <optName>修改电子锁状态</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1402003">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} add num : ${slotNum} of the device ${deviceName}</detailInfoTemplate>
+            <optName>add lock info</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}新增了设施:${deviceName} ${slotNum}号门锁</detailInfoTemplate>
+            <optName>新增电子锁信息</optName>
+        </language>
+    </functionCode>
+
+
+    <functionCode functionId="1402004">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} delete the lock info of the device:${deviceName}</detailInfoTemplate>
+            <optName>delete lock info</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}删除了设施:${deviceName}的电子锁信息</detailInfoTemplate>
+            <optName>删除电子锁信息</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1401001">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} set config of the device:${deviceName}</detailInfoTemplate>
+            <optName>set config</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}对设施:${deviceName}进行了配置设施策略操作</detailInfoTemplate>
+            <optName>配置设施策略</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1401002">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} update the control info of the device:${deviceName}</detailInfoTemplate>
+            <optName>update control info</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}更新了设施:${deviceName}的主控信息</detailInfoTemplate>
+            <optName>更新主控信息</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1401003">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} add the control info of the device:${deviceName}</detailInfoTemplate>
+            <optName>add control info</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}新增了设施:${deviceName}的主控信息</detailInfoTemplate>
+            <optName>新增主控信息</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1401004">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} delete the control info of the device:${deviceName}</detailInfoTemplate>
+            <optName>delete control info</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}删除了设施:${deviceName}的主控信息</detailInfoTemplate>
+            <optName>删除主控信息</optName>
+        </language>
+    </functionCode>
+    
+    <functionCode functionId="1401005">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} deploy the device:${deviceName}</detailInfoTemplate>
+            <optName>deploy device</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}布防设施:${deviceName}</detailInfoTemplate>
+            <optName>布防设施</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1401006">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} nodefence the device:${deviceName}</detailInfoTemplate>
+            <optName>nodefence device</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}撤防设施:${deviceName}</detailInfoTemplate>
+            <optName>撤防设施</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1401007">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} not used the device:${deviceName}</detailInfoTemplate>
+            <optName>notused device</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}停用设施:${deviceName}</detailInfoTemplate>
+            <optName>停用设施</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1401008">
+        <language type="US">
+            <detailInfoTemplate>${optUserName} maintenance the device:${deviceName}</detailInfoTemplate>
+            <optName>maintenance device</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}维护设施:${deviceName}</detailInfoTemplate>
+            <optName>维护设施</optName>
+        </language>
+    </functionCode>
+
+</functionCodes>

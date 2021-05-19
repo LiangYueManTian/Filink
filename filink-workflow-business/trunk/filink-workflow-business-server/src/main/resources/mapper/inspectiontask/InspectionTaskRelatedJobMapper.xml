@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowbusinessserver.dao.inspectiontask.InspectionTaskRelatedJobDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.workflowbusinessserver.bean.inspectiontask.InspectionTaskRelatedJob">
+        <id column="inspection_task_related_id" property="inspectionTaskRelatedId" />
+        <result column="inspection_task_job_name" property="inspectionTaskJobName" />
+        <result column="inspection_task_id" property="inspectionTaskId" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+    <!-- 巡检任务关联任务字段 -->
+    <sql id ="baseColumnList">
+        inspection_task_related_id ,inspection_task_job_name,
+        inspection_task_id, create_user,
+        create_time, is_deleted
+    </sql>
+
+    <!-- 巡检任务关联任务查询条件 -->
+    <sql id="queryRelatedForInspectionTask">
+        <if test="inspectionTaskId != null and inspectionTaskId != ''">
+            and inspection_task_id = #{inspectionTaskId}
+        </if>
+        <if test="inspectionTaskIds != null and inspectionTaskIds.size() > 0">
+            <if test="inspectionTaskIds.size() == 1">
+                AND inspection_task_id =
+                <foreach collection="inspectionTaskIds" item="inspectionTaskId">
+                    #{inspectionTaskId}
+                </foreach>
+            </if>
+            <if test="inspectionTaskIds.size() > 1">
+                AND inspection_task_id IN
+                <foreach collection="inspectionTaskIds" item="inspectionTaskId" open="(" close=")" separator=",">
+                    #{inspectionTaskId}
+                </foreach>
+            </if>
+        </if>
+        <if test="isDeleted != null and isDeleted != ''">
+            and is_deleted = #{isDeleted}
+        </if>
+    </sql>
+
+    <select id="selectInspectionTaskRelatedInfo" resultMap="BaseResultMap" parameterType="com.fiberhome.filink.workflowbusinessserver.req.inspectiontaskjob.InspectionTaskRelatedJobReq">
+        select
+        <include refid="baseColumnList" />
+        from inspection_task_related_job
+        where 1=1
+        <include refid="queryRelatedForInspectionTask" />
+    </select>
+
+
+
+    <!-- 批量巡检任务关联任务 -->
+    <insert id="insertInspectionTaskRelatedJobBatch" parameterType="java.util.List">
+        insert into inspection_task_related_job
+        (
+        inspection_task_related_id,
+        inspection_task_job_name, inspection_task_id,
+        create_user,
+        create_time
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.inspectionTaskRelatedId, jdbcType=VARCHAR},
+            #{item.inspectionTaskJobName, jdbcType=VARCHAR}, #{item.inspectionTaskId, jdbcType=VARCHAR},
+            #{item.createUser, jdbcType=VARCHAR}, #{item.createTime, jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 删除巡检任务关联任务 -->
+    <delete id="deleteInspectionTaskRelatedJobByInspectionTaskId" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.inspectiontask.InspectionTaskRelatedJob">
+          delete from inspection_task_related_job where inspection_task_id = #{inspectionTaskId, jdbcType=VARCHAR}
+    </delete>
+
+    <!-- 批量删除巡检任务信息 -->
+    <delete id="deleteInspectionTaskRelatedJobBatch" parameterType="com.fiberhome.filink.workflowbusinessserver.req.inspectiontaskjob.InspectionTaskRelatedJobReq">
+          delete from inspection_task_related_job where 1=1
+          <include refid="queryRelatedForInspectionTask" />
+    </delete>
+
+    <!-- 逻辑删除巡检任务关联任务 -->
+    <update id="logicDeleteInspectionTaskRelatedJobByInspectionTaskId" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.inspectiontask.InspectionTaskRelatedJob">
+      update inspection_task_related_job set is_deleted = #{isDeleted} where inspection_task_id = #{inspectionTaskId, jdbcType=VARCHAR} AND is_deleted = '0'
+    </update>
+
+    <!-- 批量逻辑删除巡检任务关联任务 -->
+    <update id="logicDeleteInspectionTaskRelatedJob" parameterType="com.fiberhome.filink.workflowbusinessserver.req.inspectiontaskjob.InspectionTaskRelatedJobReq">
+      update inspection_task_related_job set is_deleted = #{isDeleted} where 1=1
+        <if test="inspectionTaskIds != null and inspectionTaskIds.size() > 0">
+            <if test="inspectionTaskIds.size() == 1">
+                AND inspection_task_id =
+                <foreach collection="inspectionTaskIds" item="inspectionTaskId">
+                    #{inspectionTaskId}
+                </foreach>
+            </if>
+            <if test="inspectionTaskIds.size() > 1">
+                AND inspection_task_id IN
+                <foreach collection="inspectionTaskIds" item="inspectionTaskId" open="(" close=")" separator=",">
+                    #{inspectionTaskId}
+                </foreach>
+            </if>
+        </if>
+      AND is_deleted = '0'
+    </update>
+
+</mapper>

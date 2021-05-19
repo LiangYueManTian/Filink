@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmDelayDao">
+
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmDelay">
+        <result column="delay" property="delay"/>
+    </resultMap>
+    
+    <select id="selectDelay" resultType="com.fiberhome.filink.alarmsetserver.bean.AlarmDelay">
+        SELECT id,delay FROM alarm_delay
+    </select>
+
+    <update id="updateDelay" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmDelay">
+        UPDATE alarm_delay SET delay=#{delay}
+    </update>
+</mapper>

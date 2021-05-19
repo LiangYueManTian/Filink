@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.lockserver.dao.LockDao">
+
+    <resultMap id="lockMap" type="com.fiberhome.filink.lockserver.bean.Lock">
+        <id column="lock_id" property="lockId"/>
+        <result column="control_id" property="controlId"/>
+        <result column="lock_name" property="lockName"/>
+        <result column="lock_num" property="lockNum"/>
+        <result column="lock_status" property="lockStatus"/>
+        <result column="door_name" property="doorName"/>
+        <result column="door_status" property="doorStatus"/>
+        <result column="door_num" property="doorNum"/>
+        <result column="qr_code" property="qrCode"/>
+        <result column="switch_no" property="switchNo"/>
+        <result column="lock_key" property="lockKey"/>
+        <result column="lock_code" property="lockCode"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="rank" property="rank"/>
+        <result column="camera" property="camera"/>
+    </resultMap>
+
+
+    <!--电子锁字段-->
+    <sql id="lockColumn">
+       lock_id,lock_name,lock_num,lock_status,
+       door_name,door_status,door_num,control_id,qr_code,
+       switch_no,lock_key,lock_code,rank,camera
+    </sql>
+
+    <!--根据二维码查询电子锁信息-->
+    <select id="queryLockByQrCode" parameterType="string" resultMap="lockMap">
+        select
+        l.*,c.device_id
+        from lock_info l INNER JOIN control_info c ON l.control_id = c.host_id
+        where l.qr_code = #{qrCode} and l.is_deleted = 0 and c.is_deleted = 0
+    </select>
+
+    <!--根据锁芯id查询电子锁信息-->
+    <select id="queryLockByLockCode" parameterType="string" resultMap="lockMap">
+        select
+        l.*,c.device_id
+        from lock_info l INNER JOIN control_info c ON l.control_id = c.host_id
+        where l.lock_code = #{lockCode} and l.is_deleted = 0 and c.is_deleted = 0
+    </select>
+
+    <!--根据设施id查询电子锁信息-->
+    <select id="queryLockByDeviceId" parameterType="string" resultMap="lockMap">
+        select
+        l.*,c.device_id
+        from lock_info l INNER JOIN control_info c ON l.control_id = c.host_id
+        where c.device_id = #{deviceId}  AND l.is_deleted = 0 AND c.is_deleted=0
+        order by l.rank
+    </select>
+
+
+    <!--根据设施id和门编号查询电子锁信息-->
+    <select id="queryLockByDeviceIdAndDoorNum" parameterType="string" resultMap="lockMap">
+        select
+        l.*,c.device_id
+        from lock_info l INNER JOIN control_info c ON l.control_id = c.host_id
+        where c.device_id = #{deviceId}   AND l.door_num=#{doorNum}
+        AND l.is_deleted = 0 AND c.is_deleted = 0
+        order by l.rank
+    </select>
+
+
+    <!--保存电子锁信息列表-->
+    <insert id="addLocks" parameterType="java.util.List">
+        insert into
+        lock_info
+        (<include refid="lockColumn"></include>)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.lockId},#{item.lockName},#{item.lockNum},2,
+            #{item.doorName},2,#{item.doorNum},#{item.controlId},#{item.qrCode},
+            #{item.switchNo},#{item.lockKey},#{item.lockCode},#{item.rank},#{item.camera}
+            )
+        </foreach>
+    </insert>
+
+    <!--更新电子锁信息列表-->
+    <update id="updateLocks" parameterType="java.util.List">
+        update lock_info
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="lock_name =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when door_num=#{item.doorNum} then #{item.lockName}
+                </foreach>
+            </trim>
+            <trim prefix="lock_num =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when door_num=#{item.doorNum} then #{item.lockNum}
+                </foreach>
+            </trim>
+            <trim prefix="door_name =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when door_num=#{item.doorNum} then #{item.doorName}
+                </foreach>
+            </trim>
+            <trim prefix="qr_code =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when door_num=#{item.doorNum} then #{item.qrCode}
+                </foreach>
+            </trim>
+            <trim prefix="switch_no =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when door_num=#{item.doorNum} then #{item.switchNo}
+                </foreach>
+            </trim>
+            <trim prefix="lock_key =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when door_num=#{item.doorNum} then #{item.lockKey}
+                </foreach>
+            </trim>
+            <trim prefix="lock_code =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when door_num=#{item.doorNum} then #{item.lockCode}
+                </foreach>
+            </trim>
+            <trim prefix="camera =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    when door_num=#{item.doorNum} then #{item.camera}
+                </foreach>
+            </trim>
+        </trim>
+        where control_id = #{controlId} and is_deleted =0 and door_num in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.doorNum}
+        </foreach>
+    </update>
+
+    <!--查询门锁的数量-->
+    <select id="countLocks" resultType="Integer">
+        select count(*) from lock_info where control_id = #{controlId} and is_deleted =0
+        and door_num in
+        <foreach collection="locks" index="index" item="item" separator="," open="(" close=")">
+            #{item.doorNum}
+        </foreach>
+    </select>
+
+    <!--根据设施id和门编号批量删除电子锁信息-->
+    <update id="deleteLockByDeviceIdAndDoorNum" parameterType="java.util.List">
+        UPDATE lock_info l JOIN control_info c ON c.host_id=l.control_id
+        SET l.is_deleted = 1
+        WHERE c.device_id = #{deviceId} AND l.door_num in
+        <foreach collection="doorNumList" index="index" item="doorNum" separator="," open="(" close=")">
+            #{doorNum}
+        </foreach>
+
+    </update>
+
+
+    <!--更新电子锁状态-->
+    <update id="updateLockStatus" parameterType="Lock">
+        update
+        lock_info
+        <set>
+            <if test="lockStatus != '' and lockStatus != null">
+                lock_status = #{lockStatus},
+            </if>
+            <if test="doorStatus != '' and doorStatus != null">
+                door_status = #{doorStatus},
+            </if>
+        </set>
+        where
+        door_num = #{doorNum}
+        and
+        control_id = #{controlId}
+        and
+        is_deleted =0
+    </update>
+
+    <!--根据主控id查询电子锁信息-->
+    <select id="queryLockByControlId" resultMap="lockMap">
+        select
+        <include refid="lockColumn"></include>
+        from
+        lock_info
+        where
+        control_id = #{controlId}
+        and
+        is_deleted =0
+        order by rank
+    </select>
+
+    <!--查询电子锁列表-->
+    <select id="lockListByDeviceIds" resultMap="lockMap">
+        SELECT l.*,c.device_id FROM control_info c INNER JOIN lock_info l ON l.control_id=c.host_id
+        where c.is_deleted = 0 and l.is_deleted = 0 and c.device_id IN
+        <foreach collection="deviceList" open="(" close=")" item="deviceId" separator=",">
+            #{deviceId}
+        </foreach>
+    </select>
+
+</mapper>

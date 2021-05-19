@@ -1,0 +1,4 @@
+com\fiberhome\filink\alarmSet_api\bean\Alarm.class
+com\fiberhome\filink\alarmSet_api\fallback\AlarmSetFeigmFallback.class
+com\fiberhome\filink\alarmSet_api\api\AlarmSetFeigm.class
+com\fiberhome\filink\alarmSet_api\FilinkAlarmSetApiApplication.class

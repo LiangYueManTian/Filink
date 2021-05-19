@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.dump.dao.TaskInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.dump.bean.TaskInfo">
+        <id column="task_info_id" property="taskInfoId"/>
+        <result column="list_name" property="listName"/>
+        <result column="task_info_type" property="taskInfoType"/>
+        <result column="file_path" property="filePath"/>
+        <result column="file_num" property="fileNum"/>
+        <result column="file_generated_num" property="fileGeneratedNum"/>
+        <result column="task_status" property="taskStatus"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="query_condition" property="queryCondition"/>
+        <result column="column_infos" property="columnInfos"/>
+        <result column="method_path" property="methodPath"/>
+        <result column="excel_type" property="excelType"/>
+    </resultMap>
+
+    <sql id="taskInfo">
+        task.task_info_id,task.list_name,task.task_info_type,task.file_path,
+        task.file_num,task.file_generated_num,task.task_status,task.create_time,
+        task.create_user,task.update_time,task.update_user,task.is_deleted,
+        task.query_condition,task.column_infos,task.method_path,task.excel_type
+    </sql>
+
+    <!--根据id修改任务状态-->
+    <update id="updateTaskStatus" parameterType="com.fiberhome.filink.dump.bean.TaskInfo">
+      UPDATE task_info
+      SET task_status = #{taskStatus}
+      WHERE task_info_id = #{taskInfoId}
+   </update>
+    <!--根据id批量删除任务-->
+    <update id="deleteTaskByTaskIds" parameterType="list">
+        UPDATE task_info
+        SET is_deleted = 1
+        WHERE task_info_id IN
+        <foreach item="taskIds" collection="list" open="(" separator="," close=")">
+            #{taskIds}
+        </foreach>
+    </update>
+    <!--查找过期任务-->
+    <select id="selectOverdueTask" parameterType="date" resultType="string">
+        SELECT task_info_id
+        FROM task_info
+        WHERE create_time &lt; #{time}
+        AND is_deleted !=1
+    </select>
+    <!--查找正在执行中的任务数量-->
+    <select id="selectOngoingTaskCountByUserId" parameterType="string" resultType="int">
+        SELECT COUNT(task_info_id)
+        FROM task_info
+        WHERE create_user = #{userId}
+        AND task_status IN (0,1)
+        AND is_deleted !=1;
+    </select>
+
+    <!--查找过期任务-->
+    <select id="queryTaskByCreateTime"  resultType="string">
+        SELECT task_info_id
+        FROM task_info
+        WHERE task_info_type = #{type} AND create_time > #{time}
+        AND is_deleted !=1
+    </select>
+
+    <select id="queryLastTaskInfo" resultMap="BaseResultMap">
+        SELECT
+        <include refid="taskInfo"/>
+        FROM
+        task_info as task
+        WHERE task.task_info_type = #{dumpType}
+        ORDER BY
+        create_time DESC
+        LIMIT 1
+    </select>
+
+    <select id="queryTotalTaskNum" resultType="Long">
+        SELECT COUNT(task_info_id) FROM task_info WHERE task_info_type = #{dumpType}
+    </select>
+</mapper>

@@ -1,0 +1,60 @@
+<nz-card nzTitle="{{language.InfrastructureDetails}}" [nzExtra]="extraTemplate">
+  <div style="display: flex;height: 250px">
+    <div style="flex: 1">
+        <ul>
+          <li class="facility-item" *ngFor="let item of infoData">
+            <span class="label">{{item.label}}</span>
+            <span class="value hidden" [title]="item.value">{{item.value}}</span>
+          </li>
+        </ul>
+        <!--TODO 二期备用-->
+        <!--<li class="facility-item">-->
+          <!--<span class="label">{{language.infrastructureName}}</span>-->
+          <!--<span class="value hidden" [title]="facilityInfo.deviceName">{{facilityInfo.deviceName}}</span>-->
+        <!--</li>-->
+        <!--<li class="facility-item">-->
+          <!--<span class="label">{{language.infrastructureCode}}</span>-->
+          <!--<span class="value hidden" [title]="facilityInfo.deviceCode">{{facilityInfo.deviceCode}}</span>-->
+        <!--</li>-->
+        <!--<li class="facility-item">-->
+          <!--<span class="label">{{language.deviceType_a}}</span>-->
+          <!--<span class="value hidden" [title]="facilityInfo.deviceType">{{facilityInfo.deviceType}}</span>-->
+        <!--</li>-->
+        <!--<li class="facility-item">-->
+          <!--<span class="label">{{language.provinceName}}</span>-->
+          <!--<span class="value hidden" [title]="facilityInfo.provinceName">{{facilityInfo.provinceName}}</span>-->
+        <!--</li>-->
+        <!--<li class="facility-item">-->
+          <!--<span class="label">{{language.logicalArea}}</span>-->
+          <!--<span class="value hidden" [title]=""></span>-->
+        <!--</li>-->
+        <!--<li class="facility-item">-->
+          <!--<span class="label">{{language.address}}</span>-->
+          <!--<span class="value hidden" [title]=""></span>-->
+        <!--</li>-->
+        <!--<li class="facility-item">-->
+          <!--<span class="label">{{language.accountabilityUnit}}</span>-->
+          <!--<span class="value hidden" [title]=""></span>-->
+        <!--</li>-->
+
+    </div>
+
+    <div style="flex: 1 ;border-left: 1px solid #cccccc;border-right: 1px solid #cccccc;padding: 0 22px">
+      <p>{{language.realisticPicture}}</p>
+      <div class="img-container">
+        <img class="info-img" src="../../../../../../assets/img/facility/facility-view-detail.jpg"
+             alt="">
+      </div>
+    </div>
+    <div style="flex: 1;padding: 0 22px">
+      <p>{{language.thumbnail}}</p>
+      <div class="img-container" id="thumbnail" (click)="clickMap()">
+        <!--<img  src="" class="info-img" alt="">-->
+      </div>
+
+    </div>
+  </div>
+</nz-card>
+<ng-template #extraTemplate>
+  <span class="update-time">{{language.updateTime}} {{currentTime}}</span>
+</ng-template>

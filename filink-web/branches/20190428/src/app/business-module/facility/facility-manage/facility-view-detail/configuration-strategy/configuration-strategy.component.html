@@ -1,0 +1,27 @@
+<div style="padding-left: 10px">
+  <div style="margin-bottom: 26px;">
+    <span class="area-detail-title">
+      {{language.configuration}}
+    </span>
+  </div>
+  <div class="config-f">
+    <div class="config-s" *ngFor="let item of formColumnData;let index = index">
+      <div style="margin: 0 20px;border-bottom: 1px solid #cccccc;width: 75%">
+        <span class="config-item-title">{{item.name}}</span>
+      </div>
+      <xc-form [column]="item.formColumn" (formInstance)="formInstance($event,index)"></xc-form>
+    </div>
+
+  </div>
+  <div style="padding-left: 20px" *ngIf="pramsConfigData.length>0">
+    <button class="link-button" nz-button nzType="primary" [disabled]="checked()" [nzLoading]="isLoading"
+            style="margin-right: 20px" (click)="setControl()">{{language.handleOk}}
+    </button>
+    <button class="link-button" nz-button nzType="danger" (click)="goBack()">{{language.handleCancel}}</button>
+  </div>
+
+  <div style="padding-left: 20px" *ngIf="noDataShow&&pramsConfigData.length===0">
+    {{language.noRelatedData}}
+  </div>
+
+</div>

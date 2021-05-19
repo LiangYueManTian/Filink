@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="filink-alarmSet-api" />
+        <module name="filink-alarmSet-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="filink-alarmSet" target="1.8" />
+      <module name="filink-alarmSet-api" target="1.8" />
+      <module name="filink-alarmSet-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

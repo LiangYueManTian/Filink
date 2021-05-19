@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>filink-station-server</artifactId>
+    <version>0.0.2-RELEASE</version>
+    <name>filink-station-server</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.fiberhome.filink</groupId>
+        <artifactId>filink-station</artifactId>
+        <version>0.0.2-RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-redis</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-server</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-station</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.fiberhome.filink.stationserver.FiLinkStationServerApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

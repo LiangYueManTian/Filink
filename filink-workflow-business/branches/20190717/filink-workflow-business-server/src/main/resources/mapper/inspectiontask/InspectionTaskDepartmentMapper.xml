@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowbusinessserver.dao.inspectiontask.InspectionTaskDepartmentDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.workflowbusinessserver.bean.inspectiontask.InspectionTaskDepartment">
+        <id column="inspection_task_dept_id" property="inspectionTaskDeptId" />
+        <result column="inspection_task_id" property="inspectionTaskId" />
+        <result column="accountability_dept" property="accountabilityDept" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        inspection_task_dept_id, inspection_task_id, accountability_dept, is_deleted,
+        create_user, create_time, update_user, update_time
+    </sql>
+
+    <select id="queryInspectionTaskDepartmentsByTaskIds" resultMap="BaseResultMap" parameterType="java.util.List">
+        select
+        <include refid="Base_Column_List"/>
+        from inspection_task_department
+        where 1=1
+        <if test="list != null and list.size() > 0">
+            <if test="list.size() == 1">
+                AND inspection_task_id =
+                <foreach item="item"  collection="list">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="list.size() > 1">
+                AND inspection_task_id in
+                <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                    <if test="(index % 999) == 998">NULL ) OR inspection_task_id IN (</if>
+                    #{item}
+                </foreach>
+            </if>
+        </if>
+        and is_deleted = '0'
+    </select>
+
+    <select id="queryInspectionTaskDepartmentsByTaskId" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from inspection_task_department
+        where 1=1
+        <if test="insepctionTaskId != null">
+            and inspection_task_id = #{insepctionTaskId, jdbcType=VARCHAR}
+        </if>
+        and is_deleted = '0'
+    </select>
+
+
+    <!-- 根据部门ids获取巡检任务关联部门信息 -->
+    <select id="queryTaskListByDeptIds" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT t.inspection_task_id, t.accountability_dept
+        FROM inspection_task_department t
+        <where>
+            is_deleted = 0
+            <if test="deptIds != null and deptIds.size() > 0">
+                <if test="deptIds.size() == 1">
+                    AND accountability_dept =
+                    <foreach collection="deptIds" item="deptId">
+                        #{deptId}
+                    </foreach>
+                </if>
+                <if test="deptIds.size() > 1">
+                    AND accountability_dept IN
+                    <foreach collection="deptIds" item="deptId" open="(" close=")" separator=",">
+                        #{deptId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteInspectionTaskDepartment" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.inspectiontask.InspectionTaskDepartment">
+      <if test="inspectionTaskId != null">
+          delete from inspection_task_department where 1=1 and inspection_task_id = #{inspectionTaskId, jdbcType=VARCHAR}
+      </if>
+    </delete>
+
+    <update id="deleteInspectionTaskDepartmentBatch" parameterType="java.util.Map">
+        update inspection_task_department set is_deleted = #{isDeleted,jdbcType=VARCHAR} where 1=1
+        and inspection_task_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <insert id="insertInspectionTaskDepartmentBatch" parameterType="java.util.List">
+      insert into inspection_task_department
+        (
+          inspection_task_dept_id, inspection_task_id,
+          accountability_dept,
+          create_user, create_time
+        )
+      values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+              #{item.inspectionTaskDeptId, jdbcType=VARCHAR}, #{item.inspectionTaskId, jdbcType=VARCHAR},
+              #{item.accountabilityDept, jdbcType=VARCHAR},
+              #{item.createUser, jdbcType=VARCHAR}, #{item.createTime, jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

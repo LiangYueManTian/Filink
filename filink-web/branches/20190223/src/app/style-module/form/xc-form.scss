@@ -1,0 +1,78 @@
+@import "../config";
+.xc-item {
+  display: flex;
+  height: 52px
+}
+
+.xc-label {
+  min-width: 140px;
+  height: 52px;
+  line-height: 33px;
+}
+
+.xc-form-error {
+  border-color: $form-error-color !important;
+  color: $form-error-color !important;
+  .ant-select-selection {
+    border-color: $form-error-color !important;
+
+  }
+  &:hover {
+    border-color: $form-error-color !important;
+  }
+  &:focus {
+    border-color: $form-error-color !important;
+  }
+}
+
+// 城市选择器
+.xc-city-picker {
+  min-width: 300px;
+  .city-picker-selector {
+    width: 100%;
+  }
+  .city-picker-selector .selector-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 93px;
+    height: 32px;
+    line-height: 32px;
+    float: left;
+    margin-left: 10px;
+    font-size: 12px;
+    position: relative;
+
+  }
+  .city-picker-selector .selector-item:first-child {
+    margin-left: 0;
+  }
+  .city-picker-selector .selector-name {
+    font-size: 14px;
+    width: 93px;
+    text-decoration: none;
+  }
+
+  .city-picker-selector .selector-item:after {
+    content: '';
+    border: none;
+    background-image: url('assets/js/cityPicker/select.png') !important;
+    display: block;
+    width: 14px;
+    height: 12px;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    transition-duration: 400ms;
+  }
+  .city-picker-selector .selector-name:hover {
+    //background-color: #ffffff;
+    border-radius: 5px;
+    background: none;
+    height: 30px;
+  }
+  .city-picker-selector .selector-name.disabled {
+    background: none;
+    cursor: not-allowed;
+  }
+}
+

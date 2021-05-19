@@ -1,0 +1,32 @@
+2019-04-26 11:01:56.465 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-26 11:01:56.669 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-26 11:01:56.669 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-26 11:01:56.821 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-26 11:01:56.822 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-26 11:01:57.183 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-26 11:01:57.427 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-26 11:01:57.427 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-26 11:01:57.427 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-26 11:01:57.428 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-26 11:01:57.428 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-26 11:01:57.428 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-26 11:01:57.428 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-26 11:01:57.690 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-26 11:01:57.693 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-26 11:01:57.700 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1556247717700 with initial instances count: 12

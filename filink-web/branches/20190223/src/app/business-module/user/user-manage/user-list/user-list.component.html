@@ -1,0 +1,34 @@
+<div class="box-warp">
+  <xc-table [dataSet]="_dataSet"
+            [pageBean]="pageBean"
+            [tableConfig]="tableConfig"
+            (pageChange)="pageChange($event)">
+  </xc-table>
+</div>
+
+<ng-template #userStatusTemp let-data="data">
+  <nz-switch [ngModel]="data.userStatus==='1'"
+             [nzControl]="true"
+             (click)="clickSwitch(data)">
+  </nz-switch>
+  <span *ngIf="data.userStatus === '0'" style="margin-left: 15px">{{language.disable}}</span>
+  <span *ngIf="data.userStatus === '1'" style="margin-left: 15px" >{{language.enable}}</span>
+</ng-template>
+ 
+<ng-template #areaNameTemp let-data="data">  
+   <span class="area-name" [routerLink]="['/business/facility/area-list']">{{data.area}}</span>
+</ng-template>
+
+<ng-template #departmentTemp let-data="data">
+  <span>{{data.department?.deptName}}</span>
+</ng-template>
+
+<ng-template #roleTemp let-data="data">
+  <span>{{data.role?.roleName}}</span>
+</ng-template>
+
+<ng-template #loginTypeTemp let-data="data">
+  <span *ngIf="data.loginType === '1'">{{language.singleUser}}</span>
+  <span *ngIf="data.loginType === '2'">{{language.multiUser}}</span>
+</ng-template>
+

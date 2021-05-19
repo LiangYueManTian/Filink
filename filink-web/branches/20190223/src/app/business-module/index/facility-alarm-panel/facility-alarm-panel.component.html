@@ -1,0 +1,38 @@
+<div class="facility-alarm-panel-container">
+  <div class="current-alarm">
+    <div class="current-alarm-title">
+      <div class="current-alarm-title-text">{{indexLanguage.currentAlarm}}</div>
+      <div class="current-alarm-title-more" (click)="goToCurrentAlarmList()">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="current-alarm-table">
+      <xc-table [dataSet]="currentAlarmDataSet"
+                [pageBean]="pageBean"
+                [tableConfig]="currentAlarmTableConfig"
+                (pageChange)="pageChange($event)">
+      </xc-table>
+    </div>
+  </div>
+  <div class="history-alarm">
+    <div class="history-alarm-title">
+      <div class="history-alarm-title-text">{{indexLanguage.historyAlarm}}</div>
+      <div class="history-alarm-title-more"  (click)="goToHistoryAlarmList()">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="history-alarm-table">
+      <xc-table [dataSet]="historyAlarmDataSet"
+                [pageBean]="pageBean"
+                [tableConfig]="historyAlarmTableConfig"
+                (pageChange)="pageChange($event)">
+      </xc-table>
+    </div>
+  </div>
+</div>
+
+<ng-template #alarmNameTemp let-data="data">
+  <div class="hidden" title="{{data.alarmName}}">
+    <span class="box-color-icon"
+          [ngStyle]="data.style"
+          style="display: inline-block;margin-right: 5px;">
+    </span>
+    {{data.alarmName}}
+  </div>
+</ng-template>

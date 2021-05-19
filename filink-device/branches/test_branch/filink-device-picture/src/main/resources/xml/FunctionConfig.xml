@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+    <functionCode functionId="1301401">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}add devicePic devicePic name is ${picName}</detailInfoTemplate>
+            <optName>add</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}新增了设施图片:${picName}</detailInfoTemplate>
+            <optName>新增设施图片</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1301402">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}delete devicePic devicePic name is ${picName}</detailInfoTemplate>
+            <optName>delete</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}删除了设施图片:${picName}</detailInfoTemplate>
+            <optName>删除设施图片</optName>
+        </language>
+    </functionCode>
+</functionCodes>

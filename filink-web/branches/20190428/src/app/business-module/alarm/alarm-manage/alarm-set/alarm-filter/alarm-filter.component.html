@@ -1,0 +1,27 @@
+<div class="box-warp">
+  <div style="width: 100%;">
+    <xc-table [dataSet]="_dataSet"
+              [pageBean]="pageBean"
+              [tableConfig]="tableConfig"
+    >
+    </xc-table>
+  </div>
+  <ng-template #openStatusTemp let-data="data">
+    <nz-switch [ngModel]="data.openStatus==='1'"
+               [nzControl]="true"
+               (click)="userStatusChange(data)">
+    </nz-switch>
+    <span *ngIf="data.openStatus === '0'" style="margin-left: 15px">停用</span>
+    <span *ngIf="data.openStatus === '1'" style="margin-left: 15px" >启用</span>
+  </ng-template>
+
+  <ng-template #isInventory let-data="data">
+    <nz-radio-group [ngModel]="data.isInventory" >
+      <label nz-radio nzValue="A">是</label>
+      <label nz-radio nzValue="B">否</label>
+    </nz-radio-group>
+  </ng-template>
+  <ng-template #creatTimeTemp let-data="data">
+    <span>{{data.creatTimeTemp?.creatTimeTemp}}</span>
+  </ng-template>
+</div>

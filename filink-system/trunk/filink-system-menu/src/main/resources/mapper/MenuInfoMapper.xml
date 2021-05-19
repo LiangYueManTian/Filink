@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.menu.dao.MenuInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="baseResultMap" type="com.fiberhome.filink.menu.bean.MenuInfo">
+        <id column="menu_id" property="menuId" />
+        <result column="menu_name" property="menuName" />
+        <result column="menu_href" property="menuHref" />
+        <result column="parent_menu_id" property="parentMenuId" />
+        <result column="menu_level" property="menuLevel" />
+        <result column="menu_sort" property="menuSort" />
+        <result column="image_url" property="imageUrl" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="is_show" property="isShow" />
+    </resultMap>
+
+    <!--树形结构映射-->
+    <resultMap id="menuInfoTree" type="com.fiberhome.filink.menu.dto.MenuInfoTree" extends="baseResultMap">
+        <collection property="children" ofType="com.fiberhome.filink.menu.dto.MenuInfoTree" javaType="java.util.ArrayList" select="selectChild" column="menu_id">
+        </collection>
+    </resultMap>
+<sql id="menuInfoAllColumn">
+    menu_id,menu_name,menu_href,parent_menu_id,menu_level,menu_sort,image_url,create_user,
+    create_time,update_user,update_time,is_show
+</sql>
+    <!--子数据查询-->
+    <select id="selectChild" parameterType="string" resultMap="menuInfoTree">
+        SELECT
+        <include refid="menuInfoAllColumn"></include>
+        FROM menu_info
+        WHERE parent_menu_id = #{menu_id} ORDER BY menu_sort asc
+    </select>
+
+    <!--查询默认菜单信息表树状结构入口-->
+    <select id="selectMenuInfoTree" resultMap="menuInfoTree">
+        SELECT
+        <include refid="menuInfoAllColumn">
+        </include>
+        FROM menu_info WHERE menu_level = 1 ORDER BY menu_sort asc
+    </select>
+
+    <!--查询数据库中包含的数据量-->
+    <select id="selectCountByMenuIds" parameterType="list" resultType="int">
+        SELECT count(menu_id) from menu_info
+        WHERE menu_id IN
+        <foreach item="menuIds" index="index" collection="list" open="(" separator="," close=")">
+            #{menuIds}
+        </foreach>
+    </select>
+
+</mapper>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.userserver.dao.RoleDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.userserver.bean.Role">
+        <id column="id" property="id" />
+        <result column="role_name" property="roleName" />
+        <result column="role_desc" property="roleDesc" />
+        <result column="remark" property="remark" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="default_role" property="defaultRole"/>
+
+        <collection property="permissionList" ofType="com.fiberhome.filink.userserver.bean.Permission"
+                    javaType="java.util.ArrayList" column="permissionIds">
+            <result column="permissionId" property="id"/>
+            <result column="permissionName" property="name"/>
+            <result column="permissionParentId" property="parentId"/>
+        </collection>
+
+        <collection property="roleDevicetypeList" ofType="com.fiberhome.filink.userserver.bean.RoleDeviceType"
+                    javaType="java.util.ArrayList" column="deviceTypeIds">
+            <result column="deviceId" property="id"/>
+            <result column="deviceTypeId" property="deviceTypeId"/>
+            <result column="deviceParentId" property="parentId"/>
+
+        </collection>
+    </resultMap>
+
+
+    <update id="deleteRoles">
+        UPDATE role SET is_deleted = 1 WHERE id IN
+        <foreach collection="roleIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <sql id="roleInfo" >
+        role.id,role.role_name,role.role_desc,role.remark,role.create_user,
+        role.create_time,role.update_user,role.update_time,role.is_deleted,role.default_role
+    </sql>
+
+    <select id="queryAllRoles" resultMap="BaseResultMap">
+        SELECT id,role_name FROM role WHERE is_deleted = 0
+    </select>
+
+    <select id="queryRoleByName" resultMap="BaseResultMap">
+        SELECT
+          <include refid="roleInfo"/>
+        FROM
+          role as role
+        WHERE
+          role.role_name like "%${role_name}%"
+    </select>
+
+    <select id="queryRoleByField" parameterType="com.fiberhome.filink.userserver.bean.RoleParameter" resultMap="BaseResultMap">
+        SELECT
+        <include refid="roleInfo"/>
+        FROM
+        role as role
+        <where>
+            role.is_deleted = 0
+            <if test="roleName != null">
+                AND role.role_name LIKE concat('%',#{roleName},'%')
+            </if>
+            <if test="roleDesc != null">
+                AND role.role_desc LIKE concat('%',#{roleDesc},'%')
+            </if>
+            <if test="remark != null">
+                AND role.remark LIKE concat('%',#{remark},'%')
+            </if>
+            <if test="roleNameList != null">
+                AND role.role_name IN
+                <foreach collection="roleNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        <if test="sortProperties != null and sort != null">
+            ORDER BY role.${sortProperties} ${sort}
+        </if>
+        <if test="sort == null">
+            ORDER BY role.create_time DESC
+        </if>
+        LIMIT #{startNum},#{pageSize}
+    </select>
+
+    <select id="queryRoleNumber" parameterType="com.fiberhome.filink.userserver.bean.RoleParameter" resultType="Long">
+        SELECT
+        count(*)
+        FROM
+        role as role
+        <where>
+            role.is_deleted = 0
+            <if test="roleName != null">
+                AND role.role_name LIKE concat('%',#{roleName},'%')
+            </if>
+            <if test="roleDesc != null">
+                AND role.role_desc LIKE concat('%',#{roleDesc},'%')
+            </if>
+            <if test="remark != null">
+                AND role.remark LIKE concat('%',#{remark},'%')
+            </if>
+            <if test="roleNameList != null">
+                AND role.role_name IN
+                <foreach collection="roleNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        <if test="sortProperties != null and sort != null">
+            ORDER BY role.${sortProperties} ${sort}
+        </if>
+        <if test="sort == null">
+            ORDER BY role.create_time DESC
+        </if>
+    </select>
+
+    <select id="verityRoleByName" resultMap="BaseResultMap">
+        SELECT
+          <include refid="roleInfo"/>
+        FROM
+          role as role
+        WHERE
+          role.role_name = #{roleName} AND  role.is_deleted = 0
+    </select>
+
+    <select id="queryRoleInfoById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="roleInfo"/>,permission.id as permissionId,permission.name as permissionName,
+        permission.parentId permissionParentId,
+        role_devicetype.deviceTypeId as deviceTypeId,
+        role_devicetype.parentId as deviceParentId,
+        role_devicetype.id as deviceId
+        FROM
+        role as role
+        LEFT JOIN role_permission as role_permission ON role_permission.role_id = role.id
+        LEFT JOIN permission as permission ON role_permission.permission_id = permission.id
+        LEFT JOIN role_devicetype as role_devicetype ON role.id = role_devicetype.roleId
+        WHERE role.is_deleted = 0 AND role.id = #{roleId}
+    </select>
+
+    <select id="queryRoleByPermission" resultType="String">
+        SELECT
+          role.id
+        FROM
+        role as role
+        LEFT JOIN role_permission as role_permission ON role_permission.role_id = role.id
+        LEFT JOIN permission as permission ON role_permission.permission_id = permission.id
+        WHERE role.is_deleted = 0 AND permission.id = #{permissionId}
+    </select>
+
+    <select id="queryRoleByPermissionAndDeviceType" resultType="String">
+        SELECT
+          role.id
+        FROM
+        role as role
+        INNER JOIN role_permission as role_permission ON role_permission.role_id = role.id
+        INNER JOIN permission as permission ON role_permission.permission_id = permission.id
+        INNER JOIN role_devicetype as role_devicetype ON role.id = role_devicetype.roleId
+        WHERE role.is_deleted = 0 AND permission.id = #{permissionId} AND role_devicetype.deviceTypeId = #{deviceTypeId}
+    </select>
+</mapper>

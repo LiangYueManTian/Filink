@@ -1,0 +1,97 @@
+readLogFilePath: /yy_filink/filink_log/logserver/
+readListExcelPath: D:/testFile/
+listExcelSize: 20000
+maxExportDataSize: 4000000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+
+server:
+  port: 9911
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package:
+
+
+spring:
+  application:
+    name: filink-log-server
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://10.5.24.224:3306/filink_sys?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: wistronits@123
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat,wall,log4j
+    logSlowSql: true
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.24.224:9092
+          zkNodes: 10.5.24.224:2181
+      bindings:
+        system_input:
+          destination: filink_log
+          group: filink_log_server
+          contentType: application/json
+        system_output:
+          destination: filink_log
+          contentType: application/json
+  zipkin:
+    base-url: http://10.5.24.144:9411
+  sleuth:
+    sampler:
+      percentage: 1
+#  data:
+#    mongodb:
+#      host: 10.5.24.224
+#      port: 27017
+#      database: filink_log
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/local
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+    test:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+feign:
+  hystrix:
+    enabled: true
+
+
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000

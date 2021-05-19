@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.fibercore.CoreCoreInfoDao">
+
+    <!-- 熔纤通用查询映射结果 -->
+    <resultMap id="CoreCoreInfoResultMap" type="com.fiberhome.filink.rfid.bean.fibercore.CoreCoreInfo">
+        <id column="core_core_id" property="coreCoreId" />
+        <result column="intermediate_node_device_id" property="intermediateNodeDeviceId" />
+        <result column="resource" property="resource" />
+        <result column="cable_core_no" property="cableCoreNo" />
+        <result column="opposite_resource" property="oppositeResource" />
+        <result column="opposite_cable_core_no" property="oppositeCableCoreNo" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 熔纤信息查询映射结果 -->
+    <resultMap id="CoreCoreInfoRespMap" extends="CoreCoreInfoResultMap" type="com.fiberhome.filink.rfid.resp.fibercore.CoreCoreInfoResp">
+
+    </resultMap>
+
+    <!-- 熔纤信息查询映射结果 -->
+    <resultMap id="CoreCoreInfoRespForAppMap" extends="CoreCoreInfoResultMap" type="com.fiberhome.filink.rfid.resp.fibercore.app.CoreCoreInfoRespForApp">
+
+    </resultMap>
+
+    <!--获取熔纤信息-->
+    <select id="queryCoreCoreInfo" parameterType="com.fiberhome.filink.rfid.req.fibercore.CoreCoreInfoReq" resultMap="CoreCoreInfoRespMap">
+        SELECT DISTINCT
+            cci.core_core_id,
+            cci.intermediate_node_device_id,
+            cci.resource,
+            cci.cable_core_no,
+            cci.opposite_resource,
+            cci.opposite_cable_core_no,
+            cci.remark
+        FROM
+            core_core_info cci
+        <where>
+            (
+              (cci.resource = #{resource} OR cci.opposite_resource = #{resource})
+            OR
+              (cci.resource = #{oppositeResource} OR cci.opposite_resource = #{oppositeResource})
+            )
+            <!--设施id-->
+            <if test="intermediateNodeDeviceId != null and intermediateNodeDeviceId != ''">
+              AND cci.intermediate_node_device_id = #{intermediateNodeDeviceId}
+            </if>
+            AND cci.is_deleted = '0'
+        </where>
+    </select>
+
+    <!--获取其他设施熔纤信息-->
+    <select id="queryCoreCoreInfoNotInDevice" parameterType="com.fiberhome.filink.rfid.req.fibercore.CoreCoreInfoReq" resultMap="CoreCoreInfoRespMap">
+        SELECT DISTINCT
+            cci.core_core_id,
+            cci.intermediate_node_device_id,
+            cci.resource,
+            cci.cable_core_no,
+            cci.opposite_resource,
+            cci.opposite_cable_core_no,
+            cci.remark
+        FROM
+          core_core_info cci
+        <where>
+            (
+              (cci.resource = #{resource} OR cci.opposite_resource = #{resource} )
+            OR
+              (cci.resource = #{oppositeResource} OR cci.opposite_resource = #{oppositeResource})
+            )
+            <!--设施id-->
+            <if test="intermediateNodeDeviceId != null and intermediateNodeDeviceId != ''">
+              AND cci.intermediate_node_device_id != #{intermediateNodeDeviceId}
+            </if>
+            AND cci.is_deleted = '0'
+        </where>
+    </select>
+
+    <!--删除该光缆段和该设施原有熔纤信息（待定）-->
+    <update id="deleteCoreCoreInfoByResourceAndDevice" parameterType="com.fiberhome.filink.rfid.req.fibercore.CoreCoreInfoReq">
+        UPDATE core_core_info
+        SET is_deleted = '1',
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        <where>
+             (
+                (resource = #{resource} AND opposite_resource = #{oppositeResource})
+                OR
+                (resource = #{oppositeResource} AND opposite_resource = #{resource})
+              )
+              AND intermediate_node_device_id = #{intermediateNodeDeviceId}
+        </where>
+    </update>
+
+    <!--熔纤关系信息保存-->
+    <insert id="addCoreCoreInfo" parameterType="java.util.List">
+        INSERT INTO core_core_info (
+            core_core_id,
+            intermediate_node_device_id,
+            resource,
+            cable_core_no,
+            opposite_resource,
+            opposite_cable_core_no,
+            remark,
+            create_time,
+            create_user
+        )
+        VALUES
+        <foreach collection="insertCoreCoreInfoReqList" item="coreCoreInfo" index="index" open="" close="" separator=",">
+            (
+                #{coreCoreInfo.coreCoreId},
+                #{coreCoreInfo.intermediateNodeDeviceId},
+                #{coreCoreInfo.resource},
+                #{coreCoreInfo.cableCoreNo},
+                #{coreCoreInfo.oppositeResource},
+                #{coreCoreInfo.oppositeCableCoreNo},
+                #{coreCoreInfo.remark},
+                #{coreCoreInfo.createTime},
+                #{coreCoreInfo.createUser}
+             )
+        </foreach>
+    </insert>
+
+    <!--根据设施id获取熔纤信息-->
+    <select id="queryCoreCoreInfoByDeviceId" parameterType="java.lang.String" resultMap="CoreCoreInfoRespMap">
+        SELECT DISTINCT
+            cci.core_core_id,
+            cci.intermediate_node_device_id,
+            cci.resource,
+            cci.cable_core_no,
+            cci.opposite_resource,
+            cci.opposite_cable_core_no,
+            cci.remark
+        FROM
+        core_core_info cci
+        <where>
+            cci.is_deleted = '0'
+            <!--设施id-->
+            <if test="deviceId != null and deviceId != ''">
+                AND cci.intermediate_node_device_id = #{deviceId}
+            </if>
+        </where>
+    </select>
+
+    <!--根据光缆段id获取熔纤信息-->
+    <select id="queryCoreCoreInfoByOpticCableId" parameterType="java.lang.String" resultMap="CoreCoreInfoRespMap">
+        SELECT DISTINCT
+        cci.core_core_id,
+        cci.intermediate_node_device_id,
+        cci.resource,
+        cci.cable_core_no,
+        cci.opposite_resource,
+        cci.opposite_cable_core_no,
+        cci.remark
+        FROM
+        core_core_info cci
+        <where>
+            cci.is_deleted = '0'
+            <!--光缆段id-->
+            <if test="opticCableId != null and opticCableId != ''">
+              and  (cci.resource = #{opticCableId} OR cci.opposite_resource = #{opticCableId})
+            </if>
+        </where>
+    </select>
+
+    <!--根据设施ids获取熔纤信息（用于批量删除设施）-->
+    <select id="queryCoreCoreInfoByDeviceIds" parameterType="java.util.List" resultMap="CoreCoreInfoRespMap">
+        SELECT DISTINCT
+            cci.core_core_id,
+            cci.intermediate_node_device_id,
+            cci.resource,
+            cci.cable_core_no,
+            cci.opposite_resource,
+            cci.opposite_cable_core_no,
+            cci.remark
+        FROM
+          core_core_info cci
+        <where>
+            cci.is_deleted = '0'
+            <!--设施ids-->
+            <if test="deviceIds != null and deviceIds.size() > 0 ">
+                <if test="deviceIds.size() == 1">
+                    AND cci.intermediate_node_device_id =
+                    <foreach collection="deviceIds" item="deviceId">
+                        #{deviceId}
+                    </foreach>
+                </if>
+                <if test="deviceIds.size() > 1">
+                    AND cci.intermediate_node_device_id IN
+                    <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                        #{deviceId}
+                    </foreach>
+                </if>
+            </if>
+
+        </where>
+    </select>
+
+    <!--app请求纤芯熔接信息-->
+    <select id="queryCoreCoreInfoForApp" parameterType="com.fiberhome.filink.rfid.req.fibercore.app.QueryCoreCoreInfoReqForApp" resultMap="CoreCoreInfoRespForAppMap">
+        SELECT DISTINCT
+            cci.core_core_id,
+            cci.intermediate_node_device_id,
+            cci.resource,
+            cci.cable_core_no,
+            cci.opposite_resource,
+            cci.opposite_cable_core_no,
+            cci.remark
+        FROM
+          core_core_info cci
+        <where>
+            (
+                <trim prefix="(" suffix=")" prefixOverrides="AND">
+                    <!--光缆段id为0-->
+                    <if test="resource != null and resource != ''">
+                        <if test="resource != '0'.toString()">
+                            AND cci.resource = #{resource}
+                        </if>
+                    </if>
+                    <!--纤芯号为0-->
+                    <if test="cableCoreNo != null and cableCoreNo != ''">
+                        <if test="cableCoreNo != '0'.toString()">
+                            AND cci.cable_core_no = #{cableCoreNo}
+                        </if>
+                    </if>
+
+                </trim>
+                OR
+                <trim prefix="(" suffix=")" prefixOverrides="AND">
+                    <!--光缆段id为0-->
+                    <if test="resource != null and resource != ''">
+                        <if test="resource != '0'.toString()">
+                            AND cci.opposite_resource = #{resource}
+                        </if>
+                    </if>
+                    <!--纤芯号为0-->
+                    <if test="cableCoreNo != null and cableCoreNo != ''">
+                        <if test="cableCoreNo != '0'.toString()">
+                            AND cci.opposite_cable_core_no = #{cableCoreNo}
+                        </if>
+                    </if>
+                </trim>
+            )
+
+            <!--中间节点设施id为0-->
+            <if test="intermediateNodeDeviceId != null and intermediateNodeDeviceId != ''">
+                <if test="intermediateNodeDeviceId != '0'.toString()">
+                    AND cci.intermediate_node_device_id = #{intermediateNodeDeviceId}
+                </if>
+            </if>
+            AND cci.is_deleted = '0'
+        </where>
+    </select>
+
+    <!--app删除当前熔纤信息（正反匹配删除-待定）-->
+    <update id="deleteCoreCoreInfoByCoreCoreInfoForApp" parameterType="com.fiberhome.filink.rfid.req.fibercore.app.CoreCoreInfoForApp">
+        UPDATE core_core_info
+        SET is_deleted = '1',
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        <where>
+            intermediate_node_device_id = #{intermediateNodeDeviceId}
+            AND
+            (
+                (
+                    <!--所属光缆和纤芯号-->
+                    (resource = #{resource} AND cable_core_no = #{cableCoreNo})
+                    AND
+                    <!--对端所属光缆和纤芯号-->
+                    (opposite_resource = #{oppositeResource} AND opposite_cable_core_no = #{oppositeCableCoreNo})
+                )
+                OR
+                (
+                    <!--对端所属光缆和纤芯号-->
+                    (opposite_resource = #{resource} AND opposite_cable_core_no = #{cableCoreNo})
+                    AND
+                    <!--所属光缆和纤芯号-->
+                    (resource = #{oppositeResource} AND cable_core_no = #{oppositeCableCoreNo})
+                )
+            )
+        </where>
+    </update>
+
+    <!--app删除本端及对端纤芯及该中间节点设施原有熔纤信息（未启用，待定）-->
+    <update id="deleteCoreCoreInfoByCoreAndDeviceForApp" parameterType="com.fiberhome.filink.rfid.req.fibercore.app.CoreCoreInfoForApp">
+        UPDATE core_core_info
+        SET is_deleted = '1',
+        update_time = #{updateTime},
+        update_user = #{updateUser}
+        <where>
+            intermediate_node_device_id = #{intermediateNodeDeviceId}
+            AND
+            (
+                (
+                    <!--所属光缆和纤芯号-->
+                    (resource = #{resource} AND cable_core_no = #{cableCoreNo})
+                    OR
+                    <!--对端所属光缆和纤芯号-->
+                    (opposite_resource = #{resource} AND opposite_cable_core_no = #{cableCoreNo})
+                )
+                OR
+                (
+                    <!--所属光缆和纤芯号-->
+                    (resource = #{oppositeResource} AND cable_core_no = #{oppositeCableCoreNo})
+                    OR
+                    <!--对端所属光缆和纤芯号-->
+                    (opposite_resource = #{oppositeResource} AND opposite_cable_core_no = #{oppositeCableCoreNo})
+                )
+            )
+        </where>
+    </update>
+
+    <!--app熔纤关系信息保存-->
+    <insert id="saveCoreCoreInfoForApp" parameterType="java.util.List">
+        INSERT INTO core_core_info (
+            core_core_id,
+            intermediate_node_device_id,
+            resource,
+            cable_core_no,
+            opposite_resource,
+            opposite_cable_core_no,
+            remark,
+            create_time,
+            create_user
+        )
+        VALUES
+        <foreach collection="operationCoreCoreInfoReqForAppList" item="operationCoreCoreInfoReqForApp" index="index" open="" close="" separator=",">
+            (
+            #{operationCoreCoreInfoReqForApp.coreCoreId},
+            #{operationCoreCoreInfoReqForApp.intermediateNodeDeviceId},
+            #{operationCoreCoreInfoReqForApp.resource},
+            #{operationCoreCoreInfoReqForApp.cableCoreNo},
+            #{operationCoreCoreInfoReqForApp.oppositeResource},
+            #{operationCoreCoreInfoReqForApp.oppositeCableCoreNo},
+            #{operationCoreCoreInfoReqForApp.remark},
+            #{operationCoreCoreInfoReqForApp.createTime},
+            #{operationCoreCoreInfoReqForApp.createUser}
+            )
+        </foreach>
+
+    </insert>
+
+</mapper>

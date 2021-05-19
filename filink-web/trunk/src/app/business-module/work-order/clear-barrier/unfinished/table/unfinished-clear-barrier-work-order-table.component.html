@@ -1,0 +1,119 @@
+<xc-table
+  #tableComponent
+  [dataSet]="_dataSet"
+  [pageBean]="pageBean"
+  [tableConfig]="tableConfig"
+  (pageChange)="pageChange($event)">
+</xc-table>
+
+<ng-template #statusTemp let-data="data">
+  <div class="hidden" title="{{data.statusName}}" [ngStyle]="data.rowStyle">
+    <span [ngClass]="data.statusClass"
+          style="margin-right: 5px;">
+    </span>
+    {{data.statusName}}
+  </div>
+</ng-template>
+
+<!--单位选择-->
+<ng-template #selectorModalTemp>
+  <div class="facility-type-config-box">
+    <div class="facility-type-config-item facility-type-config-title">
+      <div class="checkbox">
+        <label nz-checkbox [(ngModel)]="isAllChecked" [nzIndeterminate]="isIndeterminate"
+               (ngModelChange)="checkAll($event)">
+        </label>
+      </div>
+      <div class="split-line"></div>
+      <div class="text">
+        {{workOrderLanguage.accountabilityUnitName}}
+      </div>
+    </div>
+    <div class="accountabilityUnit-list">
+      <div class="facility-type-config-item" *ngFor="let item of accountabilityUnitList">
+        <div class="checkbox">
+          <label nz-checkbox [(ngModel)]="item.checked" (ngModelChange)="change()">
+          </label>
+        </div>
+        <div class="text hidden" [title]="item.label">{{item.label}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!--退单重新生成底部按钮-->
+<ng-template #footerTemp>
+  <div class="btn-container">
+    <button class="link-button-order" nz-button nzType="primary" style="margin-right: 10px"
+            (click)="singleBackConfirm()">{{commonLanguage.confirm}}
+    </button>
+    <button class="link-button-order" nz-button nzType="primary" style="margin-right: 10px"
+            (click)="rebuild()">{{commonLanguage.rebuild}}
+    </button>
+    <button class="link-button-order" nz-button nzType="danger"
+            (click)="closeSingleBackConfirmModal()">{{commonLanguage.cancel}}</button>
+  </div>
+</ng-template>
+
+<ng-template #UnitNameSearch let-filterValue="filterValue">
+  <span class="area-name" (click)="showModal(filterValue)" [title]="selectUnitName?selectUnitName:''"
+        [class.placeholder]="!selectUnitName">{{selectUnitName ? selectUnitName : commonLanguage.clickSelect}}</span>
+</ng-template>
+
+<xc-tree-selector
+  [(xcVisible)]="isVisible"
+  (selectDataChange)="selectDataChange($event)"
+  [treeSelectorConfig]="treeSelectorConfig">
+</xc-tree-selector>
+
+<!--关联告警-->
+<ng-template #refAlarmTemp let-data="data">
+  <div (click)="showRefAlarmModal(data)" class="hidden" style="cursor: pointer"
+       [ngStyle]="data.rowStyle">{{data.refAlarmName}}</div>
+</ng-template>
+
+<!--关联告警modal框内容-->
+<ng-template #showAlarmTemp>
+  <app-ref-alarm [refAlarmMessage]="alarmData"></app-ref-alarm>
+</ng-template>
+
+<!--剩余时间过滤-->
+<ng-template #remainingDaysFilter let-filterValue="filterValue">
+  <div style="display: flex;justify-content: space-between">
+    <input class="input_1" type="text" style="" [placeholder]="'请输入'"
+           [(ngModel)]="filterValue.filterValue" oninput="value=value.replace(/\D/g,'')"
+    >
+    <xc-nz-select [(ngModel)]="lastDaySelectValue" [disabled]="!filterValue.filterValue">
+      <xc-nz-option [nzLabel]="'>'" [nzValue]="'gt'"></xc-nz-option>
+      <xc-nz-option [nzLabel]="'='" [nzValue]="'eq'"></xc-nz-option>
+      <xc-nz-option [nzLabel]="'<'" [nzValue]="'lt'"></xc-nz-option>
+    </xc-nz-select>
+  </div>
+</ng-template>
+
+<!--点击退单modal主体内容-->
+<ng-template #singleBackTemp>
+  <p style="height: 100px">{{workOrderLanguage.isSureReturnWorkOrder}}</p>
+</ng-template>
+
+<!--设施名称弹框-->
+<ng-template #DeviceNameSearch let-filterValue="filterValue">
+  <app-alarm-object class="pic-device-selector"
+                    [placeholder]="workOrderLanguage.pleaseSelect"
+                    [alarmObjectConfig]="deviceObjectConfig"
+                    [filterValue]="filterValue"></app-alarm-object>
+</ng-template>
+<!--设施区域弹框-->
+<ng-template #AreaSearch let-filterValue="filterValue">
+  <input type="text" nz-input placeholder="{{workOrderLanguage.pleaseSelect}}"
+         (click)="showArea(filterValue)" [(ngModel)]="filterObj.areaName">
+</ng-template>
+
+<xc-tree-area-selector
+  [(xcVisible)]="areaSelectVisible"
+  [pageType]="'区域'"
+  [treeSelectorConfig]="areaSelectorConfig"
+  (selectDataChange)="areaSelectChange($event)">
+</xc-tree-area-selector>
+
+

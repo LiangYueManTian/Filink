@@ -1,0 +1,31 @@
+server:
+  port: 8761
+
+
+# 监控中心登录名和密码 刷新
+security:
+  user:
+    name: filink
+    password: 123456
+#  enable-csrf: false
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/
+
+  # 开发模式下关闭 关闭自我保护机制 生产环境去掉
+  server:
+    enable-self-preservation: false
+#  发现时间 默认为30秒 开发测试环境改小可以加快发现时间
+  instance:
+    lease-renewal-interval-in-seconds: 30
+spring:
+  application:
+    name: filink-eureka
+
+
+
+management:
+  context-path: /

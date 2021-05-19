@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.area.AreaDeptInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.fdevice.bean.area.AreaDeptInfo">
+        <result column="dept_id" property="deptId"/>
+        <result column="area_id" property="areaId"/>
+    </resultMap>
+    <!--批量新增关系表信息-->
+    <insert id="addAreaDeptInfoBatch" parameterType="list">
+        INSERT INTO area_dept_info (dept_id,area_id
+        )VALUES
+        <foreach collection="list" item="areaDeptInfoList" index="index" separator=",">
+            ( #{areaDeptInfoList.deptId},#{areaDeptInfoList.areaId}
+            )
+        </foreach>
+    </insert>
+    <select id="selectAreaDeptInfoByAreaIds" resultMap="BaseResultMap">
+        SELECT dept_id,area_id
+        FROM area_dept_info
+        WHERE area_id IN
+        <foreach item="areaIds" collection="list" open="(" separator="," close=")">
+            #{areaIds}
+        </foreach>
+    </select>
+    <select id="selectAreaIdByDeptIds" resultType="string">
+        SELECT area_id
+        FROM area_dept_info
+        WHERE dept_id IN
+        <foreach item="deptIds" collection="list" open="(" separator="," close=")">
+            #{deptIds}
+        </foreach>
+    </select>
+
+    <select id="selectAreaDeptInfoByDeptIds" resultMap="BaseResultMap">
+        SELECT dept_id,area_id
+        FROM area_dept_info
+        WHERE dept_id IN
+        <foreach item="deptIds" collection="list" open="(" separator="," close=")">
+            #{deptIds}
+        </foreach>
+    </select>
+</mapper>

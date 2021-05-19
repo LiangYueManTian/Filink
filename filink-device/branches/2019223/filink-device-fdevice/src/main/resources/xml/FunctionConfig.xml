@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="1301101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add area area name is ${areaAndPrentName}</detailInfoTemplate>
+			<optName>addArea</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了区域:${areaAndPrentName}</detailInfoTemplate>
+			<optName>新增区域</optName>
+		</language>
+	</functionCode>
+		<functionCode functionId="1301102">
+			<language type="US">
+				<detailInfoTemplate>${optUserName}update area area name is ${areaAndPrentName}</detailInfoTemplate>
+				<optName>updateArea</optName>
+			</language>
+			<language type="CN">
+				<detailInfoTemplate>${optUserName}修改了区域:${areaAndPrentName}</detailInfoTemplate>
+				<optName>修改区域</optName>
+			</language>
+		</functionCode>
+	<functionCode functionId="1301103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete area area name is ${areaAndPrentName}</detailInfoTemplate>
+			<optName>deleteArea</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了区域:${areaAndPrentName}</detailInfoTemplate>
+			<optName>删除区域</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1301104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}associated the area${areaAndPrentName}with the facility ${deviceName}</detailInfoTemplate>
+			<optName>AssociatedFacility</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}将区域${areaAndPrentName}关联了设施:${deviceName}</detailInfoTemplate>
+			<optName>关联设施</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301201">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add device device name is ${deviceName}</detailInfoTemplate>
+			<optName>addDevice</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了设施:${deviceName}</detailInfoTemplate>
+			<optName>新增设施</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301202">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update device device name is ${deviceName}</detailInfoTemplate>
+			<optName>updateDevice</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了设施:${deviceName}</detailInfoTemplate>
+			<optName>修改设施</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301203">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}device device device name is ${deviceName}</detailInfoTemplate>
+			<optName>deleteDevice</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了设施:${deviceName}</detailInfoTemplate>
+			<optName>删除设施</optName>
+		</language>
+	</functionCode>
+</functionCodes>

@@ -1,0 +1,2 @@
+tracingHandleFilter=com.fiberhome.filink.txlcntracing.dubbo.DubboTracingApplier
+tracingRequestFilter=com.fiberhome.filink.txlcntracing.dubbo.DubboTracingTransmitter

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="1701701">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update current alarm note current alarm note name is ${alarmName}
+			</detailInfoTemplate>
+			<optName>updateAlarmRemark</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了历史告警备注:${alarmName}</detailInfoTemplate>
+			<optName>修改历史告警备注</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1705006">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>List export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>历史告警列表导出</optName>
+		</language>
+	</functionCode>
+</functionCodes>

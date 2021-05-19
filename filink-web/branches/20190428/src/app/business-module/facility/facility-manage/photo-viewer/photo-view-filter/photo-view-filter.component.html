@@ -1,0 +1,20 @@
+<div class="photo-view-filter" (keydown)="keydown($event)">
+  <input type="text" nz-input placeholder="名称" [(ngModel)]="filterObj.picName">
+  <input type="text" nz-input placeholder="设施名称" [(ngModel)]="filterObj.deviceName">
+  <check-select-input [checkList]="checkList" [(ngModel)]="filterObj.deviceTypes"></check-select-input>
+  <input type="text" nz-input placeholder="资产编号" [(ngModel)]="filterObj.deviceCode">
+  <input type="text" nz-input placeholder="请选择区域" (click)="areaSelectVisible = true" [(ngModel)]="filterObj.areaName">
+  <nz-select style="width: 180px" nzAllowClear nzPlaceHolder="来源" [(ngModel)]="filterObj.resource">
+    <nz-option *ngFor="let option of resourceList" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+  </nz-select>
+  <i class="iconfont icon fiLink-search" (click)="handleSearch()"></i>
+  <i class="iconfont icon fiLink-reset" (click)="handleReset()"></i>
+</div>
+
+<xc-tree-area-selector
+  [(xcVisible)]="areaSelectVisible"
+  [pageType]="'区域'"
+  [treeSelectorConfig]="areaSelectorConfig"
+  (selectDataChange)="areaSelectChange($event)"
+>
+</xc-tree-area-selector>

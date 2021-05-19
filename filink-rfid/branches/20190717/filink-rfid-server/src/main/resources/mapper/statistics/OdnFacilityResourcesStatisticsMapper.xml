@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.statistics.OdnFacilityResourcesStatisticsDao">
+
+    <!-- 统计跳接侧端口-->
+    <select id="jumpFiberPortStatistics" resultType="java.util.Map"
+            parameterType="com.fiberhome.filink.rfid.req.statistics.odnfacilityresources.JumpFiberPortStatisticsReq">
+        select
+        tprp.port_state state,
+        count(tprp.id) number
+        from t_port_real_position tprp
+        <where>
+            tprp.is_deleted='0'
+            <if test="facilities != null and facilities.size() > 0">
+                and tprp.device_id in
+                <foreach collection="facilities" index="index" item="item" open="(" separator="," close=")">
+                    <if test="(index % 999) == 998">NULL ) OR tprp.device_id IN (</if>
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by tprp.port_state
+    </select>
+
+    <!--端口统计总数-->
+    <select id="portCountStatistics"
+            parameterType="com.fiberhome.filink.rfid.req.statistics.odnfacilityresources.MeltFiberPortStatisticsReq"
+            resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        from t_port_real_position tprp
+        <where>
+            tprp.is_deleted='0'
+            <if test="facilities != null and facilities.size() > 0">
+                and tprp.device_id in
+                <foreach collection="facilities" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <!--成端端口数-->
+    <select id="meltFiberPortStatistics"
+            parameterType="com.fiberhome.filink.rfid.req.statistics.odnfacilityresources.MeltFiberPortStatisticsReq"
+            resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        from port_cable_core_info pcci
+        <where>
+            pcci.is_deleted = '0'
+            <if test="facilities != null and facilities.size() > 0">
+                AND pcci.resource_device_id in
+                <foreach collection="facilities" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <!--盘端口统计-->
+    <select id="discPortStatistics"
+            parameterType="com.fiberhome.filink.rfid.req.statistics.odnfacilityresources.DiscPortStatisticsReq"
+            resultType="java.util.Map">
+        SELECT
+        tprp.port_state state,
+        count(tprp.id) number
+        from t_port_real_position tprp
+        <where>
+            tprp.is_deleted='0'
+            <if test="deviceId != null and deviceId != ''">
+                and tprp.device_id = #{deviceId}
+            </if>
+            <if test="plateIds != null and plateIds.size() > 0">
+                and tprp.disc_id in
+                <foreach collection="plateIds" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by tprp.port_state
+    </select>
+
+    <!--    框端口统计-->
+    <select id="framePortStatistics" resultType="java.util.Map"
+            parameterType="com.fiberhome.filink.rfid.req.statistics.odnfacilityresources.FramePortStatisticsReq">
+        SELECT
+        tprp.port_state state,
+        count(tprp.id) number
+        from t_port_real_position tprp
+        <where>
+            tprp.is_deleted='0'
+            <if test="deviceId != null and deviceId != ''">
+                and tprp.device_id = #{deviceId}
+            </if>
+            <if test="frameNos != null and frameNos.size() > 0">
+                and tprp.frame_id in
+                <foreach collection="frameNos" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by tprp.port_state
+    </select>
+
+    <!--根据设施id查询其端口总数-->
+    <select id="countPortStatistics"
+            parameterType="java.lang.String"
+            resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        from t_port_real_position tprp
+        <where>
+            tprp.is_deleted='0'
+            <if test="deviceId != null and deviceId !=''">
+                and tprp.device_id = #{deviceId}
+            </if>
+        </where>
+    </select>
+    <!--根据设施id查询其端口总数-->
+    <select id="countPortStatisticsList"
+            parameterType="java.util.List"
+            resultType="java.util.Map">
+        SELECT tprp.device_id id, COUNT(*)number
+        from t_port_real_position tprp
+        <where>
+            tprp.is_deleted='0'
+            and tprp.device_id in
+            <foreach collection="list" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>
+        group by tprp.device_id
+    </select>
+
+</mapper>

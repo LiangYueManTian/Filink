@@ -1,0 +1,407 @@
+@font-face {
+  font-family: 'digifacewide';
+  src: url('../digifaw.ttf');
+}
+
+.float-bg-screen {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  filter: alpha(opacity=60);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1100;
+  background: url("../../../../assets/img/screen/bj.png") no-repeat 100%;
+
+  .screen-head-title {
+    width: 100%;
+    height: 10%;
+    background: url("../../../../assets/img/screen/top.png") no-repeat;
+    background-size: 100%;
+    background-position-y: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .title {
+      margin-top: 2%;
+      color: #00fcf9;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .time {
+      position: absolute;
+      right: 3%;
+      bottom: 32%;
+
+      .iconTime {
+        span {
+          background: linear-gradient(to top, #00aceb, #00fcf9);
+          -webkit-background-clip: text;
+          color: transparent;
+        }
+      }
+    }
+
+  }
+
+  .screen-content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+
+    .content-left {
+      flex: 3;
+
+      .screen-alarm {
+        margin-left: 10px;
+        width: 97%;
+        height: 31%;
+        background: url("../../../../assets/img/screen/alarm-bj.png") no-repeat;
+        background-size: 100% 100%;
+        margin-bottom: 10px;
+
+        .title {
+          width: 100%;
+          padding: 0 10px;
+
+          span {
+            float: left;
+            color: #00fcf9;
+            font-size: 16px;
+            padding-top: 5px;
+          }
+
+          i {
+            float: right;
+            padding-left: 3px;
+          }
+        }
+
+        .screen-charts-nowAlarm {
+          clear: both;
+          width: 100%;
+          height: 90%;
+
+          .nowAlarm {
+            width: 100%;
+            height: 90%;
+            padding-left: 28px;
+          }
+        }
+
+        .screen-charts-nAlarm {
+          clear: both;
+          width: 100%;
+          height: 95%;
+
+          .numAlarm {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+      }
+    }
+
+    .content-center {
+      flex: 4;
+
+      .screen-total {
+        width: 97%;
+        height: 8%;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        .total-facilities {
+          line-height: 100%;
+          color: #00fcf9;
+          margin-top: 20px;
+          flex: 1;
+
+          .facilities {
+            padding-left: 16px;
+            margin-top: 16px;
+            float: left;
+            font-size: 15px;
+            font-weight: bold;
+          }
+
+          .facilities-num-ta {
+            margin-top: 8px;
+          }
+
+        }
+
+        .total-alarm {
+          line-height: 100%;
+          color: #00fcf9;
+          margin-top: 20px;
+          display: flex;
+          justify-content: end;
+
+          .facilities {
+            padding-left: 16px;
+            margin-top: 16px;
+            float: left;
+            font-size: 15px;
+            font-weight: bold;
+          }
+
+          .facilities-num {
+            margin-top: 8px;
+            flex-wrap: nowrap;
+
+            .num {
+              float: left;
+
+              height: 40px;
+              background: url("../../../../assets/img/screen/number-bj.png") no-repeat;
+              background-size: 100% 100%;
+              line-height: 30px;
+              text-align: center;
+
+              i {
+                color: black;
+              }
+
+            }
+          }
+        }
+      }
+
+      .content-map {
+        clear: both;
+        width: 97%;
+        height: 52%;
+        background: url("../../../../assets/img/screen/map-bj.png") no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        margin: 10px;
+
+        #map {
+          width: 97%;
+          height: 97%;
+          position: absolute;
+          top: 2%;
+          left: 2%;
+
+          .BMap_cpyCtrl {
+            display: none;
+          }
+        }
+      }
+
+      .alarm-increment {
+        width: 97%;
+        margin: 10px;
+        height: 32%;
+
+        .increment {
+          width: 100%;
+          height: 13%;
+
+          .increment-name {
+            color: #00fcf9;
+            float: left;
+            width: 155px;
+            height: 100%;
+            background: url("../../../../assets/img/screen/title-footer.png") no-repeat;
+            background-size: 100% 100%;
+            padding-left: 10px;
+            font-size: 16px;
+            display: flex;
+
+            span {
+              flex: 4;
+              margin-top: 3px;
+            }
+
+            i {
+              flex: 2;
+            }
+
+          }
+
+          .increment-date {
+            float: right;
+            width: 55px;
+            height: 100%;
+            color: #00fcf9;
+
+            .week {
+              float: left;
+              font-size: 16px;
+              font-weight: bold;
+            }
+
+            .mouth {
+              float: right;
+              font-size: 16px;
+              font-weight: bold;
+            }
+          }
+        }
+
+        .increment-chart {
+          position: relative;
+          clear: both;
+          width: 100%;
+          margin-top: 6px;
+          height: 84%;
+          background: url("../../../../assets/img/screen/day-up-alarm-bj.png") no-repeat;
+          background-size: 100% 100%;
+
+          .before-month {
+            content: "";
+            border: 5px solid transparent;
+            border-bottom-color: #5f79a5;
+            position: absolute;
+            right: 3px;
+            top: 0;
+            margin-top: -10px;
+
+          }
+
+          .before-week {
+            content: "";
+            border: 5px solid transparent;
+            border-bottom-color: #5f79a5;
+            position: absolute;
+            right: 43px;
+            top: 0;
+            margin-top: -10px;
+
+          }
+
+          .incrementNum {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+      }
+
+    }
+
+    .content-right {
+      flex: 3;
+
+      .screen-alarm {
+        margin-right: 20px;
+        width: 97%;
+        height: 31%;
+        background: url("../../../../assets/img/screen/alarm-bj.png") no-repeat;
+        background-size: 100% 100%;
+        margin-bottom: 10px;
+
+        .title {
+          width: 100%;
+          padding: 0 10px;
+
+          span {
+            float: left;
+            color: #00fcf9;
+            font-size: 17px;
+            padding-top: 5px;
+          }
+
+          i {
+            float: right;
+            padding-left: 3px;
+            padding-top: 3px;
+          }
+        }
+
+        .screen-charts {
+          clear: both;
+          width: 100%;
+          height: 90%;
+
+          ul {
+            width: 100%;
+            height: 100%;
+
+            li {
+              list-style-type: none;
+              color: #00fcf9;
+              width: 100%;
+              height: 32px;
+              display: flex;
+
+              .name {
+                flex: 2;
+                padding-left: 10px;
+              }
+
+              .describe {
+                flex: 2;
+
+              }
+
+              .time {
+                flex: 4;
+              }
+
+              .icon-alarm {
+                flex: 1;
+                padding-left: 10px;
+
+                i {
+                  display: -webkit-box;
+                  display: -moz-box;
+                  color: red;
+                  transform-origin: 50% 50%;
+                  animation: moveImg .2s linear infinite 0s alternate;
+                }
+
+                @keyframes moveImg {
+                  0% {
+                    transform: rotate(-10deg);
+                  }
+                  100% {
+                    transform: rotate(10deg);
+                  }
+                }
+              }
+            }
+          }
+
+          .typeAlarm {
+            width: 95%;
+            height: 95%;
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+.float-bg-screen::-webkit-scrollbar {
+  display: none
+}
+
+:host ::ng-deep.digit {
+  color: black;
+  flex: 1;
+  font-size: 20px;
+  font-family: 'digifacewide', serif;
+  padding: 8px 3px;
+  text-align: center;
+  background: url("../../../../assets/img/screen/number-bj.png") no-repeat;
+  background-size: 100% 100%;
+}
+
+:host ::ng-deep .ctnr {
+  display: flex;
+  padding-left: 1.2px;
+}
+
+.text-success {
+  color: #5f79a5;
+}

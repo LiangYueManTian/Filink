@@ -1,0 +1,80 @@
+# 服务端口
+server:
+  port: 11111
+
+spring:
+  application:
+    name: filink-demo-server
+
+  # mongo配置
+  data:
+    mongodb:
+      host: 10.5.24.224
+      port: 27017
+      database: filink_demo
+
+  # redis 数据源配置
+  redis:
+    host: 10.5.24.224
+    port: 6379
+    password: filink
+    database: 0
+
+  # mysql数据库配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://10.5.24.224:3306/filink_user?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: wistronits@123
+    #      初始化大小
+    initialSize: 5
+    #      最小连接数
+    minIdle: 5
+    #      最大连接数
+    maxActive: 20
+    #      获取连接等待超时时间
+    maxWait: 60000
+    #      间隔多久检测一次 检测需要关闭的空闲连接 单位毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    #      一个连接最小生存时间
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    #      配置监控统计拦截的filter , 去掉后监控sql无法统计wall用于防火墙
+    filters: stat,wall,log4j
+    logSlowSql: true
+
+  cloud:
+    # 消息总线配置
+    stream:
+      kafka:
+        binder:
+          zkNodes: 10.5.24.224:2181
+          brokers: 10.5.24.224:9092
+      bindings:
+        demo_output:
+          destination: demo_output2
+          contentType: application/json
+        demo_input:
+          destination: demo_output2
+          contentType: application/json
+
+# eureka 配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+
+
+#mybaties 配置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package:

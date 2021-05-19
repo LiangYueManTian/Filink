@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.map.dao.BaiduAreaDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.map.bean.BaiduArea">
+        <id column="area_id" property="areaId"/>
+        <result column="area_code" property="areaCode"/>
+        <result column="area_name" property="areaName"/>
+        <result column="level" property="level"/>
+        <result column="city_code" property="cityCode"/>
+        <result column="center" property="center"/>
+        <result column="boundary" property="boundary"/>
+        <result column="parent_id" property="parentId"/>
+    </resultMap>
+   <!--根据名称查询地区码信息-->
+    <select id="queryAreaByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT * FROM baidu_area WHERE area_name = #{areaName}
+    </select>
+
+    <select id="querySonAreaByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT area1.* FROM baidu_area  area1
+        LEFT JOIN baidu_area area2 ON area1.parent_id=area2.area_id
+        WHERE area2.area_name = #{areaName}
+    </select>
+
+    <!--查询所有省-->
+    <select id="queryAllProvince"  resultMap="BaseResultMap">
+        SELECT * FROM baidu_area WHERE parent_id= '-1'
+    </select>
+
+    <!--查询所有城市信息-->
+    <select id="queryAllCityInfo"  resultMap="BaseResultMap">
+        SELECT * FROM baidu_area
+    </select>
+
+</mapper>

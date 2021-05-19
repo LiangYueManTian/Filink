@@ -1,0 +1,51 @@
+.box-warp{
+  padding: 10px;
+  .circle-container {
+    display: flex;
+    .circle {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      //border-radius: 50%;
+      //border: solid 10px #eff0f4;
+      .text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 150px;
+        height: 150px;
+        text-align: center;
+        .number {
+          margin-top: 35px;
+          font-size: 30px;
+        }
+        .title {
+          font-size: 20px;
+        }
+      }
+      &:nth-child(1) {
+        color: #2dbef7;
+        margin-right: 80px;
+      }
+      &:nth-child(2) {
+        color: #38dbac;
+        margin-right: 80px;
+      }
+      &:nth-child(3) {
+        color: #91e15c;
+        margin-right: 80px;
+      }
+      &:nth-child(4) {
+        color: #fdc94f;
+        margin-right: 80px;
+      }
+      &:nth-child(5) {
+        color: #fb5d1e;
+      }
+    }
+  }
+  .table-container {
+    width: 100%;
+    height: 100%;
+  }
+}

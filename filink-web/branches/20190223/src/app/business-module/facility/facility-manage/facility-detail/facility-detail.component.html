@@ -1,0 +1,62 @@
+<div class="facility-detail">
+  <div>
+    <span class="area-detail-title">
+      {{pageTitle}}
+    </span>
+  </div>
+  <div style="">
+    <xc-form [column]="formColumn" (formInstance)="formInstance($event)"></xc-form>
+    <div style="padding-left: 20px">
+      <button class="link-button" nz-button nzType="primary" style="margin-right: 20px"
+              [nzLoading]="isLoading"
+              [disabled]="!formStatus.getValid()"
+              (click)="addFacility()">{{language.handleOk}}
+      </button>
+      <button class="link-button" nz-button nzType="danger" (click)="goBack()">{{language.handleCancel}}</button>
+    </div>
+  </div>
+</div>
+
+<!--城市选取器模板-->
+<ng-template #customTemplate let-formGroup="formGroup" let-col="col">
+  <form [formGroup]="formGroup">
+    <div class="xc-city-picker">
+      <div class="city-picker-selector area-detail" id="city-picker-selector" style="height: 30px"></div>
+    </div>
+  </form>
+</ng-template>
+
+<!--地理位置选择模版-->
+<ng-template #positionTemplate let-formGroup="formGroup" let-col="col">
+  <form [formGroup]="formGroup">
+    <button type="button" class="address-p" [disabled]="positionDisabled" nz-button (click)="showModal()">
+      <i class="icon-fiLink-l iconfont fiLink-position"></i>
+      <span style="vertical-align: middle;margin-left: 5px">{{language.position}}</span></button>
+  </form>
+</ng-template>
+<xc-map-component [(xcVisible)]="isVisible"
+                  [point]="selectPoint"
+                  [facilityAddress]="facilityAddress"
+                  (selectDataChange)="selectDataChange($event)">
+</xc-map-component>
+
+<!--区域选择模版-->
+<ng-template #areaSelector let-formGroup="formGroup" let-col="col">
+  <!--<div>-->
+  <!--<div (click)="showAreaSelectorModal()">-->
+  <!--<input [disabled]="areaDisabled" nz-input type="text" [value]="areaName" placeholder="选择区域">-->
+  <!--</div>-->
+  <!--</div>-->
+  <div>
+    <span class="area-name" [title]="areaName">{{areaName}}</span>
+    <button type="button" class="open-button" [disabled]="areaDisabled" (click)="showAreaSelectorModal()"><i
+      class="icon-fiLink fiLink-search-index iconfont"></i></button>
+  </div>
+</ng-template>
+<xc-tree-area-selector
+  [(xcVisible)]="areaSelectVisible"
+  [treeSelectorConfig]="areaSelectorConfig"
+  [canClear]="false"
+  (selectDataChange)="areaSelectChange($event)"
+>
+</xc-tree-area-selector>

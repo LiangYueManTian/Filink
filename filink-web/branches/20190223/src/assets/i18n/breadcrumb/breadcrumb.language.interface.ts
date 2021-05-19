@@ -1,0 +1,47 @@
+export interface BreadcrumbLanguageInterface {
+  'add': string;
+  'update': string;
+  'view': string;
+  'area': string;
+  'areaList': string;
+  'facilityManage': string;
+  'facilityList': string;
+  'facility': string;
+  'facilityLog': string;
+  'facilityView': string;
+  'systemSetting': string;
+  'menuManagement': string;
+  'menuAdd': string;
+  'menuUpdate': string;
+  'users': string;
+  'user': string;
+  'unit': string;
+  'role': string;
+  'userList': string;
+  'unitList': string;
+  'roleList': string;
+  'onlineList': string;
+  'alarm': string;
+  'currentalarm': string;
+  'historyalarm': string;
+  'alarmset': string;
+  'alarmLevelSet': string;
+  'logManagement': string;
+  'operateLog': string;
+  'securityLog': string;
+  'systemLog': string;
+  'agreementManagement': string;
+  'facilityAgreement': string;
+  'photoViewer': string;
+  'workOrderManagement': string;
+  'salesWorkOrder': string;
+  'unfinishedSalesWorkOrder': string;
+  'historySalesWorkOrder': string;
+  'addWorkOrder': string;
+  'viewWorkOrder': string;
+  'inspectionWorkOrder': string;
+  'securityPolicy': string;
+  'systemParameter': string;
+  [propName: string]: any;
+}
+

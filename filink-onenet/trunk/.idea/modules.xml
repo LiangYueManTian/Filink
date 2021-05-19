@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/filink-onenet.iml" filepath="$PROJECT_DIR$/filink-onenet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-onenet-api/filink-onenet-api.iml" filepath="$PROJECT_DIR$/filink-onenet-api/filink-onenet-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-onenet-server/filink-onenet-server.iml" filepath="$PROJECT_DIR$/filink-onenet-server/filink-onenet-server.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.device.RetryDeleteInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.fdevice.bean.device.RetryDeleteInfo">
+        <id column="delete_id" property="deleteId"/>
+        <result column="function_code" property="functionCode"/>
+        <result column="retry_num" property="retryNum"/>
+        <result column="data" property="data"/>
+    </resultMap>
+    <!--查找所有信息-->
+    <select id="selectAllRetryDeleteInfo" resultMap="BaseResultMap">
+        SELECT delete_id,function_code,retry_num,data
+        FROM retry_delete_info
+    </select>
+    <!--根据id修改-->
+    <update id="updateRetryNumById" parameterType="com.fiberhome.filink.fdevice.bean.device.RetryDeleteInfo">
+        UPDATE retry_delete_info set
+        retry_num = #{retryNum}
+        WHERE delete_id = #{deleteId}
+    </update>
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="string">
+        DELETE  FROM retry_delete_info
+        WHERE delete_id = #{deleteId}
+    </delete>
+    <!--新增-->
+    <insert id="insert" parameterType="com.fiberhome.filink.fdevice.bean.device.RetryDeleteInfo">
+        INSERT INTO retry_delete_info(delete_id,function_code,retry_num,data)
+        VALUES (#{deleteId},#{functionCode},#{retryNum},#{data})
+    </insert>
+</mapper>

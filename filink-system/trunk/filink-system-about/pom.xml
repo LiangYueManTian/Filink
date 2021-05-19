@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <name>filink-system-about</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>filink-system-about</artifactId>
+    <parent>
+        <artifactId>filink-system</artifactId>
+        <groupId>com.fiberhome.filink</groupId>
+        <version>0.0.3-RELEASE</version>
+    </parent>
+
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-support</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-bean</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <!--数据库mysql-->
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-mysql</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-server</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+
+
+
+</project>

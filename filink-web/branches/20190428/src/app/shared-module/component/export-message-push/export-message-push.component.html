@@ -1,0 +1,15 @@
+<ng-template #exportOkTemp let-notification>
+  <div class="ant-notification-notice-content">
+    <div>
+      <div class="ant-notification-notice-message">后台消息</div>
+      <div class="ant-notification-notice-description">
+        {{exportMsg}}
+      </div>
+      <span class="ant-notification-notice-btn">
+            <button nz-button nzType="primary" nzSize="small" (click)="goExportHTML()">
+              <span>前往</span>
+            </button>
+          </span>
+    </div>
+  </div>
+</ng-template>

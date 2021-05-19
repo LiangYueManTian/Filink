@@ -1,0 +1,80 @@
+#spring:
+#  profiles:
+#    active: test
+
+
+server:
+  port: 8888
+
+spring:
+  application:
+    name: filink-config-server
+  # 指定svn
+  profiles:
+    active: subversion
+
+
+  cloud:
+    # ================kafka 配置====================================================
+    # 激活bus通讯
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.24.144:9092
+          zkNodes: 10.5.24.144:2181
+
+    # ================svn配置================================================
+    config:
+      server:
+        svn:
+          uri: svn://39.98.72.132/filink/filink-config/
+          username: filink
+          password: filink@v2r1
+          default-label: /
+      #          basedir: E://wistronits//filink//config//
+      #          basedir: /yy_filink/filink-config/config/
+      #          basedir: /Users/yaoyuan/Desktop/filink-config
+
+      enabled: true
+      #      拉取配置失败时重试
+      retry:
+        max-attempts: 6
+        initial-interval: 1000
+        multiplier: 1.1
+        max-interval: 2000
+
+
+
+#==================注册中心======================================================
+eureka:
+  client:
+    service-url:
+      #      向两个eureka注册
+      #      defaultZone: http://10.5.24.141:8762/eureka/
+      defaultZone: http://filink:123456@localhost:8762/eureka/
+  #      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+#是否需要权限拉去，默认是true,如果不false就不允许你去拉取配置中心Server更新的内容
+management:
+  security:
+    enabled: false
+
+  # 启动暴露url
+  endpoints:
+    web:
+      expose: "*"
+
+logstash:
+  url: 10.5.24.142:4560
+
+# 监控中心登录名和密码
+#security:
+#  user:
+#    name: filink
+#    password: 123456
+#  enable-csrf: false

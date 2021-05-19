@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>filink-system-server</artifactId>
+    <version>0.0.2-RELEASE</version>
+    <name>filink-system-server</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.fiberhome.filink</groupId>
+        <artifactId>filink-system</artifactId>
+        <version>0.0.2-RELEASE</version>
+    </parent> <!-- lookup parent from repository -->
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-server</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-log-api</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-parameter</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-dprotocol</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-export</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-license</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-security</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-protocol</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-menu</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-mongo</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-sms-api</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-about</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

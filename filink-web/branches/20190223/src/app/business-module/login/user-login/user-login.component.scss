@@ -1,0 +1,74 @@
+.user-login-form {
+  width: 260px;
+  margin-left: 72px;
+
+  nz-form-item {
+      margin-bottom: 6px;
+
+    .remember-item {
+      height: 50px;
+    }
+
+     nz-form-control {
+      nz-input-group {
+        .username, .password {
+          font-size: 13px;
+          padding-left: 45px;
+          border: 0px;
+          border-bottom: 1px solid #e8e8e8;
+          border-radius: 0%;
+        }
+      }
+
+       nz-form-explain {
+         margin: 10px 0 10px 20px;
+         font-size: 12px;
+         color: red;
+       }
+
+      .remember {
+        width: 260px;
+        font-size: 12px;
+        color: #959595;
+      }
+
+       .auth-code {
+         width: 165px;
+         height: 38px;
+         font-size: 13px;
+         padding-left: 45px;
+         color: #959595;
+         border: 0;
+         border-bottom: 1px solid #e8e8e8;
+         border-radius: 0;
+       }
+
+       .timer {
+         position: relative;
+
+         .yz-code {
+           cursor: pointer;
+           position: absolute;
+           top: -6px;
+         }
+       }
+
+      .login-button {
+        width: 260px;
+        height: 42px;
+        font-size: 18px;
+        border: 0;
+        border-radius: 21px;
+        color: #fff;
+        background-color: #36cfc9;
+        outline: 0
+      }
+    }
+  }
+
+}
+
+:host ::ng-deep input.ant-input:focus {
+  outline:none;
+  box-shadow:none;
+}

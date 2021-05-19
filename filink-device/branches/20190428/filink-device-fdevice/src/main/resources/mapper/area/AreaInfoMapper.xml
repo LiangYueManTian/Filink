@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.area.AreaInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.fdevice.bean.area.AreaInfo">
+        <id column="area_id" property="areaId"/>
+        <result column="level" property="level"/>
+        <result column="area_name" property="areaName"/>
+        <result column="province_name" property="provinceName"/>
+        <result column="city_name" property="cityName"/>
+        <result column="district_name" property="districtName"/>
+        <result column="address" property="address"/>
+        <result column="remarks" property="remarks"/>
+        <result column="create_time" property="createTime"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="parentName" property="parentName"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+    <!--向上查询结果映射-->
+    <resultMap id="toTopAreaInfo" type="com.fiberhome.filink.fdevice.bean.area.ToTopAreaInfo" extends="BaseResultMap">
+        <association property="parentAreaInfo" select="selectTopArea" column="parent_id">
+        </association>
+    </resultMap>
+
+    <!--区域信息所有字段-->
+    <sql id="AreaInfoAllColumn">
+        a.area_id,a.level,a.area_name,a.province_name,a.city_name,a.district_name,a.address,
+        a.remarks,a.create_time,a.parent_id,a.create_user,a.update_time,a.update_user
+    </sql>
+
+    <!-- 对外查询映射结果 -->
+    <resultMap id="ResultMapForeign" type="com.fiberhome.filink.fdevice.dto.AreaInfoForeignDto">
+        <id column="area_id" property="areaId"/>
+        <result column="area_name" property="areaName"/>
+        <result column="parent_id" property="parentAreaId"/>
+        <result column="level" property="areaLevel"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+    <!--关联查询所有字段信息-->
+    <sql id="JoinAreaInfoAllColume">
+        a.area_id,a.level,a.area_name,a.province_name,a.city_name,a.district_name,a.address,
+        a.remarks,a.parent_id,a.create_time
+    </sql>
+
+    <!--左外关联关系表-->
+    <sql id="LeftJoinDeptRelationInfo">
+       LEFT JOIN  area_dept_info dept ON a.area_id = dept.area_id
+    </sql>
+
+    <!--根据区域名查找区域信息-->
+    <select id="selectAreaInfoByName" parameterType="com.fiberhome.filink.fdevice.bean.area.AreaInfo"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="AreaInfoAllColumn"></include>
+        FROM area_info a
+        <where>
+            <if test="areaId!=null and areaId!=''">
+                and a.area_id != #{areaId}
+            </if>
+            and a.area_name=#{areaName} and a.is_deleted !=1
+        </where>
+    </select>
+    <!--新增区域信息-->
+    <insert id="addAreaInfo" parameterType="com.fiberhome.filink.fdevice.bean.area.AreaInfo">
+        INSERT INTO area_info (area_id,
+        <if test="level!=null and level!=''">
+            level,
+        </if>
+        <if test="provinceName!=null and provinceName!=''">
+            province_name,
+        </if>
+        <if test="cityName!=null and cityName!=''">
+            city_name,
+        </if>
+        <if test="districtName!=null and districtName!=''">
+            district_name,
+        </if>
+        <if test="address!=null and address!=''">
+            address,
+        </if>
+        <if test="remarks!=null and remarks!=''">
+            remarks,
+        </if>
+        <if test="parentId!=null and parentId!=''">
+            parent_id,
+        </if>
+        <if test="createUser!=null and createUser!=''">
+            create_user,
+        </if>
+        area_name
+        ) VALUES (#{areaId},
+        <if test="level!=null and level!=''">
+            #{level},
+        </if>
+        <if test="provinceName!=null and provinceName!=''">
+            #{provinceName},
+        </if>
+        <if test="cityName!=null and cityName!=''">
+            #{cityName},
+        </if>
+        <if test="districtName!=null and districtName!=''">
+            #{districtName},
+        </if>
+        <if test="address!=null and address!=''">
+            #{address},
+        </if>
+        <if test="remarks!=null and remarks!=''">
+            #{remarks},
+        </if>
+        <if test="parentId!=null and parentId!=''">
+            #{parentId},
+        </if>
+        <if test="createUser!=null and createUser!=''">
+            #{createUser},
+        </if>
+        #{areaName}
+        )
+    </insert>
+
+    <!--条件查询-->
+    <select id="queryAreaListByItem" parameterType="com.fiberhome.filink.fdevice.dto.AreaInfoDto"
+            resultMap="BaseResultMap">
+        SELECT
+        DISTINCT
+        <include refid="JoinAreaInfoAllColume">
+        </include>
+        ,a2.area_name parentName
+        FROM area_info a
+        LEFT JOIN area_info a2 ON a.parent_id = a2.area_id
+        <include refid="LeftJoinDeptRelationInfo">
+        </include>
+        <where>
+            and a.is_deleted !=1
+            <if test="areaName!=null and areaName!=''">
+                and a.area_name LIKE '%${areaName}%'
+            </if>
+            <if test="parentName!=null and parentName!=''">
+                and a2.area_name LIKE '%${parentName}%'
+            </if>
+            <if test="provinceName!=null and provinceName!=''">
+                and a.province_name LIKE '%${provinceName}%'
+            </if>
+            <if test="cityName!=null and cityName!=''">
+                and a.city_name LIKE '%${cityName}%'
+            </if>
+            <if test="districtName!=null and districtName!=''">
+                and a.district_name LIKE '%${districtName}%'
+            </if>
+            <if test="address!=null and address!=''">
+                and a.address LIKE '%${address}%'
+            </if>
+            <if test="remarks!=null and remarks!=''">
+                and a.remarks LIKE '%${remarks}%'
+            </if>
+            <if test="accountabilityUnit!=null and accountabilityUnit.size()>0">
+                and dept.dept_id IN
+                <foreach collection="accountabilityUnit" item="accountabilityUnit" separator=","
+                         open="(" close=")">
+                    #{accountabilityUnit}
+                </foreach>
+            </if>
+            <if test="areaIds!=null and areaIds.size()>0">
+                and a.area_id IN
+                <foreach collection="areaIds" item="areaIds" separator=","
+                         open="(" close=")">
+                    #{areaIds}
+                </foreach>
+            </if>
+            <if test="level !=null">
+                and a.level = #{level}
+            </if>
+        </where>
+        ORDER BY
+        <choose>
+            <when test="sortField == 'areaName' and sortRule != null and sortRule !='' ">
+                a.area_name ${sortRule}
+            </when>
+            <when test="sortField == 'parentName' and sortRule != null and sortRule !=''">
+                a2.area_name ${sortRule}
+            </when>
+            <when test="sortField == 'provinceName' and sortRule != null and sortRule !=''">
+                a.province_name ${sortRule}
+            </when>
+            <when test="sortField == 'cityName' and sortRule != null and sortRule !='' ">
+                a.city_name ${sortRule}
+            </when>
+            <when test="sortField == 'districtName' and sortRule != null and sortRule !='' ">
+                a.district_name ${sortRule}
+            </when>
+            <when test="sortField == 'address' and sortRule != null and sortRule !='' ">
+                a.address ${sortRule}
+            </when>
+            <when test="sortField == 'remarks' and sortRule != null and sortRule !=''">
+                a.remarks ${sortRule}
+            </when>
+            <otherwise>
+                a.create_time desc
+            </otherwise>
+        </choose>
+        <if test="beginNum !=null and pageSize!=null">
+            limit #{beginNum},#{pageSize}
+        </if>
+    </select>
+
+    <!--根据id查询-->
+    <select id="selectAreaInfoById" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        DISTINCT
+        <include refid="AreaInfoAllColumn"></include>,
+        a2.area_name parentName
+        FROM area_info a
+        LEFT JOIN area_info a2 ON a.parent_id = a2.area_id
+        WHERE a.area_id = #{areaId} and a.is_deleted !=1
+    </select>
+
+    <!--根据父级id查询-->
+    <select id="selectAreaIdByParentId" parameterType="string" resultType="string">
+        SELECT area_id FROM area_info
+        WHERE parent_id=#{parentId} and is_deleted !=1
+    </select>
+
+    <!--删除区域-->
+    <update id="deleteAreaInfoByIds">
+        UPDATE area_info SET
+        is_deleted = 1
+        WHERE area_id IN
+        <foreach item="areaIds" index="index" collection="list" open="(" separator="," close=")">
+            #{areaIds}
+        </foreach>
+    </update>
+
+    <!--获取父级名称-->
+    <select id="selectTopArea" resultMap="toTopAreaInfo" parameterType="string">
+        SELECT area_name,parent_id FROM
+        area_info
+        WHERE area_id = #{parentId} and is_deleted !=1
+    </select>
+
+    <!--首页对外区域信息-->
+    <select id="queryForeignAreaListAll" resultMap="ResultMapForeign">
+        SELECT area_id,area_name,parent_id,level,create_time FROM area_info WHERE is_deleted != 1
+    </select>
+    <!--根据id修改区域名称-->
+    <update id="updateAreaNameById" parameterType="com.fiberhome.filink.fdevice.bean.area.AreaInfo">
+        UPDATE area_info SET
+        area_name = #{areaName},
+        remarks=#{remarks}
+        WHERE
+        area_id = #{areaId} AND is_deleted !=1
+    </update>
+    <!--查找大于等于当前级别的区域信息-->
+    <select id="selectAreaInfoByLevel" parameterType="int" resultMap="BaseResultMap">
+        SELECT
+        DISTINCT
+        <include refid="JoinAreaInfoAllColume"></include>
+        ,a2.area_name parentName
+        FROM area_info a
+        LEFT JOIN area_info a2 ON a.parent_id = a2.area_id
+        where a.level >= #{level} and a.is_deleted
+        !=1
+        ORDER BY a.create_time desc
+    </select>
+    <!--根据id集合批量查询-->
+    <select id="selectAreaInfoByIds" parameterType="list" resultMap="BaseResultMap">
+        SELECT
+        <include refid="AreaInfoAllColumn">
+        </include>
+        FROM area_info a
+        WHERE a.area_Id
+        IN
+        <foreach item="areaIds" collection="list" open="(" separator="," close=")">
+            #{areaIds}
+        </foreach>
+        AND is_deleted !=1
+    </select>
+    <!--根据部门id查询区域信息-->
+    <select id="selectAreaInfoByDeptIds" resultMap="BaseResultMap">
+        SELECT
+        DISTINCT
+        <include refid="AreaInfoAllColumn">
+        </include>
+        FROM area_dept_info d LEFT JOIN area_info a
+        ON d.area_id = a.area_id
+        WHERE d.dept_id IN
+        <foreach item="deptIds" collection="list" open="(" separator="," close=")">
+            #{deptIds}
+        </foreach>
+        AND a.is_deleted !=1
+    </select>
+    <!--根据id修改区域信息-->
+    <update id="updateAreaInfoById" parameterType="com.fiberhome.filink.fdevice.bean.area.AreaInfo">
+        UPDATE area_info SET
+        area_name = #{areaName},
+        parent_id = #{parentId},
+        level = #{level},
+        province_name = #{provinceName},
+        city_name = #{cityName},
+        district_name = #{districtName},
+        address = #{address},
+        remarks = #{remarks}
+        WHERE area_id = #{areaId}
+    </update>
+    <!--条件查询count-->
+    <select id="queryAreaListByItemCount" parameterType="com.fiberhome.filink.fdevice.dto.AreaInfoDto"
+            resultMap="BaseResultMap">
+        SELECT
+        DISTINCT
+        a.area_id
+        FROM area_info a
+        LEFT JOIN area_info a2 ON a.parent_id = a2.area_id
+        <include refid="LeftJoinDeptRelationInfo">
+        </include>
+        <where>
+            and a.is_deleted !=1
+            <if test="areaName!=null and areaName!=''">
+                and a.area_name LIKE '%${areaName}%'
+            </if>
+            <if test="parentName!=null and parentName!=''">
+                and a2.area_name LIKE '%${parentName}%'
+            </if>
+            <if test="provinceName!=null and provinceName!=''">
+                and a.province_name LIKE '%${provinceName}%'
+            </if>
+            <if test="cityName!=null and cityName!=''">
+                and a.city_name LIKE '%${cityName}%'
+            </if>
+            <if test="districtName!=null and districtName!=''">
+                and a.district_name LIKE '%${districtName}%'
+            </if>
+            <if test="address!=null and address!=''">
+                and a.address LIKE '%${address}%'
+            </if>
+            <if test="remarks!=null and remarks!=''">
+                and a.remarks LIKE '%${remarks}%'
+            </if>
+            <if test="accountabilityUnit!=null and accountabilityUnit.size()>0">
+                and dept.dept_id IN
+                <foreach collection="accountabilityUnit" item="accountabilityUnit" separator=","
+                         open="(" close=")">
+                    #{accountabilityUnit}
+                </foreach>
+            </if>
+            <if test="areaIds!=null and areaIds.size()>0">
+                and a.area_id IN
+                <foreach collection="areaIds" item="areaIds" separator=","
+                         open="(" close=")">
+                    #{areaIds}
+                </foreach>
+            </if>
+            <if test="level !=null">
+                and a.level = #{level}
+            </if>
+        </where>
+    </select>
+    <select id="selectAreaInfoForeignDtoById" resultMap="ResultMapForeign" parameterType="string">
+        SELECT area_id,area_name,parent_id,level FROM area_info WHERE area_id = #{areaId}
+    </select>
+</mapper>

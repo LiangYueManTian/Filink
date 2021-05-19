@@ -1,0 +1,125 @@
+server:
+  port: 9991
+
+spring:
+  application:
+    name: filink-onenet-server
+  redis:
+      host: 10.5.24.224
+      database: 0
+      port: 6379
+      password: filink
+  #测试所用数据库连接 后续删除
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.24.224:9092
+          zkNodes: 10.5.24.224:2181
+      bindings:
+        #内部指令消费者
+        one_net_input:
+          destination: onenet_write_input
+          group: filink_onenet_server
+          contentType: application/json
+        #指令重发消费者
+        one_net_write_resend:
+          destination: one_net_cmd_resend
+          group: filink_onenet_server
+          contentType: application/json
+        #指令请求消费者
+        one_net_request_input:
+          destination: filink_oneNet_request
+          group: filink_onenet_server
+          contentType: application/json
+        # 内部指令发送者
+        one_net_output:
+          destination: onenet_write_input
+          contentType: application/json
+        #       告警发送者
+        station_alarm_output:
+          destination: filink_alarm_info
+          contentType: application/json
+        #       告警图片发送者
+        alarm_pic_output:
+          destination: filink_alarm_pic
+          contentType: application/json
+        # webSocket
+        web_socket_output:
+          destination: filink_websocket
+          contentType: application/json
+  # 链路追踪
+  zipkin:
+    base-url: http://10.5.24.144:9411
+  sleuth:
+    sampler:
+  # 监控开发百分比  默认是0.1  开发环境设置成1
+      percentage: 1
+#  配置feign
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+    test:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: true
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 50000
+  ConnectTimeout: 50000
+
+language:
+  environment: CN
+
+#是否需要权限拉去，默认是true,如果不false就不允许你去拉取配置中心Server更新的内容
+management:
+  security:
+    enabled: false
+  # 启动暴露url
+  endpoints:
+    web:
+      expose: "*"
+
+#onenet平台
+oneNet:
+  #HTTP推送
+  http:
+    #Token3-32字符，限英文和数字，可自行定义。
+    token: zhsgdjagywdukgadbhagb
+    #AES对称加密算法加密秘钥
+    aesKey: PQgAzZ8mB2Y9XUXekGxa86D9462Pmn3ZVlyRfu1iulG
+  #设备SDK
+  device:
+    #设备的object id，根据终端设备sdk确定
+    obj_id: 3348
+    #nbiot设备object下具体的一个实例id,根据终端设备sdk确定
+    obj_inst_id: 1
+    #nbiot设备的资源id,根据终端设备sdk确定
+    res_id: 5750
+    #write的模式，只能是1或者2
+    mode: 2
+    #请求超时时间,不填写平台默认25(单位：秒)，取值范围[5, 40]
+    timeout: 20
+constant:
+  retryCount: 2
+  retryCycle: 60000
+  zipPassword: FiLink
+  tmpDirPath: /yy_filink/tmp
+  ftpFilePath: /yy_filink/ftp
+
+readLogFilePath: /yy_filink/log
+readListExcelPath: /yy_filink/excel

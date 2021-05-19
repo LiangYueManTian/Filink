@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowbusinessserver.dao.procclear.ProcClearFailureDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcClearFailure">
+        <result column="proc_clear_failure_id" property="procClearFailureId" />
+        <result column="proc_id" property="procId" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!--新增销障工单特有信息-->
+    <insert id="addProcClearFailureSpecific"  parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcClearFailure">
+        INSERT INTO proc_clear_failure
+        (
+            proc_clear_failure_id,
+            proc_id,
+            create_user,
+            create_time
+        )
+        VALUES
+        (
+            #{procClearFailureId},
+            #{procId},
+            #{createUser},
+            #{createTime}
+        )
+    </insert>
+
+    <!--修改销障工单特有信息-->
+    <update id="updateProcClearFailureSpecificByProcId"  parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcClearFailure">
+        UPDATE
+          proc_clear_failure
+        SET
+          proc_id = #{procId},
+          update_user = #{updateUser},
+          update_time = #{updateTime}
+        <where>
+            <if test="procId != null and procId != ''">
+                proc_id = #{procId}
+            </if>
+            AND is_deleted = 0
+        </where>
+    </update>
+
+    <!--获取销障工单特有信息-->
+    <select id="queryProcClearFailureSpecific" resultMap="BaseResultMap">
+        SELECT
+            t.proc_clear_failure_id,
+            t.proc_id
+        FROM
+            proc_clear_failure t
+        <where>
+            t.is_deleted = 0
+
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND t.proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND t.proc_id IN
+                    <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!--删除/恢复销障工单特有信息-->
+    <update id="updateProcClearFailureSpecificIsDeleted">
+        UPDATE
+          proc_clear_failure
+        SET
+          is_deleted = #{isDeleted}
+        <where>
+            is_deleted = 0
+            AND proc_id = #{procId}
+        </where>
+    </update>
+
+    <!--删除/恢复销障工单特有信息-->
+    <update id="updateProcClearFailureSpecificIsDeletedBatch" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq">
+        UPDATE
+        proc_clear_failure
+        SET
+        is_deleted = #{isDeleted}
+        <where>
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND proc_id IN
+                    <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </update>
+
+</mapper>

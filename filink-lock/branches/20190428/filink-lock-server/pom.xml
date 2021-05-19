@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>filink-lock-server</artifactId>
+    <version>0.0.2-RELEASE</version>
+    <name>filink-lock-server</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+
+
+    <parent>
+        <groupId>com.fiberhome.filink</groupId>
+        <artifactId>filink-lock</artifactId>
+        <version>0.0.2-RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-server</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-oceanconnect-api</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-onenet-api</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-station-api</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-log-api</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-device-api</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+        <!--监控中心-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>1.5.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-user-api</artifactId>
+            <version>0.0.2-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>txlcn-tc</artifactId>
+            <version>0.0.1-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+            <version>0.0.1-RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

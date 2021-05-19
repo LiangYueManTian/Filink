@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.picture.dao.relation.PicRelationInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="PicRelationInfoMap" type="com.fiberhome.filink.picture.bean.PicRelationInfo">
+        <id column="device_pic_id" property="devicePicId" />
+        <result column="device_id" property="deviceId" />
+        <result column="pic_name" property="picName" />
+        <result column="pic_url_base" property="picUrlBase" />
+        <result column="pic_url_thumbnail" property="picUrlThumbnail" />
+        <result column="position_base" property="positionBase" />
+        <result column="pic_size" property="picSize" />
+        <result column="type" property="type" />
+        <result column="order_type" property="orderType" />
+        <result column="resource" property="resource" />
+        <result column="resource_id" property="resourceId" />
+        <result column="alarm_name" property="alarmName" />
+        <result column="order_name" property="orderName" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_user" property="updateUser" />
+    </resultMap>
+
+    <resultMap extends="PicRelationInfoMap" id="DevicePicRespMap" type="com.fiberhome.filink.picture.resp.DevicePicResp">
+        <result column="device_type" property="deviceType"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="device_code" property="deviceCode"/>
+        <result column="area_name" property="areaName"/>
+        <result column="address" property="address"/>
+        <result column="deploy_status" property="deployStatus"/>
+        <result column="province_name" property="provinceName"/>
+        <result column="city_name" property="cityName"/>
+        <result column="district_name" property="districtName"/>
+        <result column="area_id" property="areaId"/>
+        <result column="remarks" property="remarks"/>
+        <result column="fmt_date" property="fmtDate"/>
+        <result column="resource_name" property="resourceName"/>
+    </resultMap>
+
+    <!--公共查询字段-->
+    <sql id="baseSelectColumn">
+        pr.device_pic_id,
+        pr.device_id,
+        pr.pic_name,
+        pr.pic_size,
+        pr.pic_url_base,
+        pr.pic_url_thumbnail,
+        pr.position_base,
+        pr.type,
+        pr.resource,
+        pr.resource_id,
+        pr.alarm_name,
+        pr.order_name,
+        pr.order_type,
+        pr.create_time,
+        pr.create_user,
+        pr.update_time,
+        pr.update_user,
+        device.device_type,
+        device.device_name,
+        device.device_status,
+        device.device_code,
+        device.address,
+        device.deploy_status,
+        device.province_name,
+        device.city_name,
+        device.district_name,
+        device.remarks,
+        area.area_id,
+        area.area_name,
+        pr.create_time AS cTime,
+        pr.update_time AS uTime
+    </sql>
+
+    <!--公共where条件-->
+    <sql id="whereBySql">
+        <where>
+            pr.is_deleted = 0
+            <!--设施图片ids-->
+            <if test="bizCondition.devicePicIds != null and bizCondition.devicePicIds.size() > 0">
+                AND pr.device_pic_id IN
+                <foreach collection="bizCondition.devicePicIds" item="devicePicId" open="(" close=")" separator=",">
+                    #{devicePicId}
+                </foreach>
+            </if>
+
+            <!--图片名称-->
+            <if test="bizCondition.picName != null and bizCondition.picName != ''">
+                AND pr.pic_name LIKE CONCAT('%',#{bizCondition.picName},'%')
+            </if>
+
+            <!--设施ids-->
+            <if test="bizCondition.deviceIds != null and bizCondition.deviceIds.size() > 0">
+                <if test="bizCondition.deviceIds.size() == 1">
+                    AND pr.device_id =
+                    <foreach collection="bizCondition.deviceIds" item="deviceId">
+                        #{deviceId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.deviceIds.size() > 1">
+                    AND pr.device_id IN
+                    <foreach collection="bizCondition.deviceIds" item="deviceId" open="(" close=")" separator=",">
+                        #{deviceId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--设施名称-->
+            <if test="bizCondition.deviceName != null and bizCondition.deviceName != ''">
+                AND device.device_name LIKE CONCAT('%',#{bizCondition.deviceName},'%')
+            </if>
+
+            <!--设施id-->
+            <if test="bizCondition.deviceId != null and bizCondition.deviceId != ''">
+                AND pr.device_id = #{bizCondition.deviceId}
+            </if>
+
+            <!--设施编号-->
+            <if test="bizCondition.deviceCode != null and bizCondition.deviceCode != ''">
+                AND device.device_code LIKE CONCAT('%',#{bizCondition.deviceCode},'%')
+            </if>
+
+            <!--设施types-->
+            <if test="bizCondition.deviceTypes != null and bizCondition.deviceTypes.size() > 0">
+                <if test="bizCondition.deviceTypes.size() == 1">
+                    AND device.device_type =
+                    <foreach collection="bizCondition.deviceTypes" item="deviceType">
+                        #{deviceType}
+                    </foreach>
+                </if>
+                <if test="bizCondition.deviceTypes.size() > 1">
+                    AND device.device_type IN
+                    <foreach collection="bizCondition.deviceTypes" item="deviceType" open="(" close=")" separator=",">
+                        #{deviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--区域id-->
+            <if test="bizCondition.areaId != null and bizCondition.areaId != ''">
+                AND device.area_id = #{bizCondition.areaId}
+            </if>
+
+            <!--来源-->
+            <if test="bizCondition.resource != null and bizCondition.resource != ''">
+                AND pr.resource = #{bizCondition.resource}
+            </if>
+
+            <!--开始时间-->
+            <if test="bizCondition.startTime != null and bizCondition.startTime != ''">
+                AND pr.create_time &gt;= #{bizCondition.startTime}
+            </if>
+
+            <!--结束时间-->
+            <if test="bizCondition.endTime != null and bizCondition.endTime != ''">
+                AND pr.create_time &lt;= #{bizCondition.endTime}
+            </if>
+
+            <!--设施types权限过滤-->
+            <if test="bizCondition.permissionDeviceTypes != null and bizCondition.permissionDeviceTypes.size() > 0">
+                <if test="bizCondition.permissionDeviceTypes.size() == 1">
+                    AND device.device_type =
+                    <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionDeviceTypes.size() > 1">
+                    AND device.device_type IN
+                    <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType" open="(" close=")" separator=",">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--区域ids权限过滤-->
+            <if test="bizCondition.permissionAreaIds != null and bizCondition.permissionAreaIds.size() > 0">
+                <if test="bizCondition.permissionAreaIds.size() == 1">
+                    AND device.area_id =
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionAreaIds.size() > 1">
+                    AND device.area_id IN
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <!--分页查询图片列表-->
+    <select id="imageListByPage" parameterType="com.fiberhome.filink.bean.QueryCondition" resultMap="DevicePicRespMap">
+        SELECT
+          <include refid="baseSelectColumn"></include>
+        FROM
+          pic_relation_info pr
+          LEFT JOIN device_info device ON pr.device_id = device.device_id
+          LEFT JOIN area_info area ON device.area_id = area.area_id
+
+        <!--公共where条件-->
+        <include refid="whereBySql"></include>
+
+          <!--创建时间排序-->
+          ORDER BY pr.create_time DESC
+        <if test="pageCondition.beginNum != null and pageCondition.pageSize != null">
+            LIMIT
+            #{pageCondition.beginNum},#{pageCondition.pageSize}
+        </if>
+
+    </select>
+
+    <!--查询图片列表总数-->
+    <select id="imageCountListByPage" parameterType="com.fiberhome.filink.bean.QueryCondition" resultType="integer">
+        SELECT
+          count(pr.device_pic_id)
+        FROM
+        pic_relation_info pr
+        LEFT JOIN device_info device ON pr.device_id = device.device_id
+        LEFT JOIN area_info area ON device.area_id = area.area_id
+
+        <!--公共where条件-->
+        <include refid="whereBySql"></include>
+
+    </select>
+
+    <!--批量更新图片列表isDeleted状态-->
+    <update id="updateImagesIsDeleteByIds">
+        UPDATE
+          pic_relation_info
+        SET
+          is_deleted = #{isDeleted}
+        <where>
+            is_deleted = 0
+            <!--ids-->
+            <if test="ids != null and ids.size() > 0">
+                <if test="ids.size() == 1">
+                    AND device_pic_id =
+                    <foreach collection="ids" item="devicePicId">
+                        #{devicePicId}
+                    </foreach>
+                </if>
+                <if test="ids.size() > 1">
+                    AND device_pic_id IN
+                    <foreach collection="ids" item="devicePicId" open="(" close=")" separator=",">
+                        #{devicePicId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--设施ids-->
+            <if test="deviceIds != null and deviceIds.size() > 0">
+                <if test="deviceIds.size() == 1">
+                    AND device_id =
+                    <foreach collection="deviceIds" item="deviceId">
+                        #{deviceId}
+                    </foreach>
+                </if>
+                <if test="deviceIds.size() > 1">
+                    AND device_id IN
+                    <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                        #{deviceId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </update>
+
+
+    <!--批量保存图片信息-->
+    <insert id="saveImageInfos" parameterType="java.util.List">
+        INSERT INTO
+          pic_relation_info
+          (
+                device_pic_id,
+                device_id,
+                pic_name,
+                pic_size,
+                pic_url_base,
+                pic_url_thumbnail,
+                position_base,
+                `type`,
+                resource,
+                resource_id,
+                alarm_name,
+                order_name,
+                order_type,
+                create_time,
+                create_user
+          )
+        VALUES
+        <foreach collection="picRelationInfos" item="picRelationInfo" index="index" open="" close="" separator=",">
+            (
+                #{picRelationInfo.devicePicId},
+                #{picRelationInfo.deviceId},
+                #{picRelationInfo.picName},
+                #{picRelationInfo.picSize},
+                #{picRelationInfo.picUrlBase},
+                #{picRelationInfo.picUrlThumbnail},
+                #{picRelationInfo.positionBase},
+                #{picRelationInfo.type},
+                #{picRelationInfo.resource},
+                #{picRelationInfo.resourceId},
+                #{picRelationInfo.alarmName},
+                #{picRelationInfo.orderName},
+                #{picRelationInfo.orderType},
+                #{picRelationInfo.createTime},
+                #{picRelationInfo.createUser}
+            )
+        </foreach>
+    </insert>
+
+
+    <!--根据来源获取图片信息-->
+    <select id="getPicUrlByResource" resultMap="DevicePicRespMap">
+        SELECT
+          <include refid="baseSelectColumn"></include>
+        FROM
+        pic_relation_info pr
+        LEFT JOIN device_info device ON pr.device_id = device.device_id
+        LEFT JOIN area_info area ON device.area_id = area.area_id
+        <where>
+            pr.is_deleted = '0'
+            <!--来源-->
+            and pr.resource = #{resource}
+            <!--来源ids-->
+            <if test="resourceIds != null and resourceIds.size() > 0">
+                <if test="resourceIds.size() == 1">
+                    AND pr.resource_id =
+                    <foreach collection="resourceIds" item="resourceId">
+                        #{resourceId}
+                    </foreach>
+                </if>
+                <if test="resourceIds.size() > 1">
+                    AND pr.resource_id IN
+                    <foreach collection="resourceIds" item="resourceId" open="(" close=")" separator=",">
+                        #{resourceId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--设施id-->
+            <if test="deviceId != null and deviceId != ''">
+                AND pr.device_id = #{deviceId}
+            </if>
+
+            ORDER BY pr.create_time
+        </where>
+    </select>
+
+    <!--根据设施获取图片信息-->
+    <select id="getPicInfoByDeviceIds" parameterType="com.fiberhome.filink.picture.req.DevicePicReq" resultMap="DevicePicRespMap">
+        SELECT
+          <include refid="baseSelectColumn"></include>
+        FROM
+        pic_relation_info pr
+        LEFT JOIN device_info device ON pr.device_id = device.device_id
+        LEFT JOIN area_info area ON device.area_id = area.area_id
+        <where>
+            pr.is_deleted = '0'
+            <!--来源-->
+            <if test="resource != null and resource != ''">
+                AND pr.resource = #{resource}
+            </if>
+
+            <!--设施id-->
+            <if test="deviceId != null and deviceId != ''">
+                AND pr.device_id = #{deviceId}
+            </if>
+
+            <!--设施ids-->
+            <if test="deviceIds != null and deviceIds.size() > 0">
+                <if test="deviceIds.size() == 1">
+                    AND pr.device_id =
+                    <foreach collection="deviceIds" item="deviceId">
+                        #{deviceId}
+                    </foreach>
+                </if>
+                <if test="deviceIds.size() > 1">
+                    AND pr.device_id IN
+                    <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                        #{deviceId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+
+        ORDER BY pr.create_time DESC
+
+        <if test="picNum != null and picNum != ''">
+            LIMIT ${picNum}
+        </if>
+
+    </select>
+
+    <!--根据设施ids获取实景图-->
+    <select id="getLivePicInfoByDeviceIds" resultMap="DevicePicRespMap">
+        SELECT b.device_id,b.pic_url_base,b.pic_url_thumbnail,b.pic_name,b.pic_size,b.position_base,b.type
+        FROM (
+        SELECT
+        a.device_id,
+        a.pic_url_base,
+        a.pic_url_thumbnail,
+        a.pic_name,
+        a.pic_size,
+        a.position_base,
+        a.type,
+        if(@tmp=a.device_id,@rank:=@rank + 1,@rank:=1) as new_rank,
+        @tmp:=device_id as tmp
+        FROM pic_relation_info a
+        <where>
+            <!--设施ids-->
+            <if test="deviceIds != null and deviceIds.size() > 0">
+                <if test="deviceIds.size() == 1">
+                    AND a.device_id =
+                    <foreach collection="deviceIds" item="deviceId">
+                        #{deviceId}
+                    </foreach>
+                </if>
+                <if test="deviceIds.size() > 1">
+                    AND a.device_id IN
+                    <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                        #{deviceId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+        and a.resource = '3' and a.is_deleted = '0'
+        ORDER BY a.device_id, a.create_time desc
+        ) b
+        where b.new_rank <![CDATA[ <= ]]> #{picNum}
+    </select>
+
+    <!--获取最后一张图片的流水号-->
+    <select id="getLastPicSerial" resultType="string">
+        SELECT
+          pic_name
+        FROM
+          pic_relation_info
+        <where>
+            is_deleted = '0'
+        </where>
+            ORDER BY create_time DESC
+            LIMIT 1
+    </select>
+</mapper>

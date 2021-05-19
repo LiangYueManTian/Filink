@@ -1,0 +1,41 @@
+<!-- 创建工单 -->
+<nz-modal
+  [(nzVisible)]="display.creationWorkOrder"
+  [nzTitle]="language.buildOrder"
+  [nzMaskClosable]="false"
+  [nzContent]="modalContentWork"
+  [nzFooter]="modalFooterWork"
+  (nzOnCancel)="closePopUp()">
+  <ng-template #modalTitle>
+    {{language.buildOrder}}
+  </ng-template>
+  <ng-template #modalContentWork>
+    <xc-form [column]="formColumn" (formInstance)="formInstance($event)"></xc-form>
+  </ng-template>
+  <ng-template #modalFooterWork>
+    <button class="link-button" nz-button nzType="primary"
+            [nzLoading]="isLoading" style="margin-right: 20px"
+            (click)="submitWork()" [disabled]="!formStatus.getValid()">{{language.okText}}
+    </button>
+    <button class="link-button" nz-button nzType="danger" (click)="closePopUp()">{{language.cancelText}}</button>
+  </ng-template>
+</nz-modal>
+
+<!-- 期待完工时间 -->
+<!--<ng-template #ecTimeTemp let-formGroup="formGroup" let-col="col">-->
+  <!--<form [formGroup]="formGroup">-->
+    <!--<nz-date-picker [nzDisabledDate]="disabledEndDate"-->
+                    <!--[(ngModel)]="ecTimeModel"-->
+                    <!--(nzOnOk)="ecTimeOnOk($event)" nzShowTime-->
+                    <!--formControlName="ecTime"></nz-date-picker>-->
+  <!--</form>-->
+<!--</ng-template>-->
+<ng-template #ecTimeTemp let-formGroup="formGroup" let-col="col">
+  <form [formGroup]="formGroup">
+    <nz-date-picker [nzDisabledDate]="disabledEndDate"
+                    [(ngModel)]="ecTimeModel"
+                    (nzOnOpenChange)="ecTimeOnOk($event)"
+                    nzShowTime formControlName="ecTime"></nz-date-picker>
+  </form>
+</ng-template>
+<!--(ngModelChange)="ecTimeChange($event)"-->

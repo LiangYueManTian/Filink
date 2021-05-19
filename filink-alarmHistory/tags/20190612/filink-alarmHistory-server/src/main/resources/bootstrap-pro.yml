@@ -1,0 +1,181 @@
+readLogFilePath: /yy_filink/filink_log/alarmCurrentlog/
+readListExcelPath: D:/export
+maxExportDataSize: 200000
+listExcelSize: 20000
+orderOutOfTime: orderOutOfTime
+language.environment: cn
+
+
+eureka:
+  client:
+    service-url:
+      #      向两个eureka注册
+#      defaultZone: http://10.5.24.144:8761/eureka/,http://10.5.24.144:8762/eureka/
+      #defaultZone: http://10.5.24.144:8961/eureka/
+     # defaultZone: http://10.5.33.23:8761/eureka/
+      defaultZone: http://filink:123456@10.5.24.143:8761/eureka/
+
+info:
+  #  monitor-server:
+  #  groupId: @project.groupId@
+  #  artifactId: @project.artifactId@
+  name: 当前告警服务
+  desc:
+  author: 危宽
+  version: build2
+
+server:
+  port: 10111
+
+spring:
+  application:
+    name: filink-alarmCurrent-server
+
+  data:
+    mongodb:
+      host: 39.98.72.132
+      port: 27017
+      database: filink_alarm
+
+  redis:
+    host: 39.98.72.132
+    port: 6379
+    password: filink
+    database: 0
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://39.98.72.132:3306/filink_alarm?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: wistronits@123
+    #      初始化大小
+    initialSize: 5
+    #      最小连接数
+    minIdle: 5
+    #      最大连接数
+    maxActive: 20
+    #      获取连接等待超时时间
+    maxWait: 60000
+    #      间隔多久检测一次 检测需要关闭的空闲连接 单位毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    #      一个连接最小生存时间
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    #      配置监控统计拦截的filter , 去掉后监控sql无法统计wall用于防火墙
+    filters: stat,wall,log4j
+    logSlowSql: true
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 39.98.72.132:9092
+          zkNodes: 39.98.72.132:2181
+      bindings:
+        # 1、告警接收
+        alarm_input:
+          # 监听topic
+          destination: filink_alarm_info
+          # 指定消费组 多实例情况下只有一个消费 除非需要所有实例都要消费 否则必须指定
+          group: filink_system_alarm_444
+          contentType: application/json
+        alarm_output:
+          # 输出topic
+          destination: filink_alarm_info
+          contentType: application/json
+        # 2、告警图片
+        alarm_pic_input:
+          # 监听topic
+          destination: filink_alarm_pic
+          # 指定消费组 多实例情况下只有一个消费 除非需要所有实例都要消费 否则必须指定
+          group: filink_system_alarm_333
+          contentType: application/json
+        alarm_pic_output:
+          # 输出topic
+          destination: filink_alarm_pic
+          contentType: application/json
+        # 3、告警转工单，远程通知，告警推送
+        alarm_input_end:
+          # 监听topic
+          destination: filink_system_alarm_2
+          # 指定消费组 多实例情况下只有一个消费 除非需要所有实例都要消费 否则必须指定
+          group: filink-system-alarm-222
+          contentType: application/json
+        alarm_output_end:
+          # 输出topic
+          destination: filink_system_alarm_2
+          contentType: application/json
+        # 4、工单转告警
+        order_alarm_input:
+          # 监听topic
+          destination: filink_alarm_98
+          # 指定消费组 多实例情况下只有一个消费 除非需要所有实例都要消费 否则必须指定
+          group: filink_system_alarm_111
+          contentType: application/json
+        order_alarm_output:
+          destination: filink_alarm_98
+          contentType: application/json
+        # 5、告警推送 websocket
+        websocket_alarm_output:
+          destination: filink_websocket
+          contentType: application/json
+  # 链路追踪
+  zipkin:
+    base-url: http://10.5.24.144:9411
+  sleuth:
+    sampler:
+      #    监控开发百分比  默认是0.1  开发环境设置成1
+      percentage: 1
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: true
+
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+#mybaties
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package:
+  global-config:
+    field-strategy: 0
+
+#是否需要权限拉去，默认是true,如果不false就不允许你去拉取配置中心Server更新的内容
+management:
+  security:
+    enabled: false
+
+  # 启动暴露url
+  endpoints:
+    web:
+      expose: "*"
+
+thread:
+  pool:
+    corePoolSize: 100
+    maxPoolSize: 1000
+    queueCapacity: 200
+    keepAliveSeconds: 120
+    threadNamePrefix: alarmCurrent-thread

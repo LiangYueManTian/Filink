@@ -1,0 +1,119 @@
+#spring:
+#  application:
+#    name: filink-user
+#
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: FILINK-CONFIG
+#      profile: dev
+
+#注册服务
+eureka:
+  client:
+    service-url:
+      #      向两个eureka注册
+      defaultZone: http://10.5.24.141:8762/eureka/
+#      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+
+server:
+  port: 10230
+
+
+
+spring:
+  redis:
+    host: 10.5.24.142
+    database: 0
+    port: 6379
+    password: filink
+
+#mongodb
+#  data:
+#    mongodb:
+#      uri: mongodb://39.98.72.132:3309/filink_sensor
+
+  application:
+    name: filink-oceanconnect-server
+
+  cloud:
+    instance-count: 3
+    instance-index: 0
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.43.18:9092
+          zkNodes: 10.5.43.18:2181
+      bindings:
+#       内部指令消费者
+        ocean_connect_input:
+          destination: station_udp_input2312
+          group: station2321
+          contentType: application/json
+
+#       指令重发消费者
+        ocean_cmd_resend:
+          destination: filink_cmd_resend
+          group: station1
+          contentType: application/json
+
+#       指令请求消费者
+        ocean_request_input:
+          destination: station_ocean_connect
+          group: station1231
+          contentType: application/json
+
+#       内部指令发送者
+        ocean_connect_output:
+          destination: station_udp_input2312
+          contentType: application/json
+
+#       告警发送者
+        station_alarm_output:
+          destination: filink_alarm_info
+          contentType: application/json
+
+#       告警图片发送者
+        alarm_pic_output:
+          destination: filink_alarm_pic
+          contentType: application/json
+
+#       webSocket
+        web_socket_output:
+          destination: filink_websocket
+          contentType: application/json
+
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: false
+
+
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+constant:
+  retryCount: 2
+  retryCycle: 60000
+
+readLogFilePath: /aa
+
+#平台配置
+platformAddress: 180.101.147.89:8743
+localAddress: 119.97.224.253:9416
+#appId: LAvZgES4UJRWkEyleTpm1JVDq7ga
+appId: 111vWjOzTbpxnCqpknbnNGYZSiYa
+#secret: N_fKZT9scVcWATxCCUK6LrLOQdYa
+secret: Zeaff0AWUCBHz0DrOUOIa2fGibga
+#selfCertPath: C:\\Filink\\10-Sys Code\\filink-oceanconnect\\filink-oceanconnect-server\\src\\main\\resources\\outgoing.CertwithKey.pkcs12
+selfCertPath: /yy_filink/ocean/outgoing.CertwithKey.pkcs12
+#trustCaPath: C:\\Filink\\10-Sys Code\\filink-oceanconnect\\filink-oceanconnect-server\\src\\main\\resources\\ca.jks
+trustCaPath: /yy_filink/ocean/ca.jks
+selfCertPwd: IoM@1234
+trustCaPwd: Huawei@123

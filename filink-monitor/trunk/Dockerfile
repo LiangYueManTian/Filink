@@ -1,0 +1,12 @@
+FROM java:8-alpine
+
+# 放入文件 重命名
+ADD target/*.jar app.jar
+
+EXPOSE 10210
+
+#ENV PARAMS=""
+
+ENTRYPOINT ["sh","-c","java -jar $JAVA_OPTS /app.jar $PARAMS"]
+
+

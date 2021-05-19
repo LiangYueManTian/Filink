@@ -1,0 +1,8 @@
+2019-07-25 19:33:46.386 [main] INFO  c.f.f.p.s.i.PicRelationInfoServiceImpl
+                -删除图片记录成功
+2019-07-25 19:33:46.487 [main] INFO  c.f.f.p.s.i.PicRelationInfoServiceImpl
+                -删除图片成功
+2019-07-25 19:33:46.806 [main] ERROR c.f.filink.picture.utils.HandleFile
+                -s.png删除失败
+2019-07-25 19:33:46.817 [main] INFO  c.f.filink.picture.utils.HandleFile
+                ----------------------远程更新生成文件进度--------------------return-----true

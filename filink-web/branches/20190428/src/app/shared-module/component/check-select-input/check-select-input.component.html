@@ -1,0 +1,24 @@
+<div class="check-select" tabindex='0' style="outline: 0"  (mouseleave)="isCollapsed = true;">
+  <div style="position: relative">
+    <input
+      type="text"
+      [(ngModel)]="checkedStr"
+      readonly="readonly"
+      nz-input
+      (click)="isCollapsed = !isCollapsed"
+      [placeholder]="placeholder">
+    <div class="check-list" [hidden]="isCollapsed">
+      <ul>
+        <li *ngFor="let item of checkList">
+          <label nz-checkbox
+                 (ngModelChange)="checkItem(item)"
+                 [(ngModel)]="item.checked">{{item.label}}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <i nz-icon type="down" theme="outline" *ngIf="isCollapsed" (click)="isCollapsed = !isCollapsed"></i>
+  <i nz-icon type="up" theme="outline" *ngIf="!isCollapsed" (click)="isCollapsed = !isCollapsed"></i>
+  <div class="check-selected">
+  </div>
+</div>

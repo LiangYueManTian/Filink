@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmFilterRuleDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmFilterRule">
+        <id column="id" property="id"/>
+        <result column="rule_name" property="ruleName"/>
+        <result column="user_id" property="userId"/>
+        <result column="status" property="status"/>
+        <result column="stored" property="stored"/>
+        <result column="begin_time" property="beginTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="operation_user" property="operationUser"/>
+
+        <collection property="alarmFilterRuleNameList" ofType="string" javaType="java.util.Set"
+                    column="rule_id" select="findAlarmName">
+        </collection>
+
+        <collection property="alarmFilterRuleSourceList" ofType="string" javaType="java.util.Set"
+                    column="rule_id" select="findAlarmSource">
+        </collection>
+
+    </resultMap>
+
+    <resultMap id="RulelistMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmFilterRuleDto"
+               extends="BaseResultMap">
+    </resultMap>
+
+    <select id="findAlarmSource" parameterType="string" resultType="string">
+        SELECT alarm_source FROM alarm_filter_rule_source WHERE rule_id=#{ruleId}
+    </select>
+
+    <select id="findAlarmName" parameterType="string" resultType="string">
+        SELECT alarm_name_id FROM alarm_filter_rule_name WHERE rule_id=#{ruleId}
+    </select>
+
+    <select id="queryAlarmFilterRuleName" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmFilterRuleDto"
+            resultMap="BaseResultMap">
+        SELECT rule_name from alarm_filter_rule WHERE is_deleted="0" AND id !=#{id}
+    </select>
+
+    <select id="queryAlarmFilterRuleNames" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmFilterRuleDto"
+            resultMap="BaseResultMap">
+        SELECT rule_name from alarm_filter_rule WHERE is_deleted="0"
+    </select>
+
+    <sql id="alarmRuleSql">
+        ar.id,ar.rule_name,ar.status,ar.stored,ar.begin_time,ar.end_time,ar.user_id,
+        ar.remark,ar.create_time,ar.update_time,ar.operation_user,ar.create_user,ar.update_user,
+        arn.rule_id,arn.alarm_name_id,ars.rule_id,ars.alarm_source
+    </sql>
+
+    <sql id="alarmRuleInfo">
+        ar.id,ar.rule_name,ar.status,ar.stored,ar.begin_time,ar.end_time,ar.user_id,
+        ar.remark,ar.create_time,ar.update_time,ar.operation_user,ar.create_user,ar.update_user
+    </sql>
+
+    <select id="queryAlarmFilterRuleList" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmFilterRuleDto"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="alarmRuleSql"/>
+        FROM alarm_filter_rule as ar
+        LEFT JOIN alarm_filter_rule_name as arn ON ar.id = arn.rule_id
+        LEFT JOIN alarm_filter_rule_source as ars ON ar.id = ars.rule_id
+        <where>
+            is_deleted=#{isDeleted}
+            <if test="userId != null">
+                AND ar.user_id=#{userId}
+            </if>
+            <if test="ruleName != null">
+                AND ar.rule_name LIKE concat('%',#{ruleName},'%')
+            </if>
+            <if test="statusArray != null">
+                AND ar.status IN
+                <foreach collection="statusArray" item="statusArray" separator="," open="(" close=")">
+                    #{statusArray}
+                </foreach>
+            </if>
+            <if test="storedArray != null">
+                AND ar.stored IN
+                <foreach collection="storedArray" item="storedArray" separator="," open="(" close=")">
+                    #{storedArray}
+                </foreach>
+            </if>
+            <if test="remark != null">
+                AND ar.remark LIKE concat('%',#{remark},'%')
+            </if>
+            <if test="beginTime != null and beginTimeEnd != null">
+                AND ar.begin_time BETWEEN #{beginTime} AND #{beginTimeEnd}
+            </if>
+            <if test="endTime != null and endTimeEnd != null">
+                AND ar.end_time BETWEEN #{endTime} AND #{endTimeEnd}
+            </if>
+            <if test="createTime != null and createTimeEnd != null">
+                AND ar.create_time BETWEEN #{createTime} AND #{createTimeEnd}
+            </if>
+            <if test="updateTime != null and updateTimeEnd != null">
+                AND ar.update_time BETWEEN #{updateTime} AND #{updateTimeEnd}
+            </if>
+            <if test="operationUser != null">
+                AND ar.operation_user LIKE concat('%',#{operationUser},'%')
+            </if>
+            <if test="alarmFilterRuleNameList != null">
+                AND arn.alarm_name_id IN
+                <foreach collection="alarmFilterRuleNameList" item="alarmFilterRuleNameList" separator="," open="(" close=")">
+                    #{alarmFilterRuleNameList}
+                </foreach>
+            </if>
+            <if test="alarmFilterRuleSourceList != null and alarmFilterRuleSourceList.size() > 0">
+                AND ars.alarm_source IN
+                <foreach collection="alarmFilterRuleSourceName" item="alarmFilterRuleSourceName"
+                         separator="," open="(" close=")">
+                    #{alarmFilterRuleSourceName}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY ar.id
+        <if test="sortProperties == 'ruleName' and sort != null">
+            ORDER BY ar.rule_name ${sort}
+        </if>
+        <if test="sortProperties == 'status' and sort != null">
+            ORDER BY ar.status ${sort}
+        </if>
+        <if test="sortProperties == 'stored' and sort != null">
+            ORDER BY ar.stored ${sort}
+        </if>
+        <if test="sortProperties == 'remark' and sort != null">
+            ORDER BY ar.remark ${sort}
+        </if>
+        <if test="sortProperties == 'endTime' and sort != null">
+            ORDER BY ar.end_time ${sort}
+        </if>
+        <if test="sortProperties == 'createTime' and sort != null">
+            ORDER BY ar.create_time ${sort}
+        </if>
+        <if test="sortProperties == 'updateTime' and sort != null">
+            ORDER BY ar.update_time ${sort}
+        </if>
+        <if test="sortProperties == 'operationUser' and sort != null">
+            ORDER BY ar.operation_user ${sort}
+        </if>
+        <if test="sortProperties == 'beginTime' and sort != null">
+            ORDER BY ar.begin_time ${sort}
+        </if>
+        <if test="sortProperties == 'alarmFilterRuleNameList' and sort != null">
+            ORDER BY arn.alarm_name_id ${sort}
+        </if>
+        <if test="sort == null and sortProperties == null">
+            ORDER BY ar.create_time DESC
+        </if>
+    </select>
+
+    <select id="queryAlarmFilterRuleById" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmFilterRuleDto"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="alarmRuleSql"/>
+        FROM alarm_filter_rule as ar
+        LEFT JOIN alarm_filter_rule_name as arn ON ar.id = arn.rule_id
+        LEFT JOIN alarm_filter_rule_source as ars ON ar.id = ars.rule_id
+        <where>
+            is_deleted="0" AND ar.id=#{id}
+        </where>
+    </select>
+
+    <!--修改状态-->
+    <update id="updateAlarmFilterRuleStatus">
+        UPDATE alarm_filter_rule SET status=#{status} WHERE id IN
+        <foreach collection="idArray" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--是否保存-->
+    <update id="updateAlarmFilterRuleStored">
+        UPDATE alarm_filter_rule SET stored = #{stored} WHERE id IN
+        <foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--删除告警过滤-->
+    <update id="deleteAlarmFilterRule">
+        UPDATE alarm_filter_rule SET is_deleted="1" where id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--查询当前告警信息是否过被过滤-->
+    <select id="queryAlarmIsIncludedFeign" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmFilterCondition"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="alarmRuleSql"/>
+        FROM alarm_filter_rule as ar
+        LEFT JOIN alarm_filter_rule_name as arn ON ar.id = arn.rule_id
+        LEFT JOIN alarm_filter_rule_source as ars ON ar.id = ars.rule_id
+        <where>
+            is_deleted="0"
+            <if test="id != null">
+                AND ar.id = #{id}
+            </if>
+            <if test="alarmObject != null">
+                AND ars.alarm_source = #{alarmObject}
+            </if>
+            <if test="alarmName != null">
+                AND arn.alarm_name_id = #{alarmName}
+            </if>
+            <if test="startTime != null">
+                AND #{startTime} BETWEEN ar.begin_time AND ar.end_time
+            </if>
+        </where>
+    </select>
+
+    <select id="queryAlarmFilterRuleLists" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmFilterRuleDto"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="alarmRuleInfo"/>
+        FROM alarm_filter_rule as ar
+        <where>
+            is_deleted="0" AND status=1
+        </where>
+        GROUP BY ar.id
+    </select>
+
+</mapper>

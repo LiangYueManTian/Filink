@@ -1,0 +1,68 @@
+<div class="user-detail">
+  <div>
+    <span class="pageTitle">
+      {{ title }}
+    </span>
+  </div>
+  <div>
+    <xc-form [column]="formColumn" (formInstance)="formInstance($event)"></xc-form>
+    <div style="padding-left: 20px;padding-top:40px; padding-bottom:10px;">
+      <button class="link-button" nz-button nzType="primary"
+              [nzLoading]="isLoading" style="margin-right: 20px"
+              (click)="submit()" [disabled]="!formStatus.getValid()"
+              appAccessPermission="02-4-4-1"
+      >{{language.okText}}
+      </button>
+      <button class="link-button" nz-button nzType="danger" (click)="cancel()">{{language.cancelText}}</button>
+    </div>
+  </div>
+</div>
+
+<!-- 是否启用 -->
+<ng-template #isNoStartUsing let-data="data">
+  <nz-switch [ngModel]="isNoStartData"
+             [nzControl]="true"
+             (click)="isNoStartData = !isNoStartData">
+  </nz-switch>
+</ng-template>
+
+<!-- 通知人 -->
+<ng-template #notifierTemp let-formGroup="formGroup" let-data="data">
+  <app-user [alarmUserConfig]="alarmUserConfig"></app-user>
+</ng-template>
+
+<!-- 区域 -->
+<ng-template #areaSelector let-formGroup="formGroup" let-data="data">
+  <app-area [areaConfig]='areaConfig'></app-area>
+</ng-template>
+
+<!-- 告警级别 下拉多选   (nzBlur)="changeLevel()"  [nzMaxTagPlaceholder]="tagPlaceHolder"-->
+<ng-template #alarmFixedLevelListTemp let-formGroup="formGroup" let-selectedList>
+  <nz-select
+    [nzMaxTagCount]="5"
+    style="width: 100%"
+    nzMode="multiple"
+    nzPlaceHolder="{{language.pleaseChoose}}"
+    (nzBlur)="changeLevel()"
+    [(ngModel)]="alarmFixedLevelListValue">
+    <nz-option *ngFor="let option of alarmFixedLevelList" [nzLabel]="option.label"
+               [nzValue]="option.value"></nz-option>
+  </nz-select>
+</ng-template>
+
+<!-- 设施类型 -->
+<ng-template #deviceTypeTemp let-formGroup="formGroup" let-selectedList>
+  <nz-select
+    [nzMaxTagCount]="5"
+    style="width: 100%"
+    [disabled]="display.deviceTypeDisplay"
+    nzMode="multiple"
+    nzPlaceHolder="{{language.pleaseChoose}}"
+    (nzBlur)="changeDeviceType()"
+    (ngModelChange)="onSearchDeviceType()"
+    [(ngModel)]="deviceTypeListValue"
+  >
+    <nz-option *ngFor="let option of deviceTypeList" [nzLabel]="option.label"
+               [nzValue]="option.code"></nz-option>
+  </nz-select>
+</ng-template>

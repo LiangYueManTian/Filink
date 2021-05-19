@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmForwardRuleDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmForwardRule">
+        <id column="id" property="id"/>
+        <result column="rule_name" property="ruleName"/>
+        <result column="rule_desc" property="ruleDesc"/>
+        <result column="alarm_type" property="alarmType"/>
+        <result column="status" property="status"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="pushType" property="pushType"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+
+        <collection property="alarmForwardRuleUserList" ofType="string" javaType="java.util.Set"
+                    column="rule_id" select="findAlarmUser">
+        </collection>
+
+        <collection property="alarmForwardRuleAreaList" ofType="string" javaType="java.util.Set"
+                    column="rule_id" select="findAlarmArea">
+        </collection>
+
+        <!--<collection property="alarmForwardRuleDeviceTypeList" ofType="string" javaType="java.util.Set"
+                    column="rule_id" select="findAlarmDeviceType">
+        </collection>-->
+
+        <collection property="alarmForwardRuleDeviceTypeList"
+                    ofType="DeviceMapResultMap"
+                    javaType="java.util.ArrayList" column="rule_id" select="findAlarmDeviceType">
+            <!--<result column="rule_id" property="ruleId"/>-->
+            <!--<result column="device_type_id" property="deviceTypeId"/>-->
+        </collection>
+
+        <collection property="alarmForwardRuleLevels"
+                    ofType="AlarmLevelResultMap"
+                    javaType="java.util.ArrayList" column="rule_id" select="findAlarmLevel">
+            <!--<result column="rule_id" property="ruleId"/>-->
+            <!--<result column="alarm_level_id" property="alarmLevelId"/>-->
+
+            <!--            <association property="alarmLevel" javaType="com.fiberhome.filink.alarmsetserver.bean.AlarmLevel">
+                            <result column="id" property="id"/>
+                            <result column="alarm_level_name" property="alarmLevelName"/>
+                        </association>-->
+        </collection>
+
+    </resultMap>
+    <!--设施类型-->
+    <resultMap id="DeviceMapResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmForwardRuleDeviceType">
+        <result column="rule_id" property="ruleId" />
+        <result column="device_type_id" property="deviceTypeId" />
+    </resultMap>
+    <!--告警级别-->
+    <resultMap id="AlarmLevelResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmForwardRuleLevel">
+        <result column="rule_id" property="ruleId" />
+        <result column="alarm_level_id" property="alarmLevelId" />
+    </resultMap>
+
+    <select id="findAlarmUser" parameterType="string" resultType="string">
+        SELECT user_id FROM alarm_forward_rule_user WHERE rule_id=#{ruleId}
+    </select>
+
+    <select id="findAlarmArea" parameterType="string" resultType="string">
+        SELECT area_id FROM alarm_forward_rule_area WHERE rule_id=#{ruleId}
+    </select>
+
+    <select id="findAlarmDeviceType" parameterType="string"
+           resultMap="DeviceMapResultMap">
+        SELECT rule_id, device_type_id FROM alarm_forward_rule_device_type WHERE rule_id=#{ruleId}
+    </select>
+    <select id="findAlarmLevel" parameterType="string"
+            resultMap="AlarmLevelResultMap">
+        SELECT rule_id, alarm_level_id FROM alarm_forward_rule_level WHERE rule_id=#{ruleId}
+    </select>
+    <update id="deleteAlarmForwardRule">
+        UPDATE alarm_forward_rule SET is_deleted="1" where id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateAlarmForwardRuleStatus">
+        UPDATE alarm_forward_rule SET status=#{status} WHERE id IN
+        <foreach collection="idArray" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateAlarmForwardRulePushType">
+        UPDATE alarm_forward_rule SET pushType=#{pushType} WHERE id IN
+        <foreach collection="idArray" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <sql id="BaseResultSql">
+        afr.id,afr.rule_name,afr.alarm_type,afr.status,afr.pushType,afr.remark,
+        afr.create_time,afr.create_user,afr.update_time,afr.update_user,
+        afra.rule_id,afrdt.rule_id,afru.rule_id,afrl.rule_id,afrl.alarm_level_id,
+        afrdt.device_type_id
+    </sql>
+
+    <sql id="BaseResultsSql">
+        afr.id,afr.rule_name,afr.alarm_type,afr.status,afr.pushType,afr.remark,
+        afr.create_time,afr.create_user,afr.update_time,afr.update_user
+    </sql>
+
+    <select id="queryAlarmForwardRuleList" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmForwardRuleDto"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_forward_rule as afr
+        LEFT JOIN alarm_forward_rule_area as afra ON afr.id=afra.rule_id
+        LEFT JOIN alarm_forward_rule_device_type as afrdt ON afr.id=afrdt.rule_id
+        LEFT JOIN alarm_forward_rule_user as afru ON afr.id=afru.rule_id
+        LEFT JOIN alarm_forward_rule_level as afrl ON afrl.rule_id=afr.id
+        <where>
+            is_deleted=#{isDeleted}
+            <if test="ruleName != null">
+                AND afr.rule_name LIKE concat('%',#{ruleName},'%')
+            </if>
+            <if test="alarmType != null">
+                AND afr.alarm_type LIKE concat('%',#{alarmType},'%')
+            </if>
+            <if test="statusArray != null">
+                AND afr.status IN
+                <foreach collection="statusArray" item="statusArray" open="(" separator="," close=")">
+                    #{statusArray}
+                </foreach>
+            </if>
+            <if test="pushTypeArray != null">
+                AND afr.pushType IN
+                <foreach collection="pushTypeArray" item="pushTypeArray" open="(" separator="," close=")">
+                    #{pushTypeArray}
+                </foreach>
+            </if>
+            <if test="remark != null">
+                AND afr.remark LIKE concat('%',#{remark},'%')
+            </if>
+            <if test="createTime != null and createTimeEnd != null">
+                AND afr.create_time BETWEEN #{createTime} AND #{createTimeEnd}
+            </if>
+            <if test="updateTime != null and updateTimeEnd != null">
+                AND afr.update_time BETWEEN #{updateTime} AND #{updateTimeEnd}
+            </if>
+            <if test="deviceTypeId != null">
+                AND afrdt.device_type_id IN
+                <foreach collection="deviceTypeId" item="deviceTypeId" open="(" separator="," close=")">
+                    #{deviceTypeId}
+                </foreach>
+            </if>
+            <if test="alarmForwardRuleUserList != null and alarmForwardRuleUserList.size() > 0">
+                AND afru.user_id IN
+                <foreach collection="alarmForwardRuleUserList" item="alarmForwardRuleUserList"
+                         open="(" separator="," close=")">
+                    #{alarmForwardRuleUserList}
+                </foreach>
+            </if>
+            <if test="alarmForwardRuleAreaList != null and alarmForwardRuleAreaList.size() > 0">
+                AND afra.area_id IN
+                <foreach collection="alarmForwardRuleAreaList" item="alarmForwardRuleAreaList"
+                         open="(" separator="," close=")">
+                    #{alarmForwardRuleAreaList}
+                </foreach>
+            </if>
+            <if test="alarmLevelId != null">
+                AND afrl.alarm_level_id IN
+                <foreach collection="alarmLevelId" item="alarmLevelId" open="(" separator="," close=")">
+                    #{alarmLevelId}
+                </foreach>
+            </if>
+        </where>
+        GROUP BY afr.id
+        <if test="sortProperties == 'ruleName' and sort != null">
+            ORDER BY afr.rule_name ${sort}
+        </if>
+        <if test="sortProperties == 'ruleDesc' and sort != null">
+            ORDER BY afr.rule_desc ${sort}
+        </if>
+        <if test="sortProperties == 'alarmType' and sort != null">
+            ORDER BY afr.alarm_type ${sort}
+        </if>
+        <if test="sortProperties == 'status' and sort != null">
+            ORDER BY afr.status ${sort}
+        </if>
+        <if test="sortProperties == 'pushType' and sort != null">
+            ORDER BY afr.pushType ${sort}
+        </if>
+        <if test="sortProperties == 'remark' and sort != null">
+            ORDER BY afr.remark ${sort}
+        </if>
+        <if test="sortProperties == 'createTime' and sort != null">
+            ORDER BY afr.create_time ${sort}
+        </if>
+        <if test="sortProperties == 'updateTime' and sort != null">
+            ORDER BY afr.update_time ${sort}
+        </if>
+        <if test="sortProperties == 'deviceTypeId' and sort != null">
+            ORDER BY afrdt.device_type_id ${sort}
+        </if>
+        <if test="sortProperties == 'alarmForwardRuleUserList' and sort != null">
+            ORDER BY afru.user_id ${sort}
+        </if>
+        <if test="sortProperties == 'alarmLevelId' and sort != null">
+            ORDER BY afrl.alarm_level_id ${sort}
+        </if>
+        <if test="sortProperties == 'alarmForwardRuleAreaList' and sort != null">
+            ORDER BY afra.area_id ${sort}
+        </if>
+        <if test="sort == null and sortProperties == null">
+            ORDER BY afr.create_time DESC
+        </if>
+    </select>
+
+    <select id="queryAlarmForwardId" parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmForwardRuleDto"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_forward_rule as afr
+        LEFT JOIN alarm_forward_rule_area as afra ON afr.id=afra.rule_id
+        LEFT JOIN alarm_forward_rule_device_type as afrdt ON afr.id=afrdt.rule_id
+        LEFT JOIN alarm_forward_rule_user as afru ON afr.id=afru.rule_id
+        LEFT JOIN alarm_forward_rule_level as afrl ON afrl.rule_id=afr.id
+        <where>
+            is_deleted="0"
+            <if test="id != null">
+                AND afr.id=#{id}
+            </if>
+        </where>
+        GROUP BY afr.id
+    </select>
+
+    <delete id="batchDeleteAlarmForwardRule">
+        DELETE FROM alarm_filter_rule WHERE rule_id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="queryAlarmForwardRuleFeign"
+            parameterType="com.fiberhome.filink.alarmsetserver.bean.AlarmForwardCondition"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_forward_rule as afr
+        LEFT JOIN alarm_forward_rule_area as afra ON afr.id=afra.rule_id
+        LEFT JOIN alarm_forward_rule_device_type as afrdt ON afr.id=afrdt.rule_id
+        LEFT JOIN alarm_forward_rule_user as afru ON afr.id=afru.rule_id
+        LEFT JOIN alarm_forward_rule_level as afrl ON afrl.rule_id=afr.id
+        <where>
+            is_deleted="0" AND status=1
+            <if test="id != null">
+                AND afr.id = #{id}
+            </if>
+            <if test="areaId != null">
+                AND afra.area_id = #{areaId}
+            </if>
+            <if test="deviceType != null">
+                AND afrdt.device_type_id = #{deviceType}
+            </if>
+            <if test="alarmLevel != null">
+                AND afrl.alarm_level_id = #{alarmLevel}
+            </if>
+        </where>
+        GROUP BY afr.id
+    </select>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/filink-oss.iml" filepath="$PROJECT_DIR$/filink-oss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-oss-api/filink-oss-api.iml" filepath="$PROJECT_DIR$/filink-oss-api/filink-oss-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-oss-server/filink-oss-server.iml" filepath="$PROJECT_DIR$/filink-oss-server/filink-oss-server.iml" />
+    </modules>
+  </component>
+</project>

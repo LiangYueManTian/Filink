@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowbusinessserver.dao.procinspection.ProcInspectionRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="baseResultMap" type="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcInspectionRecord">
+        <id column="proc_inspection_record_id" property="procInspectionRecordId" />
+        <result column="inspection_task_name" property="inspectionTaskName" />
+        <result column="inspection_task_id" property="inspectionTaskId" />
+        <result column="device_id" property="deviceId" />
+        <result column="device_name" property="deviceName" />
+        <result column="device_type" property="deviceType" />
+        <result column="device_area_id" property="deviceAreaId" />
+        <result column="device_area_name" property="deviceAreaName" />
+        <result column="proc_id" property="procId" />
+        <result column="inspection_time" property="inspectionTime" />
+        <result column="description" property="description" />
+        <result column="exception_description" property="exceptionDescription" />
+        <result column="result" property="result" />
+        <result column="resource_matching" property="resourceMatching" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        proc_inspection_record_id, inspection_task_name,
+        inspection_task_id, device_id,
+        device_name, device_type,
+        device_area_id, device_area_name,
+        proc_id, inspection_time,
+        description, exception_description,
+        result, resource_matching,
+        is_deleted,
+        create_user,  create_time,
+        update_user,  update_time
+
+    </sql>
+
+    <insert id="insertInspectionRecordBatch" parameterType="java.util.List" >
+      insert proc_inspection_record
+      (
+        proc_inspection_record_id, inspection_task_name,
+        inspection_task_id, device_id,
+        device_name, device_type,
+        device_area_id, device_area_name,
+        proc_id, inspection_time,
+        create_user,  create_time
+      )
+      values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.procInspectionRecordId, jdbcType=VARCHAR}, #{item.inspectionTaskName, jdbcType=VARCHAR},
+            #{item.inspectionTaskId,jdbcType=VARCHAR}, #{item.deviceId, jdbcType=VARCHAR},
+            #{item.deviceName, jdbcType=VARCHAR}, #{item.deviceType, jdbcType=VARCHAR},
+            #{item.deviceAreaId,jdbcType=VARCHAR}, #{item.deviceAreaName, jdbcType=VARCHAR},
+            #{item.procId, jdbcType=VARCHAR}, #{item.inspectionTime, jdbcType=TIMESTAMP},
+            #{item.createUser, jdbcType=VARCHAR}, #{item.createTime, jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateInspectionRecordBatch" parameterType="java.util.List">
+        update proc_inspection_record
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="result =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.result!=null">
+                        when device_id=#{item.deviceId} then #{item.result}
+                    </if>
+                </foreach>
+            </trim>
+
+            <trim prefix="inspection_time =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.inspectionTime!=null">
+                        when device_id=#{item.deviceId} then #{item.inspectionTime}
+                    </if>
+                </foreach>
+            </trim>
+
+            <trim prefix="description =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.description!=null">
+                        when device_id=#{item.deviceId} then #{item.description}
+                    </if>
+                </foreach>
+            </trim>
+
+            <trim prefix="resource_matching =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.resourceMatching!=null">
+                        when device_id=#{item.deviceId} then #{item.resourceMatching}
+                    </if>
+                </foreach>
+            </trim>
+
+            <trim prefix="exception_description =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.exceptionDescription!=null">
+                        when device_id=#{item.deviceId} then #{item.exceptionDescription}
+                    </if>
+                </foreach>
+            </trim>
+
+            <trim prefix="update_user =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.updateUser!=null">
+                        when device_id=#{item.deviceId} then #{item.updateUser}
+                    </if>
+                </foreach>
+            </trim>
+
+            <trim prefix="update_time =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.updateTime!=null">
+                        when device_id=#{item.deviceId} then #{item.updateTime}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where 1=1
+        and proc_id in
+        <foreach collection="list" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item.procId}
+        </foreach>
+        and device_id in
+        <foreach collection="list" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item.deviceId}
+        </foreach>
+    </update>
+
+    <delete id="deleteRecordByProcId" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcInspectionRecord">
+        <if test="procId != null and procId != ''">
+            delete from proc_inspection_record where 1=1 and proc_id = #{procId, jdbcType=VARCHAR}
+        </if>
+    </delete>
+
+    <update id="logicDeleteRecordByProcIds" parameterType="java.util.Map">
+        update proc_inspection_record set is_deleted = #{isDeleted, jdbcType=VARCHAR} where 1=1
+        and proc_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="queryInspectionRecord" resultMap="baseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from proc_inspection_record
+        where 1=1
+        <if test="isDeleted != null">
+          and is_deleted = #{isDeleted, jdbcType=VARCHAR}
+        </if>
+        <if test="list != null">
+            and proc_id in
+            <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <!-- 查询未巡检的巡检设施 -->
+    <select id="queryNotInspectionDeviceList" resultMap="baseResultMap" parameterType="java.util.Map">
+      select
+      <include refid="Base_Column_List" />
+        from proc_inspection_record
+        where 1=1
+        and is_deleted = '0'
+        and proc_id = #{procId, jdbcType=VARCHAR}
+        and result is null
+      union
+      select
+        <include refid="Base_Column_List" />
+        from proc_inspection_record
+        where 1=1
+        and is_deleted = '0'
+        and proc_id = #{procId, jdbcType=VARCHAR}
+        and result = ''
+    </select>
+
+    <!-- 查询已经巡检的巡检设施信息 -->
+    <select id="queryIsInspectionDeviceList"  resultMap="baseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from proc_inspection_record
+        where 1=1
+        and is_deleted = '0'
+        and proc_id = #{procId, jdbcType=VARCHAR}
+        and result in ('0', '1')
+    </select>
+
+    <!-- 根据工单编号查询巡检记录 -->
+    <select id="queryInspectionRecordInfoByProcIds" resultMap="baseResultMap" parameterType="java.util.Map">
+      select
+        <include refid="Base_Column_List" />
+      from proc_inspection_record
+      where 1=1
+        and is_deleted = '0'
+        <if test="procIds != null and procIds.size() > 0">
+            <if test="procIds.size() == 1">
+                AND proc_id =
+                <foreach collection="procIds" item="procId">
+                    #{procId}
+                </foreach>
+            </if>
+            <if test="procIds.size() > 1">
+                AND proc_id IN
+                <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                    #{procId}
+                </foreach>
+            </if>
+        </if>
+    </select>
+
+    <!-- 查询巡检记录 -->
+    <select id="queryInspectionRecordInfo" resultMap="baseResultMap" parameterType="com.fiberhome.filink.bean.QueryCondition">
+      select
+      <include refid="Base_Column_List" />
+        from proc_inspection_record
+        where 1=1
+        <include refid="procInspectionRecordCondition" />
+
+        <!-- 巡检记录排序 -->
+        <include refid="orderByProcInspectionRecord" />
+        <if test="pageCondition.beginNum != null and pageCondition.pageSize != null">
+            LIMIT
+            #{pageCondition.beginNum},#{pageCondition.pageSize}
+        </if>
+    </select>
+
+    <sql id="procInspectionRecordCondition">
+        and is_deleted = '0'
+        <if test="bizCondition.procId != null and bizCondition.procId != ''">
+            and proc_id = #{bizCondition.procId, jdbcType=VARCHAR}
+        </if>
+
+        <!-- 设施名称-->
+        <if test="bizCondition.deviceName != null and bizCondition.deviceName != ''">
+            AND device_name LIKE CONCAT('%',#{bizCondition.deviceName},'%')
+        </if>
+
+        <!-- 设施编号集合 -->
+        <if test="bizCondition.deviceIds != null and bizCondition.deviceIds.size() > 0">
+            AND device_id in
+            <foreach collection="bizCondition.deviceIds" index="index" item="item"
+                     separator="," open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+
+        <!-- 巡检结果 -->
+        <if test="bizCondition.result != null and bizCondition.result != ''">
+            AND result = #{bizCondition.result}
+        </if>
+
+        <!-- 巡检结果 -->
+        <if test="bizCondition.results != null and bizCondition.results.size() > 0">
+            <if test="bizCondition.results.size() == 1">
+                AND result =
+                <foreach collection="bizCondition.results" item="result">
+                    #{result}
+                </foreach>
+            </if>
+            <if test="bizCondition.results.size() > 1">
+                AND result IN
+                <foreach collection="bizCondition.results" item="result" open="(" close=")" separator=",">
+                    #{result}
+                </foreach>
+            </if>
+        </if>
+
+        <!--异常描述-->
+        <if test="bizCondition.exceptionDescription != null and bizCondition.exceptionDescription != ''">
+            AND exception_description LIKE CONCAT('%',#{bizCondition.exceptionDescription},'%')
+        </if>
+
+        <!--责任人-->
+        <if test="bizCondition.updateUser != null and bizCondition.updateUser.size() > 0">
+            AND update_user in
+            <foreach collection="bizCondition.updateUser" index="index" item="item"
+                     separator="," open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+
+        <!--资源匹配情况-->
+        <if test="bizCondition.resourceMatching != null and bizCondition.resourceMatching != ''">
+            AND resource_matching LIKE CONCAT('%',#{bizCondition.resourceMatching},'%')
+        </if>
+
+        <!--巡检时间过滤-->
+        <if test="bizCondition.inspectionTimes != null and bizCondition.inspectionTimes.size() > 0">
+            <foreach collection="bizCondition.inspectionTimes" item="inspectionTime" index="index">
+                <if test="index == 0">
+                    AND UNIX_TIMESTAMP(inspection_time) &gt;= #{inspectionTime}
+                </if>
+                <if test="index == 1">
+                    AND UNIX_TIMESTAMP(inspection_time) &lt;= #{inspectionTime}
+                </if>
+            </foreach>
+        </if>
+    </sql>
+
+
+    <sql id="orderByProcInspectionRecord">
+        <!--排序-->
+        <if test="sortCondition.sortField != null and sortCondition.sortField != '' ">
+            <!--设施名称-->
+            <if test="sortCondition.sortField == 'deviceName'">
+                ORDER BY device_name
+            </if>
+            <!--巡检结果-->
+            <if test="sortCondition.sortField == 'result'">
+                ORDER BY result
+            </if>
+            <!--异常详情-->
+            <if test="sortCondition.sortField == 'exceptionDescription'">
+                ORDER BY exception_description
+            </if>
+            <!--巡检时间-->
+            <if test="sortCondition.sortField == 'inspectionTime'">
+                ORDER BY inspection_time
+            </if>
+            <!--责任人-->
+            <if test="sortCondition.sortField == 'updateUser'">
+                ORDER BY update_user
+            </if>
+            <if test="sortCondition.sortField == 'resourceMatching'">
+                ORDER BY resource_matching
+            </if>
+            <if test="sortCondition.sortRule != null and sortCondition.sortRule != ''">
+                ${sortCondition.sortRule}
+            </if>
+        </if>
+    </sql>
+
+    <!-- 查询巡检记录数量 -->
+    <select id="queryInspectionRecordInfoCount" resultType="integer" parameterType="com.fiberhome.filink.bean.QueryCondition">
+      select count(*) from proc_inspection_record
+      where 1=1
+        <include refid="procInspectionRecordCondition" />
+    </select>
+
+
+    <!-- 查询关联设施信息 -->
+    <select id="selectRelatedDeviceRecordList" resultMap="baseResultMap"  parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.procrelated.ProcRelatedDeviceListForDeviceIdsReq" >
+        select
+        <include refid="Base_Column_List" />
+        from proc_inspection_record
+        where 1=1
+        <if test="deviceIdList != null and deviceIdList.size() > 0" >
+            <if test="deviceIdList.size() == 1">
+                AND device_id =
+                <foreach collection="deviceIdList" item="deviceId">
+                    #{deviceId}
+                </foreach>
+            </if>
+            <if test="deviceIdList.size() > 1">
+                AND device_id IN
+                <foreach collection="deviceIdList" item="deviceId" open="(" close=")" separator=",">
+                    #{deviceId}
+                </foreach>
+            </if>
+        </if>
+        and is_deleted = #{isDeleted}
+    </select>
+
+
+    <!-- 逻辑删除关联设施 -->
+    <update id="logicDeleteRelatedDeviceRecord" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.procrelated.LogicDeleteRelatedDeviceRecordBatch" >
+        update proc_inspection_record set is_deleted = #{isDeleted}
+        where 1=1
+        <if test="relatedDeviceList != null and relatedDeviceList.size() > 0">
+            <if test="relatedDeviceList.size() == 1">
+                AND proc_inspection_record_id =
+                <foreach collection="relatedDeviceList" item="relatedDevice">
+                    #{relatedDevice}
+                </foreach>
+            </if>
+            <if test="relatedDeviceList.size() > 1">
+                AND proc_inspection_record_id IN
+                <foreach collection="relatedDeviceList" item="relatedDevice" open="(" close=")" separator=",">
+                    #{relatedDevice}
+                </foreach>
+            </if>
+        </if>
+    </update>
+
+
+</mapper>

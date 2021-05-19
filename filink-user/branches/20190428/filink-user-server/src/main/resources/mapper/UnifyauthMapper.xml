@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.userserver.dao.UnifyauthDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.userserver.bean.Unifyauth">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="userId" property="userId" />
+        <result column="authUserId" property="authUserId" />
+        <result column="authEffectiveTime" property="authEffectiveTime" />
+        <result column="authExpirationTime" property="authExpirationTime" />
+        <result column="authStatus" property="authStatus" />
+        <result column="remark" property="remark" />
+        <result column="createTime" property="createTime" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="createUser" property="createUser" />
+        <result column="updateTime" property="updateTime" />
+
+        <association property="user" column="userId" javaType="com.fiberhome.filink.userserver.bean.User">
+            <id column="userId" property="id"/>
+            <result column="userName" property="userName"/>
+        </association>
+
+        <association property="authUser" column="authUserId" javaType="com.fiberhome.filink.userserver.bean.User">
+            <id column="authUserId" property="id"/>
+            <result column="authUserName" property="userName"/>
+        </association>
+
+        <collection property="authDeviceList" ofType="com.fiberhome.filink.userserver.bean.AuthDevice"
+                    javaType="java.util.ArrayList">
+            <id column="auId" property="id"/>
+            <result column="authDeviceId" property="deviceId"/>
+            <result column="authDeviceDoorId" property="doorId"/>
+            <result column="authDeviceTwoBarCode" property="qrcode"/>
+
+        </collection>
+
+    </resultMap>
+
+    <sql id="unifyauthInfo">
+        unifyauth.id,unifyauth.name,unifyauth.userId,unifyauth.authUserId,unifyauth.authEffectiveTime,
+        unifyauth.authExpirationTime,unifyauth.authStatus,unifyauth.remark,unifyauth.createTime,unifyauth.is_deleted,
+        unifyauth.updateTime,unifyauth.createUser
+    </sql>
+
+    <select id="queryUnifyAuthByCondition" parameterType="com.fiberhome.filink.userserver.bean.UnifyAuthParameter"
+            resultMap="BaseResultMap">
+      SELECT
+        <include refid="unifyauthInfo"/>,user.id as userId,user.user_name as userName,authuser.id as authUserId,
+        authuser.user_name as authUserName
+      FROM
+	    unifyauth as unifyauth
+	  LEFT JOIN `user` as user ON unifyauth.userId = `user`.id
+	  LEFT JOIN `user` as authuser ON unifyauth.authUserId = authuser.id
+      <where>
+          unifyauth.is_deleted = 0
+          <if test="name != null">
+              AND unifyauth.name LIKE concat('%',#{name},'%')
+          </if>
+          <if test="authUserName != null">
+              AND authuser.user_name LIKE concat('%',#{authUserName},'%')
+          </if>
+          <if test="userName != null">
+              AND user.user_name LIKE concat('%',#{userName},'%')
+          </if>
+          <if test="authStatus != null">
+              AND unifyauth.authStatus = #{authStatus}
+          </if>
+          <if test="currentUserId != null">
+              AND (unifyauth.userId = #{currentUserId} OR unifyauth.authUserId = #{currentUserId})
+          </if>
+          <if test="remark != null">
+              AND unifyauth.remark LIKE concat('%',#{remark},'%')
+          </if>
+          <if test="createTime != null and createTimeEnd != null">
+              AND unifyauth.createTime >= #{createTime}
+              AND unifyauth.createTime &lt;= #{createTimeEnd}
+          </if>
+          <if test="authEffectiveTime != null and authEffectiveTimeEnd != null">
+              AND unifyauth.authEffectiveTime >= #{authEffectiveTime}
+              AND unifyauth.authEffectiveTime &lt;= #{authEffectiveTimeEnd}
+          </if>
+          <if test="authExpirationTime != null and authExpirationTimeEnd != null">
+              AND unifyauth.authExpirationTime >= #{authExpirationTime}
+              AND unifyauth.authExpirationTime &lt;= #{authExpirationTimeEnd}
+          </if>
+      </where>
+        <if test="sortProperties != null and sort != null">
+            <if test="sortProperties == 'name'">
+                ORDER BY unifyauth.name ${sort}
+            </if>
+            <if test="sortProperties == 'remark'">
+                ORDER BY unifyauth.remark ${sort}
+            </if>
+            <if test="sortProperties == 'authStatus'">
+                ORDER BY unifyauth.authStatus ${sort}
+            </if>
+            <if test="sortProperties == 'createTime'">
+                ORDER BY unifyauth.createTime ${sort}
+            </if>
+            <if test="sortProperties == 'authEffectiveTime'">
+                ORDER BY unifyauth.authEffectiveTime ${sort}
+            </if>
+            <if test="sortProperties == 'authExpirationTime'">
+                ORDER BY unifyauth.authExpirationTime ${sort}
+            </if>
+            <if test="sortProperties == 'userName'">
+                ORDER BY user.user_name ${sort}
+            </if>
+            <if test="sortProperties == 'authUserName'">
+                ORDER BY authuser.user_name ${sort}
+            </if>
+        </if>
+        <if test="sort == null or sortProperties == null">
+            ORDER BY unifyauth.createTime DESC
+        </if>
+      LIMIT #{startNum},#{pageSize}
+    </select>
+
+    <select id="queryUnifyAuthNumberByCondition" parameterType="com.fiberhome.filink.userserver.bean.UnifyAuthParameter"
+            resultType="Long">
+        SELECT
+          count(unifyauth.id)
+        FROM
+        unifyauth as unifyauth
+        LEFT JOIN `user` as user ON unifyauth.userId = `user`.id
+        LEFT JOIN `user` as authuser ON unifyauth.authUserId = authuser.id
+        <where>
+            unifyauth.is_deleted = 0
+            <if test="name != null">
+                AND unifyauth.name LIKE concat('%',#{name},'%')
+            </if>
+            <if test="authUserName != null">
+                AND authuser.user_name LIKE concat('%',#{authUserName},'%')
+            </if>
+            <if test="userName != null">
+                AND user.user_name LIKE concat('%',#{userName},'%')
+            </if>
+            <if test="authStatus != null">
+                AND unifyauth.authStatus = #{authStatus}
+            </if>
+            <if test="remark != null">
+                AND unifyauth.remark LIKE concat('%',#{remark},'%')
+            </if>
+            <if test="currentUserId != null">
+                AND (unifyauth.userId = #{currentUserId} OR unifyauth.authUserId = #{currentUserId})
+            </if>
+            <if test="createTime != null and createTimeEnd != null">
+                AND unifyauth.createTime >= #{createTime}
+                AND unifyauth.createTime &lt;= #{createTimeEnd}
+            </if>
+            <if test="authEffectiveTime != null and authEffectiveTimeEnd != null">
+                AND unifyauth.authEffectiveTime >= #{authEffectiveTime}
+                AND unifyauth.authEffectiveTime &lt;= #{authEffectiveTimeEnd}
+            </if>
+            <if test="authExpirationTime != null and authExpirationTimeEnd != null">
+                AND unifyauth.authExpirationTime >= #{authExpirationTime}
+                AND unifyauth.authExpirationTime &lt;= #{authExpirationTimeEnd}
+            </if>
+        </where>
+        <if test="sortProperties != null and sort != null">
+            <if test="sortProperties == 'name'">
+                ORDER BY unifyauth.name ${sort}
+            </if>
+            <if test="sortProperties == 'remark'">
+                ORDER BY unifyauth.remark ${sort}
+            </if>
+            <if test="sortProperties == 'authStatus'">
+                ORDER BY unifyauth.authStatus ${sort}
+            </if>
+            <if test="sortProperties == 'createTime'">
+                ORDER BY unifyauth.createTime ${sort}
+            </if>
+            <if test="sortProperties == 'authEffectiveTime'">
+                ORDER BY unifyauth.authEffectiveTime ${sort}
+            </if>
+            <if test="sortProperties == 'authExpirationTime'">
+                ORDER BY unifyauth.authExpirationTime ${sort}
+            </if>
+            <if test="sortProperties == 'userName'">
+                ORDER BY user.user_name ${sort}
+            </if>
+            <if test="sortProperties == 'authUserName'">
+                ORDER BY authuser.user_name ${sort}
+            </if>
+        </if>
+        <if test="sort == null or sortProperties == null">
+            ORDER BY unifyauth.createTime DESC
+        </if>
+    </select>
+
+    <select id="queryUnifyAuthById" resultMap="BaseResultMap">
+        SELECT
+          <include refid="unifyauthInfo"/>,user.id as userId,user.user_name as userName,authuser.id as authUserId,
+          authuser.user_name as authUserName,authDevice.deviceId authDeviceId,authDevice.doorId authDeviceDoorId,
+          authDevice.qrcode authDeviceTwoBarCode
+        FROM
+          unifyauth as unifyauth
+        LEFT JOIN `user` as user ON unifyauth.userId = `user`.id
+        LEFT JOIN `user` as authuser ON unifyauth.authUserId = authuser.id
+        LEFT JOIN auth_device as authDevice ON unifyauth.id = authDevice.authId
+        WHERE unifyauth.id = #{id} AND unifyauth.is_deleted = 0
+    </select>
+
+    <update id="modifyUnifyAuth" parameterType="com.fiberhome.filink.userserver.bean.Unifyauth">
+        UPDATE
+          unifyauth
+        SET name = #{name},userId = #{userId},authEffectiveTime = #{authEffectiveTime},
+            authExpirationTime = #{authExpirationTime},authStatus = #{authStatus},remark = #{remark}
+        WHERE id = #{id}
+    </update>
+
+    <update id="deleteUnifyAuthById">
+        UPDATE
+          unifyauth
+        SET is_deleted = 1
+        WHERE id = #{id}
+    </update>
+
+    <update id="batchDeleteUnifyAuth">
+        UPDATE
+          unifyauth
+        SET is_deleted = 1
+        WHERE id in
+        <foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="batchQueryUnifyAuthByIds" resultMap="BaseResultMap">
+        SELECT
+          <include refid="unifyauthInfo"/>
+        FROM
+          unifyauth
+        WHERE
+        is_deleted = 0 AND id in
+        <foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <update id="batchModifyUnifyAuthStatus">
+        UPDATE
+            unifyauth
+        SET authStatus = #{authStatus}
+        WHERE id in
+        <foreach collection="idArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="queryUnifyAuthByUserId" resultMap="BaseResultMap">
+        SELECT
+            <include refid="unifyauthInfo"/>,user.id userId,user.user_name as userName,
+            authUser.id as authUserId,authUser.user_name as authUserName,
+            authDevice.deviceId authDeviceId,authDevice.doorId authDeviceDoorId,
+            authDevice.qrcode authDeviceTwoBarCode
+        FROM
+            unifyauth as unifyauth
+            LEFT JOIN `user` as `user` ON unifyauth.userId = `user`.id
+            LEFT JOIN `user` as authUser ON unifyauth.authUserId = authUser.id
+            LEFT JOIN auth_device as authDevice ON authDevice.authId = unifyauth.id
+        WHERE
+            unifyauth.userId = #{userId}
+            AND unifyauth.is_deleted = 0
+    </select>
+    
+    <select id="queryAuthInfoByUserIdAndDeviceAndDoor" resultMap="BaseResultMap">
+        SELECT
+            <include refid="unifyauthInfo"/>,user.id userId,user.user_name as userName,
+            authUser.id as authUserId,authUser.user_name as authUserName
+        FROM
+            unifyauth as unifyauth
+            LEFT JOIN auth_device as authDevice ON authDevice.authId = unifyauth.id
+            LEFT JOIN `user` as `user` ON unifyauth.userId = `user`.id
+            LEFT JOIN `user` as authUser ON unifyauth.authUserId = authUser.id
+        WHERE
+            unifyauth.userId = #{userId} AND authDevice.deviceId = #{deviceId} AND authDevice.doorId = #{doorId}
+            AND unifyauth.authStatus = 2 AND unifyauth.is_deleted = 0
+            AND ((unifyauth.authEffectiveTime &lt; #{currentTime} AND unifyauth.authExpirationTime &gt; #{currentTime})
+            OR (unifyauth.authEffectiveTime is NULL  AND  unifyauth.authExpirationTime IS  NULL ))
+    </select>
+    
+    <select id="queryUnifyAuthByDevice" resultMap="BaseResultMap">
+        SELECT
+        <include refid="unifyauthInfo"/>,authDevice.id auId
+        FROM
+        unifyauth as unifyauth
+        LEFT JOIN auth_device as authDevice ON unifyauth.id = authDevice.authId
+        WHERE authDevice.deviceId = #{deviceId} AND authDevice.doorId in
+        <foreach collection="doorId" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryAuthByName" resultMap="BaseResultMap">
+        SELECT
+        <include refid="unifyauthInfo"/>
+        FROM
+            unifyauth as unifyauth
+        WHERE
+        unifyauth.`name` = #{name}
+        AND unifyauth.is_deleted = 0
+    </select>
+</mapper>

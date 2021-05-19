@@ -1,0 +1,263 @@
+<protocol>
+    <softwareVersion>HV3.00</softwareVersion>
+    <hardwareVersion>SV1.05</hardwareVersion>
+    <requestResolverName>fiLinkWellUdpRequestHandler</requestResolverName>
+    <responseResolverName>fiLinkWellUdpResponseResolver</responseResolverName>
+    <businessHandlerName>fiLinkWellNewBusinessHandler</businessHandlerName>
+    <instructSenderName>FiLinkOceanConnectWellSender</instructSenderName>
+    <header>
+        <headParam id="frameHead" name="帧地址头" length="1" type="unsignedInt"/>
+        <headParam id="cmdLen" name="帧长度" type="unsignedInt" length="2" reqScope="0-4 [body]" resScope="0-4 [body]"/>
+        <headParam id="serialNumber" name="流水号" length="2" type="normalInt"/>
+        <headParam id="equipmentId" name="设备Id" length="8" type="hexString" />
+        <headParam id="cmdId" name="命令id" length="2" type="normalInt" dataFormat="cmdIdHandle"/>
+    </header>
+    <requestHeader>
+
+    </requestHeader>
+    <responseHeader>
+
+    </responseHeader>
+    <datas>
+        <data cmdId="0x215a">
+            <dataRequest>
+            </dataRequest>
+            <dataResponse>
+                <dataParams>
+                    <dataParam id="doorLockState" name="门锁状态" length="1" dataFormat="unlockHandler"/>
+                    <dataParam id="electricity" name="电量信息" length="1" type="unsignedInt"/>
+                    <dataParam id="lean" name="倾斜" length="8" dataFormat="leanHandler"/>
+                    <dataParam id="temperature" name="温度" length="2" dataFormat="temperatureHandler"/>
+                    <dataParam id="humidity" name="湿度" length="1" type="unsignedInt"/>
+                    <dataParam id="leach" name="其他信息" length="1" dataFormat="otherInfoHandler"/>
+                    <dataParam id="wirelessModuleSignal" name="信号强度" length="1" type="unsignedInt"/>
+                    <dataParam id="time" name="时间信息" length="4" dataFormat="timeHandler"/>
+                    <dataParam id="versionNumber" name="版本号" length="48" type="string"/>
+                    <dataParam id="actualPower" name="实际电量" length="2" type="unsignedInt"/>
+                    <dataParam id="maximumNumberOfTimes" name="最大次数" length="4" type="unsignedInt"/>
+                    <dataParam id="theNumberOfTransmissions" name="发送次数" length="4" type="unsignedInt"/>
+                    <dataParam id="heartbeatCycle" name="心跳间隔" length="2" type="unsignedInt"/>
+                    <dataParam id="workTime" name="超时间隔" length="2" type="unsignedInt"/>
+                    <dataParam id="deployStatus" name="布防状态" length="1" type="unsignedInt" resultMap="armingStateMap"/>
+                    <dataParam id="doorAlarmType" name="门告警类型" length="1" dataFormat="doorAlarmTypeHandler"/>
+                    <dataParam id="handleAlarmType" name="手柄告警类型" length="1" dataFormat="lockAlarmTypeHandler"/>
+                    <dataParam id="lockType" name="开锁方式" length="1" type="unsignedInt" resultMap="unlockTypeResult"/>
+                    <dataParam id="currentAction" name="当前动作" length="1" type="unsignedInt"
+                               resultMap="currentActionResultMap"/>
+                    <dataParam id="temperatureAlarm" name="温度告警" length="1" type="unsignedInt" />
+                    <dataParam id="temperatureThreshold" name="温度阈值" length="4" dataFormat="dataTemperatureThresholdHandler"/>
+                    <dataParam id="successfulConfiguration" name="配置成功" length="1" type="unsignedInt"/>
+                    <dataParam id="baseInfo" name="基站信息" length="32" dataFormat="baseInfoHandler"/>
+                </dataParams>
+            </dataResponse>
+        </data>
+        <data cmdId="0x2207">
+            <dataRequest>
+                <dataParams>
+                    <dataParam id="deployStatus" name="布撤防标志" length="1" type="unsignedInt"
+                               resultMap="clothDisarmingSignMap"/>
+                    <dataParam id="heartbeatCycle" name="心跳间隔" length="2" type="unsignedInt"/>
+                    <dataParam id="workTime" name="超时开门锁间隔" length="2" type="unsignedInt"/>
+                    <dataParam id="hostIp" name="服务器通信地址" length="4"
+                               dataFormat="serverCommunicationAddressHandler"/>
+                    <dataParam id="hostPort" name="服务器通信端口" length="2" type="unsignedInt"/>
+                    <dataParam id="temperatureAlarmThreshold" name="温度告警阈值" length="4" dataFormat="temperatureThresholdHandler"/>
+                    <dataParam id="upgradeSign" name="升级标志" length="1" type="unsignedInt"/>
+
+                </dataParams>
+            </dataRequest>
+            <dataResponse>
+            </dataResponse>
+        </data>
+        <data cmdId="0x220c">
+            <dataRequest>
+                <dataParams>
+                    <dataParam id="deployStatus" name="布撤防标志" length="1" type="unsignedInt"
+                               resultMap="clothDisarmingSignMap"/>
+                    <dataParam id="heartbeatCycle" name="心跳间隔" length="2" type="unsignedInt"/>
+                    <dataParam id="workTime" name="超时开门锁间隔" length="2" type="unsignedInt"/>
+                    <dataParam id="hostIp" name="服务器通信地址" length="4"
+                               dataFormat="serverCommunicationAddressHandler"/>
+                    <dataParam id="hostPort" name="服务器通信端口" length="2" type="unsignedInt"/>
+                    <dataParam id="temperatureAlarmThreshold" name="温度告警阈值" length="4" dataFormat="temperatureThresholdHandler"/>
+                    <dataParam id="upgradeSign" name="升级标志" length="1" type="unsignedInt"/>
+
+                </dataParams>
+            </dataRequest>
+            <dataResponse>
+            </dataResponse>
+        </data>
+        <data cmdId="0x2201">
+            <dataRequest>
+                <dataParams>
+                    <dataParam id="identificationNumber" name="识别编号" length="8" dataFormat="idHandler"/>
+                    <dataParam id="doorLockChannel" name="门锁通道" length="1" dataFormat="doorLockChannelHandler"/>
+                    <dataParam id="openPassword" name="开门密码" length="4" dataFormat="openPasswordHandler"/>
+                </dataParams>
+            </dataRequest>
+            <dataResponse>
+            </dataResponse>
+        </data>
+
+        <data cmdId="0x2b5a">
+            <dataRequest>
+                <dataParams>
+                    <dataParam id="readDataOffsetAddress" name="读数据偏移地址" length="4" type="unsignedInt"/>
+                    <dataParam id="readDataLength" name="读数据长度" length="2" type="unsignedInt"/>
+                    <dataParam id="checkValue" name="升级包检验值" length="2" type="unsignedInt"/>
+                    <dataParam id="data" name="数据"  dataFormat="upDataHandle"/>
+                </dataParams>
+            </dataRequest>
+            <dataResponse>
+                <dataParams>
+                    <dataParam id="upgradePackageName" name="升级包名称" length="32" type="string"/>
+                    <dataParam id="readDataOffsetAddress" name="读数据偏移地址" length="4" type="unsignedInt"/>
+                    <dataParam id="readDataLength" name="读数据长度" length="2" type="unsignedInt"/>
+                </dataParams>
+            </dataResponse>
+        </data>
+
+        <data cmdId="0x285a">
+            <dataRequest>
+                <dataParams>
+                    <dataParam id="versionNumber" name="版本号" length="32" type="string"/>
+                    <dataParam id="upgradePackageSize" name="升级包大小" length="4" type="unsignedInt"/>
+                    <dataParam id="checkValue" name="升级包检验值" length="2" type="unsignedInt"/>
+                    <dataParam id="upgradeSign" name="升级标志" length="1" type="unsignedInt"/>
+                </dataParams>
+            </dataRequest>
+            <dataResponse>
+                <dataParams>
+                    <dataParam id="versionNumber" name="版本号" length="32" type="string"/>
+                </dataParams>
+            </dataResponse>
+        </data>
+    </datas>
+    <dataFormats>
+
+        <dataFormat id="unlockHandler" className="com.fiberhome.filink.commonstation.handler.impl.WellUnlockHandler"
+                    resultMap="doorLockMap">
+        </dataFormat>
+
+        <dataFormat id="leanHandler" className="com.fiberhome.filink.commonstation.handler.impl.WellLeanHandler"
+                    resultMap="leanMap">
+            <dataFormatParam name="status" length="1" type="unsignedInt"/>
+            <dataFormatParam name="reserved" length="1"/>
+            <dataFormatParam name="xCoordinate" length="2" type="int"/>
+            <dataFormatParam name="yCoordinate" length="2" type="int"/>
+            <dataFormatParam name="zCoordinate" length="2" type="int"/>
+        </dataFormat>
+
+        <dataFormat id="temperatureHandler"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellTemperatureHandler">
+        </dataFormat>
+        <dataFormat id="otherInfoHandler"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellOtherInfoHandler" resultMap="leachMap">
+        </dataFormat>
+        <dataFormat id="timeHandler" className="com.fiberhome.filink.commonstation.handler.impl.WellNewDateDecoder">
+        </dataFormat>
+        <dataFormat id="doorAlarmTypeHandler"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellDoorAlarmTypeHandler"
+                    resultMap="doorAlarmTypeMap">
+        </dataFormat>
+        <dataFormat id="lockAlarmTypeHandler"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellDoorAlarmTypeHandler"
+                    resultMap="handleAlarmTypeMap">
+        </dataFormat>
+        <dataFormat id="baseInfoHandler" className="com.fiberhome.filink.commonstation.handler.impl.WellBaseInfoHandler"
+                    resultMap="handleAlarmTypeMap">
+        </dataFormat>
+        <dataFormat id="serverCommunicationAddressHandler"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellServerCommunicationAddressHandler">
+        </dataFormat>
+        <dataFormat id="idHandler" className="com.fiberhome.filink.commonstation.handler.impl.WellIdHandler">
+        </dataFormat>
+        <dataFormat id="doorLockChannelHandler"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellDoorLockChannelHandler">
+        </dataFormat>
+        <dataFormat id="openPasswordHandler"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellOpenPasswordHandler">
+        </dataFormat>
+        <dataFormat id="upgradeDataHandler"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellUpgradeDataHandler">
+        </dataFormat>
+        <dataFormat id="cmdIdHandle"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellCmdIdHandler"
+                    resultMap="cmdIdMap">
+        </dataFormat>
+        <dataFormat id="upDataHandle"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellUpDataHandler">
+        </dataFormat>
+        <dataFormat id="temperatureThresholdHandler"
+                    className="com.fiberhome.filink.commonstation.handler.impl.WellTemperatureThresholdHandler">
+        </dataFormat>
+        <dataFormat id="dataTemperatureThresholdHandler" className="com.fiberhome.filink.commonstation.handler.impl.WellDataTemperatureThresholdHandler"/>
+    </dataFormats>
+    <resultMaps>
+        <resultMap id="doorLockMap">
+            <!--门状态:   锁状态:  0:无效 1:开 2:关-->
+            <dataResult code="0" msg="1"/>
+            <dataResult code="1" msg="2"/>
+        </resultMap>
+        <resultMap id="unlockTypeResult">
+            <!--蓝牙-->
+            <dataResult code="0" msg="0"/>
+            <!--物联网-->
+            <dataResult code="1" msg="1"/>
+            <!--钥匙-->
+            <dataResult code="2" msg="2"/>
+            <!--无开锁-->
+            <dataResult code="3" msg="3"/>
+        </resultMap>
+        <resultMap id="currentActionResultMap">
+            <!--无触发开锁动作-->
+            <dataResult code="0" msg="0"/>
+            <!--有触发开锁动作-->
+            <dataResult code="1" msg="1"/>
+        </resultMap>
+        <resultMap id="armingStateMap">
+            <!--撤防状态-->
+            <dataResult code="0" msg="2"/>
+            <!--布防状态-->
+            <dataResult code="1" msg="1"/>
+        </resultMap>
+        <resultMap id="doorAlarmTypeMap">
+            <!--0 正常-->
+            <dataResult code="0" msg="0"/>
+            <!--1 门超时未关闭 123-->
+            <dataResult code="2" msg="notClosed"/>
+        </resultMap>
+        <resultMap id="handleAlarmTypeMap">
+            <!--0 正常-->
+            <dataResult code="0" msg="0"/>
+            <!--1 锁未关闭-->
+            <dataResult code="1" msg="unLock"/>
+            <!--2 撬锁-->
+            <dataResult code="2" msg="pryLock"/>
+        </resultMap>
+        <resultMap id="clothDisarmingSignMap">
+            <!--0 布防-->
+            <dataResult code="1" msg="1"/>
+            <!--1 撤防-->
+            <dataResult code="2" msg="0"/>
+            <!--0XFF不做修改-->
+            <dataResult code="255" msg="0xFF"/>
+        </resultMap>
+        <resultMap id="cmdIdMap">
+            <!--开锁-->
+            <dataResult code="0x2201" msg="0x2a5a"/>
+            <!--布撤防-->
+            <dataResult code="0x220c" msg="0x2d5a"/>
+            <!--配置策略-->
+            <dataResult code="0x2207" msg="0x2d5a"/>
+        </resultMap>
+        <resultMap id="leachMap">
+            <!--1:正常  2:水浸-->
+            <dataResult code="0" msg="1"/>
+            <dataResult code="1" msg="2"/>
+        </resultMap>
+    </resultMaps>
+    <chooseHandlers>
+    </chooseHandlers>
+</protocol>
+

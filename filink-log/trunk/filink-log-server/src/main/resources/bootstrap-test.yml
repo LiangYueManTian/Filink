@@ -1,0 +1,107 @@
+readLogFilePath: /yy_filink/filink_log/logserver/
+readListExcelPath: D:/testFile/
+listExcelSize: 20000
+maxExportDataSize: 4000000
+
+server:
+  port: 9911
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package:
+
+
+spring:
+  application:
+    name: filink-log-server
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://filink-mysql:3306/filink_sys?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: wistronits@123
+    #      \u521D\u59CB\u5316\u5927\u5C0F
+    initialSize: 5
+    #      \u6700\u5C0F\u8FDE\u63A5\u6570
+    minIdle: 5
+    #      \u6700\u5927\u8FDE\u63A5\u6570
+    maxActive: 20
+    #      \u83B7\u53D6\u8FDE\u63A5\u7B49\u5F85\u8D85\u65F6\u65F6\u95F4
+    maxWait: 60000
+    #      \u95F4\u9694\u591A\u4E45\u68C0\u6D4B\u4E00\u6B21 \u68C0\u6D4B\u9700\u8981\u5173\u95ED\u7684\u7A7A\u95F2\u8FDE\u63A5 \u5355\u4F4D\u6BEB\u79D2
+    timeBetweenEvictionRunsMillis: 60000
+    #      \u4E00\u4E2A\u8FDE\u63A5\u6700\u5C0F\u751F\u5B58\u65F6\u95F4
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    #      \u914D\u7F6E\u76D1\u63A7\u7EDF\u8BA1\u62E6\u622A\u7684filter , \u53BB\u6389\u540E\u76D1\u63A7sql\u65E0\u6CD5\u7EDF\u8BA1wall\u7528\u4E8E\u9632\u706B\u5899
+    filters: stat,wall,log4j
+    logSlowSql: true
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 172.26.223.67:9092
+          zkNodes: 172.26.223.67:2181
+      bindings:
+        system_input:
+#         # \u8F93\u51FAtopic
+          destination: filink_log
+          # \u6307\u5B9A\u6D88\u8D39\u7EC4 \u591A\u5B9E\u4F8B\u60C5\u51B5\u4E0B\u53EA\u6709\u4E00\u4E2A\u6D88\u8D39 \u9664\u975E\u9700\u8981\u6240\u6709\u5B9E\u4F8B\u90FD\u8981\u6D88\u8D39 \u5426\u5219\u5FC5\u987B\u6307\u5B9A
+          group: filink_log_server
+          contentType: application/json
+        system_output:
+        #   \u76D1\u542Ctopic
+          destination: filink_log
+          contentType: application/json
+# \u94FE\u8DEF\u8FFD\u8E2A
+  zipkin:
+    base-url: http://10.5.24.144:9411
+  sleuth:
+    sampler:
+#    \u76D1\u63A7\u5F00\u53D1\u767E\u5206\u6BD4  \u9ED8\u8BA4\u662F0.1  \u5F00\u53D1\u73AF\u5883\u8BBE\u7F6E\u62101
+      percentage: 1
+#  data:
+#    mongodb:
+#      host: filink-mongo
+#      port: 27017
+#      database: filink_log
+  data:
+    mongodb:
+      uri: mongodb://10.5.24.224:27017/filink_log
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+    test:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+
+#  \u914D\u7F6Efeign\u4F7F\u7528\u7194\u65AD
+feign:
+  hystrix:
+    enabled: true
+
+
+# feign\u6709\u8D85\u65F6\u65F6\u95F4\u7684\u8BBE\u7F6E\uFF0C\u8981\u5355\u72EC\u914D\u7F6Eribbon\u624D\u80FD\u751F\u6548
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000

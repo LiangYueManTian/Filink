@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.userserver.dao.DepartmentFeignDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.userserver.bean.DepartmentFeign">
+        <id column="id" property="id" />
+        <result column="dept_name" property="deptName" />
+        <result column="dept_chargeuser" property="deptChargeuser" />
+        <result column="dept_phonenum" property="deptPhonenum" />
+        <result column="address" property="address" />
+        <result column="dept_type" property="deptType" />
+        <result column="dept_fatherId" property="deptFatherid" />
+        <result column="dept_level" property="deptLevel" />
+        <result column="remark" property="remark" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="queryAllDepartmentFeign" resultMap="BaseResultMap">
+        SELECT
+          id,dept_name,dept_fatherId
+        FROM
+          department
+        WHERE is_deleted = 0
+    </select>
+
+    <sql id="deptInfo">
+        department.id,department.dept_name,department.dept_chargeuser,department.dept_phonenum,
+        department.address,department.dept_type,department.dept_fatherId,department.dept_level,
+        department.is_deleted,department.remark,department.create_user,department.create_time,
+        department.update_user,department.update_time
+    </sql>
+
+    <select id="queryDepartmentFeignByIds" resultMap="BaseResultMap">
+        SELECT
+          <include refid="deptInfo"/>
+        FROM
+          department as department
+        WHERE department.is_deleted = 0 AND department.id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryDepartmentFeignByName" resultMap="BaseResultMap">
+        SELECT
+            <include refid="deptInfo"/>
+        FROM
+            department as department
+        WHERE department.is_deleted = 0 AND department.dept_name LIKE "%${deptName}%"
+    </select>
+
+</mapper>

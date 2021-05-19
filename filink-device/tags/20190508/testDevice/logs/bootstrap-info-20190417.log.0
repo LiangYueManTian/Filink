@@ -1,0 +1,416 @@
+2019-04-17 12:14:38.445 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 12:14:38.590 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 12:14:38.590 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 12:14:38.712 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 12:14:38.712 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 12:14:39.023 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 12:14:39.236 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 12:14:39.237 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 12:14:39.237 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 12:14:39.237 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 12:14:39.237 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 12:14:39.238 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 12:14:39.238 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 12:14:39.471 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 12:14:39.474 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 12:14:39.479 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555474479478 with initial instances count: 17
+2019-04-17 14:11:04.540 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 14:11:04.686 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 14:11:04.686 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 14:11:04.809 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 14:11:04.809 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 14:11:05.095 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 14:11:05.299 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 14:11:05.300 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 14:11:05.300 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 14:11:05.300 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 14:11:05.301 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 14:11:05.301 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 14:11:05.302 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 14:11:05.503 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 14:11:05.506 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 14:11:05.510 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555481465510 with initial instances count: 17
+2019-04-17 14:11:26.946 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 14:11:27.112 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 14:11:27.113 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 14:11:27.245 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 14:11:27.246 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 14:11:27.559 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 14:11:27.769 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 14:11:27.769 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 14:11:27.770 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 14:11:27.770 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 14:11:27.770 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 14:11:27.770 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 14:11:27.771 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 14:11:27.977 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 14:11:27.980 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 14:11:27.984 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555481487984 with initial instances count: 17
+2019-04-17 14:27:32.842 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 14:27:33.014 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 14:27:33.014 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 14:27:33.148 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 14:27:33.148 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 14:27:33.441 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 14:27:33.661 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 14:27:33.661 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 14:27:33.662 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 14:27:33.662 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 14:27:33.662 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 14:27:33.662 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 14:27:33.663 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 14:27:33.863 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 14:27:33.867 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 14:27:33.871 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555482453870 with initial instances count: 17
+2019-04-17 14:41:20.395 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 14:41:20.540 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 14:41:20.540 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 14:41:20.663 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 14:41:20.663 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 14:41:20.956 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 14:41:21.157 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 14:41:21.158 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 14:41:21.158 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 14:41:21.158 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 14:41:21.158 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 14:41:21.159 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 14:41:21.159 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 14:41:21.358 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 14:41:21.360 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 14:41:21.365 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555483281365 with initial instances count: 17
+2019-04-17 15:14:44.329 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 15:14:44.474 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 15:14:44.475 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 15:14:44.600 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 15:14:44.602 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 15:14:44.886 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 15:14:45.087 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 15:14:45.088 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 15:14:45.088 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 15:14:45.088 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 15:14:45.088 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 15:14:45.089 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 15:14:45.089 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 15:14:45.276 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 15:14:45.278 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 15:14:45.282 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555485285282 with initial instances count: 17
+2019-04-17 15:34:37.847 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 15:34:38.022 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 15:34:38.022 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 15:34:38.162 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 15:34:38.163 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 15:34:38.483 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 15:34:38.692 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 15:34:38.692 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 15:34:38.692 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 15:34:38.692 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 15:34:38.693 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 15:34:38.693 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 15:34:38.693 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 15:34:38.922 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 15:34:38.926 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 15:34:38.929 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555486478929 with initial instances count: 19
+2019-04-17 15:44:23.729 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 15:44:23.911 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 15:44:23.912 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 15:44:24.067 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 15:44:24.068 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 15:44:24.384 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 15:44:24.597 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 15:44:24.597 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 15:44:24.598 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 15:44:24.598 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 15:44:24.598 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 15:44:24.598 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 15:44:24.598 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 15:44:24.809 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 15:44:24.812 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 15:44:24.815 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555487064815 with initial instances count: 19
+2019-04-17 16:32:36.432 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 16:32:36.583 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 16:32:36.583 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 16:32:36.718 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 16:32:36.718 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 16:32:37.017 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 16:32:37.215 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 16:32:37.216 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 16:32:37.216 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 16:32:37.216 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 16:32:37.216 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 16:32:37.216 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 16:32:37.217 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 16:32:37.437 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 16:32:37.440 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 16:32:37.443 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555489957443 with initial instances count: 17
+2019-04-17 17:05:57.115 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 17:05:57.291 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 17:05:57.291 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 17:05:57.430 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 17:05:57.430 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 17:05:57.728 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 17:05:57.952 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 17:05:57.953 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 17:05:57.953 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 17:05:57.953 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 17:05:57.953 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 17:05:57.954 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 17:05:57.954 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 17:05:58.156 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 17:05:58.159 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 17:05:58.163 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555491958163 with initial instances count: 16
+2019-04-17 17:21:16.594 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 17:21:16.807 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 17:21:16.808 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 17:21:17.018 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 17:21:17.019 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 17:21:17.478 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 17:21:17.767 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 17:21:17.768 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 17:21:17.769 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 17:21:17.770 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 17:21:17.770 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 17:21:17.771 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 17:21:17.776 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 17:21:18.084 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 17:21:18.088 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 17:21:18.092 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555492878092 with initial instances count: 19
+2019-04-17 18:27:58.244 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 18:27:58.415 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 18:27:58.415 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 18:27:58.551 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 18:27:58.552 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 18:27:58.844 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 18:27:59.057 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 18:27:59.058 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 18:27:59.058 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 18:27:59.058 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 18:27:59.058 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 18:27:59.059 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 18:27:59.059 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 18:27:59.273 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 18:27:59.276 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 18:27:59.280 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555496879279 with initial instances count: 14
+2019-04-17 20:02:45.131 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-04-17 20:02:45.341 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-04-17 20:02:45.341 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-04-17 20:02:45.489 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-04-17 20:02:45.490 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-04-17 20:02:45.817 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-04-17 20:02:46.024 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-04-17 20:02:46.025 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-04-17 20:02:46.025 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-04-17 20:02:46.025 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-04-17 20:02:46.025 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-04-17 20:02:46.025 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-04-17 20:02:46.025 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-04-17 20:02:46.256 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-04-17 20:02:46.259 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Not registering with Eureka server per configuration
+2019-04-17 20:02:46.263 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1555502566263 with initial instances count: 16

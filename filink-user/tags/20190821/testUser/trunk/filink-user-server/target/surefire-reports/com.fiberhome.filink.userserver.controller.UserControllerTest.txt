@@ -1,0 +1,61 @@
+-------------------------------------------------------------------------------
+Test set: com.fiberhome.filink.userserver.controller.UserControllerTest
+-------------------------------------------------------------------------------
+Tests run: 19, Failures: 0, Errors: 19, Skipped: 0, Time elapsed: 0.161 sec <<< FAILURE! - in com.fiberhome.filink.userserver.controller.UserControllerTest
+queryUserByDept(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.135 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+queryUserByNmae(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+modifyPWD(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+addUser(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+logout(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+forceOffline(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+getOnLineUser(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+updateLoginTime(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+resetPWD(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+updateUser(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+queryUserByField(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+updateUserStatus(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+verifyUserInfo(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+queryCurrentUser(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+queryUserPwd(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+queryUserById(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+queryUserInfoById(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+deleteUser(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.003 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+
+queryUserDefaultPWD(com.fiberhome.filink.userserver.controller.UserControllerTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.service.ImportService importService" in UserController
+

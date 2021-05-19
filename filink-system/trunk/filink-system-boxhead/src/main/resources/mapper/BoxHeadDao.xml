@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.boxhead.dao.BoxHeadDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.boxhead.bean.BoxHead">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="menu_id" property="menuId" />
+        <result column="custom" property="custom" />
+    </resultMap>
+
+    <sql id="column">
+        id,user_id,menu_id,custom
+    </sql>
+
+    <select id="selectOneByUserAndMenu" parameterType="com.fiberhome.filink.boxhead.bean.BoxHead" resultMap="BaseResultMap">
+         select <include refid="column"/>
+         from box_head where user_id = #{userId} and menu_id = #{menuId}
+    </select>
+
+
+</mapper>

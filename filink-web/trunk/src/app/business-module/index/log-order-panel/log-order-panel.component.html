@@ -1,0 +1,44 @@
+<div class="log-order-panel-container">
+<!--  设施日志  5-->
+  <div class="facility-log"  *ngIf="facilityPowerCode.includes(powerCode.facilityViewDetailLog) && facilityPowerCode.includes(powerCode.intelligentEntranceGuard)">
+    <div class="facility-log-title">
+      <div class="facility-log-title-text">{{indexLanguage.facilityLog}}</div>
+      <div class="facility-log-title-more" (click)="goToFacilityLogList()">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="facility-log-table">
+      <app-facility-log-table [facilityId]="facilityId"></app-facility-log-table>
+    </div>
+  </div>
+  <!--  销障工单 7-->
+  <div class="facility-log"  *ngIf="facilityPowerCode.includes(powerCode.facilityWorkOrder) && facilityPowerCode.includes(powerCode.intelligentEntranceGuard)">
+    <div class="facility-log-title">
+      <div class="facility-log-title-text">{{indexLanguage.clearBarrierWorkOrderTitle}}</div>
+      <div class="facility-log-title-more" (click)="goToClearBarrierList()">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="facility-log-table">
+      <app-clear-barrier-table [facilityId]="facilityId"></app-clear-barrier-table>
+    </div>
+  </div>
+  <!--  巡检工单 7-->
+  <div class="facility-log" *ngIf="facilityPowerCode.includes(powerCode.facilityWorkOrder)">
+    <div class="facility-log-title">
+      <div class="facility-log-title-text">{{indexLanguage.inspectionWorkOrderTitle}}</div>
+      <div class="facility-log-title-more" (click)="goToInspectionList()">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="facility-log-table">
+      <app-inspection-table [facilityId]="facilityId"></app-inspection-table>
+    </div>
+  </div>
+  <!--  操作记录 7-->
+  <div class="facility-log" *ngIf="facilityPowerCode.includes(powerCode.facilityWorkOrder)">
+    <div class="facility-log-title">
+      <div class="facility-log-title-text">{{indexLanguage.operationRecordTitle}}</div>
+      <div class="facility-log-title-more" (click)="navigatorTo('business/system/log')">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="facility-log-table">
+      <app-operation-record [facilityId]="facilityId"></app-operation-record>
+    </div>
+  </div>
+</div>
+
+

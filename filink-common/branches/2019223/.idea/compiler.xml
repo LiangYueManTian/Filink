@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="filink-common-bean" />
+        <module name="filink-common-client" />
+        <module name="filink-common-mongo" />
+        <module name="filink-common-redis" />
+        <module name="filink-common-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="filink-common" target="1.8" />
+      <module name="filink-common-bean" target="1.8" />
+      <module name="filink-common-client" target="1.8" />
+      <module name="filink-common-mongo" target="1.8" />
+      <module name="filink-common-redis" target="1.8" />
+      <module name="filink-common-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

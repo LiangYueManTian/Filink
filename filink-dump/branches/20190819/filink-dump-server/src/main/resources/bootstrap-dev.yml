@@ -1,0 +1,137 @@
+language.environment: CN
+readLogFilePath: /yy_filink/filink_log/systemLog/
+readListExcelPath: D:/testFile/
+writeDevicePicPath: D:/writeDevicePicPath/
+poolSize: 50
+daysOverdue: 7
+DeviceProtocolFileSize: 1048576
+maxExportDataSize: 200000
+listExcelSize: 20000
+maxTaskNum: 3
+
+
+server:
+  port: 10250
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+#    ---------------------------------------------------
+
+spring:
+  application:
+    name: filink-dump-server
+
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 39.98.72.132:9092
+          zkNodes: 39.98.72.132:2181
+      bindings:
+        export_input:
+          ## 输出topic
+          destination: filink_export_log
+          # 指定消费组 多实例情况下只有一个消费 除非需要所有实例都要消费 否则必须指定
+          group: filink_export
+          contentType: application/json
+
+
+  redis:
+    host: 39.98.72.132
+    port: 6379
+    password: filink
+    database: 0
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+  #    url: jdbc:mysql://10.5.24.224:3306/filink_user?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://39.98.72.132:3306/filink_user?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: wistronits@123
+      #      初始化大小
+    initialSize: 5
+      #      最小连接数
+    minIdle: 5
+      #      最大连接数
+    maxActive: 20
+      #      获取连接等待超时时间
+    maxWait: 60000
+      #      间隔多久检测一次 检测需要关闭的空闲连接 单位毫秒
+    timeBetweenEvictionRunsMillis: 60000
+      #      一个连接最小生存时间
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+      #      配置监控统计拦截的filter , 去掉后监控sql无法统计wall用于防火墙
+    filters: stat,wall,log4j
+    logSlowSql: true
+  data:
+    mongodb:
+      filink_alarm:
+        host: 10.5.24.224
+        port: 27017
+        database: filink_alarm
+      filink_log:
+        host: 10.5.24.224
+        port: 27017
+        database: filink_log
+      filink_device:
+        host: 10.5.24.224
+        port: 27017
+        database: filink_deviceLog
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package:
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: true
+
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+
+#是否需要权限拉去，默认是true,如果不false就不允许你去拉取配置中心Server更新的内容
+management:
+  security:
+    enabled: false
+
+  # 启动暴露url
+  endpoints:
+    web:
+      expose: "*"
+
+thread:
+  pool:
+    corePoolSize: 100
+    maxPoolSize: 1000
+    queueCapacity: 200
+    keepAliveSeconds: 120
+    threadNamePrefix: filink-dump

@@ -1,0 +1,88 @@
+<div class="table-container"  id="warp">
+  <xc-table [dataSet]="_dataSet"
+            [pageBean]="pageBean"
+            [tableConfig]="tableConfig"
+            (pageChange)="pageChange($event)">
+  </xc-table>
+</div>
+<!--查看modal-->
+<nz-modal [(nzVisible)]="isVisible"
+          [nzMaskClosable]="false"
+          [nzWidth]="1200"
+          [nzTitle]="title"
+          (nzOnCancel)="close()"
+          [nzFooter]="null">
+
+  <xc-table #tableComponent
+            [dataSet]="see_dataSet"
+            [pageBean]="seePageBean"
+            [tableConfig]="seeTableConfig"
+            (pageChange)="seePageChange($event)">
+
+  </xc-table>
+  <ng-template #modalFooter>
+    <button class="link-button" nz-button nzType="primary" (click)="close()">{{InspectionLanguage.handleOk}}</button>
+    <button class="link-button" nz-button nzType="danger" (click)="close()">{{InspectionLanguage.handleCancel}}</button>
+  </ng-template>
+
+</nz-modal>
+<ng-template #statusTemp let-data="data">
+  <div class="hidden" title="{{data.statusName}}">
+    <span [ngClass]="data.statusClass"
+          style="margin-right: 5px;">
+    </span>
+    {{data.statusName}}
+  </div>
+</ng-template>
+
+<!--责任单位-->
+<ng-template #UnitNameSearch let-filterValue = "filterValue">
+  <input class="area-name" (click)="showModal(filterValue)" type="text"
+         [(ngModel)]="selectUnitName" [title]="selectUnitName"
+          [placeholder]="InspectionLanguage.pleaseChoose">
+</ng-template>
+
+<xc-tree-selector
+  [(xcVisible)]="responsibleUnitIsVisible"
+  (selectDataChange)="selectDataChange($event)"
+  [treeSelectorConfig]="treeSelectorConfig">
+</xc-tree-selector>
+
+<!-- 责任人 -->
+<ng-template #roleTemp let-data="data">
+  <span class="widthStyle" title="{{data.assign?.userName}}">{{data.assign?.userName}}</span>
+</ng-template>
+
+<!--&lt;!&ndash;设施类型小图标&ndash;&gt;-->
+<!--<ng-template #deviceTypeTemp let-data="data">-->
+  <!--<i [ngClass]="data['iconClass']" class="device-type-icon"></i>-->
+  <!--<span class="status-text" [title]="data['deviceType']">{{data['deviceType']}}</span>-->
+<!--</ng-template>-->
+
+<!--巡检数量筛选-->
+<ng-template #inspectionQuantityFilter let-filterValue = "filterValue">
+  <div class="inputBox">
+    <input type="text" class="widthStyle" class = "numberInput" [placeholder]="InspectionLanguage.pleaseEnter"
+           (ngModelChange)="searchChange($event,filterValue)"
+           [(ngModel)]="filterValue.filterValue" oninput="value=value.replace(/\D/g,'')">
+    <xc-nz-select  [(ngModel)]="deviceCountSelectValue" (ngModelChange)="searchChange($event,filterValue)"
+                   [disabled]="!filterValue.filterValue">
+      <xc-nz-option [nzLabel]="'>'" [nzValue]="'gt'"></xc-nz-option>
+      <xc-nz-option [nzLabel]="'='" [nzValue]="'eq'"></xc-nz-option>
+      <xc-nz-option [nzLabel]="'<'" [nzValue]="'lt'"></xc-nz-option>
+    </xc-nz-select>
+  </div>
+</ng-template>
+
+<!--巡检区域弹框-->
+<ng-template #AreaSearch let-filterValue="filterValue">
+  <input type="text" nz-input placeholder="{{InspectionLanguage.pleaseChoose}}"
+         (click)="showArea(filterValue)" [(ngModel)]="filterObj.areaName">
+</ng-template>
+
+<xc-tree-area-selector
+  [(xcVisible)]="areaSelectVisible"
+  [pageType]="InspectionLanguage.area"
+  [treeSelectorConfig]="areaSelectorConfig"
+  (selectDataChange)="areaSelectChange($event)">
+</xc-tree-area-selector>

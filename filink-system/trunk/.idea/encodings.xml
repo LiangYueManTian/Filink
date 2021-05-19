@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-about" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-boxhead" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-commons" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-commonsapi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-dprotocol" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-dump" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-export" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-language" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-license" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-menu" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-parameter" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-protocol" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-screen" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-security" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/filink-system-server" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

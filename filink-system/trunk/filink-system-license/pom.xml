@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>filink-system-license</artifactId>
+    <name>filink-system-license</name>
+    <description>license</description>
+    <parent>
+        <groupId>com.fiberhome.filink</groupId>
+        <artifactId>filink-system</artifactId>
+        <version>0.0.3-RELEASE</version>
+    </parent>
+
+
+    <dependencies>
+        <!--数据库mysql-->
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-mysql</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-server</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-redis</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-oss-api</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.1.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>5.1.4.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-log-api</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-device-api</artifactId>
+            <version>0.0.3-RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-user-api</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-about</artifactId>
+            <version>0.0.3-RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.opticcable.OpticCableInfoDao">
+
+    <!-- 光缆通用查询映射结果 -->
+    <resultMap id="OpticCableInfoMap" type="com.fiberhome.filink.rfid.bean.opticcable.OpticCableInfo">
+        <id column="optic_cable_id" property="opticCableId"/>
+        <result column="optic_cable_name" property="opticCableName"/>
+        <result column="optic_cable_level" property="opticCableLevel"/>
+        <result column="local_code" property="localCode"/>
+        <result column="topology" property="topology"/>
+        <result column="wiring_type" property="wiringType"/>
+        <result column="core_num" property="coreNum"/>
+        <result column="biz_id" property="bizId"/>
+        <result column="remark" property="remark"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="OpticCableInfoRespMap" extends="OpticCableInfoMap"
+               type="com.fiberhome.filink.rfid.resp.opticcable.OpticCableInfoResp">
+
+    </resultMap>
+
+    <!-- 光缆明细查询映射结果 -->
+    <resultMap id="OpticCableInfoDetailMap" extends="OpticCableInfoMap"
+               type="com.fiberhome.filink.rfid.resp.opticcable.OpticCableInfoDetail">
+
+    </resultMap>
+
+    <!-- app请求所有光缆的信息查询映射结果 -->
+    <resultMap id="OpticCableInfoMapForApp" extends="OpticCableInfoMap"
+               type="com.fiberhome.filink.rfid.resp.opticcable.app.OpticCableInfoRespForApp">
+
+    </resultMap>
+
+    <!--光缆排序sql-->
+    <sql id="sortBySql">
+        <if test="sortCondition.sortField == null and sortCondition.sortField !='' ">
+            ORDER BY oci.create_time DESC
+        </if>
+        <if test="sortCondition.sortField != null and sortCondition.sortField != '' ">
+            <if test="sortCondition.sortField == 'opticCableName'">
+                order by oci.optic_cable_name
+            </if>
+            <if test="sortCondition.sortField == 'opticCableLevel'">
+                order by oci.optic_cable_level
+            </if>
+            <if test="sortCondition.sortField == 'localCode'">
+                order by oci.local_code
+            </if>
+            <if test="sortCondition.sortField == 'topology'">
+                order by oci.topology
+            </if>
+            <if test="sortCondition.sortField == 'wiringType'">
+                order by oci.wiring_type
+            </if>
+            <if test="sortCondition.sortField == 'coreNum'">
+                order by CONVERT(oci.core_num ,SIGNED)
+            </if>
+            <if test="sortCondition.sortField == 'bizId'">
+                order by oci.biz_id
+            </if>
+            <if test="sortCondition.sortField == 'remark'">
+                order by oci.remark
+            </if>
+            <if test="sortCondition.sortField == 'createTime'">
+                order by oci.create_time
+            </if>
+            <if test="sortCondition.sortField == 'createUser'">
+                order by oci.create_user
+            </if>
+            <if test="sortCondition.sortField == 'updateTime'">
+                order by oci.update_time
+            </if>
+            <if test="sortCondition.sortField == 'updateUser'">
+                order by oci.update_user
+            </if>
+        </if>
+        <!--排序方式-->
+        <if test="sortCondition.sortRule != null and sortCondition.sortRule != ''">
+            ${sortCondition.sortRule}
+        </if>
+    </sql>
+    <!--光缆的过滤sql-->
+    <sql id="filterBySql">
+        <if test="bizCondition != null and bizCondition != null">
+            <if test="bizCondition.opticCableName != null and bizCondition.opticCableName != '' ">
+                AND oci.optic_cable_name like concat('%',#{bizCondition.opticCableName},'%')
+            </if>
+            <if test="bizCondition.localCode != null and bizCondition.localCode != ''">
+                AND oci.local_code like concat('%',#{bizCondition.localCode},'%')
+            </if>
+            <if test="bizCondition.topology != null and bizCondition.topology != ''">
+                AND oci.topology = #{bizCondition.topology}
+            </if>
+            <if test="bizCondition.wiringType != null and bizCondition.wiringType != ''">
+                AND oci.wiring_type = #{bizCondition.wiringType}
+            </if>
+            <if test="bizCondition.coreNum != null and bizCondition.coreNum != ''">
+                AND CONVERT(oci.core_num ,SIGNED)  <![CDATA[${bizCondition.coreNumOperateValue}]]>
+                #{bizCondition.coreNum}
+            </if>
+            <if test="bizCondition.bizId != null and bizCondition.bizId != ''">
+                AND oci.biz_id like concat('%',#{bizCondition.bizId},'%')
+            </if>
+            <if test="bizCondition.remark != null and bizCondition.remark != ''">
+                AND oci.remark like concat('%',#{bizCondition.remark},'%')
+            </if>
+            <if test="bizCondition.opticCableLevels != null and bizCondition.opticCableLevels.size > 0">
+                AND oci.optic_cable_level in
+                <foreach collection="bizCondition.opticCableLevels" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+
+            <!--光缆idList-->
+            <if test="bizCondition.opticCableIdList != null and bizCondition.opticCableIdList.size() > 0">
+                <if test="bizCondition.opticCableIdList.size() == 1">
+                    AND oci.optic_cable_id =
+                    <foreach collection="bizCondition.opticCableIdList" item="opticCableId">
+                        #{opticCableId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.opticCableIdList.size() > 1">
+                    AND oci.optic_cable_id IN
+                    <foreach collection="bizCondition.opticCableIdList" item="opticCableId" open="(" close=")" separator=",">
+                        #{opticCableId}
+                    </foreach>
+                </if>
+            </if>
+
+        </if>
+    </sql>
+    <!--分页查询光缆列表-->
+    <select id="opticCableListByPage" parameterType="com.fiberhome.filink.bean.QueryCondition"
+            resultMap="OpticCableInfoRespMap">
+        SELECT
+        DISTINCT(oci.optic_cable_id),
+        oci.optic_cable_name,
+        oci.optic_cable_level,
+        oci.local_code,
+        oci.topology,
+        oci.wiring_type,
+        oci.core_num,
+        oci.biz_id,
+        oci.remark,
+        oci.is_deleted,
+        oci.create_user,
+        oci.create_time,
+        oci.update_user,
+        oci.update_time
+        FROM
+        optic_cable_info oci LEFT JOIN optic_cable_section_info ocsi
+        ON oci.optic_cable_id = ocsi.belong_optic_cable_id
+        <where>
+            oci.is_deleted = '0'
+            <if test="bizCondition.deviceId != null and bizCondition.deviceId != ''">
+                AND ( ocsi.start_node = #{bizCondition.deviceId}
+                OR ocsi.termination_node = #{bizCondition.deviceId})
+            </if>
+            <include refid="filterBySql"></include>
+            <include refid="sortBySql"></include>
+        </where>
+        <if test="pageCondition.beginNum != null and pageCondition.pageSize != null">
+            LIMIT
+            #{pageCondition.beginNum},#{pageCondition.pageSize}
+        </if>
+    </select>
+
+    <!--查询光缆总数-->
+    <select id="opticCableListTotal" parameterType="com.fiberhome.filink.bean.QueryCondition"
+            resultType="java.lang.Integer">
+        select count(DISTINCT(oci.optic_cable_id))
+        from optic_cable_info oci
+        LEFT JOIN optic_cable_section_info ocsi
+        ON oci.optic_cable_id = ocsi.belong_optic_cable_id
+        <where>
+            oci.is_deleted = '0'
+            <if test="bizCondition.deviceId != null  and bizCondition.deviceId != ''">
+                AND (
+                ocsi.start_node = #{bizCondition.deviceId}
+                OR ocsi.termination_node = #{bizCondition.deviceId})
+            </if>
+            <include refid="filterBySql"></include>
+            <include refid="sortBySql"></include>
+        </where>
+    </select>
+
+    <!--新增光缆-->
+    <insert id="addOpticCable" parameterType="com.fiberhome.filink.rfid.req.opticcable.InsertOpticCableInfoReq">
+        INSERT INTO
+            optic_cable_info
+            (
+                optic_cable_id,optic_cable_name,optic_cable_level,local_code,topology,wiring_type,core_num,biz_id,remark,create_time,create_user,update_time,update_user
+            )
+        VALUES
+            (
+                #{opticCableId},#{opticCableName},#{opticCableLevel},#{localCode},#{topology},#{wiringType},#{coreNum},#{bizId},#{remark},#{createTime},#{createUser},#{updateTime},#{updateUser}
+            )
+    </insert>
+
+    <!--根据id获取光缆信息-->
+    <select id="queryOpticCableById" parameterType="java.lang.String" resultMap="OpticCableInfoDetailMap">
+        SELECT
+            oci.optic_cable_id,
+            oci.optic_cable_name,
+            oci.optic_cable_level,
+            oci.local_code,
+            oci.topology,
+            oci.wiring_type,
+            oci.core_num,
+            oci.biz_id,
+            oci.remark,
+            oci.is_deleted,
+            oci.create_user,
+            oci.create_time,
+            oci.update_user,
+            oci.update_time
+        FROM
+          optic_cable_info oci
+        <where>
+            oci.is_deleted = '0'
+            <if test="opticCableId != null and opticCableId != ''">
+              and oci.optic_cable_id = #{opticCableId}
+            </if>
+
+        </where>
+    </select>
+
+    <!--修改光缆-->
+    <update id="updateOpticCableById" parameterType="com.fiberhome.filink.rfid.req.opticcable.UpdateOpticCableInfoReq">
+        UPDATE optic_cable_info t
+        SET
+            t.optic_cable_name = #{opticCableName},
+            t.local_code = #{localCode},
+            t.update_user = #{updateUser},
+            t.update_time = #{updateTime}
+        <where>
+            <if test="opticCableId != null and opticCableId != ''">
+                optic_cable_id = #{opticCableId}
+            </if>
+        </where>
+    </update>
+
+    <!--修改光缆isDeleted字段-->
+    <update id="updateOpticCableIsDeletedById">
+        UPDATE optic_cable_info t
+        SET
+        t.is_deleted = #{isDeleted},
+        t.update_user = #{updateUser},
+        t.update_time = #{updateTime}
+        <where>
+            <if test="opticCableId != null and opticCableId != ''">
+                optic_cable_id = #{opticCableId}
+            </if>
+        </where>
+    </update>
+
+    <!--根据名字获取光缆信息-->
+    <select id="queryOpticCableByName" parameterType="java.lang.String" resultMap="OpticCableInfoDetailMap">
+        SELECT
+        oci.optic_cable_id,
+        oci.optic_cable_name
+        FROM
+        optic_cable_info oci
+        <where>
+            oci.is_deleted = '0'
+            <if test="opticCableName != null and opticCableName != ''">
+                and oci.optic_cable_name = #{opticCableName}
+            </if>
+        </where>
+    </select>
+
+    <!--app请求所有光缆的信息-->
+    <select id="getOpticCableListForApp" resultMap="OpticCableInfoMapForApp">
+        SELECT
+        oci.optic_cable_id,
+        oci.optic_cable_name,
+        oci.optic_cable_level,
+        oci.local_code,
+        oci.topology,
+        oci.wiring_type,
+        oci.core_num,
+        oci.biz_id,
+        oci.is_deleted,
+        oci.create_user,
+        oci.create_time,
+        oci.update_user,
+        oci.update_time
+        FROM
+        optic_cable_info oci
+        <where>
+            oci.is_deleted = '0'
+        </where>
+    </select>
+    <select id="queryOpticCableByCoreNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select
+          oci.core_num
+        from optic_cable_info oci
+        <where>
+            oci.optic_cable_id = #{opticCableId}
+        </where>
+
+    </select>
+</mapper>

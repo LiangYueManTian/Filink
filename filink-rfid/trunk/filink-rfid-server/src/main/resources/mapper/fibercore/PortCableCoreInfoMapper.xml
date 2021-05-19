@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.fibercore.PortCableCoreInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="PortCableCoreResultMap" type="com.fiberhome.filink.rfid.bean.fibercore.PortCableCoreInfo">
+        <id column="port_core_id" property="portCoreId" />
+        <result column="port_no" property="portNo" />
+        <result column="resource_device_id" property="resourceDeviceId" />
+        <result column="resource_box_side" property="resourceBoxSide" />
+        <result column="resource_frame_no" property="resourceFrameNo" />
+        <result column="resource_disc_side" property="resourceDiscSide" />
+        <result column="resource_disc_no" property="resourceDiscNo" />
+        <result column="opposite_resource" property="oppositeResource" />
+        <result column="opposite_cable_core_no" property="oppositeCableCoreNo" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 成端返回映射结果 -->
+    <resultMap id="PortCableCoreRespMap" extends="PortCableCoreResultMap" type="com.fiberhome.filink.rfid.resp.fibercore.PortCableCoreInfoResp">
+
+    </resultMap>
+
+    <!-- app成端返回映射结果 -->
+    <resultMap id="PortCableCoreRespForAppMap" extends="PortCableCoreResultMap" type="com.fiberhome.filink.rfid.resp.fibercore.app.PortCableCoreInfoRespForApp">
+
+    </resultMap>
+
+    <!--获取成端关系信息-->
+    <select id="getPortCableCoreInfo" parameterType="com.fiberhome.filink.rfid.req.fibercore.PortCableCoreInfoReq" resultMap="PortCableCoreRespMap">
+        SELECT
+            pcci.port_core_id,
+            pcci.resource_device_id,
+            pcci.resource_box_side,
+            pcci.resource_frame_no,
+            pcci.resource_disc_side,
+            pcci.resource_disc_no,
+            pcci.port_no,
+            pcci.opposite_resource,
+            pcci.opposite_cable_core_no,
+            pcci.remark
+        FROM
+          port_cable_core_info pcci
+        <where>
+            pcci.is_deleted = '0'
+            <!--主键id-->
+            <if test="portCoreId != null and portCoreId != ''">
+                AND port_core_id = #{portCoreId}
+            </if>
+            <!--端口号-->
+            <if test="portNo != null and portNo != ''">
+                    AND port_no = #{portNo}
+            </if>
+            <!--对端纤芯号-->
+            <if test="oppositeCableCoreNo != null and oppositeCableCoreNo != ''">
+                AND opposite_cable_core_no = #{oppositeCableCoreNo}
+            </if>
+
+            <!--所属设施id-->
+            <if test="resourceDeviceId != null and resourceDeviceId != ''">
+                AND resource_device_id = #{resourceDeviceId}
+            </if>
+
+            <!--所属箱架ab面-->
+            <if test="resourceBoxSide != null and resourceBoxSide != ''">
+                AND resource_box_side = #{resourceBoxSide}
+            </if>
+
+            <!--所属框号-->
+            <if test="resourceFrameNo != null and resourceFrameNo != ''">
+                AND resource_frame_no = #{resourceFrameNo}
+            </if>
+
+            <!--所属盘ab面-->
+            <if test="resourceDiscSide != null and resourceDiscSide != ''">
+                AND resource_disc_side = #{resourceDiscSide}
+            </if>
+
+            <!--所属盘号-->
+            <if test="resourceDiscNo != null and resourceDiscNo != ''">
+                AND resource_disc_no = #{resourceDiscNo}
+            </if>
+
+            <!--所属光缆段-->
+            <if test="oppositeResource != null and oppositeResource != ''">
+                AND opposite_resource = #{oppositeResource}
+            </if>
+
+            <!--设施ids用于批量删除设施（用于批量删除设施）-->
+            <if test="deviceIds != null and deviceIds.size() > 0 ">
+                <if test="deviceIds.size() == 1">
+                    AND resource_device_id =
+                    <foreach collection="deviceIds" item="deviceId">
+                        #{deviceId}
+                    </foreach>
+                </if>
+                <if test="deviceIds.size() > 1">
+                    AND resource_device_id IN
+                    <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                        #{deviceId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!--获取其他设施成端信息-->
+    <select id="getPortCableCoreInfoNotInDevice" parameterType="com.fiberhome.filink.rfid.req.fibercore.PortCableCoreInfoReq" resultMap="PortCableCoreRespMap">
+        SELECT
+            pcci.port_core_id,
+            pcci.resource_device_id,
+            pcci.resource_box_side,
+            pcci.resource_frame_no,
+            pcci.resource_disc_side,
+            pcci.resource_disc_no,
+            pcci.port_no,
+            pcci.opposite_resource,
+            pcci.opposite_cable_core_no,
+            pcci.remark
+        FROM
+          port_cable_core_info pcci
+        <where>
+            pcci.is_deleted = '0'
+            <!--主键id-->
+            <if test="portCoreId != null and portCoreId != ''">
+                AND port_core_id = #{portCoreId}
+            </if>
+            <!--端口号-->
+            <if test="portNo != null and portNo != ''">
+                AND port_no = #{portNo}
+            </if>
+            <!--对端纤芯号-->
+            <if test="oppositeCableCoreNo != null and oppositeCableCoreNo != ''">
+                AND opposite_cable_core_no = #{oppositeCableCoreNo}
+            </if>
+
+            <!--所属设施id-->
+            <if test="resourceDeviceId != null and resourceDeviceId != ''">
+                AND resource_device_id != #{resourceDeviceId}
+            </if>
+
+            <!--所属箱架ab面-->
+            <if test="resourceBoxSide != null">
+                AND resource_box_side = #{resourceBoxSide}
+            </if>
+
+            <!--所属框号-->
+            <if test="resourceFrameNo != null and resourceFrameNo != ''">
+                AND resource_frame_no = #{resourceFrameNo}
+            </if>
+
+            <!--所属盘ab面-->
+            <if test="resourceDiscSide != null">
+                AND resource_disc_side = #{resourceDiscSide}
+            </if>
+
+            <!--所属盘号-->
+            <if test="resourceDiscNo != null and resourceDiscNo != ''">
+                AND resource_disc_no = #{resourceDiscNo}
+            </if>
+
+            <!--所属光缆段-->
+            <if test="oppositeResource != null and oppositeResource != ''">
+                AND opposite_resource = #{oppositeResource}
+            </if>
+        </where>
+    </select>
+
+    <!--删除该光缆段及该设施、框盘原有成端信息-->
+    <update id="deletePortCoreInfoByResourceAndDevice" parameterType="com.fiberhome.filink.rfid.req.fibercore.PortCableCoreInfoReq">
+        UPDATE port_cable_core_info
+        SET is_deleted = '1',
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        <where>
+            opposite_resource = #{oppositeResource}
+            AND resource_device_id = #{resourceDeviceId}
+            AND resource_box_side = #{resourceBoxSide}
+            AND resource_frame_no = #{resourceFrameNo}
+            AND resource_disc_side = #{resourceDiscSide}
+        </where>
+    </update>
+
+    <!--成端关系信息保存-->
+    <insert id="savePortCableCoreInfo" parameterType="java.util.List">
+        INSERT INTO port_cable_core_info (
+            port_core_id,
+            port_no,
+            resource_device_id,
+            resource_box_side,
+            resource_frame_no,
+            resource_disc_side,
+            resource_disc_no,
+            opposite_resource,
+            opposite_cable_core_no,
+            remark,
+            create_time,
+            create_user
+        )
+        VALUES
+        <foreach collection="insertPortCableCoreInfoReqList" item="portCableCoreInfo" index="index" open="" close="" separator=",">
+            (
+            #{portCableCoreInfo.portCoreId},
+            #{portCableCoreInfo.portNo},
+            #{portCableCoreInfo.resourceDeviceId},
+            #{portCableCoreInfo.resourceBoxSide},
+            #{portCableCoreInfo.resourceFrameNo},
+            #{portCableCoreInfo.resourceDiscSide},
+            #{portCableCoreInfo.resourceDiscNo},
+            #{portCableCoreInfo.oppositeResource},
+            #{portCableCoreInfo.oppositeCableCoreNo},
+            #{portCableCoreInfo.remark},
+            #{portCableCoreInfo.createTime},
+            #{portCableCoreInfo.createUser}
+            )
+        </foreach>
+    </insert>
+
+    <!--获取成端关系信息-->
+    <select id="queryPortCableCoreInfoForApp" parameterType="com.fiberhome.filink.rfid.req.fibercore.app.QueryPortCableCoreInfoReqForApp" resultMap="PortCableCoreRespForAppMap">
+        SELECT
+            pcci.port_core_id,
+            pcci.resource_device_id,
+            pcci.resource_box_side,
+            pcci.resource_frame_no,
+            pcci.resource_disc_side,
+            pcci.resource_disc_no,
+            pcci.port_no,
+            pcci.opposite_resource,
+            pcci.opposite_cable_core_no,
+            pcci.remark
+        FROM
+          port_cable_core_info pcci
+        <where>
+            pcci.is_deleted = '0'
+            <!--所属设施id-->
+            AND resource_device_id = #{resourceDeviceId}
+            <!--所属箱架ab面-->
+            <if test="resourceBoxSide != null">
+                AND resource_box_side = #{resourceBoxSide}
+            </if>
+            <!--所属框号，为0时查询所有-->
+            <if test="resourceFrameNo != null and resourceFrameNo != ''">
+                <if test="resourceFrameNo != '0'.toString()">
+                    AND resource_frame_no = #{resourceFrameNo}
+                </if>
+            </if>
+            <!--所属盘ab面-->
+            <if test="resourceDiscSide != null">
+                AND resource_disc_side = #{resourceDiscSide}
+            </if>
+            <!--所属盘号-->
+            <if test="resourceDiscNo != null and resourceDiscNo != ''">
+                <if test="resourceDiscNo != '0'.toString()">
+                    AND resource_disc_no = #{resourceDiscNo}
+                </if>
+            </if>
+            <!--端口号-->
+            <if test="portNo != null and portNo != ''">
+                <if test="portNo != '0'.toString()">
+                    AND port_no = #{portNo}
+                </if>
+            </if>
+
+            <!--所属光缆段-->
+            <if test="oppositeResource != null and oppositeResource != ''">
+                AND opposite_resource = #{oppositeResource}
+            </if>
+            <!--对端纤芯号-->
+            <if test="oppositeCableCoreNo != null and oppositeCableCoreNo != ''">
+                <if test="oppositeCableCoreNo != '0'.toString()">
+                    AND opposite_cable_core_no = #{oppositeCableCoreNo}
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!--app删除当前成端信息（待定）-->
+    <update id="deletePortCoreInfoByPortCoreInfoForApp" parameterType="com.fiberhome.filink.rfid.req.fibercore.app.PortCableCoreInfoReqForApp">
+        UPDATE port_cable_core_info
+        SET is_deleted = '1',
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        <where>
+            resource_device_id = #{resourceDeviceId}
+            AND resource_box_side = #{resourceBoxSide}
+            AND resource_frame_no = #{resourceFrameNo}
+            AND resource_disc_side = #{resourceDiscSide}
+            AND resource_disc_no = #{resourceDiscNo}
+            AND port_no = #{portNo}
+            AND opposite_resource = #{oppositeResource}
+            AND opposite_cable_core_no = #{oppositeCableCoreNo}
+        </where>
+    </update>
+
+    <!--app删除该设施、框、盘、端口原有成端信息（未启用，待定）-->
+    <update id="deletePortCoreInfoByPortForApp" parameterType="com.fiberhome.filink.rfid.req.fibercore.app.PortCableCoreInfoReqForApp">
+        UPDATE port_cable_core_info
+        SET is_deleted = '1',
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        <where>
+             resource_device_id = #{resourceDeviceId}
+            AND resource_box_side = #{resourceBoxSide}
+            AND resource_frame_no = #{resourceFrameNo}
+            AND resource_disc_side = #{resourceDiscSide}
+            AND resource_disc_no = #{resourceDiscNo}
+            AND port_no = #{portNo}
+        </where>
+    </update>
+
+    <!--app成端关系信息保存-->
+    <insert id="savePortCableCoreInfoForApp" parameterType="com.fiberhome.filink.rfid.req.fibercore.app.OperationPortCableCoreInfoReqForApp">
+        INSERT INTO port_cable_core_info (
+            port_core_id,
+            port_no,
+            resource_device_id,
+            resource_box_side,
+            resource_frame_no,
+            resource_disc_side,
+            resource_disc_no,
+            opposite_resource,
+            opposite_cable_core_no,
+            remark,
+            create_time,
+            create_user
+        )
+        VALUES
+        <foreach collection="operationPortCableCoreInfoReqForAppList" item="operationPortCableCoreInfoReqForApp" index="index" open="" close="" separator=",">
+            (
+                #{operationPortCableCoreInfoReqForApp.portCoreId},
+                #{operationPortCableCoreInfoReqForApp.portNo},
+                #{operationPortCableCoreInfoReqForApp.resourceDeviceId},
+                #{operationPortCableCoreInfoReqForApp.resourceBoxSide},
+                #{operationPortCableCoreInfoReqForApp.resourceFrameNo},
+                #{operationPortCableCoreInfoReqForApp.resourceDiscSide},
+                #{operationPortCableCoreInfoReqForApp.resourceDiscNo},
+                #{operationPortCableCoreInfoReqForApp.oppositeResource},
+                #{operationPortCableCoreInfoReqForApp.oppositeCableCoreNo},
+                #{operationPortCableCoreInfoReqForApp.remark},
+                #{operationPortCableCoreInfoReqForApp.createTime},
+                #{operationPortCableCoreInfoReqForApp.createUser}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

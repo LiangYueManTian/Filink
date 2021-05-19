@@ -1,0 +1,5 @@
+<div class="main-container" [ngStyle]="{'left': left}">
+  <app-b-map *ngIf="mapType === 'baidu'"></app-b-map>
+  <app-g-map *ngIf="mapType === 'google'"></app-g-map>
+  <!--<app-map></app-map>-->
+</div>

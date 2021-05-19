@@ -1,0 +1,129 @@
+/**
+ * Created by xiaoconghu on 2019/1/18.
+ */
+export abstract class MapAbstract {
+  private _maxLng;
+
+  get maxLng() {
+    return this._maxLng;
+  }
+
+  set maxLng(value) {
+    this._maxLng = value;
+  }
+
+  private _minLng;
+
+  get minLng() {
+    return this._minLng;
+  }
+
+  set minLng(value) {
+    this._minLng = value;
+  }
+
+  private _maxLat;
+
+  get maxLat() {
+    return this._maxLat;
+  }
+
+  set maxLat(value) {
+    this._maxLat = value;
+  }
+
+  private _minLat;
+
+  get minLat() {
+    return this._minLat;
+  }
+
+  set minLat(value) {
+    this._minLat = value;
+  }
+
+  abstract createPoint(lng, lat): any;
+
+  abstract addOverlay(marker): any;
+
+  abstract addMarker(point, id, fn?);
+
+  abstract clearOverlay(overlay);
+
+  /**
+   * 创建地图
+   * param documentId
+   */
+  abstract createMap(documentId);
+
+  /**
+   * 判断点是否在框中
+   * param pt
+   * param poly
+   */
+  abstract isInsidePolygon(pt, poly);
+
+  /**
+   * 通过id获取marker
+   * param id
+   */
+  abstract getMarkerById(id);
+
+  /**
+   * 通过id获取marker点数据
+   * param id
+   */
+  abstract getMarkerDataById(id);
+
+  /**
+   * 切换点图标
+   * param url
+   */
+  abstract toggleIcon(url);
+
+  /**
+   * 创建点
+   * param point 点信息
+   * param fn 回调函数
+   */
+  abstract createMarker(point, fn?);
+
+  /**
+   * 添加聚合点
+   * param markers
+   */
+  abstract addMarkerClusterer(markers, fn?);
+
+  /**
+   * 获取所有点数据
+   * returns {Map<string, any>}
+   */
+  abstract getMarkerMap(): Map<string, any>;
+
+  /**
+   * 设置中心点
+   */
+  abstract setCenterPoint(lat?, lng?, zoom?);
+
+  /**
+   * 获取城市信息
+   */
+  abstract getLocation(overlays, fn);
+
+  /**
+   * 定位到用户登录的城市
+   */
+  abstract locateToUserCity();
+
+  /**
+   * 根据录入点的坐标计算出中心点
+   * param lng
+   * param lat
+   */
+  public updateCenterPoint(lng, lat) {
+    this._maxLng = this._maxLng ? (lng > this._maxLng ? lng : this._maxLng) : lng;
+    this._minLng = this._minLng ? (lng < this._minLng ? lng : this._minLng) : lng;
+    this._maxLat = this._maxLat ? (lat > this._maxLat ? lat : this._maxLat) : lat;
+    this._minLat = this._minLat ? (lat < this._minLat ? lat : this._minLat) : lat;
+  }
+}

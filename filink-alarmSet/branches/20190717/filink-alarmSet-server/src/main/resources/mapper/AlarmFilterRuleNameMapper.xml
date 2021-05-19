@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmFilterRuleNameDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmFilterRuleName">
+        <result column="rule_id" property="ruleId" />
+        <result column="alarm_name_id" property="alarmNameId" />
+    </resultMap>
+
+    <delete id="batchDeleteAlarmFilterRuleName">
+        DELETE FROM alarm_filter_rule_name WHERE rule_id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <delete id="deleteAlarmFilterRuleName">
+        DELETE FROM alarm_filter_rule_name WHERE rule_id=#{ruleId}
+    </delete>
+
+    <update id="batchUpdateRuleName" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+            UPDATE alarm_filter_rule_name SET alarm_name_id=#{alarmNameId} WHERE rule_id=#{ruleId}
+        </foreach>
+    </update>
+
+    <insert id="addAlarmFilterRuleName">
+        INSERT INTO alarm_filter_rule_name (rule_id,alarm_name_id) VALUE
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.ruleId},
+            #{item.alarmNameId}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryAlarmFilterRuleNameById" resultMap="BaseResultMap">
+        SELECT rule_id,alarm_name_id FROM alarm_filter_rule_name WHERE rule_id=#{id}
+    </select>
+
+
+</mapper>

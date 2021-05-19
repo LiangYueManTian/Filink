@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.lockserver.dao.LockDao">
+    <!--根据设施id查询电子锁信息-->
+    <select id="queryLockByDeviceId" parameterType="String" resultMap="lockMap">
+        select lock_id,lock_type,lock_name,lock_num,lock_status,door_name,door_status,device_id
+        from lock_info
+        where device_id = #{deviceId} and is_deleted = 0
+    </select>
+
+    <resultMap id="lockMap" type="Lock">
+        <id column="lock_id" property="lockId"/>
+        <result column="lock_type" property="lockType"/>
+        <result column="lock_name" property="lockName"/>
+        <result column="lock_num" property="lockNum"/>
+        <result column="lock_status" property="lockStatus"/>
+        <result column="door_name" property="doorName"/>
+        <result column="door_status" property="doorStatus"/>
+        <result column="device_id" property="deviceId"/>
+    </resultMap>
+
+    <!--保存电子锁信息-->
+    <insert id="saveLockInfo" parameterType="Lock">
+        <selectKey keyProperty="lockId" resultType="String" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
+        insert into
+        lock_info(lock_type,lock_name,lock_num,lock_status,door_name,door_status,device_id,is_deleted)
+        values
+        (#{lock_type},
+        #{lock_name},
+        #{lock_num},
+        #{lock_status},
+        #{door_name},
+        #{door_status},
+        #{device_id},
+        0)
+    </insert>
+
+    <!--更新电子锁状态-->
+    <update id="updateLockStatus" parameterType="Lock">
+        update
+        lock_info
+        set
+        lock_status = #{lockStatus},
+        door_status = #{doorStatus}
+        where
+        lock_num = #{lockNum}
+        and
+        device_id = #{deviceId}
+    </update>
+
+    <!--根据设施id和锁具编号查询电子锁信息-->
+    <select id="queryLockByDeviceIdAndSlotNum" resultMap="lockMap">
+        select
+        lock_id,lock_type,lock_name,lock_num,lock_status,door_name,door_status,device_id
+        from
+        lock_info
+        where
+        device_id = #{deviceId}
+        and
+        lock_num = #{slotNum}
+    </select>
+
+    <!--根据设施id和锁具编号查询电子锁信息集合-->
+    <select id="queryLockByDeviceIdAndSlotNumList" resultMap="lockMap">
+        select
+        lock_id,lock_type,lock_name,lock_num,lock_status,door_name,door_status,device_id
+        from
+        lock_info
+        where
+        device_id = #{deviceId}
+        and
+        lock_num in
+        <foreach collection="slotNumList" open="(" close=")" item="slotNum" separator=",">
+            #{slotNum}
+        </foreach>
+    </select>
+</mapper>

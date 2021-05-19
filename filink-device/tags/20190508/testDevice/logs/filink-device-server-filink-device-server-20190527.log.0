@@ -1,0 +1,26 @@
+2019-05-27 17:09:49.898 [main] ERROR c.f.f.t.txmsg.AutoTMClusterEngine
+                -request fail. non tx-manager is alive. on reportInvalidTM.
+2019-05-27 17:09:49.927 [main] ERROR o.s.boot.SpringApplication
+                -Application startup failed
+java.lang.IllegalStateException: Failed to execute ApplicationRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:726)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:713)
+	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:703)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:304)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+Caused by: java.lang.IllegalStateException: There is no normal TM.
+	at com.fiberhome.filink.txlcntc.txmsg.TMSearcher.search(TMSearcher.java:83)
+	at com.fiberhome.filink.txlcntc.txmsg.AutoTMClusterEngine.prepareToResearchTMCluster(AutoTMClusterEngine.java:83)
+	at com.fiberhome.filink.txlcntc.txmsg.AutoTMClusterEngine.onConnectFail(AutoTMClusterEngine.java:69)
+	at com.fiberhome.filink.txlcntc.txmsg.TCSideRpcInitCallBack.lambda$connectFail$3(TCSideRpcInitCallBack.java:107)
+	at com.fiberhome.filink.txlcntc.txmsg.TCSideRpcInitCallBack$$Lambda$42/665734621.accept(Unknown Source)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at com.fiberhome.filink.txlcntc.txmsg.TCSideRpcInitCallBack.connectFail(TCSideRpcInitCallBack.java:107)
+	at com.fiberhome.filink.txlcntxmsgnetty.impl.NettyRpcClientInitializer.connect(NettyRpcClientInitializer.java:125)
+	at com.fiberhome.filink.txlcntxmsgnetty.impl.NettyRpcClientInitializer.init(NettyRpcClientInitializer.java:85)
+	at com.fiberhome.filink.txlcntc.txmsg.TCRpcServer.init(TCRpcServer.java:58)
+	at com.fiberhome.filink.txlcncommon.runner.TxLcnApplicationRunner.run(TxLcnApplicationRunner.java:56)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:723)
+	... 6 common frames omitted

@@ -1,0 +1,36 @@
+GET http://localhost:9301/areaInfo/test
+
+<> 2019-08-15T104811.200.txt
+
+###
+
+GET http://localhost:9301/areaInfo/test
+
+<> 2019-08-15T103739.500.json
+
+###
+
+GET http://localhost:9301/areaInfo/test
+
+<> 2019-08-15T103223.500.json
+
+###
+
+GET http://localhost:9301/areaInfo/test
+
+<> 2019-08-15T103132.500.json
+
+###
+
+GET http://localhost:9301/areaInfo/test
+
+<> 2019-08-15T102938.500.json
+
+###
+
+POST http://localhost:9301/areaInfo/deleteAreaDeptRelation
+
+<> 2019-01-30T055725.500.json
+
+###
+

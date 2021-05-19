@@ -1,0 +1,1283 @@
+2019-03-02 09:46:06.175 [background-preinit] INFO  o.h.validator.internal.util.Version
+                -HV000001: Hibernate Validator 5.3.5.Final
+2019-03-02 09:46:07.692 [main] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-alarmSet-server/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-03-02 09:46:07.694 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -The following profiles are active: test
+2019-03-02 09:46:11.884 [main] INFO  org.eclipse.jetty.util.log
+                -Logging initialized @7197ms to org.eclipse.jetty.util.log.Slf4jLog
+2019-03-02 09:46:11.950 [main] INFO  org.eclipse.jetty.server.Server
+                -jetty-9.4.7.v20170914
+2019-03-02 09:46:12.076 [main] INFO  org.eclipse.jetty.server.session
+                -DefaultSessionIdManager workerName=node0
+2019-03-02 09:46:12.076 [main] INFO  org.eclipse.jetty.server.session
+                -No SessionScavenger set, using defaults
+2019-03-02 09:46:12.077 [main] INFO  org.eclipse.jetty.server.session
+                -Scavenging every 600000ms
+2019-03-02 09:46:12.082 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -Initializing Spring embedded WebApplicationContext
+2019-03-02 09:46:12.111 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================德鲁伊数据源初始化============================
+2019-03-02 09:46:12.118 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================初始化用户名：admin===========================
+2019-03-02 09:46:12.118 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================初始化密码：admin=============================
+2019-03-02 09:46:12.118 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -
+2019-03-02 09:46:13.430 [main] INFO  o.e.j.server.handler.ContextHandler
+                -Started o.s.b.c.e.j.JettyEmbeddedWebAppContext@218fc40d{/,[file:///C:/Users/Administrator/AppData/Local/Temp/jetty-docbase.8491505898069175448.9205/, jar:file:/D:/repository/org/webjars/jquery/2.1.1/jquery-2.1.1.jar!/META-INF/resources, jar:file:/D:/repository/org/webjars/d3js/3.4.11/d3js-3.4.11.jar!/META-INF/resources],AVAILABLE}
+2019-03-02 09:46:13.431 [main] INFO  org.eclipse.jetty.server.Server
+                -Started @8745ms
+2019-03-02 09:46:17.417 [main] INFO  c.alibaba.druid.pool.DruidDataSource
+                -{dataSource-1} inited
+2019-03-02 09:46:17.527 [main] WARN  c.b.m.toolkit.TableInfoHelper
+                -Warn: Could not find @TableId in Class: com.fiberhome.filink.alarmsetserver.bean.AlarmDelay.
+2019-03-02 09:46:17.527 [main] WARN  c.b.m.mapper.AutoSqlInjector
+                -class com.fiberhome.filink.alarmsetserver.bean.AlarmDelay ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2019-03-02 09:46:22.202 [main] WARN  c.n.c.sources.URLConfigurationSource
+                -No URLs will be polled as dynamic configuration sources.
+2019-03-02 09:46:22.202 [main] INFO  c.n.c.sources.URLConfigurationSource
+                -To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-03-02 09:46:22.206 [main] INFO  c.n.config.DynamicPropertyFactory
+                -DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@1ba7b274
+2019-03-02 09:46:22.427 [main] WARN  c.n.c.sources.URLConfigurationSource
+                -No URLs will be polled as dynamic configuration sources.
+2019-03-02 09:46:22.427 [main] INFO  c.n.c.sources.URLConfigurationSource
+                -To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-03-02 09:46:34.504 [main] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-alarmSet-server/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-03-02 09:46:34.505 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -The following profiles are active: test
+2019-03-02 09:46:34.655 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -Started FilinkAlarmSetServerApplication in 1.236 seconds (JVM running for 29.969)
+2019-03-02 09:46:34.711 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:zookeeper.version=3.4.8--1, built on 02/06/2016 03:18 GMT
+2019-03-02 09:46:34.712 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:host.name=SKY-20190125EWT.wh.wistronits.com
+2019-03-02 09:46:34.712 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.version=1.8.0_201
+2019-03-02 09:46:34.712 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.vendor=Oracle Corporation
+2019-03-02 09:46:34.712 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.home=D:\java\jdk\jre
+2019-03-02 09:46:34.712 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.class.path=D:\java\jdk\jre\lib\charsets.jar;D:\java\jdk\jre\lib\deploy.jar;D:\java\jdk\jre\lib\ext\access-bridge-64.jar;D:\java\jdk\jre\lib\ext\cldrdata.jar;D:\java\jdk\jre\lib\ext\dnsns.jar;D:\java\jdk\jre\lib\ext\jaccess.jar;D:\java\jdk\jre\lib\ext\jfxrt.jar;D:\java\jdk\jre\lib\ext\localedata.jar;D:\java\jdk\jre\lib\ext\nashorn.jar;D:\java\jdk\jre\lib\ext\sunec.jar;D:\java\jdk\jre\lib\ext\sunjce_provider.jar;D:\java\jdk\jre\lib\ext\sunmscapi.jar;D:\java\jdk\jre\lib\ext\sunpkcs11.jar;D:\java\jdk\jre\lib\ext\zipfs.jar;D:\java\jdk\jre\lib\javaws.jar;D:\java\jdk\jre\lib\jce.jar;D:\java\jdk\jre\lib\jfr.jar;D:\java\jdk\jre\lib\jfxswt.jar;D:\java\jdk\jre\lib\jsse.jar;D:\java\jdk\jre\lib\management-agent.jar;D:\java\jdk\jre\lib\plugin.jar;D:\java\jdk\jre\lib\resources.jar;D:\java\jdk\jre\lib\rt.jar;D:\code\10-Sys Code\filink-alarmSet\branches\2019223\filink-alarmSet-server\target\classes;D:\repository\org\springframework\boot\spring-boot-starter\1.5.8.RELEASE\spring-boot-starter-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot\1.5.8.RELEASE\spring-boot-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-context\4.3.12.RELEASE\spring-context-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-expression\4.3.12.RELEASE\spring-expression-4.3.12.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-autoconfigure\1.5.8.RELEASE\spring-boot-autoconfigure-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-logging\1.5.8.RELEASE\spring-boot-starter-logging-1.5.8.RELEASE.jar;D:\repository\ch\qos\logback\logback-classic\1.1.11\logback-classic-1.1.11.jar;D:\repository\ch\qos\logback\logback-core\1.1.11\logback-core-1.1.11.jar;D:\repository\org\slf4j\jcl-over-slf4j\1.7.25\jcl-over-slf4j-1.7.25.jar;D:\repository\org\slf4j\jul-to-slf4j\1.7.25\jul-to-slf4j-1.7.25.jar;D:\repository\org\slf4j\log4j-over-slf4j\1.7.25\log4j-over-slf4j-1.7.25.jar;D:\repository\org\springframework\spring-core\4.3.12.RELEASE\spring-core-4.3.12.RELEASE.jar;D:\repository\org\yaml\snakeyaml\1.17\snakeyaml-1.17.jar;D:\repository\com\jayway\jsonpath\json-path\2.2.0\json-path-2.2.0.jar;D:\repository\net\minidev\json-smart\2.2.1\json-smart-2.2.1.jar;D:\repository\net\minidev\accessors-smart\1.1\accessors-smart-1.1.jar;D:\repository\org\ow2\asm\asm\5.0.3\asm-5.0.3.jar;D:\repository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;D:\repository\junit\junit\4.12\junit-4.12.jar;D:\repository\org\objenesis\objenesis\2.1\objenesis-2.1.jar;D:\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;D:\repository\com\fiberhome\filink\filink-common-server\0.0.1-RELEASE\filink-common-server-0.0.1-RELEASE.jar;D:\repository\org\jmockit\jmockit\1.33\jmockit-1.33.jar;D:\repository\org\springframework\cloud\spring-cloud-config-client\1.4.5.RELEASE\spring-cloud-config-client-1.4.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-commons\1.3.5.RELEASE\spring-cloud-commons-1.3.5.RELEASE.jar;D:\repository\org\springframework\security\spring-security-crypto\4.2.3.RELEASE\spring-security-crypto-4.2.3.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-context\1.3.5.RELEASE\spring-cloud-context-1.3.5.RELEASE.jar;D:\repository\com\fasterxml\jackson\core\jackson-annotations\2.8.0\jackson-annotations-2.8.0.jar;D:\repository\com\fasterxml\jackson\core\jackson-databind\2.8.10\jackson-databind-2.8.10.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-hystrix\1.4.6.RELEASE\spring-cloud-starter-hystrix-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-hystrix\1.4.6.RELEASE\spring-cloud-starter-netflix-hystrix-1.4.6.RELEASE.jar;D:\repository\com\netflix\hystrix\hystrix-core\1.5.12\hystrix-core-1.5.12.jar;D:\repository\org\hdrhistogram\HdrHistogram\2.1.9\HdrHistogram-2.1.9.jar;D:\repository\com\netflix\hystrix\hystrix-metrics-event-stream\1.5.12\hystrix-metrics-event-stream-1.5.12.jar;D:\repository\com\netflix\hystrix\hystrix-serialization\1.5.12\hystrix-serialization-1.5.12.jar;D:\repository\com\fasterxml\jackson\module\jackson-module-afterburner\2.8.10\jackson-module-afterburner-2.8.10.jar;D:\repository\com\netflix\hystrix\hystrix-javanica\1.5.12\hystrix-javanica-1.5.12.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-starter-hystrix-dashboard-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-starter-netflix-hystrix-dashboard-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-netflix-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-netflix-hystrix-dashboard-1.4.6.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-freemarker\1.5.8.RELEASE\spring-boot-starter-freemarker-1.5.8.RELEASE.jar;D:\repository\org\freemarker\freemarker\2.3.26-incubating\freemarker-2.3.26-incubating.jar;D:\repository\org\springframework\spring-context-support\4.3.12.RELEASE\spring-context-support-4.3.12.RELEASE.jar;D:\repository\org\webjars\jquery\2.1.1\jquery-2.1.1.jar;D:\repository\org\webjars\d3js\3.4.11\d3js-3.4.11.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-zipkin\1.3.5.RELEASE\spring-cloud-starter-zipkin-1.3.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-sleuth\1.3.5.RELEASE\spring-cloud-starter-sleuth-1.3.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-sleuth-core\1.3.5.RELEASE\spring-cloud-sleuth-core-1.3.5.RELEASE.jar;D:\repository\org\aspectj\aspectjrt\1.8.11\aspectjrt-1.8.11.jar;D:\repository\org\springframework\cloud\spring-cloud-sleuth-zipkin\1.3.5.RELEASE\spring-cloud-sleuth-zipkin-1.3.5.RELEASE.jar;D:\repository\io\zipkin\zipkin2\zipkin\2.7.1\zipkin-2.7.1.jar;D:\repository\io\zipkin\reporter2\zipkin-reporter\2.5.0\zipkin-reporter-2.5.0.jar;D:\repository\io\zipkin\reporter2\zipkin-sender-kafka11\2.5.0\zipkin-sender-kafka11-2.5.0.jar;D:\repository\io\zipkin\reporter2\zipkin-sender-amqp-client\2.5.0\zipkin-sender-amqp-client-2.5.0.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-config\1.4.5.RELEASE\spring-cloud-starter-config-1.4.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter\1.3.5.RELEASE\spring-cloud-starter-1.3.5.RELEASE.jar;D:\repository\org\springframework\security\spring-security-rsa\1.0.3.RELEASE\spring-security-rsa-1.0.3.RELEASE.jar;D:\repository\org\bouncycastle\bcpkix-jdk15on\1.55\bcpkix-jdk15on-1.55.jar;D:\repository\org\bouncycastle\bcprov-jdk15on\1.55\bcprov-jdk15on-1.55.jar;D:\repository\org\springframework\boot\spring-boot-starter-aop\1.5.8.RELEASE\spring-boot-starter-aop-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-aop\4.3.12.RELEASE\spring-aop-4.3.12.RELEASE.jar;D:\repository\org\aspectj\aspectjweaver\1.8.11\aspectjweaver-1.8.11.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-eureka-client\1.4.6.RELEASE\spring-cloud-starter-netflix-eureka-client-1.4.6.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-web\1.5.8.RELEASE\spring-boot-starter-web-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-tomcat\1.5.8.RELEASE\spring-boot-starter-tomcat-1.5.8.RELEASE.jar;D:\repository\org\apache\tomcat\embed\tomcat-embed-core\8.5.23\tomcat-embed-core-8.5.23.jar;D:\repository\org\apache\tomcat\tomcat-annotations-api\8.5.23\tomcat-annotations-api-8.5.23.jar;D:\repository\org\apache\tomcat\embed\tomcat-embed-el\8.5.23\tomcat-embed-el-8.5.23.jar;D:\repository\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.23\tomcat-embed-websocket-8.5.23.jar;D:\repository\org\hibernate\hibernate-validator\5.3.5.Final\hibernate-validator-5.3.5.Final.jar;D:\repository\javax\validation\validation-api\1.1.0.Final\validation-api-1.1.0.Final.jar;D:\repository\org\jboss\logging\jboss-logging\3.3.1.Final\jboss-logging-3.3.1.Final.jar;D:\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;D:\repository\org\springframework\spring-webmvc\4.3.12.RELEASE\spring-webmvc-4.3.12.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-netflix-core\1.4.6.RELEASE\spring-cloud-netflix-core-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-netflix-eureka-client\1.4.6.RELEASE\spring-cloud-netflix-eureka-client-1.4.6.RELEASE.jar;D:\repository\com\netflix\eureka\eureka-client\1.7.2\eureka-client-1.7.2.jar;D:\repository\org\codehaus\jettison\jettison\1.3.7\jettison-1.3.7.jar;D:\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;D:\repository\com\netflix\netflix-commons\netflix-eventbus\0.3.0\netflix-eventbus-0.3.0.jar;D:\repository\com\netflix\netflix-commons\netflix-infix\0.3.0\netflix-infix-0.3.0.jar;D:\repository\commons-jxpath\commons-jxpath\1.3\commons-jxpath-1.3.jar;D:\repository\joda-time\joda-time\2.9.9\joda-time-2.9.9.jar;D:\repository\org\antlr\antlr-runtime\3.4\antlr-runtime-3.4.jar;D:\repository\org\antlr\stringtemplate\3.2.1\stringtemplate-3.2.1.jar;D:\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;D:\repository\com\google\code\gson\gson\2.8.2\gson-2.8.2.jar;D:\repository\org\apache\commons\commons-math\2.2\commons-math-2.2.jar;D:\repository\com\netflix\archaius\archaius-core\0.7.4\archaius-core-0.7.4.jar;D:\repository\javax\ws\rs\jsr311-api\1.1.1\jsr311-api-1.1.1.jar;D:\repository\com\netflix\servo\servo-core\0.10.1\servo-core-0.10.1.jar;D:\repository\com\netflix\servo\servo-internal\0.10.1\servo-internal-0.10.1.jar;D:\repository\com\sun\jersey\jersey-core\1.19.1\jersey-core-1.19.1.jar;D:\repository\com\sun\jersey\jersey-client\1.19.1\jersey-client-1.19.1.jar;D:\repository\com\sun\jersey\contribs\jersey-apache-client4\1.19.1\jersey-apache-client4-1.19.1.jar;D:\repository\com\google\inject\guice\4.1.0\guice-4.1.0.jar;D:\repository\javax\inject\javax.inject\1\javax.inject-1.jar;D:\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;D:\repository\com\netflix\eureka\eureka-core\1.7.2\eureka-core-1.7.2.jar;D:\repository\org\codehaus\woodstox\woodstox-core-asl\4.4.1\woodstox-core-asl-4.4.1.jar;D:\repository\javax\xml\stream\stax-api\1.0-2\stax-api-1.0-2.jar;D:\repository\org\codehaus\woodstox\stax2-api\3.1.4\stax2-api-3.1.4.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-archaius\1.4.6.RELEASE\spring-cloud-starter-netflix-archaius-1.4.6.RELEASE.jar;D:\repository\commons-configuration\commons-configuration\1.8\commons-configuration-1.8.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-ribbon\1.4.6.RELEASE\spring-cloud-starter-netflix-ribbon-1.4.6.RELEASE.jar;D:\repository\com\netflix\ribbon\ribbon\2.2.5\ribbon-2.2.5.jar;D:\repository\com\netflix\ribbon\ribbon-transport\2.2.5\ribbon-transport-2.2.5.jar;D:\repository\io\reactivex\rxnetty-contexts\0.4.9\rxnetty-contexts-0.4.9.jar;D:\repository\io\reactivex\rxnetty-servo\0.4.9\rxnetty-servo-0.4.9.jar;D:\repository\io\reactivex\rxnetty\0.4.9\rxnetty-0.4.9.jar;D:\repository\com\netflix\ribbon\ribbon-core\2.2.5\ribbon-core-2.2.5.jar;D:\repository\com\netflix\ribbon\ribbon-httpclient\2.2.5\ribbon-httpclient-2.2.5.jar;D:\repository\com\netflix\netflix-commons\netflix-commons-util\0.1.1\netflix-commons-util-0.1.1.jar;D:\repository\com\netflix\ribbon\ribbon-loadbalancer\2.2.5\ribbon-loadbalancer-2.2.5.jar;D:\repository\com\netflix\netflix-commons\netflix-statistics\0.1.1\netflix-statistics-0.1.1.jar;D:\repository\io\reactivex\rxjava\1.2.0\rxjava-1.2.0.jar;D:\repository\com\netflix\ribbon\ribbon-eureka\2.2.5\ribbon-eureka-2.2.5.jar;D:\repository\com\thoughtworks\xstream\xstream\1.4.10\xstream-1.4.10.jar;D:\repository\xmlpull\xmlpull\1.1.3.1\xmlpull-1.1.3.1.jar;D:\repository\xpp3\xpp3_min\1.1.4c\xpp3_min-1.1.4c.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-feign\1.4.6.RELEASE\spring-cloud-starter-feign-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-openfeign\1.4.6.RELEASE\spring-cloud-starter-openfeign-1.4.6.RELEASE.jar;D:\repository\io\github\openfeign\feign-core\9.5.0\feign-core-9.5.0.jar;D:\repository\org\jvnet\animal-sniffer-annotation\1.0\animal-sniffer-annotation-1.0.jar;D:\repository\io\github\openfeign\feign-slf4j\9.5.0\feign-slf4j-9.5.0.jar;D:\repository\io\github\openfeign\feign-hystrix\9.5.0\feign-hystrix-9.5.0.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-bus-kafka\1.3.4.RELEASE\spring-cloud-starter-bus-kafka-1.3.4.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-stream-kafka\1.3.3.RELEASE\spring-cloud-starter-stream-kafka-1.3.3.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream-binder-kafka\1.3.3.RELEASE\spring-cloud-stream-binder-kafka-1.3.3.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream-binder-kafka-core\1.3.3.RELEASE\spring-cloud-stream-binder-kafka-core-1.3.3.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-kafka\2.1.2.RELEASE\spring-integration-kafka-2.1.2.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream-codec\1.3.3.RELEASE\spring-cloud-stream-codec-1.3.3.RELEASE.jar;D:\repository\com\esotericsoftware\kryo-shaded\3.0.3\kryo-shaded-3.0.3.jar;D:\repository\com\esotericsoftware\minlog\1.3.0\minlog-1.3.0.jar;D:\repository\org\apache\kafka\kafka_2.11\0.10.1.1\kafka_2.11-0.10.1.1.jar;D:\repository\com\yammer\metrics\metrics-core\2.2.0\metrics-core-2.2.0.jar;D:\repository\org\scala-lang\scala-library\2.11.8\scala-library-2.11.8.jar;D:\repository\com\101tec\zkclient\0.9\zkclient-0.9.jar;D:\repository\org\apache\zookeeper\zookeeper\3.4.8\zookeeper-3.4.8.jar;D:\repository\io\netty\netty\3.7.0.Final\netty-3.7.0.Final.jar;D:\repository\org\scala-lang\modules\scala-parser-combinators_2.11\1.0.4\scala-parser-combinators_2.11-1.0.4.jar;D:\repository\org\apache\kafka\kafka-clients\0.10.1.1\kafka-clients-0.10.1.1.jar;D:\repository\net\jpountz\lz4\lz4\1.3.0\lz4-1.3.0.jar;D:\repository\org\xerial\snappy\snappy-java\1.1.2.6\snappy-java-1.1.2.6.jar;D:\repository\org\springframework\kafka\spring-kafka\1.1.7.RELEASE\spring-kafka-1.1.7.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-bus\1.3.4.RELEASE\spring-cloud-bus-1.3.4.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream\1.3.3.RELEASE\spring-cloud-stream-1.3.3.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-validation\1.5.8.RELEASE\spring-boot-starter-validation-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-messaging\4.3.12.RELEASE\spring-messaging-4.3.12.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-jmx\4.3.12.RELEASE\spring-integration-jmx-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-tuple\1.0.0.RELEASE\spring-tuple-1.0.0.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-tuple\1.0.0.RELEASE\spring-integration-tuple-1.0.0.RELEASE.jar;D:\repository\org\springframework\retry\spring-retry\1.2.1.RELEASE\spring-retry-1.2.1.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-core\4.3.12.RELEASE\spring-integration-core-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-tx\4.3.12.RELEASE\spring-tx-4.3.12.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-actuator\1.5.8.RELEASE\spring-boot-starter-actuator-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-actuator\1.5.8.RELEASE\spring-boot-actuator-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-web\4.3.12.RELEASE\spring-web-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-beans\4.3.12.RELEASE\spring-beans-4.3.12.RELEASE.jar;D:\repository\com\alibaba\fastjson\1.2.44\fastjson-1.2.44.jar;D:\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;D:\repository\commons-beanutils\commons-beanutils\1.9.3\commons-beanutils-1.9.3.jar;D:\repository\commons-collections\commons-collections\3.2.2\commons-collections-3.2.2.jar;D:\repository\commons-io\commons-io\1.3.2\commons-io-1.3.2.jar;D:\repository\com\alibaba\druid\1.1.9\druid-1.1.9.jar;D:\repository\com\baomidou\mybatis-plus-boot-starter\2.2.0\mybatis-plus-boot-starter-2.2.0.jar;D:\repository\com\baomidou\mybatis-plus\2.2.0\mybatis-plus-2.2.0.jar;D:\repository\com\baomidou\mybatis-plus-support\2.2.0\mybatis-plus-support-2.2.0.jar;D:\repository\com\baomidou\mybatis-plus-core\2.2.0\mybatis-plus-core-2.2.0.jar;D:\repository\com\github\jsqlparser\jsqlparser\1.1\jsqlparser-1.1.jar;D:\repository\org\mybatis\mybatis-spring\1.3.2\mybatis-spring-1.3.2.jar;D:\repository\org\mybatis\mybatis\3.4.6\mybatis-3.4.6.jar;D:\repository\com\baomidou\mybatis-plus-generate\2.2.0\mybatis-plus-generate-2.2.0.jar;D:\repository\org\springframework\boot\spring-boot-starter-jdbc\1.5.8.RELEASE\spring-boot-starter-jdbc-1.5.8.RELEASE.jar;D:\repository\org\apache\tomcat\tomcat-jdbc\8.5.23\tomcat-jdbc-8.5.23.jar;D:\repository\org\apache\tomcat\tomcat-juli\8.5.23\tomcat-juli-8.5.23.jar;D:\repository\org\springframework\spring-jdbc\4.3.12.RELEASE\spring-jdbc-4.3.12.RELEASE.jar;D:\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar;D:\repository\com\github\tomakehurst\wiremock\2.5.1\wiremock-2.5.1.jar;D:\repository\org\eclipse\jetty\jetty-server\9.4.7.v20170914\jetty-server-9.4.7.v20170914.jar;D:\repository\javax\servlet\javax.servlet-api\3.1.0\javax.servlet-api-3.1.0.jar;D:\repository\org\eclipse\jetty\jetty-http\9.4.7.v20170914\jetty-http-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-io\9.4.7.v20170914\jetty-io-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-servlet\9.4.7.v20170914\jetty-servlet-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-security\9.4.7.v20170914\jetty-security-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-servlets\9.4.7.v20170914\jetty-servlets-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-continuation\9.4.7.v20170914\jetty-continuation-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-util\9.4.7.v20170914\jetty-util-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-webapp\9.4.7.v20170914\jetty-webapp-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-xml\9.4.7.v20170914\jetty-xml-9.4.7.v20170914.jar;D:\repository\com\google\guava\guava\18.0\guava-18.0.jar;D:\repository\com\fasterxml\jackson\core\jackson-core\2.8.10\jackson-core-2.8.10.jar;D:\repository\org\apache\httpcomponents\httpclient\4.5.3\httpclient-4.5.3.jar;D:\repository\org\apache\httpcomponents\httpcore\4.4.8\httpcore-4.4.8.jar;D:\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;D:\repository\org\xmlunit\xmlunit-core\2.3.0\xmlunit-core-2.3.0.jar;D:\repository\org\xmlunit\xmlunit-legacy\2.3.0\xmlunit-legacy-2.3.0.jar;D:\repository\net\sf\jopt-simple\jopt-simple\4.9\jopt-simple-4.9.jar;D:\repository\org\apache\commons\commons-lang3\3.4\commons-lang3-3.4.jar;D:\repository\com\flipkart\zjsonpatch\zjsonpatch\0.2.1\zjsonpatch-0.2.1.jar;D:\repository\org\apache\commons\commons-collections4\4.0\commons-collections4-4.0.jar;D:\repository\com\github\jknack\handlebars\4.0.6\handlebars-4.0.6.jar;D:\repository\org\antlr\antlr4-runtime\4.5.1-1\antlr4-runtime-4.5.1-1.jar;D:\repository\com\fiberhome\filink\filink-common-bean\0.0.1-RELEASE\filink-common-bean-0.0.1-RELEASE.jar;D:\repository\org\projectlombok\lombok\1.16.18\lombok-1.16.18.jar;D:\repository\com\fiberhome\filink\filink-common-client\0.0.1-RELEASE\filink-common-client-0.0.1-RELEASE.jar;D:\repository\com\fiberhome\filink\filink-log-api\0.0.1-RELEASE\filink-log-api-0.0.1-RELEASE.jar;D:\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;D:\repository\xml-apis\xml-apis\1.4.01\xml-apis-1.4.01.jar;D:\idea\IntelliJ IDEA 2017.2.4\lib\idea_rt.jar
+2019-03-02 09:46:34.713 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.library.path=D:\java\jdk\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\java\jdk\bin;D:\java\jdk\jre\bin;D:\TortoiseSVN\bin;D:\apache-maven-3.5.0\bin;D:\mongodb\bin;.
+2019-03-02 09:46:34.713 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+2019-03-02 09:46:34.713 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.compiler=<NA>
+2019-03-02 09:46:34.713 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.name=Windows 7
+2019-03-02 09:46:34.713 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.arch=amd64
+2019-03-02 09:46:34.713 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.version=6.1
+2019-03-02 09:46:34.713 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.name=Administrator
+2019-03-02 09:46:34.713 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.home=C:\Users\Administrator
+2019-03-02 09:46:34.713 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.dir=D:\code\10-Sys Code\filink-alarmSet\branches\2019223
+2019-03-02 09:46:34.714 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@68df5bbd
+2019-03-02 09:46:34.743 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 09:46:34.745 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 09:46:34.797 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45aeb, negotiated timeout = 10000
+2019-03-02 09:46:35.245 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x166cd392be45aeb closed
+2019-03-02 09:46:35.245 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45aeb
+2019-03-02 09:46:35.247 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@29238c0d
+2019-03-02 09:46:35.248 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 09:46:35.249 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 09:46:35.295 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45aec, negotiated timeout = 10000
+2019-03-02 09:46:35.563 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-03-02 09:46:35.746 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-03-02 09:46:35.746 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-03-02 09:46:35.883 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-03-02 09:46:35.883 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-03-02 09:46:36.150 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 09:46:36.177 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-03-02 09:46:36.177 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-03-02 09:46:36.178 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-03-02 09:46:36.178 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-03-02 09:46:36.178 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-03-02 09:46:36.178 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-03-02 09:46:36.178 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-03-02 09:46:36.292 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-03-02 09:46:36.294 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Starting heartbeat executor: renew interval is: 30
+2019-03-02 09:46:36.296 [main] INFO  c.n.discovery.InstanceInfoReplicator
+                -InstanceInfoReplicator onDemand update allowed rate per min is 4
+2019-03-02 09:46:36.299 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1551491196299 with initial instances count: 2
+2019-03-02 09:46:36.540 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Saw local status change event StatusChangeEvent [timestamp=1551491196540, current=UP, previous=STARTING]
+2019-03-02 09:46:36.562 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-ALARMSET-SERVER/SKY-20190125EWT.wh.wistronits.com:filink-alarmSet-server:9205: registering service...
+2019-03-02 09:46:36.598 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-ALARMSET-SERVER/SKY-20190125EWT.wh.wistronits.com:filink-alarmSet-server:9205 - registration status: 204
+2019-03-02 09:46:36.633 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@38847339
+2019-03-02 09:46:36.649 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 09:46:36.649 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 09:46:36.696 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45aed, negotiated timeout = 10000
+2019-03-02 09:46:36.795 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x166cd392be45aed closed
+2019-03-02 09:46:36.795 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45aed
+2019-03-02 09:46:36.796 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@7cb486a2
+2019-03-02 09:46:36.798 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 09:46:36.799 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 09:46:36.846 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45aee, negotiated timeout = 10000
+2019-03-02 09:46:37.089 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-03-02 09:46:37.168 [main] INFO  o.e.jetty.server.AbstractConnector
+                -Started ServerConnector@22942eff{HTTP/1.1,[http/1.1]}{0.0.0.0:9205}
+2019-03-02 09:46:37.174 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -Started FilinkAlarmSetServerApplication in 31.64 seconds (JVM running for 32.487)
+2019-03-02 09:46:38.970 [RMI TCP Connection(14)-10.5.33.57] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-alarmSet-server/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-03-02 09:51:36.186 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 09:56:36.194 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:01:36.202 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:04:58.226 [background-preinit] INFO  o.h.validator.internal.util.Version
+                -HV000001: Hibernate Validator 5.3.5.Final
+2019-03-02 10:04:59.697 [main] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-alarmSet-server/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-03-02 10:04:59.699 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -The following profiles are active: test
+2019-03-02 10:05:02.197 [main] INFO  org.eclipse.jetty.util.log
+                -Logging initialized @5457ms to org.eclipse.jetty.util.log.Slf4jLog
+2019-03-02 10:05:02.272 [main] INFO  org.eclipse.jetty.server.Server
+                -jetty-9.4.7.v20170914
+2019-03-02 10:05:02.382 [main] INFO  org.eclipse.jetty.server.session
+                -DefaultSessionIdManager workerName=node0
+2019-03-02 10:05:02.382 [main] INFO  org.eclipse.jetty.server.session
+                -No SessionScavenger set, using defaults
+2019-03-02 10:05:02.383 [main] INFO  org.eclipse.jetty.server.session
+                -Scavenging every 660000ms
+2019-03-02 10:05:02.389 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -Initializing Spring embedded WebApplicationContext
+2019-03-02 10:05:02.419 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================德鲁伊数据源初始化============================
+2019-03-02 10:05:02.426 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================初始化用户名：admin===========================
+2019-03-02 10:05:02.426 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================初始化密码：admin=============================
+2019-03-02 10:05:02.426 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -
+2019-03-02 10:05:03.709 [main] INFO  o.e.j.server.handler.ContextHandler
+                -Started o.s.b.c.e.j.JettyEmbeddedWebAppContext@1be3e952{/,[file:///C:/Users/Administrator/AppData/Local/Temp/jetty-docbase.1393115828841368626.9205/, jar:file:/D:/repository/org/webjars/jquery/2.1.1/jquery-2.1.1.jar!/META-INF/resources, jar:file:/D:/repository/org/webjars/d3js/3.4.11/d3js-3.4.11.jar!/META-INF/resources],AVAILABLE}
+2019-03-02 10:05:03.710 [main] INFO  org.eclipse.jetty.server.Server
+                -Started @6970ms
+2019-03-02 10:05:07.682 [main] INFO  c.alibaba.druid.pool.DruidDataSource
+                -{dataSource-1} inited
+2019-03-02 10:05:07.786 [main] WARN  c.b.m.toolkit.TableInfoHelper
+                -Warn: Could not find @TableId in Class: com.fiberhome.filink.alarmsetserver.bean.AlarmDelay.
+2019-03-02 10:05:07.787 [main] WARN  c.b.m.mapper.AutoSqlInjector
+                -class com.fiberhome.filink.alarmsetserver.bean.AlarmDelay ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2019-03-02 10:05:11.288 [main] WARN  c.n.c.sources.URLConfigurationSource
+                -No URLs will be polled as dynamic configuration sources.
+2019-03-02 10:05:11.289 [main] INFO  c.n.c.sources.URLConfigurationSource
+                -To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-03-02 10:05:11.292 [main] INFO  c.n.config.DynamicPropertyFactory
+                -DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@5440942
+2019-03-02 10:05:11.515 [main] WARN  c.n.c.sources.URLConfigurationSource
+                -No URLs will be polled as dynamic configuration sources.
+2019-03-02 10:05:11.515 [main] INFO  c.n.c.sources.URLConfigurationSource
+                -To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-03-02 10:05:23.656 [main] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-alarmSet-server/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-03-02 10:05:23.658 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -The following profiles are active: test
+2019-03-02 10:05:23.824 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -Started FilinkAlarmSetServerApplication in 1.248 seconds (JVM running for 27.084)
+2019-03-02 10:05:23.862 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:zookeeper.version=3.4.8--1, built on 02/06/2016 03:18 GMT
+2019-03-02 10:05:23.863 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:host.name=SKY-20190125EWT.wh.wistronits.com
+2019-03-02 10:05:23.863 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.version=1.8.0_201
+2019-03-02 10:05:23.863 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.vendor=Oracle Corporation
+2019-03-02 10:05:23.863 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.home=D:\java\jdk\jre
+2019-03-02 10:05:23.863 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.class.path=D:\java\jdk\jre\lib\charsets.jar;D:\java\jdk\jre\lib\deploy.jar;D:\java\jdk\jre\lib\ext\access-bridge-64.jar;D:\java\jdk\jre\lib\ext\cldrdata.jar;D:\java\jdk\jre\lib\ext\dnsns.jar;D:\java\jdk\jre\lib\ext\jaccess.jar;D:\java\jdk\jre\lib\ext\jfxrt.jar;D:\java\jdk\jre\lib\ext\localedata.jar;D:\java\jdk\jre\lib\ext\nashorn.jar;D:\java\jdk\jre\lib\ext\sunec.jar;D:\java\jdk\jre\lib\ext\sunjce_provider.jar;D:\java\jdk\jre\lib\ext\sunmscapi.jar;D:\java\jdk\jre\lib\ext\sunpkcs11.jar;D:\java\jdk\jre\lib\ext\zipfs.jar;D:\java\jdk\jre\lib\javaws.jar;D:\java\jdk\jre\lib\jce.jar;D:\java\jdk\jre\lib\jfr.jar;D:\java\jdk\jre\lib\jfxswt.jar;D:\java\jdk\jre\lib\jsse.jar;D:\java\jdk\jre\lib\management-agent.jar;D:\java\jdk\jre\lib\plugin.jar;D:\java\jdk\jre\lib\resources.jar;D:\java\jdk\jre\lib\rt.jar;D:\code\10-Sys Code\filink-alarmSet\branches\2019223\filink-alarmSet-server\target\classes;D:\repository\org\springframework\boot\spring-boot-starter\1.5.8.RELEASE\spring-boot-starter-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot\1.5.8.RELEASE\spring-boot-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-context\4.3.12.RELEASE\spring-context-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-expression\4.3.12.RELEASE\spring-expression-4.3.12.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-autoconfigure\1.5.8.RELEASE\spring-boot-autoconfigure-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-logging\1.5.8.RELEASE\spring-boot-starter-logging-1.5.8.RELEASE.jar;D:\repository\ch\qos\logback\logback-classic\1.1.11\logback-classic-1.1.11.jar;D:\repository\ch\qos\logback\logback-core\1.1.11\logback-core-1.1.11.jar;D:\repository\org\slf4j\jcl-over-slf4j\1.7.25\jcl-over-slf4j-1.7.25.jar;D:\repository\org\slf4j\jul-to-slf4j\1.7.25\jul-to-slf4j-1.7.25.jar;D:\repository\org\slf4j\log4j-over-slf4j\1.7.25\log4j-over-slf4j-1.7.25.jar;D:\repository\org\springframework\spring-core\4.3.12.RELEASE\spring-core-4.3.12.RELEASE.jar;D:\repository\org\yaml\snakeyaml\1.17\snakeyaml-1.17.jar;D:\repository\com\jayway\jsonpath\json-path\2.2.0\json-path-2.2.0.jar;D:\repository\net\minidev\json-smart\2.2.1\json-smart-2.2.1.jar;D:\repository\net\minidev\accessors-smart\1.1\accessors-smart-1.1.jar;D:\repository\org\ow2\asm\asm\5.0.3\asm-5.0.3.jar;D:\repository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;D:\repository\junit\junit\4.12\junit-4.12.jar;D:\repository\org\objenesis\objenesis\2.1\objenesis-2.1.jar;D:\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;D:\repository\com\fiberhome\filink\filink-common-server\0.0.1-RELEASE\filink-common-server-0.0.1-RELEASE.jar;D:\repository\org\jmockit\jmockit\1.33\jmockit-1.33.jar;D:\repository\org\springframework\cloud\spring-cloud-config-client\1.4.5.RELEASE\spring-cloud-config-client-1.4.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-commons\1.3.5.RELEASE\spring-cloud-commons-1.3.5.RELEASE.jar;D:\repository\org\springframework\security\spring-security-crypto\4.2.3.RELEASE\spring-security-crypto-4.2.3.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-context\1.3.5.RELEASE\spring-cloud-context-1.3.5.RELEASE.jar;D:\repository\com\fasterxml\jackson\core\jackson-annotations\2.8.0\jackson-annotations-2.8.0.jar;D:\repository\com\fasterxml\jackson\core\jackson-databind\2.8.10\jackson-databind-2.8.10.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-hystrix\1.4.6.RELEASE\spring-cloud-starter-hystrix-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-hystrix\1.4.6.RELEASE\spring-cloud-starter-netflix-hystrix-1.4.6.RELEASE.jar;D:\repository\com\netflix\hystrix\hystrix-core\1.5.12\hystrix-core-1.5.12.jar;D:\repository\org\hdrhistogram\HdrHistogram\2.1.9\HdrHistogram-2.1.9.jar;D:\repository\com\netflix\hystrix\hystrix-metrics-event-stream\1.5.12\hystrix-metrics-event-stream-1.5.12.jar;D:\repository\com\netflix\hystrix\hystrix-serialization\1.5.12\hystrix-serialization-1.5.12.jar;D:\repository\com\fasterxml\jackson\module\jackson-module-afterburner\2.8.10\jackson-module-afterburner-2.8.10.jar;D:\repository\com\netflix\hystrix\hystrix-javanica\1.5.12\hystrix-javanica-1.5.12.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-starter-hystrix-dashboard-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-starter-netflix-hystrix-dashboard-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-netflix-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-netflix-hystrix-dashboard-1.4.6.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-freemarker\1.5.8.RELEASE\spring-boot-starter-freemarker-1.5.8.RELEASE.jar;D:\repository\org\freemarker\freemarker\2.3.26-incubating\freemarker-2.3.26-incubating.jar;D:\repository\org\springframework\spring-context-support\4.3.12.RELEASE\spring-context-support-4.3.12.RELEASE.jar;D:\repository\org\webjars\jquery\2.1.1\jquery-2.1.1.jar;D:\repository\org\webjars\d3js\3.4.11\d3js-3.4.11.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-zipkin\1.3.5.RELEASE\spring-cloud-starter-zipkin-1.3.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-sleuth\1.3.5.RELEASE\spring-cloud-starter-sleuth-1.3.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-sleuth-core\1.3.5.RELEASE\spring-cloud-sleuth-core-1.3.5.RELEASE.jar;D:\repository\org\aspectj\aspectjrt\1.8.11\aspectjrt-1.8.11.jar;D:\repository\org\springframework\cloud\spring-cloud-sleuth-zipkin\1.3.5.RELEASE\spring-cloud-sleuth-zipkin-1.3.5.RELEASE.jar;D:\repository\io\zipkin\zipkin2\zipkin\2.7.1\zipkin-2.7.1.jar;D:\repository\io\zipkin\reporter2\zipkin-reporter\2.5.0\zipkin-reporter-2.5.0.jar;D:\repository\io\zipkin\reporter2\zipkin-sender-kafka11\2.5.0\zipkin-sender-kafka11-2.5.0.jar;D:\repository\io\zipkin\reporter2\zipkin-sender-amqp-client\2.5.0\zipkin-sender-amqp-client-2.5.0.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-config\1.4.5.RELEASE\spring-cloud-starter-config-1.4.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter\1.3.5.RELEASE\spring-cloud-starter-1.3.5.RELEASE.jar;D:\repository\org\springframework\security\spring-security-rsa\1.0.3.RELEASE\spring-security-rsa-1.0.3.RELEASE.jar;D:\repository\org\bouncycastle\bcpkix-jdk15on\1.55\bcpkix-jdk15on-1.55.jar;D:\repository\org\bouncycastle\bcprov-jdk15on\1.55\bcprov-jdk15on-1.55.jar;D:\repository\org\springframework\boot\spring-boot-starter-aop\1.5.8.RELEASE\spring-boot-starter-aop-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-aop\4.3.12.RELEASE\spring-aop-4.3.12.RELEASE.jar;D:\repository\org\aspectj\aspectjweaver\1.8.11\aspectjweaver-1.8.11.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-eureka-client\1.4.6.RELEASE\spring-cloud-starter-netflix-eureka-client-1.4.6.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-web\1.5.8.RELEASE\spring-boot-starter-web-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-tomcat\1.5.8.RELEASE\spring-boot-starter-tomcat-1.5.8.RELEASE.jar;D:\repository\org\apache\tomcat\embed\tomcat-embed-core\8.5.23\tomcat-embed-core-8.5.23.jar;D:\repository\org\apache\tomcat\tomcat-annotations-api\8.5.23\tomcat-annotations-api-8.5.23.jar;D:\repository\org\apache\tomcat\embed\tomcat-embed-el\8.5.23\tomcat-embed-el-8.5.23.jar;D:\repository\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.23\tomcat-embed-websocket-8.5.23.jar;D:\repository\org\hibernate\hibernate-validator\5.3.5.Final\hibernate-validator-5.3.5.Final.jar;D:\repository\javax\validation\validation-api\1.1.0.Final\validation-api-1.1.0.Final.jar;D:\repository\org\jboss\logging\jboss-logging\3.3.1.Final\jboss-logging-3.3.1.Final.jar;D:\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;D:\repository\org\springframework\spring-webmvc\4.3.12.RELEASE\spring-webmvc-4.3.12.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-netflix-core\1.4.6.RELEASE\spring-cloud-netflix-core-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-netflix-eureka-client\1.4.6.RELEASE\spring-cloud-netflix-eureka-client-1.4.6.RELEASE.jar;D:\repository\com\netflix\eureka\eureka-client\1.7.2\eureka-client-1.7.2.jar;D:\repository\org\codehaus\jettison\jettison\1.3.7\jettison-1.3.7.jar;D:\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;D:\repository\com\netflix\netflix-commons\netflix-eventbus\0.3.0\netflix-eventbus-0.3.0.jar;D:\repository\com\netflix\netflix-commons\netflix-infix\0.3.0\netflix-infix-0.3.0.jar;D:\repository\commons-jxpath\commons-jxpath\1.3\commons-jxpath-1.3.jar;D:\repository\joda-time\joda-time\2.9.9\joda-time-2.9.9.jar;D:\repository\org\antlr\antlr-runtime\3.4\antlr-runtime-3.4.jar;D:\repository\org\antlr\stringtemplate\3.2.1\stringtemplate-3.2.1.jar;D:\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;D:\repository\com\google\code\gson\gson\2.8.2\gson-2.8.2.jar;D:\repository\org\apache\commons\commons-math\2.2\commons-math-2.2.jar;D:\repository\com\netflix\archaius\archaius-core\0.7.4\archaius-core-0.7.4.jar;D:\repository\javax\ws\rs\jsr311-api\1.1.1\jsr311-api-1.1.1.jar;D:\repository\com\netflix\servo\servo-core\0.10.1\servo-core-0.10.1.jar;D:\repository\com\netflix\servo\servo-internal\0.10.1\servo-internal-0.10.1.jar;D:\repository\com\sun\jersey\jersey-core\1.19.1\jersey-core-1.19.1.jar;D:\repository\com\sun\jersey\jersey-client\1.19.1\jersey-client-1.19.1.jar;D:\repository\com\sun\jersey\contribs\jersey-apache-client4\1.19.1\jersey-apache-client4-1.19.1.jar;D:\repository\com\google\inject\guice\4.1.0\guice-4.1.0.jar;D:\repository\javax\inject\javax.inject\1\javax.inject-1.jar;D:\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;D:\repository\com\netflix\eureka\eureka-core\1.7.2\eureka-core-1.7.2.jar;D:\repository\org\codehaus\woodstox\woodstox-core-asl\4.4.1\woodstox-core-asl-4.4.1.jar;D:\repository\javax\xml\stream\stax-api\1.0-2\stax-api-1.0-2.jar;D:\repository\org\codehaus\woodstox\stax2-api\3.1.4\stax2-api-3.1.4.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-archaius\1.4.6.RELEASE\spring-cloud-starter-netflix-archaius-1.4.6.RELEASE.jar;D:\repository\commons-configuration\commons-configuration\1.8\commons-configuration-1.8.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-ribbon\1.4.6.RELEASE\spring-cloud-starter-netflix-ribbon-1.4.6.RELEASE.jar;D:\repository\com\netflix\ribbon\ribbon\2.2.5\ribbon-2.2.5.jar;D:\repository\com\netflix\ribbon\ribbon-transport\2.2.5\ribbon-transport-2.2.5.jar;D:\repository\io\reactivex\rxnetty-contexts\0.4.9\rxnetty-contexts-0.4.9.jar;D:\repository\io\reactivex\rxnetty-servo\0.4.9\rxnetty-servo-0.4.9.jar;D:\repository\io\reactivex\rxnetty\0.4.9\rxnetty-0.4.9.jar;D:\repository\com\netflix\ribbon\ribbon-core\2.2.5\ribbon-core-2.2.5.jar;D:\repository\com\netflix\ribbon\ribbon-httpclient\2.2.5\ribbon-httpclient-2.2.5.jar;D:\repository\com\netflix\netflix-commons\netflix-commons-util\0.1.1\netflix-commons-util-0.1.1.jar;D:\repository\com\netflix\ribbon\ribbon-loadbalancer\2.2.5\ribbon-loadbalancer-2.2.5.jar;D:\repository\com\netflix\netflix-commons\netflix-statistics\0.1.1\netflix-statistics-0.1.1.jar;D:\repository\io\reactivex\rxjava\1.2.0\rxjava-1.2.0.jar;D:\repository\com\netflix\ribbon\ribbon-eureka\2.2.5\ribbon-eureka-2.2.5.jar;D:\repository\com\thoughtworks\xstream\xstream\1.4.10\xstream-1.4.10.jar;D:\repository\xmlpull\xmlpull\1.1.3.1\xmlpull-1.1.3.1.jar;D:\repository\xpp3\xpp3_min\1.1.4c\xpp3_min-1.1.4c.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-feign\1.4.6.RELEASE\spring-cloud-starter-feign-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-openfeign\1.4.6.RELEASE\spring-cloud-starter-openfeign-1.4.6.RELEASE.jar;D:\repository\io\github\openfeign\feign-core\9.5.0\feign-core-9.5.0.jar;D:\repository\org\jvnet\animal-sniffer-annotation\1.0\animal-sniffer-annotation-1.0.jar;D:\repository\io\github\openfeign\feign-slf4j\9.5.0\feign-slf4j-9.5.0.jar;D:\repository\io\github\openfeign\feign-hystrix\9.5.0\feign-hystrix-9.5.0.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-bus-kafka\1.3.4.RELEASE\spring-cloud-starter-bus-kafka-1.3.4.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-stream-kafka\1.3.3.RELEASE\spring-cloud-starter-stream-kafka-1.3.3.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream-binder-kafka\1.3.3.RELEASE\spring-cloud-stream-binder-kafka-1.3.3.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream-binder-kafka-core\1.3.3.RELEASE\spring-cloud-stream-binder-kafka-core-1.3.3.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-kafka\2.1.2.RELEASE\spring-integration-kafka-2.1.2.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream-codec\1.3.3.RELEASE\spring-cloud-stream-codec-1.3.3.RELEASE.jar;D:\repository\com\esotericsoftware\kryo-shaded\3.0.3\kryo-shaded-3.0.3.jar;D:\repository\com\esotericsoftware\minlog\1.3.0\minlog-1.3.0.jar;D:\repository\org\apache\kafka\kafka_2.11\0.10.1.1\kafka_2.11-0.10.1.1.jar;D:\repository\com\yammer\metrics\metrics-core\2.2.0\metrics-core-2.2.0.jar;D:\repository\org\scala-lang\scala-library\2.11.8\scala-library-2.11.8.jar;D:\repository\com\101tec\zkclient\0.9\zkclient-0.9.jar;D:\repository\org\apache\zookeeper\zookeeper\3.4.8\zookeeper-3.4.8.jar;D:\repository\io\netty\netty\3.7.0.Final\netty-3.7.0.Final.jar;D:\repository\org\scala-lang\modules\scala-parser-combinators_2.11\1.0.4\scala-parser-combinators_2.11-1.0.4.jar;D:\repository\org\apache\kafka\kafka-clients\0.10.1.1\kafka-clients-0.10.1.1.jar;D:\repository\net\jpountz\lz4\lz4\1.3.0\lz4-1.3.0.jar;D:\repository\org\xerial\snappy\snappy-java\1.1.2.6\snappy-java-1.1.2.6.jar;D:\repository\org\springframework\kafka\spring-kafka\1.1.7.RELEASE\spring-kafka-1.1.7.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-bus\1.3.4.RELEASE\spring-cloud-bus-1.3.4.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream\1.3.3.RELEASE\spring-cloud-stream-1.3.3.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-validation\1.5.8.RELEASE\spring-boot-starter-validation-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-messaging\4.3.12.RELEASE\spring-messaging-4.3.12.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-jmx\4.3.12.RELEASE\spring-integration-jmx-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-tuple\1.0.0.RELEASE\spring-tuple-1.0.0.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-tuple\1.0.0.RELEASE\spring-integration-tuple-1.0.0.RELEASE.jar;D:\repository\org\springframework\retry\spring-retry\1.2.1.RELEASE\spring-retry-1.2.1.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-core\4.3.12.RELEASE\spring-integration-core-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-tx\4.3.12.RELEASE\spring-tx-4.3.12.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-actuator\1.5.8.RELEASE\spring-boot-starter-actuator-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-actuator\1.5.8.RELEASE\spring-boot-actuator-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-web\4.3.12.RELEASE\spring-web-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-beans\4.3.12.RELEASE\spring-beans-4.3.12.RELEASE.jar;D:\repository\com\alibaba\fastjson\1.2.44\fastjson-1.2.44.jar;D:\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;D:\repository\commons-beanutils\commons-beanutils\1.9.3\commons-beanutils-1.9.3.jar;D:\repository\commons-collections\commons-collections\3.2.2\commons-collections-3.2.2.jar;D:\repository\commons-io\commons-io\1.3.2\commons-io-1.3.2.jar;D:\repository\com\alibaba\druid\1.1.9\druid-1.1.9.jar;D:\repository\com\baomidou\mybatis-plus-boot-starter\2.2.0\mybatis-plus-boot-starter-2.2.0.jar;D:\repository\com\baomidou\mybatis-plus\2.2.0\mybatis-plus-2.2.0.jar;D:\repository\com\baomidou\mybatis-plus-support\2.2.0\mybatis-plus-support-2.2.0.jar;D:\repository\com\baomidou\mybatis-plus-core\2.2.0\mybatis-plus-core-2.2.0.jar;D:\repository\com\github\jsqlparser\jsqlparser\1.1\jsqlparser-1.1.jar;D:\repository\org\mybatis\mybatis-spring\1.3.2\mybatis-spring-1.3.2.jar;D:\repository\org\mybatis\mybatis\3.4.6\mybatis-3.4.6.jar;D:\repository\com\baomidou\mybatis-plus-generate\2.2.0\mybatis-plus-generate-2.2.0.jar;D:\repository\org\springframework\boot\spring-boot-starter-jdbc\1.5.8.RELEASE\spring-boot-starter-jdbc-1.5.8.RELEASE.jar;D:\repository\org\apache\tomcat\tomcat-jdbc\8.5.23\tomcat-jdbc-8.5.23.jar;D:\repository\org\apache\tomcat\tomcat-juli\8.5.23\tomcat-juli-8.5.23.jar;D:\repository\org\springframework\spring-jdbc\4.3.12.RELEASE\spring-jdbc-4.3.12.RELEASE.jar;D:\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar;D:\repository\com\github\tomakehurst\wiremock\2.5.1\wiremock-2.5.1.jar;D:\repository\org\eclipse\jetty\jetty-server\9.4.7.v20170914\jetty-server-9.4.7.v20170914.jar;D:\repository\javax\servlet\javax.servlet-api\3.1.0\javax.servlet-api-3.1.0.jar;D:\repository\org\eclipse\jetty\jetty-http\9.4.7.v20170914\jetty-http-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-io\9.4.7.v20170914\jetty-io-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-servlet\9.4.7.v20170914\jetty-servlet-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-security\9.4.7.v20170914\jetty-security-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-servlets\9.4.7.v20170914\jetty-servlets-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-continuation\9.4.7.v20170914\jetty-continuation-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-util\9.4.7.v20170914\jetty-util-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-webapp\9.4.7.v20170914\jetty-webapp-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-xml\9.4.7.v20170914\jetty-xml-9.4.7.v20170914.jar;D:\repository\com\google\guava\guava\18.0\guava-18.0.jar;D:\repository\com\fasterxml\jackson\core\jackson-core\2.8.10\jackson-core-2.8.10.jar;D:\repository\org\apache\httpcomponents\httpclient\4.5.3\httpclient-4.5.3.jar;D:\repository\org\apache\httpcomponents\httpcore\4.4.8\httpcore-4.4.8.jar;D:\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;D:\repository\org\xmlunit\xmlunit-core\2.3.0\xmlunit-core-2.3.0.jar;D:\repository\org\xmlunit\xmlunit-legacy\2.3.0\xmlunit-legacy-2.3.0.jar;D:\repository\net\sf\jopt-simple\jopt-simple\4.9\jopt-simple-4.9.jar;D:\repository\org\apache\commons\commons-lang3\3.4\commons-lang3-3.4.jar;D:\repository\com\flipkart\zjsonpatch\zjsonpatch\0.2.1\zjsonpatch-0.2.1.jar;D:\repository\org\apache\commons\commons-collections4\4.0\commons-collections4-4.0.jar;D:\repository\com\github\jknack\handlebars\4.0.6\handlebars-4.0.6.jar;D:\repository\org\antlr\antlr4-runtime\4.5.1-1\antlr4-runtime-4.5.1-1.jar;D:\repository\com\fiberhome\filink\filink-common-bean\0.0.1-RELEASE\filink-common-bean-0.0.1-RELEASE.jar;D:\repository\org\projectlombok\lombok\1.16.18\lombok-1.16.18.jar;D:\repository\com\fiberhome\filink\filink-common-client\0.0.1-RELEASE\filink-common-client-0.0.1-RELEASE.jar;D:\repository\com\fiberhome\filink\filink-log-api\0.0.1-RELEASE\filink-log-api-0.0.1-RELEASE.jar;D:\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;D:\repository\xml-apis\xml-apis\1.4.01\xml-apis-1.4.01.jar;D:\idea\IntelliJ IDEA 2017.2.4\lib\idea_rt.jar
+2019-03-02 10:05:23.868 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.library.path=D:\java\jdk\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\java\jdk\bin;D:\java\jdk\jre\bin;D:\TortoiseSVN\bin;D:\apache-maven-3.5.0\bin;D:\mongodb\bin;.
+2019-03-02 10:05:23.868 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+2019-03-02 10:05:23.868 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.compiler=<NA>
+2019-03-02 10:05:23.868 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.name=Windows 7
+2019-03-02 10:05:23.868 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.arch=amd64
+2019-03-02 10:05:23.868 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.version=6.1
+2019-03-02 10:05:23.868 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.name=Administrator
+2019-03-02 10:05:23.868 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.home=C:\Users\Administrator
+2019-03-02 10:05:23.868 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.dir=D:\code\10-Sys Code\filink-alarmSet\branches\2019223
+2019-03-02 10:05:23.869 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@637f1f25
+2019-03-02 10:05:23.887 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:05:23.889 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:05:23.945 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45aef, negotiated timeout = 10000
+2019-03-02 10:05:24.339 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x166cd392be45aef closed
+2019-03-02 10:05:24.339 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45aef
+2019-03-02 10:05:24.341 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@278d5b25
+2019-03-02 10:05:24.345 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:05:24.346 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:05:24.396 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45af0, negotiated timeout = 10000
+2019-03-02 10:05:24.671 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-03-02 10:05:24.834 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-03-02 10:05:24.834 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-03-02 10:05:24.930 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-03-02 10:05:24.930 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-03-02 10:05:25.154 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:05:25.183 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-03-02 10:05:25.183 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-03-02 10:05:25.183 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-03-02 10:05:25.183 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-03-02 10:05:25.183 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-03-02 10:05:25.183 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-03-02 10:05:25.183 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-03-02 10:05:25.337 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-03-02 10:05:25.339 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Starting heartbeat executor: renew interval is: 30
+2019-03-02 10:05:25.341 [main] INFO  c.n.discovery.InstanceInfoReplicator
+                -InstanceInfoReplicator onDemand update allowed rate per min is 4
+2019-03-02 10:05:25.344 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1551492325344 with initial instances count: 3
+2019-03-02 10:05:25.569 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Saw local status change event StatusChangeEvent [timestamp=1551492325569, current=UP, previous=STARTING]
+2019-03-02 10:05:25.571 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-ALARMSET-SERVER/SKY-20190125EWT.wh.wistronits.com:filink-alarmSet-server:9205: registering service...
+2019-03-02 10:05:25.600 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-ALARMSET-SERVER/SKY-20190125EWT.wh.wistronits.com:filink-alarmSet-server:9205 - registration status: 204
+2019-03-02 10:05:25.629 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@16e9fc1f
+2019-03-02 10:05:25.630 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:05:25.631 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:05:25.663 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45af1, negotiated timeout = 10000
+2019-03-02 10:05:25.730 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x166cd392be45af1 closed
+2019-03-02 10:05:25.730 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45af1
+2019-03-02 10:05:25.731 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@55dc8d6c
+2019-03-02 10:05:25.733 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:05:25.734 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:05:25.780 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45af2, negotiated timeout = 10000
+2019-03-02 10:05:26.042 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-03-02 10:05:26.123 [main] INFO  o.e.jetty.server.AbstractConnector
+                -Started ServerConnector@818a514{HTTP/1.1,[http/1.1]}{0.0.0.0:9205}
+2019-03-02 10:05:26.129 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -Started FilinkAlarmSetServerApplication in 28.671 seconds (JVM running for 29.389)
+2019-03-02 10:05:27.369 [RMI TCP Connection(12)-10.5.33.57] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-alarmSet-server/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-03-02 10:08:04.883 [qtp41644548-35] ERROR c.f.filink.logapi.log.LogProcess
+                -手动新增安全日志异常,日志id为52beefe2ebd94169a694c4f5eca281b5
+java.lang.NullPointerException: null
+	at com.fiberhome.filink.logapi.log.LogProcess.addSecurityLogInfoToCallProcess(LogProcess.java:283)
+	at com.fiberhome.filink.logapi.log.LogProcess.addSecurityLogInfoToCall(LogProcess.java:266)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl.deleteLog(AlarmNameServiceImpl.java:116)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl.deleteAlarmCurrentSet(AlarmNameServiceImpl.java:135)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl$$FastClassBySpringCGLIB$$b597ad55.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl$$EnhancerBySpringCGLIB$$e316670b.deleteAlarmCurrentSet(<generated>)
+	at com.fiberhome.filink.alarmsetserver.controller.AlarmSetController.deleteAlarmCurrentSet(AlarmSetController.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:841)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1650)
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.cloud.sleuth.instrument.web.TraceFilter.doFilter(TraceFilter.java:166)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:190)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:188)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1253)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:168)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:166)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1155)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:561)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:334)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:251)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:279)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:104)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:124)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:247)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:140)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:679)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:597)
+	at java.lang.Thread.run(Thread.java:748)
+2019-03-02 10:10:26.177 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:10:33.823 [qtp41644548-41] ERROR c.f.filink.logapi.log.LogProcess
+                -手动新增安全日志异常,日志id为4884f72c11634206b68f60f39bc9e27a
+java.lang.NullPointerException: null
+	at com.fiberhome.filink.logapi.log.LogProcess.addSecurityLogInfoToCallProcess(LogProcess.java:283)
+	at com.fiberhome.filink.logapi.log.LogProcess.addSecurityLogInfoToCall(LogProcess.java:266)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl.deleteLog(AlarmNameServiceImpl.java:116)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl.deleteAlarmCurrentSet(AlarmNameServiceImpl.java:135)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl$$FastClassBySpringCGLIB$$b597ad55.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl$$EnhancerBySpringCGLIB$$e316670b.deleteAlarmCurrentSet(<generated>)
+	at com.fiberhome.filink.alarmsetserver.controller.AlarmSetController.deleteAlarmCurrentSet(AlarmSetController.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:841)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1650)
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.cloud.sleuth.instrument.web.TraceFilter.doFilter(TraceFilter.java:166)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:190)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:188)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1253)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:168)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:166)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1155)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:561)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:334)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:251)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:279)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:104)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:124)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:247)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:140)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:243)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:679)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:597)
+	at java.lang.Thread.run(Thread.java:748)
+2019-03-02 10:10:50.854 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 14256ms for sessionid 0x166cd392be45af2
+2019-03-02 10:10:50.855 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 14258ms for sessionid 0x166cd392be45af0
+2019-03-02 10:10:52.747 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 14258ms for sessionid 0x166cd392be45af0, closing socket connection and attempting reconnect
+2019-03-02 10:10:52.747 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 14256ms for sessionid 0x166cd392be45af2, closing socket connection and attempting reconnect
+2019-03-02 10:10:54.070 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:10:54.071 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:10:54.073 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af2 has expired
+2019-03-02 10:10:54.074 [main-EventThread] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@55dc8d6c
+2019-03-02 10:10:54.074 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af2 has expired, closing socket connection
+2019-03-02 10:10:54.076 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45af2
+2019-03-02 10:10:54.077 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:10:54.079 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:10:54.125 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45af3, negotiated timeout = 10000
+2019-03-02 10:10:54.298 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:10:54.300 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:10:54.302 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af0 has expired
+2019-03-02 10:10:54.303 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af0 has expired, closing socket connection
+2019-03-02 10:10:54.306 [main-EventThread] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@278d5b25
+2019-03-02 10:10:54.312 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45af0
+2019-03-02 10:10:54.318 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:10:54.320 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:10:54.367 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45af4, negotiated timeout = 10000
+2019-03-02 10:11:01.889 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 7763ms for sessionid 0x166cd392be45af3
+2019-03-02 10:11:01.891 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 7763ms for sessionid 0x166cd392be45af3, closing socket connection and attempting reconnect
+2019-03-02 10:11:01.889 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 7521ms for sessionid 0x166cd392be45af4
+2019-03-02 10:11:01.945 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 7521ms for sessionid 0x166cd392be45af4, closing socket connection and attempting reconnect
+2019-03-02 10:12:51.118 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:12:51.123 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:12:51.127 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:12:51.127 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af4 has expired
+2019-03-02 10:12:51.132 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af4 has expired, closing socket connection
+2019-03-02 10:12:51.133 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:12:51.142 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af3 has expired
+2019-03-02 10:12:51.145 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af3 has expired, closing socket connection
+2019-03-02 10:12:51.185 [main-EventThread] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@55dc8d6c
+2019-03-02 10:12:51.185 [main-EventThread] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@278d5b25
+2019-03-02 10:12:51.186 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45af4
+2019-03-02 10:12:51.187 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:12:51.193 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:12:51.195 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45af3
+2019-03-02 10:12:51.198 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:12:53.390 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45af5, negotiated timeout = 10000
+2019-03-02 10:12:53.392 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:12:53.441 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45af6, negotiated timeout = 10000
+2019-03-02 10:12:58.808 [qtp41644548-36] ERROR c.f.filink.logapi.log.LogProcess
+                -手动新增安全日志异常,日志id为1d4dc435556c450bbc1fee8000b41326
+java.lang.NullPointerException: null
+	at com.fiberhome.filink.logapi.log.LogProcess.addSecurityLogInfoToCallProcess(LogProcess.java:283)
+	at com.fiberhome.filink.logapi.log.LogProcess.addSecurityLogInfoToCall(LogProcess.java:266)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl.deleteLog(AlarmNameServiceImpl.java:116)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl.deleteAlarmCurrentSet(AlarmNameServiceImpl.java:135)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl$$FastClassBySpringCGLIB$$b597ad55.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl$$EnhancerBySpringCGLIB$$e316670b.deleteAlarmCurrentSet(<generated>)
+	at com.fiberhome.filink.alarmsetserver.controller.AlarmSetController.deleteAlarmCurrentSet(AlarmSetController.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:841)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1650)
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.cloud.sleuth.instrument.web.TraceFilter.doFilter(TraceFilter.java:166)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:190)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:188)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1253)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:168)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:166)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1155)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:561)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:334)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:251)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:279)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:104)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:124)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:247)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:140)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:243)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:679)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:597)
+	at java.lang.Thread.run(Thread.java:748)
+2019-03-02 10:13:06.957 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 8507ms for sessionid 0x166cd392be45af5
+2019-03-02 10:13:06.957 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 8507ms for sessionid 0x166cd392be45af5, closing socket connection and attempting reconnect
+2019-03-02 10:13:08.740 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 10:13:08.741 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 10:13:08.743 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45af5, negotiated timeout = 10000
+2019-03-02 10:15:27.312 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:20:27.319 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:25:27.325 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:30:27.332 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:35:27.339 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:40:27.346 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:45:27.353 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:50:27.361 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 10:55:27.368 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:00:27.375 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:05:27.381 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:10:27.458 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:15:27.481 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:20:27.489 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:25:27.496 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:30:27.503 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:35:27.510 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:40:27.517 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:45:27.524 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:50:27.532 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 11:55:27.539 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:00:27.546 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:05:27.553 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:10:27.560 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:15:27.567 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:20:27.575 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:25:27.582 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:30:27.589 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:35:27.596 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:40:27.603 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:45:27.610 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:50:27.617 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 12:55:27.625 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:00:27.632 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:05:27.639 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:10:27.646 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:15:27.653 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:20:27.659 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:25:27.667 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:30:27.674 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:35:27.681 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:40:27.688 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:45:27.695 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:50:27.702 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 13:55:27.710 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:00:27.734 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:05:27.756 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:10:27.763 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:15:27.791 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:20:27.798 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:25:27.820 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:30:27.826 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:35:27.839 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:40:11.694 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 11018ms for sessionid 0x166cd392be45af6
+2019-03-02 14:40:11.694 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 9697ms for sessionid 0x166cd392be45af5
+2019-03-02 14:40:11.736 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 11018ms for sessionid 0x166cd392be45af6, closing socket connection and attempting reconnect
+2019-03-02 14:40:11.736 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Client session timed out, have not heard from server in 9697ms for sessionid 0x166cd392be45af5, closing socket connection and attempting reconnect
+2019-03-02 14:40:13.071 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 14:40:13.112 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 14:40:13.142 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af6 has expired
+2019-03-02 14:40:13.142 [main-EventThread] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@55dc8d6c
+2019-03-02 14:40:13.233 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af6 has expired, closing socket connection
+2019-03-02 14:40:13.438 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45af6
+2019-03-02 14:40:13.686 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 14:40:13.715 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 14:40:13.716 [main-SendThread(10.5.43.18:2181)] WARN  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af5 has expired
+2019-03-02 14:40:13.729 [main-EventThread] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@278d5b25
+2019-03-02 14:40:13.754 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Unable to reconnect to ZooKeeper service, session 0x166cd392be45af5 has expired, closing socket connection
+2019-03-02 14:40:13.794 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45af5
+2019-03-02 14:40:17.218 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 14:40:17.219 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 14:40:17.255 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 14:40:17.255 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 14:40:17.265 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45b52, negotiated timeout = 10000
+2019-03-02 14:40:17.315 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45b53, negotiated timeout = 10000
+2019-03-02 14:40:27.897 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:45:27.904 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:50:27.911 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 14:55:27.933 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:00:27.954 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:05:27.961 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:05:59.708 [qtp41644548-41] ERROR druid.sql.Statement
+                -{conn-10005, pstmt-20019} execute error. SELECT  id,alarm_name AS alarmName,alarm_level AS alarmLevel,alarm_desc AS alarmDesc,alarm_code AS alarmCode,alarm_default_level AS alarmDefaultLevel,alarm_automatic_confirmation AS alarmAutomaticConfirmation,is_deleted AS iSdeleted  FROM alarm_name
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'is_deleted' in 'field list'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:943)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2487)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1858)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1197)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3051)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3049)
+	at com.alibaba.druid.wall.WallFilter.preparedStatement_execute(WallFilter.java:619)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3049)
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440)
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3049)
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167)
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:498)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:326)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy135.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:230)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:139)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:76)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59)
+	at com.sun.proxy.$Proxy140.selectList(Unknown Source)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl.queryAlarmNameList(AlarmNameServiceImpl.java:44)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl$$FastClassBySpringCGLIB$$b597ad55.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673)
+	at com.fiberhome.filink.alarmsetserver.service.impl.AlarmNameServiceImpl$$EnhancerBySpringCGLIB$$e316670b.queryAlarmNameList(<generated>)
+	at com.fiberhome.filink.alarmsetserver.controller.AlarmSetController.queryAlarmNameList(AlarmSetController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:841)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1650)
+	at org.springframework.boot.web.filter.ApplicationContextHeaderFilter.doFilterInternal(ApplicationContextHeaderFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.boot.actuate.trace.WebRequestTraceFilter.doFilterInternal(WebRequestTraceFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.cloud.sleuth.instrument.web.TraceFilter.doFilter(TraceFilter.java:166)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.springframework.boot.actuate.autoconfigure.MetricsFilter.doFilterInternal(MetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1637)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:190)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:188)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1253)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:168)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:166)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1155)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:561)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:334)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:251)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:279)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:104)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:124)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:247)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:140)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:243)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:679)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:597)
+	at java.lang.Thread.run(Thread.java:748)
+2019-03-02 15:06:03.728 [qtp41644548-41] INFO  c.f.f.s.e.GlobalExceptionHandler
+                -
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'is_deleted' in 'field list'
+### The error may exist in com/fiberhome/filink/alarmsetserver/dao/AlarmNameDao.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  id,alarm_name AS alarmName,alarm_level AS alarmLevel,alarm_desc AS alarmDesc,alarm_code AS alarmCode,alarm_default_level AS alarmDefaultLevel,alarm_automatic_confirmation AS alarmAutomaticConfirmation,is_deleted AS iSdeleted  FROM alarm_name
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'is_deleted' in 'field list'
+; bad SQL grammar []; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'is_deleted' in 'field list'
+2019-03-02 15:08:30.906 [background-preinit] INFO  o.h.validator.internal.util.Version
+                -HV000001: Hibernate Validator 5.3.5.Final
+2019-03-02 15:08:32.631 [main] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-alarmSet-server/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-03-02 15:08:32.632 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -The following profiles are active: test
+2019-03-02 15:08:38.339 [main] INFO  org.eclipse.jetty.util.log
+                -Logging initialized @11220ms to org.eclipse.jetty.util.log.Slf4jLog
+2019-03-02 15:08:38.456 [main] INFO  org.eclipse.jetty.server.Server
+                -jetty-9.4.7.v20170914
+2019-03-02 15:08:38.516 [main] INFO  org.eclipse.jetty.server.session
+                -DefaultSessionIdManager workerName=node0
+2019-03-02 15:08:38.516 [main] INFO  org.eclipse.jetty.server.session
+                -No SessionScavenger set, using defaults
+2019-03-02 15:08:38.524 [main] INFO  org.eclipse.jetty.server.session
+                -Scavenging every 600000ms
+2019-03-02 15:08:38.664 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -Initializing Spring embedded WebApplicationContext
+2019-03-02 15:08:38.694 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================德鲁伊数据源初始化============================
+2019-03-02 15:08:38.706 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================初始化用户名：admin===========================
+2019-03-02 15:08:38.706 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================初始化密码：admin=============================
+2019-03-02 15:08:38.706 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -
+2019-03-02 15:08:40.083 [main] INFO  o.e.j.server.handler.ContextHandler
+                -Started o.s.b.c.e.j.JettyEmbeddedWebAppContext@22e253c7{/,[file:///C:/Users/Administrator/AppData/Local/Temp/jetty-docbase.6690938769542286930.9205/, jar:file:/D:/repository/org/webjars/jquery/2.1.1/jquery-2.1.1.jar!/META-INF/resources, jar:file:/D:/repository/org/webjars/d3js/3.4.11/d3js-3.4.11.jar!/META-INF/resources],AVAILABLE}
+2019-03-02 15:08:40.083 [main] INFO  org.eclipse.jetty.server.Server
+                -Started @12964ms
+2019-03-02 15:08:44.771 [main] INFO  c.alibaba.druid.pool.DruidDataSource
+                -{dataSource-1} inited
+2019-03-02 15:08:45.122 [main] WARN  c.b.m.toolkit.TableInfoHelper
+                -Warn: Could not find @TableId in Class: com.fiberhome.filink.alarmsetserver.bean.AlarmDelay.
+2019-03-02 15:08:45.122 [main] WARN  c.b.m.mapper.AutoSqlInjector
+                -class com.fiberhome.filink.alarmsetserver.bean.AlarmDelay ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2019-03-02 15:08:49.619 [main] WARN  c.n.c.sources.URLConfigurationSource
+                -No URLs will be polled as dynamic configuration sources.
+2019-03-02 15:08:49.620 [main] INFO  c.n.c.sources.URLConfigurationSource
+                -To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-03-02 15:08:49.623 [main] INFO  c.n.config.DynamicPropertyFactory
+                -DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@31ba0af0
+2019-03-02 15:08:49.891 [main] WARN  c.n.c.sources.URLConfigurationSource
+                -No URLs will be polled as dynamic configuration sources.
+2019-03-02 15:08:49.891 [main] INFO  c.n.c.sources.URLConfigurationSource
+                -To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-03-02 15:09:02.657 [main] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-alarmSet-server/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-03-02 15:09:02.660 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -The following profiles are active: test
+2019-03-02 15:09:02.866 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -Started FilinkAlarmSetServerApplication in 1.294 seconds (JVM running for 35.747)
+2019-03-02 15:09:03.273 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:zookeeper.version=3.4.8--1, built on 02/06/2016 03:18 GMT
+2019-03-02 15:09:03.273 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:host.name=SKY-20190125EWT.wh.wistronits.com
+2019-03-02 15:09:03.273 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.version=1.8.0_201
+2019-03-02 15:09:03.273 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.vendor=Oracle Corporation
+2019-03-02 15:09:03.273 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.home=D:\java\jdk\jre
+2019-03-02 15:09:03.273 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.class.path=D:\java\jdk\jre\lib\charsets.jar;D:\java\jdk\jre\lib\deploy.jar;D:\java\jdk\jre\lib\ext\access-bridge-64.jar;D:\java\jdk\jre\lib\ext\cldrdata.jar;D:\java\jdk\jre\lib\ext\dnsns.jar;D:\java\jdk\jre\lib\ext\jaccess.jar;D:\java\jdk\jre\lib\ext\jfxrt.jar;D:\java\jdk\jre\lib\ext\localedata.jar;D:\java\jdk\jre\lib\ext\nashorn.jar;D:\java\jdk\jre\lib\ext\sunec.jar;D:\java\jdk\jre\lib\ext\sunjce_provider.jar;D:\java\jdk\jre\lib\ext\sunmscapi.jar;D:\java\jdk\jre\lib\ext\sunpkcs11.jar;D:\java\jdk\jre\lib\ext\zipfs.jar;D:\java\jdk\jre\lib\javaws.jar;D:\java\jdk\jre\lib\jce.jar;D:\java\jdk\jre\lib\jfr.jar;D:\java\jdk\jre\lib\jfxswt.jar;D:\java\jdk\jre\lib\jsse.jar;D:\java\jdk\jre\lib\management-agent.jar;D:\java\jdk\jre\lib\plugin.jar;D:\java\jdk\jre\lib\resources.jar;D:\java\jdk\jre\lib\rt.jar;D:\code\10-Sys Code\filink-alarmSet\branches\2019223\filink-alarmSet-server\target\classes;D:\repository\org\springframework\boot\spring-boot-starter\1.5.8.RELEASE\spring-boot-starter-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot\1.5.8.RELEASE\spring-boot-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-context\4.3.12.RELEASE\spring-context-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-expression\4.3.12.RELEASE\spring-expression-4.3.12.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-autoconfigure\1.5.8.RELEASE\spring-boot-autoconfigure-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-logging\1.5.8.RELEASE\spring-boot-starter-logging-1.5.8.RELEASE.jar;D:\repository\ch\qos\logback\logback-classic\1.1.11\logback-classic-1.1.11.jar;D:\repository\ch\qos\logback\logback-core\1.1.11\logback-core-1.1.11.jar;D:\repository\org\slf4j\jcl-over-slf4j\1.7.25\jcl-over-slf4j-1.7.25.jar;D:\repository\org\slf4j\jul-to-slf4j\1.7.25\jul-to-slf4j-1.7.25.jar;D:\repository\org\slf4j\log4j-over-slf4j\1.7.25\log4j-over-slf4j-1.7.25.jar;D:\repository\org\springframework\spring-core\4.3.12.RELEASE\spring-core-4.3.12.RELEASE.jar;D:\repository\org\yaml\snakeyaml\1.17\snakeyaml-1.17.jar;D:\repository\com\jayway\jsonpath\json-path\2.2.0\json-path-2.2.0.jar;D:\repository\net\minidev\json-smart\2.2.1\json-smart-2.2.1.jar;D:\repository\net\minidev\accessors-smart\1.1\accessors-smart-1.1.jar;D:\repository\org\ow2\asm\asm\5.0.3\asm-5.0.3.jar;D:\repository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;D:\repository\junit\junit\4.12\junit-4.12.jar;D:\repository\org\objenesis\objenesis\2.1\objenesis-2.1.jar;D:\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;D:\repository\com\fiberhome\filink\filink-common-server\0.0.1-RELEASE\filink-common-server-0.0.1-RELEASE.jar;D:\repository\org\jmockit\jmockit\1.33\jmockit-1.33.jar;D:\repository\org\springframework\cloud\spring-cloud-config-client\1.4.5.RELEASE\spring-cloud-config-client-1.4.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-commons\1.3.5.RELEASE\spring-cloud-commons-1.3.5.RELEASE.jar;D:\repository\org\springframework\security\spring-security-crypto\4.2.3.RELEASE\spring-security-crypto-4.2.3.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-context\1.3.5.RELEASE\spring-cloud-context-1.3.5.RELEASE.jar;D:\repository\com\fasterxml\jackson\core\jackson-annotations\2.8.0\jackson-annotations-2.8.0.jar;D:\repository\com\fasterxml\jackson\core\jackson-databind\2.8.10\jackson-databind-2.8.10.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-hystrix\1.4.6.RELEASE\spring-cloud-starter-hystrix-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-hystrix\1.4.6.RELEASE\spring-cloud-starter-netflix-hystrix-1.4.6.RELEASE.jar;D:\repository\com\netflix\hystrix\hystrix-core\1.5.12\hystrix-core-1.5.12.jar;D:\repository\org\hdrhistogram\HdrHistogram\2.1.9\HdrHistogram-2.1.9.jar;D:\repository\com\netflix\hystrix\hystrix-metrics-event-stream\1.5.12\hystrix-metrics-event-stream-1.5.12.jar;D:\repository\com\netflix\hystrix\hystrix-serialization\1.5.12\hystrix-serialization-1.5.12.jar;D:\repository\com\fasterxml\jackson\module\jackson-module-afterburner\2.8.10\jackson-module-afterburner-2.8.10.jar;D:\repository\com\netflix\hystrix\hystrix-javanica\1.5.12\hystrix-javanica-1.5.12.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-starter-hystrix-dashboard-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-starter-netflix-hystrix-dashboard-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-netflix-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-netflix-hystrix-dashboard-1.4.6.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-freemarker\1.5.8.RELEASE\spring-boot-starter-freemarker-1.5.8.RELEASE.jar;D:\repository\org\freemarker\freemarker\2.3.26-incubating\freemarker-2.3.26-incubating.jar;D:\repository\org\springframework\spring-context-support\4.3.12.RELEASE\spring-context-support-4.3.12.RELEASE.jar;D:\repository\org\webjars\jquery\2.1.1\jquery-2.1.1.jar;D:\repository\org\webjars\d3js\3.4.11\d3js-3.4.11.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-zipkin\1.3.5.RELEASE\spring-cloud-starter-zipkin-1.3.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-sleuth\1.3.5.RELEASE\spring-cloud-starter-sleuth-1.3.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-sleuth-core\1.3.5.RELEASE\spring-cloud-sleuth-core-1.3.5.RELEASE.jar;D:\repository\org\aspectj\aspectjrt\1.8.11\aspectjrt-1.8.11.jar;D:\repository\org\springframework\cloud\spring-cloud-sleuth-zipkin\1.3.5.RELEASE\spring-cloud-sleuth-zipkin-1.3.5.RELEASE.jar;D:\repository\io\zipkin\zipkin2\zipkin\2.7.1\zipkin-2.7.1.jar;D:\repository\io\zipkin\reporter2\zipkin-reporter\2.5.0\zipkin-reporter-2.5.0.jar;D:\repository\io\zipkin\reporter2\zipkin-sender-kafka11\2.5.0\zipkin-sender-kafka11-2.5.0.jar;D:\repository\io\zipkin\reporter2\zipkin-sender-amqp-client\2.5.0\zipkin-sender-amqp-client-2.5.0.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-config\1.4.5.RELEASE\spring-cloud-starter-config-1.4.5.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter\1.3.5.RELEASE\spring-cloud-starter-1.3.5.RELEASE.jar;D:\repository\org\springframework\security\spring-security-rsa\1.0.3.RELEASE\spring-security-rsa-1.0.3.RELEASE.jar;D:\repository\org\bouncycastle\bcpkix-jdk15on\1.55\bcpkix-jdk15on-1.55.jar;D:\repository\org\bouncycastle\bcprov-jdk15on\1.55\bcprov-jdk15on-1.55.jar;D:\repository\org\springframework\boot\spring-boot-starter-aop\1.5.8.RELEASE\spring-boot-starter-aop-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-aop\4.3.12.RELEASE\spring-aop-4.3.12.RELEASE.jar;D:\repository\org\aspectj\aspectjweaver\1.8.11\aspectjweaver-1.8.11.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-eureka-client\1.4.6.RELEASE\spring-cloud-starter-netflix-eureka-client-1.4.6.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-web\1.5.8.RELEASE\spring-boot-starter-web-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-tomcat\1.5.8.RELEASE\spring-boot-starter-tomcat-1.5.8.RELEASE.jar;D:\repository\org\apache\tomcat\embed\tomcat-embed-core\8.5.23\tomcat-embed-core-8.5.23.jar;D:\repository\org\apache\tomcat\tomcat-annotations-api\8.5.23\tomcat-annotations-api-8.5.23.jar;D:\repository\org\apache\tomcat\embed\tomcat-embed-el\8.5.23\tomcat-embed-el-8.5.23.jar;D:\repository\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.23\tomcat-embed-websocket-8.5.23.jar;D:\repository\org\hibernate\hibernate-validator\5.3.5.Final\hibernate-validator-5.3.5.Final.jar;D:\repository\javax\validation\validation-api\1.1.0.Final\validation-api-1.1.0.Final.jar;D:\repository\org\jboss\logging\jboss-logging\3.3.1.Final\jboss-logging-3.3.1.Final.jar;D:\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;D:\repository\org\springframework\spring-webmvc\4.3.12.RELEASE\spring-webmvc-4.3.12.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-netflix-core\1.4.6.RELEASE\spring-cloud-netflix-core-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-netflix-eureka-client\1.4.6.RELEASE\spring-cloud-netflix-eureka-client-1.4.6.RELEASE.jar;D:\repository\com\netflix\eureka\eureka-client\1.7.2\eureka-client-1.7.2.jar;D:\repository\org\codehaus\jettison\jettison\1.3.7\jettison-1.3.7.jar;D:\repository\stax\stax-api\1.0.1\stax-api-1.0.1.jar;D:\repository\com\netflix\netflix-commons\netflix-eventbus\0.3.0\netflix-eventbus-0.3.0.jar;D:\repository\com\netflix\netflix-commons\netflix-infix\0.3.0\netflix-infix-0.3.0.jar;D:\repository\commons-jxpath\commons-jxpath\1.3\commons-jxpath-1.3.jar;D:\repository\joda-time\joda-time\2.9.9\joda-time-2.9.9.jar;D:\repository\org\antlr\antlr-runtime\3.4\antlr-runtime-3.4.jar;D:\repository\org\antlr\stringtemplate\3.2.1\stringtemplate-3.2.1.jar;D:\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;D:\repository\com\google\code\gson\gson\2.8.2\gson-2.8.2.jar;D:\repository\org\apache\commons\commons-math\2.2\commons-math-2.2.jar;D:\repository\com\netflix\archaius\archaius-core\0.7.4\archaius-core-0.7.4.jar;D:\repository\javax\ws\rs\jsr311-api\1.1.1\jsr311-api-1.1.1.jar;D:\repository\com\netflix\servo\servo-core\0.10.1\servo-core-0.10.1.jar;D:\repository\com\netflix\servo\servo-internal\0.10.1\servo-internal-0.10.1.jar;D:\repository\com\sun\jersey\jersey-core\1.19.1\jersey-core-1.19.1.jar;D:\repository\com\sun\jersey\jersey-client\1.19.1\jersey-client-1.19.1.jar;D:\repository\com\sun\jersey\contribs\jersey-apache-client4\1.19.1\jersey-apache-client4-1.19.1.jar;D:\repository\com\google\inject\guice\4.1.0\guice-4.1.0.jar;D:\repository\javax\inject\javax.inject\1\javax.inject-1.jar;D:\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;D:\repository\com\netflix\eureka\eureka-core\1.7.2\eureka-core-1.7.2.jar;D:\repository\org\codehaus\woodstox\woodstox-core-asl\4.4.1\woodstox-core-asl-4.4.1.jar;D:\repository\javax\xml\stream\stax-api\1.0-2\stax-api-1.0-2.jar;D:\repository\org\codehaus\woodstox\stax2-api\3.1.4\stax2-api-3.1.4.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-archaius\1.4.6.RELEASE\spring-cloud-starter-netflix-archaius-1.4.6.RELEASE.jar;D:\repository\commons-configuration\commons-configuration\1.8\commons-configuration-1.8.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-netflix-ribbon\1.4.6.RELEASE\spring-cloud-starter-netflix-ribbon-1.4.6.RELEASE.jar;D:\repository\com\netflix\ribbon\ribbon\2.2.5\ribbon-2.2.5.jar;D:\repository\com\netflix\ribbon\ribbon-transport\2.2.5\ribbon-transport-2.2.5.jar;D:\repository\io\reactivex\rxnetty-contexts\0.4.9\rxnetty-contexts-0.4.9.jar;D:\repository\io\reactivex\rxnetty-servo\0.4.9\rxnetty-servo-0.4.9.jar;D:\repository\io\reactivex\rxnetty\0.4.9\rxnetty-0.4.9.jar;D:\repository\com\netflix\ribbon\ribbon-core\2.2.5\ribbon-core-2.2.5.jar;D:\repository\com\netflix\ribbon\ribbon-httpclient\2.2.5\ribbon-httpclient-2.2.5.jar;D:\repository\com\netflix\netflix-commons\netflix-commons-util\0.1.1\netflix-commons-util-0.1.1.jar;D:\repository\com\netflix\ribbon\ribbon-loadbalancer\2.2.5\ribbon-loadbalancer-2.2.5.jar;D:\repository\com\netflix\netflix-commons\netflix-statistics\0.1.1\netflix-statistics-0.1.1.jar;D:\repository\io\reactivex\rxjava\1.2.0\rxjava-1.2.0.jar;D:\repository\com\netflix\ribbon\ribbon-eureka\2.2.5\ribbon-eureka-2.2.5.jar;D:\repository\com\thoughtworks\xstream\xstream\1.4.10\xstream-1.4.10.jar;D:\repository\xmlpull\xmlpull\1.1.3.1\xmlpull-1.1.3.1.jar;D:\repository\xpp3\xpp3_min\1.1.4c\xpp3_min-1.1.4c.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-feign\1.4.6.RELEASE\spring-cloud-starter-feign-1.4.6.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-openfeign\1.4.6.RELEASE\spring-cloud-starter-openfeign-1.4.6.RELEASE.jar;D:\repository\io\github\openfeign\feign-core\9.5.0\feign-core-9.5.0.jar;D:\repository\org\jvnet\animal-sniffer-annotation\1.0\animal-sniffer-annotation-1.0.jar;D:\repository\io\github\openfeign\feign-slf4j\9.5.0\feign-slf4j-9.5.0.jar;D:\repository\io\github\openfeign\feign-hystrix\9.5.0\feign-hystrix-9.5.0.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-bus-kafka\1.3.4.RELEASE\spring-cloud-starter-bus-kafka-1.3.4.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-starter-stream-kafka\1.3.3.RELEASE\spring-cloud-starter-stream-kafka-1.3.3.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream-binder-kafka\1.3.3.RELEASE\spring-cloud-stream-binder-kafka-1.3.3.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream-binder-kafka-core\1.3.3.RELEASE\spring-cloud-stream-binder-kafka-core-1.3.3.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-kafka\2.1.2.RELEASE\spring-integration-kafka-2.1.2.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream-codec\1.3.3.RELEASE\spring-cloud-stream-codec-1.3.3.RELEASE.jar;D:\repository\com\esotericsoftware\kryo-shaded\3.0.3\kryo-shaded-3.0.3.jar;D:\repository\com\esotericsoftware\minlog\1.3.0\minlog-1.3.0.jar;D:\repository\org\apache\kafka\kafka_2.11\0.10.1.1\kafka_2.11-0.10.1.1.jar;D:\repository\com\yammer\metrics\metrics-core\2.2.0\metrics-core-2.2.0.jar;D:\repository\org\scala-lang\scala-library\2.11.8\scala-library-2.11.8.jar;D:\repository\com\101tec\zkclient\0.9\zkclient-0.9.jar;D:\repository\org\apache\zookeeper\zookeeper\3.4.8\zookeeper-3.4.8.jar;D:\repository\io\netty\netty\3.7.0.Final\netty-3.7.0.Final.jar;D:\repository\org\scala-lang\modules\scala-parser-combinators_2.11\1.0.4\scala-parser-combinators_2.11-1.0.4.jar;D:\repository\org\apache\kafka\kafka-clients\0.10.1.1\kafka-clients-0.10.1.1.jar;D:\repository\net\jpountz\lz4\lz4\1.3.0\lz4-1.3.0.jar;D:\repository\org\xerial\snappy\snappy-java\1.1.2.6\snappy-java-1.1.2.6.jar;D:\repository\org\springframework\kafka\spring-kafka\1.1.7.RELEASE\spring-kafka-1.1.7.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-bus\1.3.4.RELEASE\spring-cloud-bus-1.3.4.RELEASE.jar;D:\repository\org\springframework\cloud\spring-cloud-stream\1.3.3.RELEASE\spring-cloud-stream-1.3.3.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-validation\1.5.8.RELEASE\spring-boot-starter-validation-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-messaging\4.3.12.RELEASE\spring-messaging-4.3.12.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-jmx\4.3.12.RELEASE\spring-integration-jmx-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-tuple\1.0.0.RELEASE\spring-tuple-1.0.0.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-tuple\1.0.0.RELEASE\spring-integration-tuple-1.0.0.RELEASE.jar;D:\repository\org\springframework\retry\spring-retry\1.2.1.RELEASE\spring-retry-1.2.1.RELEASE.jar;D:\repository\org\springframework\integration\spring-integration-core\4.3.12.RELEASE\spring-integration-core-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-tx\4.3.12.RELEASE\spring-tx-4.3.12.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-starter-actuator\1.5.8.RELEASE\spring-boot-starter-actuator-1.5.8.RELEASE.jar;D:\repository\org\springframework\boot\spring-boot-actuator\1.5.8.RELEASE\spring-boot-actuator-1.5.8.RELEASE.jar;D:\repository\org\springframework\spring-web\4.3.12.RELEASE\spring-web-4.3.12.RELEASE.jar;D:\repository\org\springframework\spring-beans\4.3.12.RELEASE\spring-beans-4.3.12.RELEASE.jar;D:\repository\com\alibaba\fastjson\1.2.44\fastjson-1.2.44.jar;D:\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;D:\repository\commons-beanutils\commons-beanutils\1.9.3\commons-beanutils-1.9.3.jar;D:\repository\commons-collections\commons-collections\3.2.2\commons-collections-3.2.2.jar;D:\repository\commons-io\commons-io\1.3.2\commons-io-1.3.2.jar;D:\repository\com\alibaba\druid\1.1.9\druid-1.1.9.jar;D:\repository\com\baomidou\mybatis-plus-boot-starter\2.2.0\mybatis-plus-boot-starter-2.2.0.jar;D:\repository\com\baomidou\mybatis-plus\2.2.0\mybatis-plus-2.2.0.jar;D:\repository\com\baomidou\mybatis-plus-support\2.2.0\mybatis-plus-support-2.2.0.jar;D:\repository\com\baomidou\mybatis-plus-core\2.2.0\mybatis-plus-core-2.2.0.jar;D:\repository\com\github\jsqlparser\jsqlparser\1.1\jsqlparser-1.1.jar;D:\repository\org\mybatis\mybatis-spring\1.3.2\mybatis-spring-1.3.2.jar;D:\repository\org\mybatis\mybatis\3.4.6\mybatis-3.4.6.jar;D:\repository\com\baomidou\mybatis-plus-generate\2.2.0\mybatis-plus-generate-2.2.0.jar;D:\repository\org\springframework\boot\spring-boot-starter-jdbc\1.5.8.RELEASE\spring-boot-starter-jdbc-1.5.8.RELEASE.jar;D:\repository\org\apache\tomcat\tomcat-jdbc\8.5.23\tomcat-jdbc-8.5.23.jar;D:\repository\org\apache\tomcat\tomcat-juli\8.5.23\tomcat-juli-8.5.23.jar;D:\repository\org\springframework\spring-jdbc\4.3.12.RELEASE\spring-jdbc-4.3.12.RELEASE.jar;D:\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar;D:\repository\com\github\tomakehurst\wiremock\2.5.1\wiremock-2.5.1.jar;D:\repository\org\eclipse\jetty\jetty-server\9.4.7.v20170914\jetty-server-9.4.7.v20170914.jar;D:\repository\javax\servlet\javax.servlet-api\3.1.0\javax.servlet-api-3.1.0.jar;D:\repository\org\eclipse\jetty\jetty-http\9.4.7.v20170914\jetty-http-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-io\9.4.7.v20170914\jetty-io-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-servlet\9.4.7.v20170914\jetty-servlet-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-security\9.4.7.v20170914\jetty-security-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-servlets\9.4.7.v20170914\jetty-servlets-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-continuation\9.4.7.v20170914\jetty-continuation-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-util\9.4.7.v20170914\jetty-util-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-webapp\9.4.7.v20170914\jetty-webapp-9.4.7.v20170914.jar;D:\repository\org\eclipse\jetty\jetty-xml\9.4.7.v20170914\jetty-xml-9.4.7.v20170914.jar;D:\repository\com\google\guava\guava\18.0\guava-18.0.jar;D:\repository\com\fasterxml\jackson\core\jackson-core\2.8.10\jackson-core-2.8.10.jar;D:\repository\org\apache\httpcomponents\httpclient\4.5.3\httpclient-4.5.3.jar;D:\repository\org\apache\httpcomponents\httpcore\4.4.8\httpcore-4.4.8.jar;D:\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;D:\repository\org\xmlunit\xmlunit-core\2.3.0\xmlunit-core-2.3.0.jar;D:\repository\org\xmlunit\xmlunit-legacy\2.3.0\xmlunit-legacy-2.3.0.jar;D:\repository\net\sf\jopt-simple\jopt-simple\4.9\jopt-simple-4.9.jar;D:\repository\org\apache\commons\commons-lang3\3.4\commons-lang3-3.4.jar;D:\repository\com\flipkart\zjsonpatch\zjsonpatch\0.2.1\zjsonpatch-0.2.1.jar;D:\repository\org\apache\commons\commons-collections4\4.0\commons-collections4-4.0.jar;D:\repository\com\github\jknack\handlebars\4.0.6\handlebars-4.0.6.jar;D:\repository\org\antlr\antlr4-runtime\4.5.1-1\antlr4-runtime-4.5.1-1.jar;D:\repository\com\fiberhome\filink\filink-common-bean\0.0.1-RELEASE\filink-common-bean-0.0.1-RELEASE.jar;D:\repository\org\projectlombok\lombok\1.16.18\lombok-1.16.18.jar;D:\repository\com\fiberhome\filink\filink-common-client\0.0.1-RELEASE\filink-common-client-0.0.1-RELEASE.jar;D:\repository\com\fiberhome\filink\filink-log-api\0.0.1-RELEASE\filink-log-api-0.0.1-RELEASE.jar;D:\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;D:\repository\xml-apis\xml-apis\1.4.01\xml-apis-1.4.01.jar;D:\idea\IntelliJ IDEA 2017.2.4\lib\idea_rt.jar
+2019-03-02 15:09:03.277 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.library.path=D:\java\jdk\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\java\jdk\bin;D:\java\jdk\jre\bin;D:\TortoiseSVN\bin;D:\apache-maven-3.5.0\bin;D:\mongodb\bin;.
+2019-03-02 15:09:03.277 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+2019-03-02 15:09:03.277 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.compiler=<NA>
+2019-03-02 15:09:03.277 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.name=Windows 7
+2019-03-02 15:09:03.278 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.arch=amd64
+2019-03-02 15:09:03.278 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.version=6.1
+2019-03-02 15:09:03.278 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.name=Administrator
+2019-03-02 15:09:03.278 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.home=C:\Users\Administrator
+2019-03-02 15:09:03.278 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.dir=D:\code\10-Sys Code\filink-alarmSet\branches\2019223
+2019-03-02 15:09:03.280 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@53100ea1
+2019-03-02 15:09:03.310 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 15:09:03.313 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 15:09:03.370 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45b8e, negotiated timeout = 10000
+2019-03-02 15:09:04.093 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x166cd392be45b8e closed
+2019-03-02 15:09:04.093 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45b8e
+2019-03-02 15:09:04.093 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@69abe626
+2019-03-02 15:09:04.095 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 15:09:04.095 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 15:09:04.142 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45b8f, negotiated timeout = 10000
+2019-03-02 15:09:04.555 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-03-02 15:09:05.002 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-03-02 15:09:05.002 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-03-02 15:09:05.266 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-03-02 15:09:05.267 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-03-02 15:09:05.562 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:09:05.615 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-03-02 15:09:05.615 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-03-02 15:09:05.615 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-03-02 15:09:05.615 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-03-02 15:09:05.615 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-03-02 15:09:05.615 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-03-02 15:09:05.615 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-03-02 15:09:05.844 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-03-02 15:09:05.846 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Starting heartbeat executor: renew interval is: 30
+2019-03-02 15:09:05.848 [main] INFO  c.n.discovery.InstanceInfoReplicator
+                -InstanceInfoReplicator onDemand update allowed rate per min is 4
+2019-03-02 15:09:05.851 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1551510545850 with initial instances count: 7
+2019-03-02 15:09:06.083 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Saw local status change event StatusChangeEvent [timestamp=1551510546083, current=UP, previous=STARTING]
+2019-03-02 15:09:06.085 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-ALARMSET-SERVER/SKY-20190125EWT.wh.wistronits.com:filink-alarmSet-server:9205: registering service...
+2019-03-02 15:09:06.153 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-ALARMSET-SERVER/SKY-20190125EWT.wh.wistronits.com:filink-alarmSet-server:9205 - registration status: 204
+2019-03-02 15:09:06.153 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@d160c44
+2019-03-02 15:09:06.154 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 15:09:06.155 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 15:09:06.200 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45b90, negotiated timeout = 10000
+2019-03-02 15:09:06.268 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x166cd392be45b90 closed
+2019-03-02 15:09:06.268 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x166cd392be45b90
+2019-03-02 15:09:06.270 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.43.18:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@4ac79791
+2019-03-02 15:09:06.273 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.43.18/10.5.43.18:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-02 15:09:06.275 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.43.18/10.5.43.18:2181, initiating session
+2019-03-02 15:09:06.326 [main-SendThread(10.5.43.18:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.43.18/10.5.43.18:2181, sessionid = 0x166cd392be45b91, negotiated timeout = 10000
+2019-03-02 15:09:06.597 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-03-02 15:09:06.724 [main] INFO  o.e.jetty.server.AbstractConnector
+                -Started ServerConnector@2480acc3{HTTP/1.1,[http/1.1]}{0.0.0.0:9205}
+2019-03-02 15:09:06.730 [main] INFO  c.f.f.a.FilinkAlarmSetServerApplication
+                -Started FilinkAlarmSetServerApplication in 37.825 seconds (JVM running for 39.611)
+2019-03-02 15:09:08.360 [RMI TCP Connection(14)-10.5.33.57] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-alarmSet-server/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-03-02 15:10:14.187 [hystrix-filink-log-server-1] INFO  c.n.config.ChainedDynamicProperty
+                -Flipping property: filink-log-server.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+2019-03-02 15:10:14.204 [hystrix-filink-log-server-1] INFO  c.n.u.c.ShutdownEnabledTimer
+                -Shutdown hook installed for: NFLoadBalancer-PingTimer-filink-log-server
+2019-03-02 15:10:14.227 [hystrix-filink-log-server-1] INFO  c.n.loadbalancer.BaseLoadBalancer
+                -Client: filink-log-server instantiated a LoadBalancer: DynamicServerListLoadBalancer:{NFLoadBalancer:name=filink-log-server,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:null
+2019-03-02 15:10:14.233 [hystrix-filink-log-server-1] INFO  c.n.l.DynamicServerListLoadBalancer
+                -Using serverListUpdater PollingServerListUpdater
+2019-03-02 15:10:14.236 [hystrix-filink-log-server-1] INFO  c.n.l.DynamicServerListLoadBalancer
+                -DynamicServerListLoadBalancer for client filink-log-server initialized: DynamicServerListLoadBalancer:{NFLoadBalancer:name=filink-log-server,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList@1549eac1
+2019-03-02 15:14:05.633 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:19:05.641 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:24:05.648 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:29:05.655 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:34:05.662 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:39:05.669 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:44:05.676 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:49:05.684 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:54:05.691 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 15:59:05.698 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:04:05.705 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:09:05.712 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:14:05.719 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:19:05.726 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:24:05.733 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:29:05.740 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:34:05.748 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:39:05.755 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:44:05.927 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:49:05.934 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:54:05.942 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 16:59:05.949 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:04:05.956 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:09:05.964 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:14:05.971 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:19:05.978 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:24:05.986 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:29:05.993 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:34:06.000 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:39:06.007 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:44:06.014 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:49:06.020 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:54:06.028 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 17:59:06.035 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 18:04:06.042 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 18:09:06.049 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 18:14:06.056 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 18:19:06.062 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 18:24:06.069 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 18:29:06.077 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 18:34:06.084 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-03-02 18:39:06.091 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration

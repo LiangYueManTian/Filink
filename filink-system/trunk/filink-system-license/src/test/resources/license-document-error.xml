@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<License>-->
+	<TryRemark>Y</TryRemark>
+	<BeginTime>2018-12-12</BeginTime>
+	<EndTime>2020-01-01</EndTime>
+	<MaxUserNum>150</MaxUserNum>
+	<MaxOnline>200</MaxOnline>
+	<MaxDeviceNum>300000</MaxDeviceNum>
+</License>

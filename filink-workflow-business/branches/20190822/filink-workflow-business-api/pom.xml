@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.fiberhome.filink</groupId>
+    <artifactId>filink-workflow-business-api</artifactId>
+    <version>0.0.3-RELEASE</version>
+    <name>filink-workflow-business-api</name>
+    <description>工单业务服务api模块</description>
+    <packaging>jar</packaging>
+
+
+    <parent>
+        <groupId>com.fiberhome.filink</groupId>
+        <artifactId>filink-workflow-business</artifactId>
+        <version>0.0.3-RELEASE</version>
+    </parent>
+
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-client</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+</project>

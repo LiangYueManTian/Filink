@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="2102101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add device protocol device protocol name is ${protocolName}</detailInfoTemplate>
+			<optName>addDeviceProtocol</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了设施协议:${protocolName}</detailInfoTemplate>
+			<optName>新增设施协议</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2102102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update device protocol device protocol name is ${protocolName}</detailInfoTemplate>
+			<optName>updateDeviceProtocol</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了设施协议:${protocolName}</detailInfoTemplate>
+			<optName>修改设施协议</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2102103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete device protocol device protocol name is ${protocolName}</detailInfoTemplate>
+			<optName>deleteDeviceProtocol</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了设施协议:${protocolName}</detailInfoTemplate>
+			<optName>删除设施协议</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2101101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add area area name is ${templateName}</detailInfoTemplate>
+			<optName>addMenuTemplate</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了菜单:${templateName}</detailInfoTemplate>
+			<optName>新增菜单模板</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2101102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update menuTemplate menuTemplate name is ${templateName}</detailInfoTemplate>
+			<optName>updateMenuTemplate</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了菜单模板:${templateName}</detailInfoTemplate>
+			<optName>修改菜单模板</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2101103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete menuTemplate menuTemplate name is ${templateName}</detailInfoTemplate>
+			<optName>deleteMenuTemplate</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了菜单模板:${templateName}</detailInfoTemplate>
+			<optName>删除菜单模板</optName>
+		</language>
+	</functionCode>
+</functionCodes>

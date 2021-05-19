@@ -1,0 +1,330 @@
+<!--头部按钮-->
+<div class="table-top-button" *ngIf="(tableConfig.topButtons && tableConfig.topButtons.length > 0)
+          ||configurableColumn.length>0
+          ||tableConfig.showSearchSwitch">
+  <div style="flex: 1">
+    <button [class]="'left-button link-button '+item.className" nz-button [nzType]="item.btnType || 'primary'"
+            *ngFor="let item of tableConfig.topButtons let index = index"
+            [disabled]="item.canDisabled&& allUnChecked"
+            style=""
+            (click)="topHandle(item)">
+      <i *ngIf="item.iconClassName"  [class]="'iconfont '+item.iconClassName"></i>
+      {{item.text}}
+    </button>
+    <span *ngIf="tableConfig.topCustomButton">
+      <ng-template [ngTemplateOutlet]="tableConfig.topCustomButton"
+                   [ngTemplateOutletContext]="{data:dataSet}"></ng-template>
+    </span>
+  </div>
+
+  <!--过滤-->
+  <div style="padding: 0 10px" *ngIf="tableConfig.showSearchSwitch">
+    <span nz-tooltip [nzTitle]="'筛选'" style="" (click)="tableConfig.showSearch=!tableConfig.showSearch">
+      <i class="icon-l iconfont fiLink-filter"></i></span>
+  </div>
+
+  <!--设置列-->
+  <div *ngIf="configurableColumn&&configurableColumn.length">
+    <nz-dropdown [nzClickHide]="false" nzTrigger="click">
+      <span style="" nz-dropdown>
+        <i nz-tooltip [nzTitle]="'设置列'" class="icon-l iconfont fiLink-columns-setting"></i></span>
+      <ul nz-menu class="column-setting-list">
+        <ng-container *ngFor="let _item of configurableColumn">
+          <li nz-menu-item>
+            <label nz-checkbox
+                   style="width: 100%"
+                   [ngModel]="!_item.hidden"
+                   (ngModelChange)="_item.hidden = !_item.hidden">
+              <span>{{_item.title}}</span>
+            </label>
+          </li>
+        </ng-container>
+      </ul>
+    </nz-dropdown>
+  </div>
+  <!--表格右上区的按钮-->
+  <div style="padding: 0 10px" *ngIf="tableConfig.rightTopButtons&&tableConfig.rightTopButtons.length>0">
+    <span style=""
+            *ngFor="let button of tableConfig.rightTopButtons"
+          nz-tooltip [nzTitle]="button.text"
+            (click)="topHandle(button)"
+    >
+      <i *ngIf="button.iconClassName" class="icon-l iconfont " [ngClass]="button.iconClassName"></i>
+      <!--{{button.text}}-->
+    </span>
+  </div>
+</div>
+
+<!--表格主体区域-->
+<div id="xTable" [ngClass]="{'table-dragging':dragging}">
+  <nz-table #nzTable
+            #borderedTable
+            [nzShowSizeChanger]="tableConfig.showSizeChanger"
+            [nzLoading]="tableConfig.isLoading"
+            [nzData]="dataSet"
+            [nzTotal]="pageBean.Total"
+            [(nzPageIndex)]="pageBean.pageIndex"
+            [(nzPageSize)]="pageBean.pageSize"
+            [nzFrontPagination]="false"
+            (nzPageIndexChange)="refreshStatus($event)"
+            (nzPageSizeChange)="refreshStatus($event)"
+            [nzPageSizeOptions]="tableConfig.pageSizeOptions"
+            #rowSelectionTable
+            nzShowQuickJumper
+            [nzShowTotal]="totalTemplate"
+            [nzBordered]="tableConfig.bordered"
+            [nzShowPagination]="tableConfig.showPagination"
+            #middleTable
+            [nzScroll]="tableConfig.scroll"
+            [nzHideOnSinglePage]="tableConfig.hideOnSinglePage"
+            [nzSimple]="tableConfig.simplePage"
+  >
+    <thead [nzSingleSort]="true">
+
+    <!--表头-->
+    <tr>
+      <ng-container *ngFor="let config of tableConfig.columnConfig let index = index">
+        <ng-container [ngSwitch]="config.type">
+          <th nzShowExpand *ngSwitchCase="'expend'"
+              [class.ant-table-th-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+              nzWidth="{{config.width+'px'}}"
+              [class.ant-table-th-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+              [ngStyle]="config.fixedStyle&&config.fixedStyle.style"></th>
+          <th *ngSwitchCase="'select'" nzShowCheckbox
+              [nzShowRowSelection]="tableConfig.showRowSelection && dataSet.length>0
+              &&tableConfig.columnConfig[0].type!=='expend'"
+              [class.ant-table-th-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+              [class.ant-table-th-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+              [ngStyle]="config.fixedStyle&&config.fixedStyle.style"
+              nzWidth="{{config.width+'px'}}"
+              [nzDisabled]="dataSet.length===0"
+              [nzSelections]="listOfSelection" [(nzChecked)]="allChecked"
+              [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)">
+          </th>
+          <ng-container *ngSwitchDefault>
+            <th *ngIf="!config.hidden" style="user-select:none;position: relative"
+                [class.ant-table-th-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+                [class.ant-table-th-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+                [ngStyle]="config.fixedStyle&&config.fixedStyle.style"
+                (mousemove)="handleMouseMove($event,config)"
+                (mousedown)="handleMouseDown($event,config)"
+                (mouseout)="handleMouseOut($event,config)"
+                [nzShowSort]="config.isShowSort"
+                [nzSortKey]="config.searchKey || config.key"
+                [nzShowFilter]="config.isShowFilter"
+                (nzSortChange)="sort($event,config.searchKey || config.key)"
+                [nzFilters]="config.filterList||[]" (nzFilterChange)="handleFilter(config,$event)"
+                [nzCustomFilter]="config.isCustomFilter"
+                nzWidth="{{config.width+'px'}}">
+              <!--{{config.title}}-->
+              <span style="display: inline-block;margin-top: 5px" class="table-text-td" [title]="config.title">{{config.title}}</span>
+
+              <ng-template [ngTemplateOutlet]="config.template"></ng-template>
+              <div class="table-drag-line"
+                   *ngIf="tableConfig.isDraggable&&!tableConfig.bordered&&index<tableConfig.columnConfig.length-1">
+                <div></div>
+              </div>
+            </th>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </tr>
+
+    <!--表头查询-->
+    <tr *ngIf="tableConfig.showSearch" class="table-search">
+      <ng-container [ngTemplateOutlet]="tableConfig.searchTemplate?tableConfig.searchTemplate:defaultSearchTemplate"
+                    [ngTemplateOutletContext]="{columnConfig:tableConfig.columnConfig}"
+      ></ng-container>
+    </tr>
+    </thead>
+    <tbody>
+
+    <!--表格每一行-->
+    <ng-container *ngFor="let data of nzTable.data;let index = index">
+      <tr>
+        <ng-template [ngTemplateOutlet]="tdTemplate"
+                     [ngTemplateOutletContext]="{columnConfig:tableConfig.columnConfig,childData:data,fIndex:index+pageBean.pageSize*(pageBean.pageIndex-1)+1,sIndex:-1}"></ng-template>
+      </tr>
+
+      <!--展开行项-->
+      <ng-template *ngIf="data[tableConfig.columnConfig[0].expendDataKey]&&!tableConfig.columnConfig[0].expandConfig"
+                   [ngTemplateOutlet]="trTemplate"
+                   [ngTemplateOutletContext]="{columnConfig:tableConfig.columnConfig,data:data,fIndex:index+pageBean.pageSize*(pageBean.pageIndex-1)+1,sIndex:-1}"></ng-template>
+
+      <!--嵌套表格-->
+      <tr [nzExpand]="data.expand" *ngIf="tableConfig.columnConfig[0].expandConfig">
+        <ng-template *ngIf="tableConfig.columnConfig[0].expandConfig" [ngTemplateOutlet]="tableConfig.expandTemplate"
+                     [ngTemplateOutletContext]="{ dataSet:data[tableConfig.columnConfig[0].expendDataKey],
+                     tableConfig:tableConfig.columnConfig[0].expandConfig}"
+        ></ng-template>
+      </tr>
+    </ng-container>
+
+    <!--表格无数据的情况-->
+    <tr *ngIf="nzTable.data.length===0">
+      <td class="xc-no-data" [attr.colspan]="2">{{language.table.noData}}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+
+  <!--表格左下角的按钮处理事件和头部的按钮一样-->
+  <div class="table-left-button" [class.table-left-button-position]="!tableConfig.showPagination||!(dataSet.length>0)">
+    <button nz-button
+            [class]="'left-button link-button '+button.className"
+            *ngFor="let button of tableConfig.leftBottomButtons"
+            [nzType]="button.btnType || 'danger'"
+            (click)="topHandle(button)"
+    >
+      <i *ngIf="button.iconClassName" class="icon " [class]="button.iconClassName"></i>
+      {{button.text}}
+    </button>
+  </div>
+
+  <!--列宽拖拽参照线-->
+  <div class="resize-proxy" [class.resize-proxy-height]="!tableConfig.showPagination" id="resizeProxy"
+       [hidden]="!resizeProxyShow"></div>
+</div>
+
+<!--组合搜索默认子模板-->
+<ng-template #searchTemplate let-config="config">
+  <ng-container [ngSwitch]="config.searchConfig.type"
+  >
+    <div *ngSwitchCase="'input'">
+      <input type="text" [(ngModel)]="queryTerm.get(config.key).filterValue" nz-input placeholder="{{language.form.inputPlaceholder}}">
+    </div>
+    <div *ngSwitchCase="'select'">
+      <nz-select style="width: 100%;" [(ngModel)]="queryTerm.get(config.key).filterValue"
+                 [nzMode]="config.searchConfig.selectType||'default'" [nzAllowClear]="(!config.searchConfig.notAllowClear)"
+                 [nzPlaceHolder]="language.form.selectPlaceholder">
+        <ng-container *ngFor="let option of config.searchConfig.selectInfo">
+          <nz-option [nzValue]="option[config.searchConfig.value]||option.value"
+                     [nzLabel]="option[config.searchConfig.label]||option.label">
+          </nz-option>
+        </ng-container>
+      </nz-select>
+    </div>
+    <div *ngSwitchCase="'date'" style="display: flex">
+      <div style="flex: 1">
+        <nz-date-picker [nzShowTime]="true" style="width: 100%" [(ngModel)]="searchDate[config.key]"
+                        (ngModelChange)="onChange($event, config.key)"></nz-date-picker>
+      </div>
+      <div style="width: 70px;">
+        <nz-select style="width: 100%" [(ngModel)]="queryTerm.get(config.key).operator">
+          <nz-option nzValue="gt" nzLabel="大于"></nz-option>
+          <nz-option nzValue="lt" nzLabel="小于"></nz-option>
+          <nz-option nzValue="eq" nzLabel="等于"></nz-option>
+        </nz-select>
+      </div>
+      <!--<xc-date-picker></xc-date-picker>-->
+    </div>
+    <div *ngSwitchCase="'render'">
+      <ng-template [ngTemplateOutlet]="config.searchConfig.renderTemplate"
+                   [ngTemplateOutletContext]="{filterValue:queryTerm.get(config.key)}"
+      ></ng-template>
+    </div>
+    <div *ngSwitchCase="'operate'">
+      <span style="margin-right: 10px;cursor: pointer" nz-tooltip [nzTitle]="'搜索'"
+            (click)="handleSearch()">
+        <i class="icon-fiLink iconfont fiLink-search"></i>
+      </span>
+      <span style="margin-right: 10px;cursor: pointer" (click)="handleRest()" nz-tooltip [nzTitle]="'重置'">
+        <i class="icon-fiLink iconfont fiLink-reset"></i></span>
+    </div>
+  </ng-container>
+</ng-template>
+
+<!--组合搜索默认父模板-->
+<ng-template #defaultSearchTemplate let-columnConfig="columnConfig">
+  <ng-container *ngFor="let config of columnConfig let index = index">
+    <th *ngIf="!config.hidden"
+        [class.ant-table-td-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+        [class.ant-table-td-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+        [ngStyle]="config.fixedStyle&&config.fixedStyle.style">
+      <div *ngIf="config.searchable">
+        <ng-container [ngTemplateOutlet]="searchTemplate" [ngTemplateOutletContext]="{config:config}"></ng-container>
+      </div>
+    </th>
+  </ng-container>
+</ng-template>
+
+<!--分总条数模版-->
+<ng-template #totalTemplate let-total>
+  {{language.table.Total}} <span style="color: #36cfc9">{{total}}</span> {{language.table.items}}
+</ng-template>
+
+<!--每行的模板-->
+<ng-template #trTemplate let-columnConfig="columnConfig" let-data="data" let-fIndex="fIndex">
+  <ng-container *ngFor="let childData of data[tableConfig.columnConfig[0].expendDataKey] let sIndex = index">
+
+    <tr [nzExpand]="data.expand">
+      <ng-template [ngTemplateOutlet]="tdTemplate"
+                   [ngTemplateOutletContext]="{columnConfig:columnConfig,childData:childData,fIndex:fIndex,sIndex:sIndex }"></ng-template>
+    </tr>
+    <ng-template *ngIf="childData[tableConfig.columnConfig[0].expendDataKey]" [ngTemplateOutlet]="trTemplate"
+                 [ngTemplateOutletContext]="{columnConfig:tableConfig.columnConfig,data:childData,fIndex:(fIndex)+'-'+(sIndex+1)}"></ng-template>
+  </ng-container>
+</ng-template>
+
+<!--td模版-->
+<ng-template #tdTemplate let-columnConfig="columnConfig" let-childData="childData" let-fIndex="fIndex"
+             let-sIndex="sIndex">
+  <ng-container *ngFor="let config of columnConfig">
+    <ng-container [ngSwitch]="config.type">
+      <td [nzShowExpand]="childData[config.expendDataKey]&&childData[config.expendDataKey].length>0"
+          *ngSwitchCase="'expend'" [(nzExpand)]="childData.expand"
+          (nzExpandChange)="tableCollapse(childData[config.expendDataKey],$event)"
+          [class.ant-table-td-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+          [class.ant-table-td-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+          [ngStyle]="config.fixedStyle&&config.fixedStyle.style"
+      ></td>
+      <td *ngSwitchCase="'select'" nzShowCheckbox [(nzChecked)]="childData.checked"
+          [class.ant-table-td-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+          [class.ant-table-td-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+          [ngStyle]="config.fixedStyle&&config.fixedStyle.style"
+          (nzCheckedChange)="refreshCheckStatus($event,childData)"></td>
+      <ng-container *ngSwitchCase="'render'">
+        <td *ngIf="!config.hidden"
+            [class.ant-table-td-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+            [class.ant-table-td-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+            [ngStyle]="config.fixedStyle&&config.fixedStyle.style"
+        >
+          <ng-template [ngTemplateOutlet]="config.renderTemplate"
+                       [ngTemplateOutletContext]="{data:childData}"></ng-template>
+        </td>
+      </ng-container>
+      <ng-container *ngSwitchCase="'serial-number'">
+        <td *ngIf="!config.hidden"
+            [class.ant-table-td-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+            [class.ant-table-td-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+            [ngStyle]="config.fixedStyle&&config.fixedStyle.style"
+        >
+         <span class="table-text-td" style="margin-top: 5px;"
+               [title]="(sIndex>-1)?(fIndex+'-'+(sIndex+1)):fIndex">{{(sIndex>-1)?(fIndex+'-'+(sIndex+1)):fIndex}}</span>
+        </td>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <td *ngIf="!config.hidden" [(nzExpand)]="childData.expand"
+            [class.ant-table-td-left-sticky]="config.fixedStyle&&config.fixedStyle.fixedLeft"
+            [class.ant-table-td-right-sticky]="config.fixedStyle&&config.fixedStyle.fixedRight"
+            [ngStyle]="config.fixedStyle&&config.fixedStyle.style">
+          <ng-container *ngIf="config.key">
+            <span style="display: inline-block;margin-top: 5px;"
+                  [class.row-active]="childData['rowActive']"
+                  class="table-text-td"
+                  [title]="childData[config.key] | dynamic: config.pipe : config.pipeParam">{{childData[config.key] | dynamic: (config.pipe|| config.remarkPipe) : config.pipeParam}}</span>
+
+          </ng-container>
+          <ng-container *ngIf="!config.key">
+            <ng-container *ngFor="let item of tableConfig.operation;let index = index">
+               <span style="color: #1890ff; cursor: pointer;margin-right: 10px;"
+                     nz-tooltip [nzTitle]="item.text"
+                     (click)="handle(item,index,childData)" *ngIf="!item.key || childData[item.key]">
+                  <i class="icon-fiLink iconfont" [ngClass]="item.className" style=""></i>
+                </span>
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>

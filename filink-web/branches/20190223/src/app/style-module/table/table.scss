@@ -1,0 +1,141 @@
+@import "../config";
+
+.ant-table {
+  border: 1px solid $table-border-color;
+  border-top-color: $table-border-top-color;
+}
+
+.ant-table-thead > tr > th {
+  height: $table-header-height;
+  padding: 0 10px;
+  font-size: $table-font-size;
+  color: $table-font-color;
+  background-color: $table-bg-color;
+}
+
+.ant-table-thead > .table-search {
+  > th {
+    height: $table-tr-height;
+    font-size: 12px;
+    background-color: #ffffff;
+    border: none;
+  }
+  .ant-input, .ant-select-selection--single {
+    height: 22px;
+    font-size: 12px;
+  }
+  .ant-select-selection__rendered {
+    line-height: 22px;
+  }
+}
+
+tr.ant-table-expanded-row {
+  background: #ffffff;
+}
+
+tr.ant-table-expanded-row:hover {
+  //background-color: #e6f7ff;
+  background: none;
+}
+
+// 表格每一行到hover色
+tr.ant-table-row-hover > td, .ant-table-tbody > tr.ant-table-row-hover > td, .ant-table-thead > tr:hover > td, .ant-table-tbody > tr:hover > td {
+  background: $table-bg-color;
+}
+
+.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+  background: $table-bg-color;
+}
+
+// 去表格内边框
+.ant-table-tbody > tr > td {
+  border-bottom: none;
+  transition: all 0.3s, border 0s;
+}
+
+tr > th, .ant-table-tbody > tr > td {
+  height: $table-tr-height;
+  padding: 0 10px;
+  font-size: $table-font-size;
+  color: $table-font-color;
+}
+
+.ant-table-fixed {
+  table-layout: fixed;
+}
+
+.table-text-td {
+  width: 100%;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  //white-space: pre;
+  white-space: nowrap;
+}
+
+.table-top-button {
+  padding: 24px 0 10px;
+  display: flex;
+  .left-button {
+    margin-right: 10px
+  }
+}
+
+// 为了解决表格无数据 滚动条被隐藏掉了
+//.ant-table-fixed-header .ant-table-scroll .ant-table-header {
+//  overflow: visible;
+//  padding-bottom: 20px;
+//  margin-bottom: -20px;
+//  opacity: 0.9999;
+//}
+//
+//.ant-table-scroll {
+//  overflow: auto;
+//  overflow-x: scroll;
+//}
+//
+.ant-table-placeholder {
+  //margin-top: 10px;
+  display: none;
+}
+
+.xc-no-data {
+  position: sticky;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+// 表格展开箭头
+.ant-table-row-expand-icon {
+  cursor: pointer;
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  text-align: center;
+  line-height: 14px;
+  border: none;
+  background: none;
+}
+
+.ant-table-row-collapsed:after {
+  content: '';
+  background-image: url("assets/img/common-icon/icon_arrow.png");
+  background-repeat: no-repeat;
+  background-position: center, center;
+  display: inline-block;
+  width: 10px;
+  height: 6px;
+  transform: rotate(90deg);
+}
+
+.ant-table-row-expanded:after {
+  content: '';
+  background-image: url("assets/img/common-icon/icon_arrow.png");
+  background-repeat: no-repeat;
+  background-position: center, center;
+  display: inline-block;
+  width: 10px;
+  height: 6px;
+  transform: rotate(180deg);
+}

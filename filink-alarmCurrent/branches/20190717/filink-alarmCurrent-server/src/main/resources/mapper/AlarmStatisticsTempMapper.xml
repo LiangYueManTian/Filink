@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmcurrentserver.dao.AlarmStatisticsTempDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmcurrentserver.bean.AlarmStatisticsTemp">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="template_name" property="templateName" />
+        <result column="condition" property="condition" />
+        <result column="page_type" property="pageType" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser" />
+    </resultMap>
+
+
+    <insert id="addAlarmStatisticsTemp">
+        INSERT INTO alarm_statistics_temp (id,template_name,`condition`,page_type,is_deleted,remark,create_time,create_user) VALUE
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.templateName},
+            #{item.condition},
+            #{item.pageType},
+           "1",
+            #{item.remark},
+            current_timestamp(),
+            #{item.createUser}
+            )
+        </foreach>
+    </insert>
+
+    <sql id="BaseResultSql">
+        id,`code`,template_name,`condition`,page_type,start_time,end_time,is_deleted,remark,create_time,create_user
+    </sql>
+
+
+    <update id="batchUpdateAlarmStatisticsTemp" parameterType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmStatisticsTemp">
+        UPDATE alarm_statistics_temp SET template_name=#{templateName},`condition`=#{condition} WHERE id=#{id}
+    </update>
+
+    <update id="batchDeleteAlarmStatisticsTemp">
+        UPDATE alarm_statistics_temp SET is_deleted = "0" WHERE id in
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="queryAlarmStatisticsTempById" parameterType="java.lang.String"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_statistics_temp WHERE is_deleted="1"
+            AND id=#{id}
+    </select>
+
+    <select id="queryAlarmStatisticsTempByIds" parameterType="java.lang.String"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_statistics_temp WHERE id=#{id}
+    </select>
+
+    <select id="queryAlarmStatisticsTemp" parameterType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmStatisticsTemp"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_statistics_temp WHERE is_deleted="1"
+        <if test="pageType != null">
+            AND page_type=#{pageType}
+        </if>
+        <if test="createUser != null and createUser!='admin'">
+            AND create_user=#{createUser}
+        </if>
+
+    </select>
+
+</mapper>

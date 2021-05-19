@@ -1,0 +1,23 @@
+<div class="facility-list-container">
+  <div class="facility-list-title">
+    <div class="icon-facility-list" title="{{title}}" (click)="close()"></div>
+    <div class="text" title="{{title}}" (click)="close()">{{title}}</div>
+    <div class="more" title="{{more}}" (click)="goToFacilityList()">{{more + '>>'}}</div>
+  </div>
+  <ul>
+    <li *ngFor="let facility of facilityList"
+        [ngClass]="{'c-selected': facility.typeId === selectedFacilityType}"
+        (click)="ShowFacilityTable(facility.typeId)">
+      <span class="checkbox-facility-icon" [ngClass]="facility.iconClass"></span>
+      {{facility.typeName}}（{{facility.count}}）
+    </li>
+  </ul>
+  <div *ngIf="isShowFacilityTable" class="facility-table">
+    <xc-table [dataSet]="_dataSet"
+              [pageBean]="pageBean"
+              [tableConfig]="tableConfig"
+              (pageChange)="pageChange($event)"
+    #xcTable>
+    </xc-table>
+  </div>
+</div>

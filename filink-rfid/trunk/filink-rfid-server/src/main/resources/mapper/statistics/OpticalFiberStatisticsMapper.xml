@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.statistics.FiberOpticsAndCoreStatisticsDao">
+
+    <!--光缆统计-->
+    <select id="opticalFiberStatistics"
+            resultType="java.util.HashMap">
+        select oci.optic_cable_level state,count(oci.optic_cable_level) number
+        from optic_cable_info oci
+        <where>
+            oci.is_deleted = '0'
+        </where>
+        group by
+        oci.optic_cable_level
+    </select>
+
+    <!--光缆段统计-->
+    <select id="opticalFiberSection"
+            parameterType="com.fiberhome.filink.rfid.req.statistics.opticable.OpticCableInfoSectionStatisticsReq"
+            resultType="java.util.HashMap">
+        select
+        ocsi.status state,
+        count(ocsi.status) number
+        from optic_cable_section_info ocsi
+        <where>
+            ocsi.is_deleted = '0'
+            <if test="opticalCableSegment != null and opticalCableSegment.size()>0">
+                and ocsi.optic_cable_section_id in
+                <foreach collection="opticalCableSegment" index="index" item="item" open="("
+                         separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        group by ocsi.status
+    </select>
+</mapper>
+

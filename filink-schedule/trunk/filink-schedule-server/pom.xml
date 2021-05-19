@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>filink-schedule-server</artifactId>
+    <version>0.0.3-RELEASE</version>
+    <name>filink-schedule-server</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.fiberhome.filink</groupId>
+        <artifactId>filink-schedule</artifactId>
+        <version>0.0.3-RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-server</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-mysql</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-user-api</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-workflow-business-api</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-language</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-device-api</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-log-api</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-alarmCurrent-api</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-system-language</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+        <!--监控中心-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>1.5.7</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

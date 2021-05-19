@@ -1,0 +1,52 @@
+<div class="box-warp">
+    <!--<xc-table [dataSet]="_dataSet"-->
+              <!--[pageBean]="pageBean"-->
+              <!--[tableConfig]="tableConfig"-->
+              <!--(pageChange)="pageChange($event)">-->
+    <!--</xc-table>-->
+  <!--todo-->
+  <xc-table-virtual [dataSet]="_dataSet"
+                    [pageBean]="pageBean"
+                    [selectedOption]="selectedOption"
+                    [tableConfig]="tableConfig"
+  ></xc-table-virtual>
+</div>
+<ng-template #areaLevelTemp let-data="data">
+  <span class="area-level"
+        [class.level-one]="data.level===AreaLevel.AREA_LEVEL_ONE"
+        [class.level-two]="data.level===AreaLevel.AREA_LEVEL_TWO"
+        [class.level-three]="data.level===AreaLevel.AREA_LEVEL_THREE"
+        [class.level-four]="data.level===AreaLevel.AREA_LEVEL_FOUR"
+        [class.level-five]="data.level>=AreaLevel.AREA_LEVEL_FIVE"
+        style="">
+    {{data['level']===AreaLevel.AREA_LEVEL_ONE?language.config.AREA_LEVEL_ONE
+    :data['level']===AreaLevel.AREA_LEVEL_TWO? language.config.AREA_LEVEL_TWO
+    :data['level']===AreaLevel.AREA_LEVEL_THREE? language.config.AREA_LEVEL_THREE
+    :data['level']===AreaLevel.AREA_LEVEL_FOUR? language.config.AREA_LEVEL_FOUR
+    :data['level']===AreaLevel.AREA_LEVEL_FIVE? language.config.AREA_LEVEL_FIVE
+    :data['level']
+    }}
+  </span>
+</ng-template>
+<ng-template #topCustomButton>
+  <nz-select style="width: 130px;" [nzPlaceHolder]="'选择显示区域'" [(ngModel)]="selectedValue" (ngModelChange)="openChildren($event)" >
+
+    <nz-option *ngFor="let item of selectedOption;let index = index"
+               [nzValue]="index" [nzLabel]="item.label"></nz-option>
+  </nz-select>
+</ng-template>
+<ng-template #UnitNameSearch let-filterValue = "filterValue">
+  <span class="area-name hidden" (click)="showModal(filterValue)" [class.placeholder]="!selectUnitName"
+        [title]="selectUnitName">{{selectUnitName?selectUnitName:commonLanguage.clickSelect}}</span>
+</ng-template>
+<xc-tree-selector
+                  [(xcVisible)]="isVisible"
+                  (selectDataChange)="selectDataChange($event)"
+                  [treeSelectorConfig]="treeSelectorConfig">
+</xc-tree-selector>
+<!--<xc-map-selector-->
+  <!--[(xcVisible)]="mapVisible"-->
+  <!--(selectDataChange)="mapSelectDataChange($event)"-->
+  <!--[mapSelectorConfig]="mapSelectorConfig"-->
+<!--&gt;-->
+<!--</xc-map-selector>-->

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmcurrentserver.dao.AlarmCurrentDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmcurrentserver.bean.AlarmCurrent">
+        <id column="id" property="id" />
+        <result column="trap_oid" property="trapOid" />
+        <result column="alarm_name" property="alarmName" />
+        <result column="alarm_code" property="alarmCode" />
+        <result column="alarm_content" property="alarmContent" />
+        <result column="alarm_type" property="alarmType" />
+        <result column="alarm_source" property="alarmSource" />
+        <result column="alarm_source_type" property="alarmSourceType" />
+        <result column="alarm_source_typeid" property="alarmSourceTypeid" />
+        <result column="area" property="area" />
+        <result column="area_name" property="areaName" />
+        <result column="order_id" property="orderId" />
+        <result column="address" property="address" />
+        <result column="alarm_level" property="alarmLevel" />
+        <result column="responsible_department" property="responsibleDepartment" />
+        <result column="alarm_begin_time" property="alarmBeginTime" />
+        <result column="alarm_near_time" property="alarmNearTime" />
+        <result column="alarm_happen_count" property="alarmHappenCount" />
+        <result column="alarm_clean_status" property="alarmCleanStatus" />
+        <result column="alarm_clean_time" property="alarmCleanTime" />
+        <result column="alarm_clean_type" property="alarmCleanType" />
+        <result column="alarm_clean_people_id" property="alarmCleanPeopleId" />
+        <result column="alarm_confirm_status" property="alarmConfirmStatus" />
+        <result column="alarm_confirm_time" property="alarmConfirmTime" />
+        <result column="alarm_confirm_people_id" property="alarmConfirmPeopleId" />
+        <result column="extra_msg" property="extraMsg" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!--批量修改当前告警备注信息-->
+    <update id="updateManyRemark">
+        update ALARM_CURRENT SET remark= #{remark} WHERE id in
+        <foreach collection="alarmIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--批量修改当前告警确认状态-->
+    <update id="updateManyConfirmStatus">
+        UPDATE ALARM_CURRENT  a SET a.`alarm_confirm_people_id`= #{userId},a.`alarm_confirm_status`=1,a.`alarm_confirm_time`=CURRENT_TIMESTAMP()
+        WHERE a.`id` IN
+        <foreach collection="alarmIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--批量修改当前告警清除状态-->
+    <update id="updateAlarmCleanStatus">
+        UPDATE ALARM_CURRENT  a SET a.`alarm_clean_people_id`= #{userId},a.`alarm_clean_status`=1,a.`alarm_clean_time`=CURRENT_TIMESTAMP()
+        WHERE a.`id` IN
+        <foreach collection="alarmIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--查询各级别告警总数-->
+    <select id="queryEveryAlarmCount" resultType="map">
+        SELECT alarm_level alarmLevel,
+        count(*) count from alarm_current GROUP BY alarm_level
+    </select>
+</mapper>

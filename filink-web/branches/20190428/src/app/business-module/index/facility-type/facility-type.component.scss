@@ -1,0 +1,31 @@
+@import "../map/config";
+.facility-type-checkbox {
+  @include filter-top-filter;
+  $text-margin: 0 5px;
+  .facility-type-title {
+    display: flex;
+    padding: 0 4px;
+    height: 28px;
+    align-items: center;
+    .icon-facility-type {
+      width: 20px;
+      height: 20px;
+      background: url("../../../../assets/img/index/icon-facility-type.png") no-repeat center 100%;
+    }
+    .icon-setting {
+      width: 20px;
+      height: 20px;
+      background: url("../../../../assets/img/index/icon-setting.png") no-repeat center 100%;
+    }
+    .text {
+      margin: $text-margin;
+    }
+  }
+  .text {
+    font-size: 12px;
+  }
+
+  .checkbox {
+    @include top-checkbox;
+  }
+}

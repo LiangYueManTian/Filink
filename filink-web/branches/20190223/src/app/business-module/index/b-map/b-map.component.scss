@@ -1,0 +1,552 @@
+#container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.data-count {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  border: 1px solid gray;
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+}
+
+.facility-panel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 350px;
+  max-height: 700px;
+  z-index: 20;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.facility-panel-close {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.operate-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.title {
+  cursor: pointer;
+}
+
+.refresh-btn {
+  position: absolute;
+  left: 180px;
+  top: 14px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  .icon-refresh {
+    background: url("../../../../assets/img/index/icon-refresh.png") no-repeat center;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.unfold-btn {
+  position: absolute;
+  left: 220px;
+  top: 14px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  .icon-up {
+    width: 100%;
+    height: 100%;
+    background: url("../../../../assets/img/index/icon-up.png") no-repeat center;
+    background-size: 100% 100%;
+  }
+  .icon-expand {
+    transform:rotate(0deg);
+    -ms-transform:rotate(0deg); 	/* IE 9 */
+    -moz-transform:rotate(0deg); 	/* Firefox */
+    -webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+    -o-transform:rotate(0deg); 	/* Opera */
+  }
+  .icon-collapse {
+    transform:rotate(180deg);
+    -ms-transform:rotate(180deg); 	/* IE 9 */
+    -moz-transform:rotate(180deg); 	/* Firefox */
+    -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+    -o-transform:rotate(180deg); 	/* Opera */
+  }
+}
+
+.filter-top-filter {
+  background-color: white;
+  border: 1px #efeaea solid;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-table;
+}
+
+.filter-top-checkbox {
+  border-top: 1px #efeaea solid;
+  margin-bottom: 5px;
+  .checkbox {
+    padding: 5px 9px;
+    font-size: 12px;
+    height: 30px;
+    .checkbox-facility-icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+      padding-bottom: 3px;
+    }
+  }
+}
+
+.filter-top {
+  position: absolute;
+  left: 260px;
+  top: 15px;
+  display: flex;
+  $text-margin: 0 5px;
+  font-size: 12px;
+  .facility-type {
+    @extend .filter-top-filter;
+    .facility-type-title {
+      display: flex;
+      padding: 0 4px;
+      height: 28px;
+      align-items: center;
+      .icon-facility-type {
+        width: 20px;
+        height: 20px;
+        background: url("../../../../assets/img/index/icon-facility-type.png") no-repeat center 100%;
+      }
+      .icon-setting {
+        display: none;
+        width: 20px;
+        height: 20px;
+        background: url("../../../../assets/img/index/icon-setting.png") no-repeat center 100%;
+      }
+      .text {
+        display: none;
+        margin: $text-margin;
+      }
+    }
+    .facility-type-checkbox {
+      @extend .filter-top-checkbox;
+      .facility-type-title {
+        .text {
+          display: block;
+          color: #f6d683;
+        }
+        .icon-setting {
+          display: block;
+        }
+      }
+      .text {
+        font-size: 12px;
+      }
+    }
+    &:hover {
+      .facility-type-title {
+        .text {
+          display: block;
+        }
+        .icon-setting {
+          display: block;
+        }
+      }
+
+    }
+  }
+  .facility-status {
+    @extend .filter-top-filter;
+    .facility-status-title {
+      display: flex;
+      padding: 0 4px;
+      height: 28px;
+      align-items: center;
+      .icon-facility-status {
+        width: 20px;
+        height: 20px;
+        background: url("../../../../assets/img/index/icon-facility-status.png") no-repeat center 100%;
+      }
+      .text {
+        margin: $text-margin;
+        display: none;
+      }
+    }
+    .facility-status-checkbox {
+      @extend .filter-top-checkbox;
+      .facility-status-title {
+        .text {
+          display: block;
+          color: #f6d683;
+        }
+      }
+      .text {
+        font-size: 12px;
+        padding: 0 10px;
+      }
+      .c-w {
+        color: white;
+      }
+    }
+    &:hover {
+      .facility-status-title {
+        .text {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.map-setting {
+  position: absolute;
+  right: 95px;
+  bottom: 7px;
+  display: flex;
+  $text-margin: 0 5px;
+  font-size: 12px;
+  @extend .filter-top-filter;
+  .map-setting-title {
+    display: flex;
+    align-items: center;
+    .icon-map-setting {
+      width: 24px;
+      height: 24px;
+      background: url("../../../../assets/img/index/icon-map-setting.png") no-repeat center;
+      background-size: 100% 100%;
+    }
+    .text {
+      display: none;
+      margin: $text-margin;
+    }
+  }
+  &:hover {
+    .map-setting-title {
+      .text {
+        display: block;
+      }
+    }
+  }
+}
+
+.filter-left-filter {
+  position: absolute;
+  background-color: white;
+  border: 1px #efeaea solid;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.logic-area {
+  left: 70px;
+  top: 50px;
+  font-size: 12px;
+  $text-margin: 0 5px;
+  @extend .filter-left-filter;
+  .logic-area-title {
+    display: flex;
+    padding: 5px;
+    height: 30px;
+    align-items: center;
+    .icon-logic-area {
+      width: 20px;
+      height: 20px;
+      background: url("../../../../assets/img/index/icon-logic-area.png") no-repeat center 100%;
+    }
+    .text {
+      display: none;
+      margin: $text-margin;
+    }
+  }
+  .app-logic-area {
+    width: 180px;
+    height: 220px;
+  }
+  &:hover {
+    .logic-area-title {
+      .text {
+        display: block;
+      }
+    }
+  }
+}
+
+.facility-list {
+  left: 70px;
+  top: 80px;
+  font-size: 12px;
+  $text-margin: 0 5px;
+  @extend .filter-left-filter;
+  .facility-list-title {
+    display: flex;
+    padding: 5px;
+    height: 30px;
+    align-items: center;
+    .icon-facility-list {
+      width: 20px;
+      height: 20px;
+      background: url("../../../../assets/img/index/icon-facility-list.png") no-repeat center 100%;
+    }
+    .text {
+      display: none;
+      margin: $text-margin;
+    }
+  }
+  .app-facility-list {
+    width: 180px;
+    min-height: 20px;
+  }
+  &:hover {
+    .facility-list-title {
+      .text {
+        display: block;
+      }
+    }
+  }
+}
+
+
+[nz-carousel-content] {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  color: #fff;
+  overflow: hidden;
+}
+
+h3 {
+  color: #fff;
+}
+
+.marr10 {
+  margin-right: 10px;
+}
+.BMap_CityListCtrl {
+  min-height: 26px;
+  min-width: 66px;
+}
+
+
+.prompt-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0 , .5);
+  .prompt-content-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    width: 520px;
+    //height: 380px;
+    margin-left: -260px;
+    margin-top: -190px;
+    background-color: white;
+    //border-bottom: 2px solid #36cfca;
+    //border-left: 1px solid #36cfca;
+    //border-right: 1px solid #36cfca;
+    //border-top: 5px solid #36cfca;
+    .header {
+      display: flex;
+      height: 45px;
+      line-height: 45px;
+      border-bottom: 1px solid #e8e8e8;
+      font-weight: 600;
+      padding:0 20px;
+      .header-title {
+        flex: 1;
+      }
+      .header-close {
+        cursor: pointer;
+      }
+    }
+    .content {
+      .facility-type-config-container {
+        padding: 20px 100px 45px 100px;
+        font-size: 12px;
+        .facility-type-config-box {
+          border: 1px solid #e7e8ec;
+          .facility-type-config-item {
+            display: flex;
+            height: 30px;
+            .text {
+              flex: 1;
+              line-height: 30px;
+              padding-left: 10px;
+            }
+            .checkbox {
+              flex: 1;
+              padding: 5px 9px;
+              font-size: 12px;
+              margin-left: 10px;
+            }
+          }
+          .facility-type-config-title {
+            background-color: #eaedf2;
+            .split-line {
+                width: 1px;
+                height: 20px;
+                margin-top: 5px;
+                background-color: #dbdbdb;
+            }
+          }
+        }
+      }
+      .map-config-container {
+        padding: 40px 25px;
+        font-size: 12px;
+        .map-config-box {
+          .map-config-item {
+            display: flex;
+            height: 30px;
+            align-items: center;
+            .map-config-item-text {
+              width: 100px;
+            }
+            .map-config-item-content {
+              width: 300px;
+            }
+          }
+        }
+      }
+    }
+    .footer {
+      display: flex;
+      height: 60px;
+      align-items: center;
+      justify-content: flex-end;
+      border-top: 1px solid #e8e8e8;
+      .btn-container {
+        padding-right: 20px;
+      }
+    }
+  }
+}
+
+
+.info-window-container {
+  position: absolute;
+  z-index: 100;
+  transform: translate(-50%, -100%);
+  margin-top: -10px;
+  .info-window-c {
+    display: flex;
+    max-width: 270px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: rgba(256, 256, 256, 0.8);
+    box-shadow: 5px 5px 5px #d0c9c9;
+    .info-window-item {
+      width: 120px;
+      height: 25px;
+      align-items: center;
+      font-size: 14px;
+      display: flex;
+      .info-window-item-icon {
+        margin-right: 5px;
+        //  margin-top: -5px;
+        //  width: 20px;
+        //  height: 20px;
+        //  background: url("../../../../assets/img/index/icon-facility-test.png") no-repeat center 100%;
+      }
+      .info-window-item-name {
+        flex: 1;
+      }
+      .info-window-item-count {
+        color: #b3b3b3;
+      }
+    }
+  }
+  .info-window-m {
+    font-size: 12px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: rgba(256, 256, 256, 0.8);
+    box-shadow: 5px 5px 5px #d0c9c9;
+    .info-window-m-name {
+      display: flex;
+      height: 25px;
+      align-items: center;
+      font-size: 14px;
+      .info-window-m-icon {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.clusterer-facility-table {
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  margin-left: 10px;
+  margin-top: -30px;
+}
+
+// 有箭头的提示框
+.info-window {
+  $height: 200px;
+  position: absolute;
+  z-index: 100;
+  width: 200px;
+  height: $height;
+  border: 1px green solid;
+  background-color: white;
+  color: green;
+  margin-left: -100px;
+  margin-top: -$height;
+  border-radius: 5px;
+  &:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 0;
+    height: 0;
+    margin-left: -9px;
+    border-left: 9px solid transparent;
+    border-top: 12px solid;
+    border-right: 9px solid transparent;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 0;
+    height: 0;
+    margin-left: -8px;
+    border-left: 8px solid transparent;
+    border-top: 11px solid #fff;
+    border-right: 8px solid transparent;
+  }
+}

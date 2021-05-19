@@ -1,0 +1,136 @@
+<nz-layout id="fiLink" class="index-layout">
+  <nz-sider [(nzCollapsed)]="isCollapsed"
+            nzWidth="190"
+            nzCollapsedWidth="50"
+            (mouseenter)="isCollapsed = false"
+            (mouseleave)="isCollapsed = true">
+  <!--<nz-sider [(nzCollapsed)]="isCollapsed" >-->
+    <!--todo logo-->
+
+    <div  [ngClass]="isCollapsed?'logo-1':'logo'">
+      <img  [src]="displaySettings?.systemLogo || '../../assets/img/layout/FiLink_logo1.png'" alt="logo" class="logo-img">
+      <!--<img   *ngIf="!isCollapsed" src="../../assets/img/layout/FiLink.png" alt="logo">-->
+      <i *ngIf="!isCollapsed"  class="icon-fiLink fiLink-FiLink iconfont" style="font-size: 22px !important; color: white !important;"></i>
+    </div>
+
+    <!--todo 左侧菜单-->
+    <app-first-menu
+      [menuList]="menuList"
+      [isCollapsed]="isCollapsed"
+      (changeThreeMenu)="showThreeMenu($event)"
+    ></app-first-menu>
+    <!--<ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">-->
+      <!--<ng-container *ngFor="let item of menuList">-->
+        <!--<li *ngIf="item.children && item.children.length > 0" nz-submenu>-->
+          <!--<span title>-->
+            <!--<i nz-icon [type]="'appstore'"></i>-->
+            <!--<span>{{item.menuName}}</span>-->
+          <!--</span>-->
+          <!--<ul>-->
+            <!--<ng-container *ngFor="let el of item.children">-->
+              <!--<li *ngIf="!(el.children && el.children.length)" nz-menu-item (click)="routerLink(el.menuHref)">-->
+                <!--<span title>-->
+                  <!--<i nz-icon [type]="'appstore'"></i>-->
+                  <!--<span>{{el.menuName}}</span>-->
+                <!--</span>-->
+              <!--</li>-->
+
+              <!--<li *ngIf="el.children && el.children.length" nz-menu-item (click)="showThreeMenu(el)">-->
+                <!--<span title>-->
+                  <!--<i nz-icon [type]="'appstore'"></i>-->
+                  <!--<span>{{el.menuName}}</span>-->
+                <!--</span>-->
+              <!--</li>-->
+            <!--</ng-container>-->
+            <!--&lt;!&ndash;<app-filink-menu *ngIf="item.children && item.children.length > 0" [menuList]="item.children"></app-filink-menu>&ndash;&gt;-->
+          <!--</ul>-->
+        <!--</li>-->
+
+        <!--<li *ngIf="!(item.children && item.children.length > 0)" nz-menu-item [routerLink]="item.menuHref">-->
+          <!--<span title>-->
+            <!--<i nz-icon [type]="'appstore'"></i>-->
+            <!--<span>{{item.menuName}}</span>-->
+          <!--</span>-->
+        <!--</li>-->
+      <!--</ng-container>-->
+    <!--</ul>-->
+  </nz-sider>
+
+  <!--todo 右侧-->
+  <nz-layout>
+    <!--todo 头部用户信息-->
+    <nz-header class="header-layout">
+      <div class="top-menu">
+        <div class="top-menu-operate">
+            <div class="top-menu-search">
+              <input type="text" nz-input [(ngModel)]="searchValue" #searchInput (focus)="searchChange()" (ngModelChange)="searchChange()"
+              >
+              <i class="iconfont icon fiLink-search" (click)="searchChange()"></i>
+            </div>
+            <i class="iconfont icon fiLink-export-manager" title="导出管理" (click)="linkTo('/business/download')"></i>
+            <i class="iconfont icon fiLink-about mr-16" title="关于" (click)="linkTo('/business/system/about')"></i>
+        </div>
+        <ul class="top-menu-ul">
+          <li><div class="warning-red" [ngStyle]= "alarmStyle.urgency.style"></div><span>{{alarmStyle.urgency.data}}</span></li>
+          <li><div class="warning-orange" [ngStyle]= "alarmStyle.main.style"></div><span>{{alarmStyle.main.data}}</span></li>
+          <li><div class="warning-yellow" [ngStyle]= "alarmStyle.secondly.style"></div><span>{{alarmStyle.secondly.data}}</span></li>
+          <li><div class="warning-blue" [ngStyle]= "alarmStyle.remind.style"></div><span>{{alarmStyle.remind.data}}</span></li>
+        </ul>
+
+        <div class="user-info">
+            <span style="position: relative;display: block;height: 100%;">
+              <i style="position: absolute;" class="icon fiLink-user-menu iconfont"></i>
+              <p class="user-nickname" [title]="userName" >{{userName}}</p>
+            </span>
+            <ul>
+              <li (click)="updatePassword()">
+                <span class="span-border">密码修改</span>
+              </li>
+              <li>
+                <span (click)="logout()">注销</span>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </nz-header>
+
+
+    <div class="nz-layout-content">
+
+      <app-three-menu *ngIf="threeMenuInfo.menuName"
+                      [threeMenuList]="threeMenuInfo.children"
+                      [title]="threeMenuInfo.menuName"
+                      #threeMenu
+      ></app-three-menu>
+
+      <!--todo 中间主页面-->
+      <nz-content>
+        <router-outlet></router-outlet>
+      </nz-content>
+    </div>
+
+  </nz-layout>
+</nz-layout>
+
+<!--todo 密码修改-->
+<app-update-password *ngIf="isUpdatePassword" [passwordCheckObj]="passwordCheckObj"
+   (cancelEvent)="updatePassword()"></app-update-password>
+
+<!-- 告警提示音 -->
+<!-- <audio id="audio" (ended)="audioEnded()" hidden="true"></audio> -->
+<!--controls="controls" loop="false" -->
+
+<!--首页收索-->
+<ng-template #searchTemplate>
+  <nz-list [nzDataSource]="indexSearchList"
+           nzBordered nzSize="small"
+           [nzRenderItem]="item">
+    <ng-template #item let-item>
+      <div class="search-list" (click)="linkTo(item.menuHref)">
+        <nz-list-item [nzContent]="item.menuName"></nz-list-item>
+      </div>
+    </ng-template>
+  </nz-list>
+</ng-template>
+
+

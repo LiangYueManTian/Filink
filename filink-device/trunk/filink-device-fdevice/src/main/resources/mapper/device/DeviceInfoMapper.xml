@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.device.DeviceInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="deviceInfoMap" type="com.fiberhome.filink.fdevice.bean.device.DeviceInfo">
+        <id column="device_id" property="deviceId"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="device_code" property="deviceCode"/>
+        <result column="address" property="address"/>
+        <!--<result column="accountability_unit" property="accountabilityUnit"/>-->
+        <result column="deploy_status" property="deployStatus"/>
+        <result column="province_name" property="provinceName"/>
+        <result column="city_name" property="cityName"/>
+        <result column="district_name" property="districtName"/>
+        <result column="position_gps" property="positionGps"/>
+        <result column="position_base" property="positionBase"/>
+        <result column="area_id" property="areaId"/>
+        <result column="remarks" property="remarks"/>
+        <result column="specific_field_id" property="specificFieldId"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <!--<result column="serial_num" property="serialNum"/>-->
+    </resultMap>
+
+    <!-- 首页查询带区域信息映射结果 -->
+    <resultMap id="ResultMapTemp" type="com.fiberhome.filink.fdevice.dto.HomeDeviceInfoDto">
+        <id column="device_id" property="deviceId"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="device_code" property="deviceCode"/>
+        <result column="address" property="address"/>
+        <result column="position_base" property="positionBase"/>
+        <result column="area_id" property="areaId"/>
+        <result column="area_name" property="areaName"/>
+    </resultMap>
+
+    <!--设施信息所有字段-->
+    <sql id="deviceInfoAllColumn">
+        a.device_id,a.device_type,a.device_name,a.device_status,a.device_code,a.address,
+        a.deploy_status,a.province_name,a.city_name,a.district_name,a.position_gps,a.position_base,a.area_id,
+        a.remarks,a.specific_field_id,a.create_user,a.create_time,a.update_user,a.update_time,a.is_deleted
+    </sql>
+
+    <!--根据名称查询设施-->
+    <select id="selectByName" parameterType="string" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE device_name = #{deviceName}
+        and is_deleted != 1
+    </select>
+
+    <!--插入设施-->
+    <insert id="insertDevice" parameterType="com.fiberhome.filink.fdevice.bean.device.DeviceInfo"
+            useGeneratedKeys="true" keyProperty="ID">
+        INSERT INTO device_info
+        (
+        device_id, device_type, device_name, device_status, device_code, address, deploy_status,
+        province_name, city_name, district_name, position_gps ,position_base, area_id, remarks,
+        specific_field_id, create_user,create_time, update_user,update_time
+        )
+        VALUES
+        (
+        #{deviceId},#{deviceType},#{deviceName},#{deviceStatus},#{deviceCode},#{address},#{deployStatus},
+        #{provinceName},#{cityName},#{districtName},#{positionGps},#{positionBase},#{areaId},#{remarks},
+        #{specificFieldId},#{createUser},#{createTime},#{updateUser},#{updateTime}
+        )
+        <!--<selectKey resultType="string" order="BEFORE" keyProperty="deviceId">-->
+        <!--select replace(uuid(),'-','') from dual-->
+        <!--</selectKey>-->
+    </insert>
+
+
+    <!--分页模糊查询设施-->
+    <select id="selectDevice" resultMap="deviceInfoMap">
+        SELECT * FROM device_info ${ew.customSqlSegment}
+    </select>
+
+    <!--根据关联区域id查询-->
+    <select id="queryDeviceByAreaId" parameterType="string" resultMap="deviceInfoMap">
+        SELECT
+        <include refid="deviceInfoAllColumn"></include>
+        FROM device_info a
+        WHERE area_id = #{areaId} and is_deleted !=1
+    </select>
+
+    <!--根据关联区域id查询-->
+    <select id="queryDeviceByAreaIds" parameterType="list" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE area_id IN
+        <foreach collection="list" item="areaId" separator="," index="index" open="(" close=")">
+            #{areaId}
+        </foreach>
+        AND is_deleted != 1
+
+    </select>
+
+    <!--查询未关联区域设施-->
+    <select id="queryDeviceAreaIdIsNull" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE area_id is NULL and is_deleted !=1
+    </select>
+
+    <!--关联区域-->
+    <update id="setAreaDevice">
+        UPDATE device_info SET
+        area_id = #{areaId}
+        WHERE device_id IN
+        <foreach item="list" index="index" collection="list" open="(" separator="," close=")">
+            #{list}
+        </foreach>
+        and is_deleted !=1
+    </update>
+
+    <!--根据id集合批量查询设施-->
+    <select id="selectByIds" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE device_id IN
+        <foreach collection="list" index="index" item="deviceIds" open="(" separator="," close=")">
+            #{deviceIds}
+        </foreach>
+        and is_deleted !=1
+    </select>
+
+    <!--删除该区域下的所有设施-->
+    <update id="setAreaDeviceIsNull">
+        UPDATE  device_info SET
+        area_id = NULL WHERE area_id=#{areaId} and is_deleted !=1
+    </update>
+
+    <!--根据id查询设施-->
+    <select id="selectDeviceById" resultMap="deviceInfoMap" parameterType="string">
+        SELECT * FROM device_info
+        WHERE device_id = #{id} and is_deleted !='1'
+    </select>
+
+    <!--校验设施代号-->
+    <select id="checkDeviceCode" resultMap="deviceInfoMap" parameterType="string">
+        SELECT * FROM device_info
+        WHERE device_code = #{deviceCode} and is_deleted !='1'
+    </select>
+
+    <!--首页查询设施信息-->
+    <select id="queryDeviceAreaList" resultMap="ResultMapTemp">
+        SELECT device_id,device_type,device_name,device_status,device_code,
+        d.address,position_base,a.area_id,area_name FROM device_info d
+        JOIN area_info a on d.area_id = a.area_id WHERE d.is_deleted != '1'
+    </select>
+
+    <!--首页查询设施信息根据设施ID-->
+    <select id="queryDeviceAreaById" resultMap="ResultMapTemp" parameterType="string">
+        SELECT device_id,device_type,device_name,device_status,device_code,d.province_name,d.city_name,
+        d.district_name,d.address,position_gps,position_base,a.area_id,area_name FROM device_info d
+        JOIN area_info a on d.area_id = a.area_id WHERE d.is_deleted != '1' AND device_id = #{deviceId}
+    </select>
+
+    <!--首页查询设施信息根据设施ID List-->
+    <select id="queryDeviceAreaByIds" resultMap="ResultMapTemp" parameterType="list">
+        SELECT device_id,device_type,device_name,device_status,device_code,d.province_name,d.city_name,
+        d.district_name,d.address,position_gps,position_base,a.area_id,area_name
+        FROM device_info d JOIN area_info a on d.area_id = a.area_id
+        WHERE d.is_deleted != '1'
+        AND device_id IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--首页查询设施信息根据区域ID-->
+    <select id="queryDeviceAreaByAreaId" resultMap="ResultMapTemp" parameterType="string">
+        SELECT device_id,device_type,device_name,device_status,device_code,d.province_name,d.city_name,
+        d.district_name,d.address,position_gps,position_base,a.area_id,area_name
+        FROM device_info d JOIN area_info a on d.area_id = a.area_id
+        WHERE d.is_deleted != '1'
+        AND d.area_id = #{areaId}
+    </select>
+
+    <update id="deleteDeviceByIds" parameterType="list">
+        UPDATE device_info SET
+        is_deleted = 1
+        WHERE device_id IN
+        <foreach collection="array" item="item" separator="," index="index" open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateDeviceListStatus" parameterType="com.fiberhome.filink.fdevice.dto.UpdateDeviceStatusPda">
+        update device_info set deploy_status = #{deployStatus}
+        where device_id IN
+        <foreach item="item" index="index" collection="deviceIdList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="selectDeviceByIds" parameterType="list" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE device_id IN
+        <foreach collection="array" item="item" separator="," index="index" open="(" close=")">
+            #{item}
+        </foreach>
+        AND is_deleted != 1
+    </select>
+
+    <select id="selectDevicePage" resultMap="deviceInfoDtoMap">
+        SELECT <include refid="deviceInfoAllColumn"></include>, b.area_name
+        FROM device_info a INNER JOIN area_info b ON a.area_id = b.area_id
+        <where>
+            <if test="filterList!=null and filterList.size()>0 ">
+                <foreach collection="filterList" item="filter" separator="and">
+                    <choose>
+                        <when test="filter.filterField == 'deviceId' and filter.operator == 'in' ">
+                            a.device_id in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'deviceType' and filter.operator == 'in' ">
+                            a.device_type in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'deviceStatus' and filter.operator == 'in' ">
+                            a.device_status in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'areaId' and filter.operator == 'in' ">
+                            a.area_id in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'deviceName' and filter.operator == 'like' ">
+                            a.device_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'deviceCode' and filter.operator == 'like' ">
+                            a.device_code like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'provinceName' and filter.operator == 'like' ">
+                            a.province_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'cityName' and filter.operator == 'like' ">
+                            a.city_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'districtName' and filter.operator == 'like' ">
+                            a.district_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'address' and filter.operator == 'like' ">
+                            a.address like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'deployStatus' and filter.operator == 'in' ">
+                            a.deploy_status in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'remarks' and filter.operator == 'like' ">
+                            a.remarks like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'areaName' and filter.operator == 'like' ">
+                            b.area_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'cTime' and filter.operator == 'gt' ">
+                            UNIX_TIMESTAMP(a.create_time) <![CDATA[ > ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'cTime' and filter.operator == 'lt' ">
+                            UNIX_TIMESTAMP(a.create_time) <![CDATA[ < ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'uTime' and filter.operator == 'gt' ">
+                            UNIX_TIMESTAMP(a.update_time) <![CDATA[ > ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'uTime' and filter.operator == 'lt' ">
+                            UNIX_TIMESTAMP(a.update_time) <![CDATA[ < ]]> #{filter.filterValue}/1000
+                        </when>
+                    </choose>
+                </foreach>
+            </if>
+            AND a.is_deleted != '1' AND b.is_deleted != '1'
+        </where>
+        <if test="sort != null and sort.sortField != null and sort.sortField != '' ">
+            <choose>
+                <when test="sort.sortField == 'deviceType'">
+                    ORDER BY a.device_type
+                </when>
+                <when test="sort.sortField == 'deviceName'">
+                    ORDER BY a.device_name
+                </when>
+                <when test="sort.sortField == 'deviceCode'">
+                    ORDER BY a.device_code
+                </when>
+                <when test="sort.sortField == 'areaName'">
+                    ORDER BY b.area_name
+                </when>
+                <when test="sort.sortField == 'provinceName'">
+                    ORDER BY a.province_name
+                </when>
+                <when test="sort.sortField == 'cityName'">
+                    ORDER BY a.city_name
+                </when>
+                <when test="sort.sortField == 'districtName'">
+                    ORDER BY a.district_name
+                </when>
+                <when test="sort.sortField == 'address'">
+                    ORDER BY a.address
+                </when>
+                <when test="sort.sortField == 'deployStatus'">
+                    ORDER BY a.deploy_status
+                </when>
+                <when test="sort.sortField == 'deviceStatus'">
+                    ORDER BY a.device_status
+                </when>
+                <when test="sort.sortField == 'remarks'">
+                    ORDER BY a.remarks
+                </when>
+                <when test="sort.sortField == 'createTime' or sort.sortField == 'cTime'">
+                    ORDER BY a.create_time
+                </when>
+                <when test="sort.sortField == 'updateTime' or sort.sortField == 'uTime'">
+                    ORDER BY a.update_time
+                </when>
+            </choose>
+            <choose>
+                <when test="sort.sortRule == 'desc'">
+                    DESC
+                </when>
+                <otherwise>
+                    ASC
+                </otherwise>
+            </choose>
+        </if>
+        LIMIT #{page.beginNum}, #{page.pageSize}
+    </select>
+
+    <!--选择器分页查询设施列表（通过设施ID）-->
+    <select id="selectDeviceInfoListByIds" resultMap="deviceInfoDtoMap" parameterType="list">
+        SELECT a.device_id,a.device_type,a.device_name,a.device_status,a.device_code,
+        a.deploy_status,a.area_id,a.remarks,b.area_name
+        FROM device_info a INNER JOIN area_info b on a.area_id = b.area_id
+        WHERE a.is_deleted != '1' AND a.device_id IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--选择器分页查询设施列表查询所有设施ID-->
+    <select id="selectDeviceIdList" resultType="string">
+        SELECT a.device_id
+        FROM device_info a INNER JOIN area_info b ON a.area_id = b.area_id
+        <where>
+            <if test="filterList!=null and filterList.size()>0 ">
+                <foreach collection="filterList" item="filter" separator="and">
+                    <choose>
+                        <when test="filter.filterField == 'deviceType' and filter.operator == 'in' ">
+                            a.device_type in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'deviceStatus' and filter.operator == 'in' ">
+                            a.device_status in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'deviceName' and filter.operator == 'like' ">
+                            a.device_name like concat(concat('%',#{filter.filterValue}),'%')
+                        </when>
+                        <when test="filter.filterField == 'deviceCode' and filter.operator == 'like' ">
+                            a.device_code like concat(concat('%',#{filter.filterValue}),'%')
+                        </when>
+                        <when test="filter.filterField == 'deployStatus' and filter.operator == 'in' ">
+                            a.deploy_status in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'remarks' and filter.operator == 'like' ">
+                            a.remarks like concat(concat('%',#{filter.filterValue}),'%')
+                        </when>
+                        <when test="filter.filterField == 'areaName' and filter.operator == 'like' ">
+                            b.area_name like concat(concat('%',#{filter.filterValue}),'%')
+                        </when>
+                    </choose>
+                </foreach>
+            </if>
+            AND a.is_deleted != '1' AND b.is_deleted != '1'
+        </where>
+        <if test="sort != null and sort.sortField != null and sort.sortField != '' ">
+            <choose>
+                <when test="sort.sortField == 'deviceType'">
+                    ORDER BY a.device_type
+                </when>
+                <when test="sort.sortField == 'deviceName'">
+                    ORDER BY a.device_name
+                </when>
+                <when test="sort.sortField == 'deviceCode'">
+                    ORDER BY a.device_code
+                </when>
+                <when test="sort.sortField == 'areaName'">
+                    ORDER BY b.area_name
+                </when>
+                <when test="sort.sortField == 'deployStatus'">
+                    ORDER BY a.deploy_status
+                </when>
+                <when test="sort.sortField == 'deviceStatus'">
+                    ORDER BY a.device_status
+                </when>
+                <when test="sort.sortField == 'remarks'">
+                    ORDER BY a.remarks
+                </when>
+                <when test="sort.sortField == 'createTime' or sort.sortField == 'cTime'">
+                    ORDER BY a.create_time
+                </when>
+            </choose>
+            <choose>
+                <when test="sort.sortRule == 'desc'">
+                    DESC
+                </when>
+                <otherwise>
+                    ASC
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <select id="selectDeviceCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM device_info a inner JOIN area_info b ON a.area_id = b.area_id
+        <where>
+            <if test="filterList!=null and filterList.size()>0 ">
+                <foreach collection="filterList" item="filter" separator="and">
+                    <choose>
+                        <when test="filter.filterField == 'deviceId' and filter.operator == 'in' ">
+                            a.device_id in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'deviceType' and filter.operator == 'in' ">
+                            a.device_type in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'deviceStatus' and filter.operator == 'in' ">
+                            a.device_status in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'areaId' and filter.operator == 'in' ">
+                            a.area_id in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'deviceName' and filter.operator == 'like' ">
+                            a.device_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'deviceCode' and filter.operator == 'like' ">
+                            a.device_code like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'provinceName' and filter.operator == 'like' ">
+                            a.province_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'cityName' and filter.operator == 'like' ">
+                            a.city_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'districtName' and filter.operator == 'like' ">
+                            a.district_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'address' and filter.operator == 'like' ">
+                            a.address like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'deployStatus' and filter.operator == 'in' ">
+                            a.deploy_status in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="("
+                                     close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'remarks' and filter.operator == 'like' ">
+                            a.remarks like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'areaName' and filter.operator == 'like' ">
+                            b.area_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'cTime' and filter.operator == 'gt' ">
+                            UNIX_TIMESTAMP(a.create_time) <![CDATA[ > ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'cTime' and filter.operator == 'lt' ">
+                            UNIX_TIMESTAMP(a.create_time) <![CDATA[ < ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'uTime' and filter.operator == 'gt' ">
+                            UNIX_TIMESTAMP(a.update_time) <![CDATA[ > ]]> #{filter.filterValue}/1000未完成
+                        </when>
+                        <when test="filter.filterField == 'uTime' and filter.operator == 'lt' ">
+                            UNIX_TIMESTAMP(a.update_time) <![CDATA[ < ]]> #{filter.filterValue}/1000
+                        </when>
+                    </choose>
+                </foreach>
+            </if>
+            AND a.is_deleted != '1' AND b.is_deleted != '1'
+        </where>
+    </select>
+
+    <select id="selectDeviceByBean" parameterType="com.fiberhome.filink.fdevice.dto.DeviceReq"
+            resultMap="deviceInfoMap">
+        SELECT * FROM device_info d
+        <where>
+            <if test="deviceId != null and deviceId != ''">
+                AND d.device_id = #{deviceId}
+            </if>
+            <if test="deviceName != null and deviceName != ''">
+                AND d.device_name like CONCAT('%',#{deviceName},'%')
+            </if>
+            <if test="areaId != null and areaId != ''">
+                AND d.area_id = #{areaId}
+            </if>
+            AND d.is_deleted != 1
+        </where>
+
+    </select>
+
+    <select id="queryNearbyDeviceList" resultMap="deviceInfoForPda">
+        SELECT
+        <if test="req.longitude != null and req.longitude != '' and req.latitude != null and req.latitude != ''
+            and req.radius != null and req.radius != '' ">
+            ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{req.latitude}*PI()/180-SUBSTRING_INDEX(a.position_base,',',-1)*PI()/180)/2),2)
+            +COS(#{req.latitude}*PI()/180)*COS(SUBSTRING_INDEX(a.position_base,',',-1)*PI()/180)*POW(SIN((#{req.longitude}*PI()/180
+            -SUBSTRING_INDEX(a.position_base,',',1)*PI()/180)/2),2)))*1000) AS distance,
+        </if>
+        a.device_id,a.device_type,a.device_name,a.device_status,a.device_code,a.address,a.deploy_status,
+        a.province_name,a.city_name,a.district_name,a.position_gps,a.position_base,a.area_id,b.area_name,
+        b.level,if(isnull(c.device_id)=0,'1','0') as is_collecting
+
+        FROM device_info a INNER JOIN area_info b ON a.area_id = b.area_id
+        left join device_collecting c on c.device_id=a.device_id AND c.user_id=#{userId}
+        WHERE a.is_deleted != '1' AND b.is_deleted != '1'
+        <if test="req.areaId != null and req.areaId.size() > 0">
+            AND a.area_id IN
+            <foreach collection="req.areaId" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="req.deviceType != null and req.deviceType.size() > 0">
+            AND a.device_type IN
+            <foreach collection="req.deviceType" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="req.deviceStatus != null and req.deviceStatus.size() > 0">
+            AND a.device_status IN
+            <foreach collection="req.deviceStatus" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="req.deviceName != null and req.deviceName != ''">
+            AND a.device_name LIKE '%${req.deviceName}%'
+        </if>
+        <if test='req.isCollecting != null and req.isCollecting == "1" '>
+            AND c.device_id IS NOT NULL
+        </if>
+        <if test='req.isCollecting != null and req.isCollecting == "0" '>
+            AND c.device_id IS NULL
+        </if>
+        <if test="req.longitude != null and req.longitude != '' and req.latitude != null and req.latitude != ''
+            and req.radius != null and req.radius != '' ">
+            HAVING distance <![CDATA[ <= ]]> #{req.radius}
+            ORDER BY distance ASC
+        </if>
+        LIMIT #{req.pageCondition.beginNum}, #{req.pageCondition.pageSize}
+    </select>
+    <select id="queryNearbyDeviceCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM device_info a INNER JOIN area_info b ON a.area_id = b.area_id
+        left join device_collecting c on c.device_id=a.device_id AND c.user_id=#{userId}
+        WHERE a.is_deleted != '1' AND b.is_deleted != '1'
+        <if test="req.areaId != null and req.areaId.size() > 0">
+            AND a.area_id IN
+            <foreach collection="req.areaId" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="req.deviceType != null and req.deviceType.size() > 0">
+            AND a.device_type IN
+            <foreach collection="req.deviceType" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="req.deviceStatus != null and req.deviceStatus.size() > 0">
+            AND a.device_status IN
+            <foreach collection="req.deviceStatus" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="req.deviceName != null and req.deviceName != ''">
+            AND a.device_name like '%${req.deviceName}%'
+        </if>
+        <if test='req.isCollecting != null and req.isCollecting == "1" '>
+            AND c.device_id IS NOT NULL
+        </if>
+        <if test='req.isCollecting != null and req.isCollecting == "0" '>
+            AND c.device_id IS NULL
+        </if>
+        <if test="req.longitude != null and req.longitude != '' and req.latitude != null and req.latitude != ''
+            and req.radius != null and req.radius != '' ">
+            AND
+            ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{req.latitude}*PI()/180-SUBSTRING_INDEX(a.position_base,',',-1)*PI()/180)/2),2)
+            +COS(#{req.latitude}*PI()/180)*COS(SUBSTRING_INDEX(a.position_base,',',-1)*PI()/180)*POW(SIN((#{req.longitude}*PI()/180
+            -SUBSTRING_INDEX(a.position_base,',',1)*PI()/180)/2),2)))*1000) <![CDATA[ <= ]]> #{req.radius}
+        </if>
+    </select>
+
+    <select id="queryPicInfoByDeviceIds" resultMap="devicePicDto">
+        SELECT b.device_id,b.pic_url_base,b.pic_url_thumbnail
+        FROM pic_relation_info b
+        WHERE (SELECT count(*) FROM pic_relation_info a WHERE a.device_id = b.device_id
+        AND a.resource = #{resource} AND a.is_deleted != '1'
+        AND a.create_time <![CDATA[ > ]]> b.create_time) <![CDATA[ < ]]> #{picNum}
+        AND b.resource = #{resource} AND b.is_deleted != '1'
+        AND b.device_id in
+        <foreach collection="deviceIds" item="item" separator="," index="index" open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryDeviceNameById" resultType="string" parameterType="string">
+        SELECT device_name from device_info
+        where device_id = #{deviceId}
+    </select>
+
+    <select id="queryDeviceTypeById" resultType="string" parameterType="string">
+        SELECT device_type from device_info
+        where device_id = #{deviceId}
+    </select>
+
+    <select id="queryDeviceTypesByAreaIds" resultType="string" parameterType="java.util.List">
+        select distinct(device_type) from device_info
+        where area_id in
+        <foreach collection="list" item="item" separator="," index="index" open="(" close=")">
+            #{item}
+        </foreach>
+        and is_deleted != '1'
+    </select>
+
+    <select id="queryDeviceInfoBaseByParam" resultMap="deviceInfoBase">
+        select device_id, device_name, area_id from device_info
+        WHERE is_deleted != '1'
+        <if test="areaIds != null and areaIds.size() > 0">
+            AND area_id IN
+            <foreach collection="areaIds" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceTypes != null and deviceTypes.size() > 0">
+            AND device_type IN
+            <foreach collection="deviceTypes" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceType != null and deviceType != ''">
+            AND device_type = #{deviceType}
+        </if>
+    </select>
+
+    <resultMap id="deviceInfoBase" type="com.fiberhome.filink.fdevice.dto.DeviceInfoBase">
+        <id column="device_id" property="deviceId"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="area_id" property="areaId"/>
+    </resultMap>
+
+    <resultMap id="devicePicDto" type="com.fiberhome.filink.fdevice.dto.DevicePicDto">
+        <id column="device_pic_id" property="devicePicId"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="pic_name" property="picName"/>
+        <result column="pic_size" property="picSize"/>
+        <result column="pic_url_base" property="picUrlBase"/>
+        <result column="pic_url_thumbnail" property="picUrlThumbnail"/>
+    </resultMap>
+
+    <resultMap id="deviceInfoForPda" type="com.fiberhome.filink.fdevice.dto.DeviceInfoForPda">
+        <id column="device_id" property="deviceId"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="address" property="address"/>
+        <result column="province_name" property="provinceName"/>
+        <result column="city_name" property="cityName"/>
+        <result column="district_name" property="districtName"/>
+        <result column="position_base" property="positionBase"/>
+        <result column="area_id" property="areaId"/>
+        <result column="area_name" property="areaName"/>
+        <result column="level" property="areaLevel"/>
+        <result column="is_collecting" property="isCollecting"/>
+    </resultMap>
+
+    <resultMap id="deviceInfoDtoMap" type="com.fiberhome.filink.fdevice.dto.DeviceInfoDto">
+        <id column="device_id" property="deviceId"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="device_code" property="deviceCode"/>
+        <result column="address" property="address"/>
+        <result column="deploy_status" property="deployStatus"/>
+        <result column="province_name" property="provinceName"/>
+        <result column="city_name" property="cityName"/>
+        <result column="district_name" property="districtName"/>
+        <result column="position_gps" property="positionGps"/>
+        <result column="position_base" property="positionBase"/>
+        <result column="remarks" property="remarks"/>
+        <result column="specific_field_id" property="specificFieldId"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="area_name" property="areaName"/>
+        <!--<result column="serial_num" property="serialNum"/>-->
+        <association property="areaInfo" column="area_id"
+                     select="com.fiberhome.filink.fdevice.dao.area.AreaInfoDao.selectAreaInfoById"/>
+    </resultMap>
+
+</mapper>

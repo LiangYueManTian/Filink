@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmOrderRuleAreaDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmOrderRuleArea">
+        <result column="rule_id" property="ruleId" />
+        <result column="area_id" property="areaId" />
+    </resultMap>
+
+    <insert id="addAlarmOrderRuleArea">
+        INSERT INTO alarm_order_rule_area (rule_id, area_id) VALUE
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.ruleId},
+            #{item.areaId}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="batchDeleteAlarmOrderRuleArea">
+        DELETE FROM alarm_order_rule_area WHERE rule_id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <delete id="deleteAlarmOrderRuleArea">
+        DELETE FROM alarm_order_rule_area WHERE rule_id=#{ruleId}
+    </delete>
+</mapper>

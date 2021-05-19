@@ -1,0 +1,59 @@
+server:
+  port: 10210
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+
+  instance:
+    prefer-ip-address: true
+
+# 服务信息
+#info:
+#  groupId: @project.groupId@
+#  artifactId: @project.artifactId@
+#  version: @project.version@
+
+# 监控中心登录名和密码
+#security:
+#  basic:
+#    enabled: true
+#  user:
+#    name: admin
+#    password: admin
+
+turbine:
+  app-config: 123456 #收集监控信息的服务名
+  combine-host-port: true
+  cluster-name-expression: new String('default') #集群名称
+
+spring:
+  application:
+    name: spring-monitor-server
+
+  boot:
+    admin:
+      turbine:
+        location: monitor
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,heapdump,loggers,auditevents,hystrix.stream,turbine.stream
+
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.24.224:9092
+          zkNodes: 10.5.24.224:2181
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

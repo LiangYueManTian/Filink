@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmNameDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmName">
+        <id column="id" property="id" />
+        <result column="alarm_name" property="alarmName" />
+        <result column="alarm_level" property="alarmLevel" />
+        <result column="alarm_desc" property="alarmDesc" />
+        <result column="alarm_code" property="alarmCode" />
+        <result column="alarm_default_level" property="alarmDefaultLevel" />
+        <result column="alarm_automatic_confirmation" property="alarmAutomaticConfirmation" />
+        <result column="is_order" property="isOrder"/>
+    </resultMap>
+
+    <sql id="AlarmNameSql">
+        id,alarm_name,alarm_level,alarm_desc,alarm_code,alarm_default_level,alarm_automatic_confirmation,is_order
+    </sql>
+
+    <!--查询告警设置-->
+    <select id="selectAlarmName" resultMap="BaseResultMap">
+        SELECT
+        <include refid="AlarmNameSql"/>
+        FROM alarm_name
+    </select>
+
+    <!--新增页面查询-->
+    <select id="selectAlarmNames" resultMap="BaseResultMap">
+        SELECT
+        <include refid="AlarmNameSql"/>
+        FROM alarm_name
+    </select>
+
+    <!--新增告警设置-->
+    <update id="updateAlarmName">
+        UPDATE alarm_name
+        <set>
+            <if test="alarmLevel != null and alarmLevel != ''">
+                alarm_level = #{alarmLevel},
+            </if>
+            <if test="alarmDesc != null and alarmDesc != ''">
+                alarm_desc = #{alarmDesc},
+            </if>
+            <if test="alarmCode != null and alarmCode != ''">
+                alarm_code = #{alarmCode},
+            </if>
+            <if test="alarmDefaultLevel != null and alarmDefaultLevel != ''">
+                alarm_default_level = #{alarmDefaultLevel},
+            </if>
+            <if test="alarmAutomaticConfirmation != null and alarmAutomaticConfirmation != ''">
+                alarm_automatic_confirmation = #{alarmAutomaticConfirmation},
+            </if>
+            WHERE id = #{id}
+        </set>
+    </update>
+
+    <select id="selectByIds" resultMap="BaseResultMap">
+        SELECT
+        <include refid="AlarmNameSql"/>
+        FROM alarm_name AS an WHERE an.id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--根据告警编码查询告警名称信息-->
+    <select id="selectAlarmByCode" resultMap="BaseResultMap" parameterType="string">
+        SELECT
+        <include refid="AlarmNameSql"/>
+        FROM alarm_name where alarm_name.alarm_code = #{alarmCode}
+    </select>
+
+    <!--根据告警名称查询当前告警设置信息-->
+    <select id="selectAlarmByName" resultMap="BaseResultMap" parameterType="string">
+        SELECT
+        <include refid="AlarmNameSql"/>
+        FROM alarm_name where alarm_name.alarm_name = #{alarmName}
+    </select>
+</mapper>

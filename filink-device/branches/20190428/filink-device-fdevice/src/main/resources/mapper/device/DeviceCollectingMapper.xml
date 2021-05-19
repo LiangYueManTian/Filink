@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.device.DeviceCollectingDao">
+    <!-- 关注通用查询映射结果 -->
+    <resultMap id="AttentionResultMap" type="com.fiberhome.filink.fdevice.dto.DeviceAttentionDto">
+        <result column="device_id" property="deviceId"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="device_code" property="deviceCode"/>
+        <result column="address" property="address"/>
+        <result column="user_id" property="userId"/>
+        <result column="total_num" property="totalNum"/>
+        <result column="area_id" property="areaId"/>
+    </resultMap>
+
+    <!--获取我的关注的统计数据-->
+    <select id="attentionCount" parameterType="string" resultMap="AttentionResultMap">
+
+       SELECT d.device_type,COUNT(d.device_type)  AS total_num FROM device_collecting c
+       inner JOIN device_info d ON c.device_id=d.device_id
+       WHERE c.user_id = #{userId} and d.is_deleted = 0
+       GROUP BY d.device_type
+    </select>
+
+    <!--我的关注  分页-->
+    <select id="selectAttentionPage" resultMap="AttentionResultMap">
+
+        SELECT d.* FROM device_collecting c
+        inner JOIN device_info d ON c.device_id=d.device_id and and d.is_deleted = 0
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <!--我的关注  查询总记录数-->
+    <select id="selectAttentionCount" resultType="java.lang.Integer">
+
+        SELECT COUNT(*) FROM device_collecting c
+        inner JOIN device_info d ON c.device_id=d.device_id and d.is_deleted = 0
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <!--查询用户和设备关联数-->
+    <select id="selectAttentionDeviceCount" resultType="java.lang.Integer">
+        SELECT count(*) FROM device_collecting
+        WHERE device_id=#{deviceId} and user_id=#{userId}
+    </select>
+
+    <!--查询我的关注-->
+    <select id="selectAttentionList"  resultMap="AttentionResultMap">
+        SELECT d.*,a.area_id FROM device_collecting c
+        INNER JOIN device_info d ON c.device_id=d.device_id
+        INNER JOIN area_info a ON a.area_id = d.area_id
+        WHERE d.is_deleted =0 and a.is_deleted =0 and c.user_id=#{userId}
+        <if test="req.areaIds != null and req.areaIds.size() > 0">
+            AND a.area_id IN
+            <foreach collection="req.areaIds" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="req.deviceTypes != null and req.deviceTypes.size() > 0">
+            AND d.device_type IN
+            <foreach collection="req.deviceTypes" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <!--根据设施id查询我的关注的一条设施信息-->
+    <select id="selectOneAttentionByDeviceId"  resultMap="AttentionResultMap">
+    SELECT d.*,a.area_id  FROM device_collecting c
+     INNER JOIN device_info d ON c.device_id=d.device_id
+     INNER JOIN area_info a ON a.area_id = d.area_id
+     WHERE c.user_id=#{userId} AND c.device_id=#{deviceId}
+     and d.is_deleted = 0  and a.is_deleted =0
+    </select>
+
+    <delete id="deleteAttentionByDeviceIds" parameterType="java.util.List">
+    delete from device_collecting where device_id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+
+</mapper>

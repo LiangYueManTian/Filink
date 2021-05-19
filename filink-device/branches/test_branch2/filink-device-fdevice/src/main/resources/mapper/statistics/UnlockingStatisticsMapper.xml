@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.statistics.UnlockingStatisticsDao">
+
+
+    <resultMap id="unlockingStatistics" type="com.fiberhome.filink.fdevice.bean.devicelog.UnlockingStatistics">
+        <result column="unlocking_statistics_id" property="unlockingStatisticsId"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="statistics_date" property="statisticsDate"/>
+        <result column="unlocking_count" property="unlockingCount"/>
+        <result column="current_time" property="currentTime"/>
+    </resultMap>
+
+    <resultMap id="deviceLogTopNum" type="com.fiberhome.filink.fdevice.dto.DeviceLogTopNum">
+        <result column="device_id" property="deviceId"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="count_value" property="countValue"/>
+        <result column="row_num" property="rowNum"/>
+    </resultMap>
+
+    <select id="queryMaxStatisticsDate" resultType="java.lang.String">
+        select max(statistics_date) from unlocking_statistics
+    </select>
+
+    <select id="queryUnlockingTimesByDeviceId" resultMap="unlockingStatistics">
+        select device_id, statistics_date, unlocking_count
+        from unlocking_statistics
+        where device_id = #{deviceId}
+            and statistics_date <![CDATA[ >= ]]> #{startDate}
+            and statistics_date <![CDATA[ <= ]]> #{endDate}
+        order by statistics_date asc
+    </select>
+
+    <select id="queryUnlockingTopNum" resultMap="deviceLogTopNum">
+        select b.device_id, b.device_name, sum(a.unlocking_count) count_value
+        from unlocking_statistics a inner join device_info b on a.device_id = b.device_id
+        where b.is_deleted != '1'
+        <if test="areaIdList != null and areaIdList.size() > 0">
+            AND b.area_id IN
+            <foreach collection="areaIdList" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceTypeList != null and deviceTypeList.size() > 0">
+            AND b.device_type IN
+            <foreach collection="deviceTypeList" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceType != null and deviceType != '' ">
+            AND b.device_type = #{deviceType}
+        </if>
+        <if test="startDate != null and startDate != '' ">
+            and a.statistics_date <![CDATA[ >= ]]> #{startDate}
+        </if>
+        <if test="endDate != null and endDate != '' ">
+            AND a.statistics_date <![CDATA[ <= ]]> #{endDate}
+        </if>
+        group by b.device_id, b.device_name
+        order by count_value desc
+        limit #{topTotal}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmcurrentserver.dao.AlarmQueryTemplateDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmcurrentserver.bean.AlarmQueryTemplate">
+        <id column="id" property="id"/>
+        <result column="template_name" property="templateName"/>
+        <result column="template_contemt" property="templateContemt"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="alarm_fixed_level" property="alarmFixedLevel"/>
+        <!--  <result column="alarm_name" property="alarmName"/>
+          <result column="alarm_object" property="alarmObject"/>
+          <result column="area_name" property="areaName"/>-->
+        <result column="address" property="address"/>
+        <!--<result column="responsible_department" property="responsibleDepartment"/>-->
+        <result column="alarm_source_type_id" property="alarmSourceTypeId"/>
+        <result column="alarm_happen_count" property="alarmHappenCount"/>
+        <result column="alarm_clean_status" property="alarmCleanStatus"/>
+        <result column="alarm_confirm_status" property="alarmConfirmStatus"/>
+        <result column="alarm_begin_front_time" property="alarmBeginFrontTime"/>
+        <result column="alarm_begin_queen_time" property="alarmBeginQueenTime"/>
+        <result column="alarm_near_front_time" property="alarmNearFrontTime"/>
+        <result column="alarm_near_queen_time" property="alarmNearQueenTime"/>
+        <!--<result column="alarm_continous_time" property="alarmContinousTime"/>-->
+        <result column="alarm_confirm_front_time" property="alarmConfirmFrontTime"/>
+        <result column="alarm_confirm_queen_time" property="alarmConfirmQueenTime"/>
+        <result column="alarm_clean_front_time" property="alarmCleanFrontTime"/>
+        <result column="alarm_clean_queen_time" property="alarmCleanQueenTime"/>
+        <result column="alarm_clean_people_nickname" property="alarmCleanPeopleNickname"/>
+        <result column="alarm_confirm_people_nickname" property="alarmConfirmPeopleNickname"/>
+        <result column="extra_msg" property="extraMsg"/>
+        <result column="alarm_processing" property="alarmProcessing"/>
+        <collection property="alarmNameList" ofType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmTemplateName">
+            <id property="id" column="template_id"></id>
+            <result property="alarmName" column="alarm_name"></result>
+        </collection>
+
+        <collection property="alarmObjectList"
+                    ofType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmTemplateDevice">
+            <id property="id" column="template_id"></id>
+            <result property="deviceName" column="device_name"></result>
+        </collection>
+
+        <collection property="departmentList"
+                    ofType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmTemplateDepartment">
+            <id property="id" column="template_id"></id>
+            <result property="departmentName" column="department_name"></result>
+        </collection>
+
+        <collection property="areaNameList" ofType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmTemplateArea">
+            <id property="id" column="template_id"></id>
+            <result property="areaName" column="area_name"></result>
+        </collection>
+
+        <collection property="alarmContinous" ofType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmContinous">
+            <id property="id" column="id"></id>
+            <result property="alarmContinousTime" column="alarm_continous_time"></result>
+            <result property="alarmCmpare" column="alarm_cmpare"></result>
+        </collection>
+    </resultMap>
+
+    <sql id="BaseResultSql">
+        id,template_name,template_contemt,remark,create_time,create_user,alarm_fixed_level,alarm_name,alarm_object,
+        area_name,address,responsible_department,alarm_source_type_id,alarm_happen_count,alarm_clean_status,
+        alarm_confirm_status,alarm_begin_front_time,alarm_begin_queen_time,alarm_near_front_time,alarm_near_queen_time,
+        alarm_continous_time,alarm_confirm_front_time,alarm_confirm_queen_time,alarm_clean_front_time,
+        alarm_clean_queen_time,alarm_clean_people_nickname,alarm_confirm_people_nickname,extra_msg,alarm_processing
+    </sql>
+
+    <select id="queryAlarmTemplateList"
+            parameterType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmQueryTemplateDto"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_query_template AS ar
+        <where>
+            is_deleted="0"
+            <if test="createUser != null and createUser!='admin'">
+                AND create_user=#{createUser}
+            </if>
+        </where>
+        <if test="sortField == 'templateName' and sortRule != null">
+            ORDER BY ar.template_name ${sortRule}
+        </if>
+        <if test="sortField == 'createTime' and sortRule != null">
+            ORDER BY ar.create_time ${sortRule}
+        </if>
+        <if test="sortField == 'createUser' and sortRule != null">
+            ORDER BY ar.create_user ${sortRule}
+        </if>
+        <if test="sortField == 'remark' and sortRule != null">
+            ORDER BY ar.remark ${sortRule}
+        </if>
+    </select>
+
+    <select id="queryAlarmTemplateById" parameterType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmQueryTemplate"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_query_template WHERE is_deleted="0" AND id=#{id}
+    </select>
+
+    <update id="batchDeleteAlarmTemplate">
+        UPDATE alarm_query_template SET is_deleted="1" WHERE id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+
+</mapper>

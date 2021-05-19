@@ -1,0 +1,4 @@
+com\fiberhome\filink\userserver\bean\LoginInfoBean.class
+com\fiberhome\filink\userserver\bean\UserAuthInfo.class
+com\fiberhome\filink\userserver\controller\UserLoginController.class
+com\fiberhome\filink\userserver\bean\UserLoginInfoParam.class

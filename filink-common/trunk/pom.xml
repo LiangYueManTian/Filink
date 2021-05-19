@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!--基本信息-->
+    <description>基础jar包</description>
+    <modelVersion>4.0.0</modelVersion>
+    <name>filink-common</name>
+    <packaging>pom</packaging>
+
+    <!-- 项目说明：这里作为聚合工程的父工程 -->
+    <groupId>com.fiberhome.filink</groupId>
+    <artifactId>filink-common</artifactId>
+    <version>0.0.3-RELEASE</version>
+
+    <!-- 继承说明：这里继承SpringBoot提供的父工程 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.8.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!--指定仓库地址-->
+    <distributionManagement>
+        <repository>
+            <!--此名称要和.m2/settings.xml中设置的ID一致-->
+            <id>filink</id>
+            <url>http://10.5.24.143:8081/repository/filink-release/</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>filink</id>
+            <url>http://10.5.24.143:8081/repository/filink-release/</url>
+        </repository>
+    </repositories>
+
+    <!-- 模块说明：这里声明多个子模块 -->
+    <modules>
+        <module>filink-common-station</module>
+        <module>filink-common-client</module>
+        <module>filink-common-server</module>
+        <module>filink-common-redis</module>
+        <module>filink-common-bean</module>
+        <module>filink-common-mongo</module>
+        <module>filink-common-mysql</module>
+        <module>filink-common-elasticsearch</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Edgware.SR5</spring-cloud.version>
+        <filink-common.version>0.0.3-RELEASE</filink-common.version>
+    </properties>
+
+
+    <!-- 版本说明：这里统一管理依赖的版本号 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fiberhome.filink</groupId>
+                <artifactId>filink-common-bean</artifactId>
+                <version>${filink-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fiberhome.filink</groupId>
+                <artifactId>filink-common-client</artifactId>
+                <version>${filink-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fiberhome.filink</groupId>
+                <artifactId>filink-common-mongo</artifactId>
+                <version>${filink-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fiberhome.filink</groupId>
+                <artifactId>filink-common-mysql</artifactId>
+                <version>${filink-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fiberhome.filink</groupId>
+                <artifactId>filink-common-redis</artifactId>
+                <version>${filink-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fiberhome.filink</groupId>
+                <artifactId>filink-common-server</artifactId>
+                <version>${filink-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fiberhome.filink</groupId>
+                <artifactId>filink-common-station</artifactId>
+                <version>${filink-common.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!--全局公共依赖-->
+    <dependencies>
+        <!--lomback-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--发布代码Jar插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <!--发布源码插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

@@ -1,0 +1,24 @@
+#spring:
+#  profiles:
+#    active: dev
+
+# --spring.cloud.config.profile=dev
+
+spring:
+  cloud:
+    config:
+      name: filink-gateway
+      label: filink-gateway
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: FILINK-CONFIG-SERVER
+
+eureka:
+  client:
+    service-url:
+#      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+      defaultZone: http://10.5.24.141:8762/eureka/
+  instance:
+    prefer-ip-address: true
+

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.fiberhome.filink.FilinkUserServerApplicationTests" time="0.051" tests="1" errors="1" skipped="0" failures="0">
+  <properties>
+    <property name="idea.version" value="2018.3.6"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_40\jre\bin"/>
+    <property name="java.vm.version" value="25.40-b25"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk"/>
+    <property name="java.runtime.version" value="1.8.0_40-b26"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_40\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\朱奇\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 8.1"/>
+    <property name="classworlds.conf" value="C:\apache-maven-3.6.0\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="GBK"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_40\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\app\mldnadmin\product\12.2.0\dbhome_1\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Java\jdk1.8.0_40\bin;C:\Program Files\Java\jdk1.8.0_40\jre\bin;D:\Program Files (x86)\MySQL\MySQL Server 5.0\bin;D:\Program Files\Git\cmd;C:\Program Files (x86)\MySQL\MySQL Server 5.0\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Redis;C:\Program Files\TortoiseSVN\bin;C:\apache-maven-3.6.0\bin;C:\Users\朱奇\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="maven.conf" value="C:\apache-maven-3.6.0/conf"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.3"/>
+    <property name="user.home" value="C:\Users\朱奇"/>
+    <property name="user.timezone" value="GMT+08:00"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="朱奇"/>
+    <property name="java.class.path" value="C:\apache-maven-3.6.0\boot\plexus-classworlds-2.5.2.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\lib\idea_rt.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_40\jre"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2018.3.6 -s C:\apache-maven-3.6.0\conf\settings.xml install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="zh"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_40"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_40\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_40\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\apache-maven-3.6.0"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="initializationError" classname="com.fiberhome.filink.FilinkUserServerApplicationTests" time="0.051">
+    <error message="Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test" type="java.lang.IllegalStateException"><![CDATA[java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
+	at org.springframework.util.Assert.state(Assert.java:70)
+	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.getOrFindConfigurationClasses(SpringBootTestContextBootstrapper.java:202)
+	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.processMergedContextConfiguration(SpringBootTestContextBootstrapper.java:137)
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildMergedContextConfiguration(AbstractTestContextBootstrapper.java:409)
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildDefaultMergedContextConfiguration(AbstractTestContextBootstrapper.java:323)
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildMergedContextConfiguration(AbstractTestContextBootstrapper.java:277)
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildTestContext(AbstractTestContextBootstrapper.java:112)
+	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.buildTestContext(SpringBootTestContextBootstrapper.java:82)
+	at org.springframework.test.context.TestContextManager.<init>(TestContextManager.java:120)
+	at org.springframework.test.context.TestContextManager.<init>(TestContextManager.java:105)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTestContextManager(SpringJUnit4ClassRunner.java:152)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.<init>(SpringJUnit4ClassRunner.java:143)
+	at org.springframework.test.context.junit4.SpringRunner.<init>(SpringRunner.java:49)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at org.junit.internal.builders.AnnotatedBuilder.buildRunner(AnnotatedBuilder.java:104)
+	at org.junit.internal.builders.AnnotatedBuilder.runnerForClass(AnnotatedBuilder.java:86)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.builders.AllDefaultPossibilitiesBuilder.runnerForClass(AllDefaultPossibilitiesBuilder.java:26)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.requests.ClassRequest.getRunner(ClassRequest.java:33)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+]]></error>
+    <system-out><![CDATA[LOGBACK: No context given for net.logstash.logback.LogstashFormatter@3a93b025
+22:46:04,851 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.groovy]
+22:46:04,851 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+22:46:04,852 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/C:/workFile/zqq/svn/Filink_Project/10-Sys%20Code/filink-user/trunk/filink-user-server/target/classes/logback.xml]
+22:46:04,934 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - debug attribute not set
+22:46:04,940 |-INFO in ch.qos.logback.core.joran.util.ConfigurationWatchListUtil@48f2bd5b - Adding [jar:file:/C:/locM2/org/springframework/boot/spring-boot/1.5.8.RELEASE/spring-boot-1.5.8.RELEASE.jar!/org/springframework/boot/logging/logback/defaults.xml] to configuration watch list.
+22:46:04,940 |-INFO in ch.qos.logback.core.joran.spi.ConfigurationWatchList@7b2bbc3 - URL [jar:file:/C:/locM2/org/springframework/boot/spring-boot/1.5.8.RELEASE/spring-boot-1.5.8.RELEASE.jar!/org/springframework/boot/logging/logback/defaults.xml] is not of type file
+22:46:04,949 |-INFO in ch.qos.logback.core.joran.action.ConversionRuleAction - registering conversion word clr with class [org.springframework.boot.logging.logback.ColorConverter]
+22:46:04,949 |-INFO in ch.qos.logback.core.joran.action.ConversionRuleAction - registering conversion word wex with class [org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter]
+22:46:04,949 |-INFO in ch.qos.logback.core.joran.action.ConversionRuleAction - registering conversion word wEx with class [org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter]
+22:46:04,970 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [org.springframework.boot.logging.logback.LevelRemappingAppender]
+22:46:04,975 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [DEBUG_LEVEL_REMAPPER]
+22:46:05,003 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.apache.catalina.startup.DigesterFactory] to ERROR
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.apache.catalina.util.LifecycleBase] to ERROR
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.apache.coyote.http11.Http11NioProtocol] to WARN
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.apache.sshd.common.util.SecurityUtils] to WARN
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.apache.tomcat.util.net.NioSelectorPool] to WARN
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.crsh.plugin] to WARN
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.crsh.ssh] to WARN
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.eclipse.jetty.util.component.AbstractLifeCycle] to ERROR
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.hibernate.validator.internal.util.Version] to WARN
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration] to WARN
+22:46:05,004 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting additivity of logger [org.springframework.boot.actuate.endpoint.jmx] to false
+22:46:05,004 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [DEBUG_LEVEL_REMAPPER] to Logger[org.springframework.boot.actuate.endpoint.jmx]
+22:46:05,005 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting additivity of logger [org.thymeleaf] to false
+22:46:05,006 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [DEBUG_LEVEL_REMAPPER] to Logger[org.thymeleaf]
+22:46:05,010 |-ERROR in ch.qos.logback.core.joran.spi.Interpreter@5:93 - no applicable action for [springProperty], current ElementPath  is [[configuration][springProperty]]
+22:46:05,010 |-ERROR in ch.qos.logback.core.joran.spi.Interpreter@6:114 - no applicable action for [springProperty], current ElementPath  is [[configuration][springProperty]]
+22:46:05,011 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+22:46:05,015 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [console]
+22:46:05,021 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+22:46:05,126 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+22:46:05,130 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [flatfile]
+22:46:05,145 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@168907708 - Will use gz compression
+22:46:05,147 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@168907708 - Will use the pattern build/springAppName_IS_UNDEFINED.%d{yyyy-MM-dd} for the active file
+22:46:05,151 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - The date pattern is 'yyyy-MM-dd' from file name pattern 'build/springAppName_IS_UNDEFINED.%d{yyyy-MM-dd}.gz'.
+22:46:05,151 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Roll-over at midnight.
+22:46:05,155 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Setting initial period to Sat Apr 20 22:46:05 GMT+08:00 2019
+22:46:05,156 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+22:46:05,159 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[flatfile] - Active log file name: build/springAppName_IS_UNDEFINED
+22:46:05,159 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[flatfile] - File property is set to [build/springAppName_IS_UNDEFINED]
+22:46:05,161 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [net.logstash.logback.appender.LogstashTcpSocketAppender]
+22:46:05,177 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [logstash]
+22:46:05,183 |-ERROR in ch.qos.logback.core.joran.util.PropertySetter@1aafa419 - Could not invoke method addDestination in class net.logstash.logback.appender.LogstashTcpSocketAppender with parameter of type java.lang.String java.lang.reflect.InvocationTargetException
+	at java.lang.reflect.InvocationTargetException
+	at 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at 	at java.lang.reflect.Method.invoke(Method.java:497)
+	at 	at ch.qos.logback.core.joran.util.PropertySetter.invokeMethodWithSingleParameterOnThisObject(PropertySetter.java:251)
+	at 	at ch.qos.logback.core.joran.util.PropertySetter.addBasicProperty(PropertySetter.java:282)
+	at 	at ch.qos.logback.core.joran.action.NestedBasicPropertyIA.body(NestedBasicPropertyIA.java:98)
+	at 	at ch.qos.logback.core.joran.spi.Interpreter.callBodyAction(Interpreter.java:289)
+	at 	at ch.qos.logback.core.joran.spi.Interpreter.characters(Interpreter.java:172)
+	at 	at ch.qos.logback.core.joran.spi.EventPlayer.play(EventPlayer.java:57)
+	at 	at ch.qos.logback.core.joran.GenericConfigurator.doConfigure(GenericConfigurator.java:165)
+	at 	at ch.qos.logback.core.joran.GenericConfigurator.doConfigure(GenericConfigurator.java:152)
+	at 	at ch.qos.logback.core.joran.GenericConfigurator.doConfigure(GenericConfigurator.java:110)
+	at 	at ch.qos.logback.core.joran.GenericConfigurator.doConfigure(GenericConfigurator.java:53)
+	at 	at ch.qos.logback.classic.util.ContextInitializer.configureByResource(ContextInitializer.java:75)
+	at 	at ch.qos.logback.classic.util.ContextInitializer.autoConfig(ContextInitializer.java:150)
+	at 	at org.slf4j.impl.StaticLoggerBinder.init(StaticLoggerBinder.java:84)
+	at 	at org.slf4j.impl.StaticLoggerBinder.<clinit>(StaticLoggerBinder.java:55)
+	at 	at org.slf4j.LoggerFactory.bind(LoggerFactory.java:150)
+	at 	at org.slf4j.LoggerFactory.performInitialization(LoggerFactory.java:124)
+	at 	at org.slf4j.LoggerFactory.getILoggerFactory(LoggerFactory.java:412)
+	at 	at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:357)
+	at 	at org.apache.commons.logging.impl.SLF4JLogFactory.getInstance(SLF4JLogFactory.java:155)
+	at 	at org.apache.commons.logging.impl.SLF4JLogFactory.getInstance(SLF4JLogFactory.java:132)
+	at 	at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:273)
+	at 	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.<clinit>(SpringJUnit4ClassRunner.java:96)
+	at 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at 	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at 	at org.junit.internal.builders.AnnotatedBuilder.buildRunner(AnnotatedBuilder.java:104)
+	at 	at org.junit.internal.builders.AnnotatedBuilder.runnerForClass(AnnotatedBuilder.java:86)
+	at 	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at 	at org.junit.internal.builders.AllDefaultPossibilitiesBuilder.runnerForClass(AllDefaultPossibilitiesBuilder.java:26)
+	at 	at org.junit.runner.Computer.getRunner(Computer.java:40)
+	at 	at org.junit.runner.Computer$1.runnerForClass(Computer.java:31)
+	at 	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at 	at org.junit.runners.model.RunnerBuilder.runners(RunnerBuilder.java:101)
+	at 	at org.junit.runners.model.RunnerBuilder.runners(RunnerBuilder.java:87)
+	at 	at org.junit.runners.Suite.<init>(Suite.java:81)
+	at 	at org.junit.runner.Computer.getSuite(Computer.java:28)
+	at 	at org.junit.runner.Request.classes(Request.java:75)
+	at 	at org.junit.runner.Request.classes(Request.java:91)
+	at 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at 	at java.lang.reflect.Method.invoke(Method.java:497)
+	at 	at org.apache.maven.surefire.common.junit4.JUnit4Reflector.createRequest(JUnit4Reflector.java:63)
+	at 	at org.apache.maven.surefire.common.junit4.JUnit4ProviderUtil.createSuiteDescription(JUnit4ProviderUtil.java:113)
+	at 	at org.apache.maven.surefire.junit4.JUnit4Provider.createTestsDescription(JUnit4Provider.java:257)
+	at 	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at 	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
+	at 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
+	at 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+Caused by: java.lang.IllegalArgumentException: Invalid destination 'LOGSTASH_URL_IS_UNDEFINED': unparseable value (expected format 'host[:port]').
+	at 	at net.logstash.logback.appender.DestinationParser.parse(DestinationParser.java:62)
+	at 	at net.logstash.logback.appender.AbstractLogstashTcpSocketAppender.addDestination(AbstractLogstashTcpSocketAppender.java:899)
+	at 	... 54 common frames omitted
+22:46:05,411 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [net.logstash.logback.composite.loggingevent.LoggingEventJsonProviders] for [providers] property
+22:46:05,415 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [net.logstash.logback.composite.loggingevent.LoggingEventFormattedTimestampJsonProvider] for [timestamp] property
+22:46:05,430 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [net.logstash.logback.composite.loggingevent.LoggingEventPatternJsonProvider] for [pattern] property
+22:46:05,468 |-WARN in net.logstash.logback.encoder.LogstashEncoder@55182842 - Logback version is prior to 1.2.0.  Enabling backwards compatible encoding.  Logback 1.2.1 or greater is recommended.
+22:46:05,468 |-ERROR in net.logstash.logback.appender.LogstashTcpSocketAppender[logstash] - No destination was configured. Use <destination> to add one or more destinations to the appender
+22:46:05,468 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+22:46:05,468 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [INFO_FILE]
+22:46:05,472 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@846254484 - No compression will be used
+22:46:05,472 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@846254484 - Will use the pattern logs/springAppName_IS_UNDEFINED-info-%d{yyyyMMdd}.log.%i for the active file
+22:46:05,473 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@235834f2 - The date pattern is 'yyyyMMdd' from file name pattern 'logs/springAppName_IS_UNDEFINED-info-%d{yyyyMMdd}.log.%i'.
+22:46:05,473 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@235834f2 - Roll-over at midnight.
+22:46:05,473 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@235834f2 - Setting initial period to Sat Apr 20 22:46:05 GMT+08:00 2019
+22:46:05,473 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@235834f2 - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
+22:46:05,473 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@235834f2 - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+22:46:05,476 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+22:46:05,476 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+22:46:05,476 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+22:46:05,476 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - Active log file name: logs/springAppName_IS_UNDEFINED-info.log
+22:46:05,476 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - File property is set to [logs/springAppName_IS_UNDEFINED-info.log]
+22:46:05,477 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+22:46:05,477 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [ERROR_FILE]
+22:46:05,478 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1448525331 - No compression will be used
+22:46:05,478 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1448525331 - Will use the pattern logs/springAppName_IS_UNDEFINED-springAppName_IS_UNDEFINED-%d{yyyyMMdd}.log.%i for the active file
+22:46:05,478 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@4218d6a3 - The date pattern is 'yyyyMMdd' from file name pattern 'logs/springAppName_IS_UNDEFINED-springAppName_IS_UNDEFINED-%d{yyyyMMdd}.log.%i'.
+22:46:05,478 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@4218d6a3 - Roll-over at midnight.
+22:46:05,482 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@4218d6a3 - Setting initial period to Sat Apr 20 22:46:05 GMT+08:00 2019
+22:46:05,482 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@4218d6a3 - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
+22:46:05,482 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@4218d6a3 - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+22:46:05,483 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+22:46:05,483 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+22:46:05,483 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+22:46:05,483 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - Active log file name: logs/springAppName_IS_UNDEFINED-error.log
+22:46:05,483 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - File property is set to [logs/springAppName_IS_UNDEFINED-error.log]
+22:46:05,484 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.apache.kafka] to WARN
+22:46:05,484 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [akka] to WARN
+22:46:05,484 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.springframework] to WARN
+22:46:05,484 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to INFO
+22:46:05,484 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [console] to Logger[ROOT]
+22:46:05,484 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [logstash] to Logger[ROOT]
+22:46:05,484 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [INFO_FILE] to Logger[ROOT]
+22:46:05,484 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [ERROR_FILE] to Logger[ROOT]
+22:46:05,484 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+22:46:05,485 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@76505305 - Registering current configuration as safe fallback point
+
+]]></system-out>
+  </testcase>
+</testsuite>

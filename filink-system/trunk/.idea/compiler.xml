@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="filink-system-about" />
+        <module name="filink-system-api" />
+        <module name="filink-system-boxhead" />
+        <module name="filink-system-commons" />
+        <module name="filink-system-commonsapi" />
+        <module name="filink-system-dprotocol" />
+        <module name="filink-system-dump" />
+        <module name="filink-system-export" />
+        <module name="filink-system-language" />
+        <module name="filink-system-license" />
+        <module name="filink-system-menu" />
+        <module name="filink-system-parameter" />
+        <module name="filink-system-protocol" />
+        <module name="filink-system-screen" />
+        <module name="filink-system-security" />
+        <module name="filink-system-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="filink-system" target="1.8" />
+      <module name="filink-system-about" target="1.8" />
+      <module name="filink-system-api" target="1.8" />
+      <module name="filink-system-boxhead" target="1.8" />
+      <module name="filink-system-commons" target="1.8" />
+      <module name="filink-system-commonsapi" target="1.8" />
+      <module name="filink-system-dprotocol" target="1.8" />
+      <module name="filink-system-dump" target="1.8" />
+      <module name="filink-system-export" target="1.8" />
+      <module name="filink-system-language" target="1.8" />
+      <module name="filink-system-license" target="1.8" />
+      <module name="filink-system-menu" target="1.8" />
+      <module name="filink-system-parameter" target="1.8" />
+      <module name="filink-system-protocol" target="1.8" />
+      <module name="filink-system-screen" target="1.8" />
+      <module name="filink-system-security" target="1.8" />
+      <module name="filink-system-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

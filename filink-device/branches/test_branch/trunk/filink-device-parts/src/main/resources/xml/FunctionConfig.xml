@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+    <functionCode functionId="1301301">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}add parts parts name is ${partName}</detailInfoTemplate>
+            <optName>addParts</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}新增了配件:${partName}</detailInfoTemplate>
+            <optName>新增配件</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1301302">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}update parts parts name is ${partName}</detailInfoTemplate>
+            <optName>updateParts</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}修改了配件:${partName}</detailInfoTemplate>
+            <optName>修改配件</optName>
+        </language>
+    </functionCode>
+
+    <functionCode functionId="1301303">
+        <language type="US">
+            <detailInfoTemplate>${optUserName}delete parts parts name is ${partName}</detailInfoTemplate>
+            <optName>deleteParts</optName>
+        </language>
+        <language type="CN">
+            <detailInfoTemplate>${optUserName}删除了配件:${partName}</detailInfoTemplate>
+            <optName>删除配件</optName>
+        </language>
+    </functionCode>
+</functionCodes>

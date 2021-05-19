@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--基本信息-->
+    <artifactId>filink-user-api</artifactId>
+    <version>0.0.4-RELEASE</version>
+    <name>filink-user-api</name>
+    <description>用户服务api</description>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.fiberhome.filink</groupId>
+        <artifactId>filink-user</artifactId>
+        <version>0.0.4-RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-common-client</artifactId>
+            <version>0.0.3-RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

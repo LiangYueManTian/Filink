@@ -1,0 +1,46 @@
+2019-08-07 17:31:01.412 [main] INFO  c.f.f.u.c.UserLoginController
+                -User null login：Check if the user can login
+2019-08-07 17:31:01.427 [main] INFO  c.f.f.u.c.UserLoginController
+                -User null login：Check if the user can login without passing
+2019-08-07 17:31:01.437 [main] INFO  c.f.f.u.c.UserLoginController
+                -User null login：Check if the user can login
+2019-08-07 17:31:01.515 [main] INFO  c.f.f.u.c.UserLoginController
+                -User null login：Query user related information
+2019-08-07 17:31:05.485 [main] INFO  c.f.f.userserver.utils.SendKafkaMsg
+                -Send kafka message
+2019-08-07 17:31:09.049 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User null login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.054 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User null login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.059 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User null login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.061 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User admin login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.183 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User admin1000 login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.188 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User admin1000 login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.191 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User admin1000 login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.193 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User admin1000 login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.196 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User admin1000 login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.200 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User admin1000 login：Call system service query menu, license, security policy and other information
+2019-08-07 17:31:09.372 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User login:Entered the method of handling login errors....
+2019-08-07 17:31:09.373 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -dealLoginFail userParameter UserParameter(id=null, userCode=null, userNickname=null, userName=123, userStatus=null, deptId=null, roleId=null, address=null, phoneNumber=null, email=null, password=null, countValidityTime=null, userDesc=null, lastLoginTime=null, lastLoginTimeEnd=null, lastLoginTimeRelation=null, lastLoginIp=null, loginType=null, maxUsers=null, deleted=null, createUser=null, createTime=null, updateUser=null, updateTime=null, area=null, department=null, role=null, loginSourse=null, loginTime=null, ids=null, loginIp=null, pageSize=10, page=0, startNum=0, sortProperties=null, sort=null, token=null, port=0, pushId=null, permissionId=null, roleIdList=null, roleNameList=null, departmentNameList=null)
+2019-08-07 17:31:09.380 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User login:Entered the method of handling login errors....
+2019-08-07 17:31:09.380 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -dealLoginFail userParameter UserParameter(id=null, userCode=null, userNickname=null, userName=123, userStatus=null, deptId=null, roleId=null, address=null, phoneNumber=null, email=null, password=null, countValidityTime=null, userDesc=null, lastLoginTime=null, lastLoginTimeEnd=null, lastLoginTimeRelation=null, lastLoginIp=null, loginType=null, maxUsers=null, deleted=null, createUser=null, createTime=null, updateUser=null, updateTime=null, area=null, department=null, role=null, loginSourse=null, loginTime=null, ids=null, loginIp=127.0.0.1, pageSize=10, page=0, startNum=0, sortProperties=null, sort=null, token=null, port=0, pushId=null, permissionId=null, roleIdList=null, roleNameList=null, departmentNameList=null)
+2019-08-07 17:31:09.382 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -User login:Entered the method of handling login errors....
+2019-08-07 17:31:09.383 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -dealLoginFail userParameter UserParameter(id=null, userCode=null, userNickname=null, userName=123, userStatus=null, deptId=null, roleId=null, address=null, phoneNumber=null, email=null, password=null, countValidityTime=null, userDesc=null, lastLoginTime=null, lastLoginTimeEnd=null, lastLoginTimeRelation=null, lastLoginIp=null, loginType=null, maxUsers=null, deleted=null, createUser=null, createTime=null, updateUser=null, updateTime=null, area=null, department=null, role=null, loginSourse=null, loginTime=null, ids=null, loginIp=127.0.0.1, pageSize=10, page=0, startNum=0, sortProperties=null, sort=null, token=null, port=0, pushId=null, permissionId=null, roleIdList=null, roleNameList=null, departmentNameList=null)
+2019-08-07 17:31:10.119 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -Mobile phone 110 login，Send the verification code
+2019-08-07 17:31:12.384 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -userId + UserConst.REDIS_SPLIT + token =123redis_split456 

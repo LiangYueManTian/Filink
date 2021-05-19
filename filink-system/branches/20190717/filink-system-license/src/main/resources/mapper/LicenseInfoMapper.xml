@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.license.dao.LicenseInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.license.bean.LicenseInfo">
+        <id column="license_id" property="licenseId" />
+        <result column="path" property="path" />
+        <result column="is_default" property="isDefault" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_user" property="updateUser" />
+    </resultMap>
+
+    <select id="findDefaultLicense" parameterType="string" resultMap="BaseResultMap">
+        SELECT * FROM license_info
+        WHERE is_default = 1
+    </select>
+
+    <select id="findNonDefaultLicense" parameterType="string" resultMap="BaseResultMap">
+        SELECT * FROM license_info
+        WHERE is_default = 0
+    </select>
+</mapper>

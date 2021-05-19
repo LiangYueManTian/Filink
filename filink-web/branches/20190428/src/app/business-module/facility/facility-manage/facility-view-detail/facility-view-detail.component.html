@@ -1,0 +1,38 @@
+<div class="facility-view-title" style="">设施详情
+</div>
+<div style="background: #f0f2f5;overflow: hidden;" class="detail-height">
+  <div class="view-item" *ngIf="detailCode.includes('1')">
+    <!--基础设施详情-->
+    <app-infrastructure-details [deviceId]="deviceId"></app-infrastructure-details>
+  </div>
+  <div class="view-item" *ngIf="detailCode.includes('2')">
+    <!--基本设施操作-->
+    <app-basic-operation [deviceId]="deviceId"
+                         [deviceType]="deviceType"
+                         [hasGuard]="detailCode.includes('3')"
+                         [serialNum]="serialNum"></app-basic-operation>
+  </div>
+  <div class="view-item" *ngIf="detailCode.includes('3')">
+    <!--智能门禁详情-->
+    <app-intelligent-entrance-guard [deviceId]="deviceId" [serialNum]="serialNum"></app-intelligent-entrance-guard>
+  </div>
+  <div class="view-item" *ngIf="detailCode.includes('4')">
+    <!--设施告警-->
+    <app-facility-alarm [deviceId]="deviceId"></app-facility-alarm>
+  </div>
+  <div class="view-item" *ngIf="detailCode.includes('7')">
+    <!--设施工单-->
+    <app-facility-work-order [deviceId]="deviceId"></app-facility-work-order>
+  </div>
+  <div class="view-item" *ngIf="detailCode.includes('5')">
+    <!--设施日志-->
+    <app-facility-view-detail-log [deviceId]="deviceId"></app-facility-view-detail-log>
+  </div>
+  <div class="view-item" style="margin-bottom: 15px" *ngIf="detailCode.includes('6')">
+    <!--设施图片-->
+    <app-facility-img-view [deviceId]="deviceId"></app-facility-img-view>
+  </div>
+
+
+  <!--<div class="view-item" style="padding: 20px" *ngIf="detailCode.length===0">无数据！</div>-->
+</div>

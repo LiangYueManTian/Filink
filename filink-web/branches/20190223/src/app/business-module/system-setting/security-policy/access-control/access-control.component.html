@@ -1,0 +1,25 @@
+<div class="access-control-list">
+  <xc-table [dataSet]="_dataSet"
+            [pageBean]="pageBean"
+            [tableConfig]="tableConfig"
+            (pageChange)="pageChange($event)">
+  </xc-table>
+</div>
+
+<!--todo 是否开启-->
+<ng-template #templateStatus let-data="data">
+  <nz-switch [ngModel]="data.statue === '1'"
+             [nzDisabled]="data.statue === '1'"
+             [nzLoading]="data.clicked"
+             [nzControl]="true"
+             ></nz-switch>
+  <span *ngIf="data.statue ===  '1'" style="margin-left: 15px">禁用</span>
+  <span *ngIf="data.statue ===  '0'" style="margin-left: 15px" >启用</span>
+</ng-template>
+
+<app-access-control-detial
+  [isVisible]="isVisible"
+  [ipInfo]="curIpInfo"
+  [title]="title"
+  (cancel)="detailCancel()"
+></app-access-control-detial>

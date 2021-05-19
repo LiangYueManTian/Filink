@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.userserver.dao.OnlineUserDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.userserver.bean.OnlineUser">
+        <id column="id" property="id" />
+        <result column="userId" property="userId" />
+        <result column="userCode" property="userCode" />
+        <result column="userNickname" property="userNickname" />
+        <result column="userName" property="userName" />
+        <result column="deptName" property="deptName" />
+        <result column="address" property="address" />
+        <result column="phoneNumber" property="phoneNumber" />
+        <result column="email" property="email" />
+        <result column="roleName" property="roleName" />
+        <result column="loginTime" property="loginTime" />
+        <result column="loginIp" property="loginIp" />
+        <result column="loginSource" property="loginSource" />
+    </resultMap>
+
+    <select id="queryAllOnlineUser" resultType="String">
+        SELECT
+          id
+        FROM
+          online_user
+    </select>
+
+    <insert id="batchAddOnlineUser">
+        insert into online_user
+          (id,userId,userCode,userNickname,userName,deptName,address,phoneNumber,email,roleName,loginTime,loginIp,loginSource)
+          VALUES
+        <foreach collection="onlineUsers" item="item" index="index" separator=",">
+            (
+              #{item.id},
+              #{item.userId},
+              #{item.userCode},
+              #{item.userNickname},
+              #{item.userName},
+              #{item.deptName},
+              #{item.address},
+              #{item.phoneNumber},
+              #{item.email},
+              #{item.roleName},
+              #{item.loginTime},
+              #{item.loginIp},
+              #{item.loginSource}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryOnlineUserList" parameterType="com.fiberhome.filink.userserver.bean.OnlineParameter" resultMap="BaseResultMap">
+        SELECT
+          id,userId,userCode,userNickname,userName,deptName,address,phoneNumber,email,roleName,loginTime,loginIp,loginSource
+        FROM
+          online_user
+        <where>
+            <if test="userCode != null">
+              AND userCode LIKE concat('%',#{userCode},'%')
+            </if>
+            <if test="userNickname != null">
+              AND userNickname LIKE concat('%',#{userNickname},'%')
+            </if>
+            <if test="userName != null">
+                AND userName LIKE concat('%',#{userName},'%')
+            </if>
+            <if test="deptName != null ">
+                AND deptName LIKE concat('%',#{deptName},'%')
+            </if>
+            <if test="address != null">
+                AND address LIKE concat('%',#{address},'%')
+            </if>
+            <if test="phoneNumber != null">
+                AND phoneNumber LIKE concat('%',#{phoneNumber},'%')
+            </if>
+            <if test="email != null">
+                AND email LIKE concat('%',#{email},'%')
+            </if>
+            <if test="roleName != null">
+                AND roleName LIKE concat('%',#{roleName},'%')
+            </if>
+            <if test="loginIp != null">
+                AND loginIp LIKE concat('%',#{loginIp},'%')
+            </if>
+            <if test="loginSource != null">
+                AND loginSource = #{loginSource}
+            </if>
+            <if test="currentUserRoleName != null and currentUserDepartmentName">
+                AND (roleName = #{currentUserRoleName}
+                OR deptName = #{currentUserDepartmentName})
+            </if>
+            <if test="loginTime != null and loginTimeEnd != null">
+                AND loginTime >= #{loginTime}
+                AND loginTime &lt;= #{loginTimeEnd}
+            </if>
+            <if test="departmentNameList != null">
+                AND deptName IN
+                <foreach collection="departmentNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="roleNameList != null">
+                AND roleName IN
+                <foreach collection="roleNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        <if test="sort == null">
+            ORDER BY loginTime DESC
+        </if>
+        <if test="sort != null">
+            ORDER BY ${sortProperties} ${sort}
+        </if>
+        LIMIT #{startNum},#{pageSize}
+    </select>
+
+
+    <select id="queryOnlineUserNumber" parameterType="com.fiberhome.filink.userserver.bean.OnlineParameter" resultType="Long">
+        SELECT
+          count(id)
+        FROM
+        online_user
+        <where>
+            <if test="userCode != null">
+                AND userCode LIKE concat('%',#{userCode},'%')
+            </if>
+            <if test="userNickname != null">
+                AND userNickname LIKE concat('%',#{userNickname},'%')
+            </if>
+            <if test="userName != null">
+                AND userName LIKE concat('%',#{userName},'%')
+            </if>
+            <if test="deptName != null">
+                AND deptName LIKE concat('%',#{deptName},'%')
+            </if>
+            <if test="address != null">
+                AND address LIKE concat('%',#{address},'%')
+            </if>
+            <if test="phoneNumber != null">
+                AND phoneNumber LIKE concat('%',#{phoneNumber},'%')
+            </if>
+            <if test="email != null">
+                AND email LIKE concat('%',#{email},'%')
+            </if>
+            <if test="roleName != null">
+                AND roleName LIKE concat('%',#{roleName},'%')
+            </if>
+            <if test="loginIp != null">
+                AND loginIp LIKE concat('%',#{loginIp},'%')
+            </if>
+            <if test="loginSource != null">
+                AND loginSource = #{loginSource}
+            </if>
+            <if test="currentUserRoleName != null and currentUserDepartmentName">
+                AND (roleName = #{currentUserRoleName}
+                OR deptName = #{currentUserDepartmentName})
+            </if>
+            <if test="loginTime != null and loginTimeEnd != null">
+                AND loginTime >= #{loginTime}
+                AND loginTime &lt;= #{loginTimeEnd}
+            </if>
+            <if test="departmentNameList != null">
+                AND deptName IN
+                <foreach collection="departmentNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="roleNameList != null">
+                AND roleName IN
+                <foreach collection="roleNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+</mapper>

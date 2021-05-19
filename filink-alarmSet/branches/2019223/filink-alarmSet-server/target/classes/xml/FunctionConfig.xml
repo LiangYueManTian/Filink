@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="1701301">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update warehousing time warehousing time name is ${alarmDelayName}
+			</detailInfoTemplate>
+			<optName>updateAlarmDelay</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了历史告警设置时间:${alarmDelayName}</detailInfoTemplate>
+			<optName>修改历史告警设置时间</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701201">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm level alarm level name is ${alarmLevelName}
+			</detailInfoTemplate>
+			<optName>updateAlarmLevel</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警级别:${alarmLevelName}</detailInfoTemplate>
+			<optName>修改告警级别</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm set alarm set name is ${alarmName}</detailInfoTemplate>
+			<optName>updateAlarmCurrentSet</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警设置:${alarmName}</detailInfoTemplate>
+			<optName>修改告警设置</optName>
+		</language>
+	</functionCode>
+</functionCodes>

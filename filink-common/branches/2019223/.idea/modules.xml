@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/filink-common.iml" filepath="$PROJECT_DIR$/filink-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-common-bean/filink-common-bean.iml" filepath="$PROJECT_DIR$/filink-common-bean/filink-common-bean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-common-client/filink-common-client.iml" filepath="$PROJECT_DIR$/filink-common-client/filink-common-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-common-mongo/filink-common-mongo.iml" filepath="$PROJECT_DIR$/filink-common-mongo/filink-common-mongo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-common-redis/filink-common-redis.iml" filepath="$PROJECT_DIR$/filink-common-redis/filink-common-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-common-server/filink-common-server.iml" filepath="$PROJECT_DIR$/filink-common-server/filink-common-server.iml" />
+    </modules>
+  </component>
+</project>

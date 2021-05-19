@@ -1,0 +1,84 @@
+language.environment: CN
+readLogFilePath: /yy_filink/filink_log/lockLog/
+
+server:
+  port: 9906
+
+spring:
+  application:
+    name: filink-lock-server
+
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: filink-kafka:9092
+          zkNodes: filink-kafka:2181
+      bindings:
+        udp_sender:
+          #   监听topic
+          destination: station_udp_request
+          contentType: application/json
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://filink-mysql:3306/filink_lock?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    #    password: wistronits@123
+    password: wistronits@123
+    #      初始化大小
+    initialSize: 5
+    #      最小连接数
+    minIdle: 5
+    #      最大连接数
+    maxActive: 20
+    #      获取连接等待超时时间
+    maxWait: 60000
+    #      间隔多久检测一次 检测需要关闭的空闲连接 单位毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    #      一个连接最小生存时间
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    #      配置监控统计拦截的filter , 去掉后监控sql无法统计wall用于防火墙
+    filters: stat,wall,log4j
+    logSlowSql: true
+
+#mybaties
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**.xml
+  type-aliases-package: com.fiberhome.filink.lockserver.bean
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000
+
+    test:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000
+
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: true
+
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 15000
+  ConnectTimeout: 15000

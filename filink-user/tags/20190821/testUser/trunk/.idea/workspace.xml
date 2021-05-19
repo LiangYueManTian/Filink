@@ -1,0 +1,1953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/ImportServiceImpl.java" line="291" />
+    <bookmark url="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UserController.java" description="required" line="77" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="49e6aebc-1b41-427e-ac3f-8e96870a0302" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/UserExpireListen.java" beforeDir="false" afterPath="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/UserExpireListen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/DepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UnifyAuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UnifyAuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UnifyAuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UnifyAuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filink-user-server/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/filink-user-server/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/service/impl/UserServiceTestOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/service/impl/UserServiceTestOne.java" afterDir="false" />
+    </list>
+    <list id="69744e15-1863-4874-84e5-5ec389fc3021" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/filink-user-server/target/" />
+    <ignored path="$PROJECT_DIR$/filink-user-api/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentControllerTest_queryDeptInfoById.ic" NAME="DepartmentControllerTest.queryDeptInfoById Coverage Results" MODIFIED="1562564471332" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$ImportServiceImplTest.ic" NAME="ImportServiceImplTest Coverage Results" MODIFIED="1564055129465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$TempauthControllerTest_batchAudingTempAuthByIds.ic" NAME="TempauthControllerTest.batchAudingTempAuthByIds Coverage Results" MODIFIED="1562381517382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_beanTest.ic" NAME="BeanTest.beanTest Coverage Results" MODIFIED="1564628178598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$RoleServiceImplTest_updatePermissionAndDeviceType.ic" NAME="RoleServiceImplTest.updatePermissionAndDeviceType Coverage Results" MODIFIED="1562577810647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_addDept.ic" NAME="DepartmentServiceImplTest.addDept Coverage Results" MODIFIED="1562294868202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_departmentFeignTest.ic" NAME="BeanTest.departmentFeignTest Coverage Results" MODIFIED="1564643137862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest__1_.ic" NAME="DepartmentServiceImplTest (1) Coverage Results" MODIFIED="1562294899906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$ImportServiceImplTest_importUserInfo2.ic" NAME="ImportServiceImplTest.importUserInfo2 Coverage Results" MODIFIED="1564054995613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_roleDeviceTypeTest.ic" NAME="BeanTest.roleDeviceTypeTest Coverage Results" MODIFIED="1564723591460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$RoleServiceImplTest_queryRoleByFieldAndCondition.ic" NAME="RoleServiceImplTest.queryRoleByFieldAndCondition Coverage Results" MODIFIED="1562551999192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1564121429622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_queryAllDepartmentForPageSelectionTest.ic" NAME="DepartmentServiceImplTest.queryAllDepartmentForPageSelectionTest Coverage Results" MODIFIED="1562401077080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_onlineParameterTest.ic" NAME="BeanTest.onlineParameterTest Coverage Results" MODIFIED="1564644698336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentControllerTest.ic" NAME="DepartmentControllerTest Coverage Results" MODIFIED="1564120886414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_departmentParamterTest.ic" NAME="BeanTest.departmentParamterTest Coverage Results" MODIFIED="1564643353624" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_resultDtoTest.ic" NAME="BeanTest.resultDtoTest Coverage Results" MODIFIED="1564715966237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_deleteDept__2_.ic" NAME="DepartmentServiceImplTest.deleteDept (2) Coverage Results" MODIFIED="1562392127146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserExtraServiceImplTest_exportUserList.ic" NAME="UserExtraServiceImplTest.exportUserList Coverage Results" MODIFIED="1562558650820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserLoginControllerTest_queryUserLoginInfoTest.ic" NAME="UserLoginControllerTest.queryUserLoginInfoTest Coverage Results" MODIFIED="1564624010811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_departmentListToTreeTest.ic" NAME="DepartmentServiceImplTest.departmentListToTreeTest Coverage Results" MODIFIED="1562402927551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_dataPermissionTest.ic" NAME="BeanTest.dataPermissionTest Coverage Results" MODIFIED="1564628548906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UnifyauthControllerTest.ic" NAME="UnifyauthControllerTest Coverage Results" MODIFIED="1564121220503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_unifyAuthTest.ic" NAME="BeanTest.unifyAuthTest Coverage Results" MODIFIED="1564730959477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_queryDepartmentFeignByIdTest.ic" NAME="DepartmentServiceImplTest.queryDepartmentFeignByIdTest Coverage Results" MODIFIED="1562400211806" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_queryDepartmentList.ic" NAME="DepartmentServiceImplTest.queryDepartmentList Coverage Results" MODIFIED="1562399842441" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_queryDepartTreeTest.ic" NAME="DepartmentServiceImplTest.queryDepartTreeTest Coverage Results" MODIFIED="1562401376111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserControllerTest_importUserInfo.ic" NAME="UserControllerTest.importUserInfo Coverage Results" MODIFIED="1562381733392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_updateDept__1_.ic" NAME="DepartmentServiceImplTest.updateDept (1) Coverage Results" MODIFIED="1562384069068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$ImportServiceImplTest_universalLogTest.ic" NAME="ImportServiceImplTest.universalLogTest Coverage Results" MODIFIED="1562415896696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$TempauthServiceImplTest.ic" NAME="TempauthServiceImplTest Coverage Results" MODIFIED="1562552458399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserExtraServiceImplTest_validateUserLogin.ic" NAME="UserExtraServiceImplTest.validateUserLogin Coverage Results" MODIFIED="1563773850557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_roleParameterTest.ic" NAME="BeanTest.roleParameterTest Coverage Results" MODIFIED="1564724065273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$com_fiberhome_filink_userserver_controller_in_filink_user_server.ic" NAME="com.fiberhome.filink.userserver.controller in filink-user-server Coverage Results" MODIFIED="1564120665581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_pageEntityTest.ic" NAME="BeanTest.pageEntityTest Coverage Results" MODIFIED="1564646486335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$TempauthServiceImplTest_deleteTempAuthById.ic" NAME="TempauthServiceImplTest.deleteTempAuthById Coverage Results" MODIFIED="1564624318725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_permissionTest.ic" NAME="BeanTest.permissionTest Coverage Results" MODIFIED="1564715796878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$com_fiberhome_filink_in_filink_user_server.ic" NAME="com.fiberhome.filink in filink-user-server Coverage Results" MODIFIED="1564054701229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_deleteDept__1_.ic" NAME="DepartmentServiceImplTest.deleteDept (1) Coverage Results" MODIFIED="1562384914117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserExtraServiceImplTest.ic" NAME="UserExtraServiceImplTest Coverage Results" MODIFIED="1563767230992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UnifyauthServiceImplTest_queryUserAuthInfoById.ic" NAME="UnifyauthServiceImplTest.queryUserAuthInfoById Coverage Results" MODIFIED="1562553063714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentControllerTest_beanTest.ic" NAME="DepartmentControllerTest.beanTest Coverage Results" MODIFIED="1564626450668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserServiceTest.ic" NAME="UserServiceTest Coverage Results" MODIFIED="1562555803916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserServiceTestOne_getOnLineUser.ic" NAME="UserServiceTestOne.getOnLineUser Coverage Results" MODIFIED="1562557322435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_roleTest.ic" NAME="BeanTest.roleTest Coverage Results" MODIFIED="1564716250536" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$RoleServiceImplTest_updateRole.ic" NAME="RoleServiceImplTest.updateRole Coverage Results" MODIFIED="1562575655472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$com_fiberhome_filink_userserver_service_impl_in_filink_user_server.ic" NAME="com.fiberhome.filink.userserver.service.impl in filink-user-server Coverage Results" MODIFIED="1562567048628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$PermissionControllerTest.ic" NAME="PermissionControllerTest Coverage Results" MODIFIED="1562380925933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_deleteDept__5_.ic" NAME="DepartmentServiceImplTest.deleteDept (5) Coverage Results" MODIFIED="1562395695674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_deleteDept.ic" NAME="DepartmentServiceImplTest.deleteDept Coverage Results" MODIFIED="1562395947503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_tempAuth.ic" NAME="BeanTest.tempAuth Coverage Results" MODIFIED="1564730293927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserServiceTestOne.ic" NAME="UserServiceTestOne Coverage Results" MODIFIED="1562556976862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserServiceTest_modifyPWD.ic" NAME="UserServiceTest.modifyPWD Coverage Results" MODIFIED="1562555158402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$RoleControllerTest.ic" NAME="RoleControllerTest Coverage Results" MODIFIED="1562380941768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UnifyauthServiceImplTest.ic" NAME="UnifyauthServiceImplTest Coverage Results" MODIFIED="1562553105148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_authInfoTest.ic" NAME="BeanTest.authInfoTest Coverage Results" MODIFIED="1564628393611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$TempauthServiceImplTest_audingTempAuthById.ic" NAME="TempauthServiceImplTest.audingTempAuthById Coverage Results" MODIFIED="1562552256720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_UnifyAuthParameterTest.ic" NAME="BeanTest.UnifyAuthParameterTest Coverage Results" MODIFIED="1564733094556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$com_fiberhome_filink_userserver_in_filink_user_server.ic" NAME="com.fiberhome.filink.userserver in filink-user-server Coverage Results" MODIFIED="1565170252837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$TempauthServiceImplTest_batchAudingTempAuthByIds.ic" NAME="TempauthServiceImplTest.batchAudingTempAuthByIds Coverage Results" MODIFIED="1562552313908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_queryDepartmentFeignByNameTest.ic" NAME="DepartmentServiceImplTest.queryDepartmentFeignByNameTest Coverage Results" MODIFIED="1562401316448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest.ic" NAME="DepartmentServiceImplTest Coverage Results" MODIFIED="1562402940641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$ImportServiceImplTest_importUserInfo.ic" NAME="ImportServiceImplTest.importUserInfo Coverage Results" MODIFIED="1562639223435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_tempAuthParameterTest.ic" NAME="BeanTest.tempAuthParameterTest Coverage Results" MODIFIED="1564730707934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_deleteDept__3_.ic" NAME="DepartmentServiceImplTest.deleteDept (3) Coverage Results" MODIFIED="1562392231354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$ImportServiceImplTest_importUserInfo3.ic" NAME="ImportServiceImplTest.importUserInfo3 Coverage Results" MODIFIED="1564054675040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$RoleServiceImplTest_queryRoleInfoByIdTest.ic" NAME="RoleServiceImplTest.queryRoleInfoByIdTest Coverage Results" MODIFIED="1562551809004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$RoleServiceImplTest_addPermissionAndDeviceTypeTest.ic" NAME="RoleServiceImplTest.addPermissionAndDeviceTypeTest Coverage Results" MODIFIED="1562568986812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_pageParameterTest.ic" NAME="BeanTest.pageParameterTest Coverage Results" MODIFIED="1564647628558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_rolePermissionTest.ic" NAME="BeanTest.rolePermissionTest Coverage Results" MODIFIED="1564724333327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$RoleServiceImplTest.ic" NAME="RoleServiceImplTest Coverage Results" MODIFIED="1562577851124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.service.impl.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$PermissionServiceImplTest.ic" NAME="PermissionServiceImplTest Coverage Results" MODIFIED="1562551470586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_deleteDept__4_.ic" NAME="DepartmentServiceImplTest.deleteDept (4) Coverage Results" MODIFIED="1562395510088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_departmentTest.ic" NAME="BeanTest.departmentTest Coverage Results" MODIFIED="1564642925727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_passwordDtoTest.ic" NAME="BeanTest.passwordDtoTest Coverage Results" MODIFIED="1564715349432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_updateDept.ic" NAME="DepartmentServiceImplTest.updateDept Coverage Results" MODIFIED="1562384315811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$BeanTest_onlineUserTest.ic" NAME="BeanTest.onlineUserTest Coverage Results" MODIFIED="1564646012683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$DepartmentServiceImplTest_conditionDepartment.ic" NAME="DepartmentServiceImplTest.conditionDepartment Coverage Results" MODIFIED="1562400246360" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/filink_user$UserServiceTest_addUser.ic" NAME="UserServiceTest.addUser Coverage Results" MODIFIED="1562555649787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.fiberhome.filink.userserver.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="15" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="D:\单元测试0807\单元测试user0807" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7308">
+              <caret line="383" column="59" selection-start-line="383" selection-start-column="59" selection-end-line="383" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/UserParameter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/UserExtraService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="693">
+              <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserExtraServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6909">
+              <caret line="398" column="18" selection-start-line="398" selection-start-column="18" selection-end-line="398" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/bootstrap.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="8" column="12" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/constant/UserResultCode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3927">
+              <caret line="187" column="61" selection-start-line="187" selection-start-column="61" selection-end-line="187" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UnifyAuthController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="693">
+              <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/UnifyAuth.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="882">
+              <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/UnifyAuthService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UnifyAuthServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="861">
+              <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>UserResultCode.USER_DELETED_CODE</find>
+      <find>UserResultCode.APP_WEBSITE</find>
+      <find>UserResultCode.USER_RESET_NEW_PWD</find>
+      <find>UserResultCode.BLANK_CODE</find>
+      <find>redis</find>
+      <find>redis_split</find>
+      <find>UserConstant.REDIS_SPLIT</find>
+      <find>/updateLoginTime</find>
+      <find>USER_ADD_OPT</find>
+      <find>手机号不存在</find>
+      <find>PHONE_NOT_EXIST</find>
+      <find>WebSocketUtils.websocketSendMessage</find>
+      <find>您已</find>
+      <find>user_expire</find>
+      <find>超</find>
+      <find>1504103</find>
+      <find>websocket_output</find>
+      <find>USER_NAME_OUT_RANGE</find>
+      <find>START_STATUS</find>
+      <find>Add</find>
+      <find>updateUser</find>
+      <find>updateLoginTime</find>
+      <find>启用</find>
+      <find>deleteTempAuthById</find>
+      <find>queryTempAuthByCondition</find>
+      <find>deleteAuthByDevice</find>
+      <find>delete</find>
+      <find>queryUserByName</find>
+      <find>120350</find>
+      <find>export</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>UserConstant.ADMIN_USER_NAME</replace>
+      <replace>UserConstant.PC_WEBSITE</replace>
+      <replace>UserConstant.APP_LOGIN_PERMISSION</replace>
+      <replace>UserConstant.REDIS_SPLIT</replace>
+      <replace>UserConstant.BE_OFFLINE</replace>
+      <replace>UserConstant.FORCEOFFLINE_CHANNEL_KEY</replace>
+      <replace>UserConstant.REDIS_IP_PORT_SPLIT</replace>
+      <replace>UserConstant.BASIC_FACILITIES</replace>
+      <replace>UserConstant.LOGIN_MESSAGE_MODEL</replace>
+      <replace>UserConstant.MESSAGE_EXPIRE_TIME</replace>
+      <replace>UserConstant.BACK_SLASH_TWO</replace>
+      <replace>UserConstant.BACK_SLASH_FOUR</replace>
+      <replace>UserConstant.PER_CENT</replace>
+      <replace>UserConstant.BACK_SLASH_PER_CENT</replace>
+      <replace>UserConstant.UNDER_LINE</replace>
+      <replace>UserConstant.BACK_SLASH_UNDER_LINE</replace>
+      <replace>UserConstant.FORWORD_SLASH</replace>
+      <replace>UserConstant.BACK_SLASH_FORWARD_SLASH</replace>
+      <replace>UserConstant.ADD_USER</replace>
+      <replace>UserConstant.USER_LOG_TYPE</replace>
+      <replace>UserConstant.LOG_USER_NAME</replace>
+      <replace>UserConstant.LOG_USER_ID</replace>
+      <replace>UserConstant.ADD_USER_FAIL</replace>
+      <replace>UserConstant.LOCK_ADD_USER</replace>
+      <replace>UserConstant.UPDATE_USER</replace>
+      <replace>UserConstant.DELETE_USER_WEBSOCKET</replace>
+      <replace>UserConstant.USER_DELETED_CODE</replace>
+      <replace>UserConstant.APP_WEBSITE</replace>
+      <replace>UserConstant.USER_RESET_NEW_PWD</replace>
+      <replace>UserConstant.BLANK_CODE</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server\src\main\java\com\fiberhome\filink\userserver</dir>
+      <dir>C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server\src\main\resources</dir>
+      <dir>C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/controller/UserLoginControllerTest.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/service/impl/TempauthServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/service/impl/UnifyauthServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/controller/DepartmentControllerTest.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/AuthInfo.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/Department.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/Parameters.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/bean/BeanTest.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/resources/mapper/DepartmentMapper.xml" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UserLoginController.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/utils/SendKafkaMsg.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/consts/UserI18n.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/Dockerfile" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/controller/UserControllerTest.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/AuthDevice.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/OnlineUser.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/Password.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/Permission.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/ResultDto.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/RoleDeviceType.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/SmsCode.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/TempAuth.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/UnifyAuth.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/UserParameter.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/constant/UserConst.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/constant/FunctionCodeConstant.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/constant/UserResultCode.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/constant/UserConstant.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/DepartmentServiceImpl.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/ImportServiceImpl.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/RoleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/TempAuthServiceImpl.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/utils/NameUtils.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/User.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/RedisListenerForUser.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/UpdateUserListen.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/ForbiddenUserListen.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/UnLockUserListen.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/service/impl/UserServiceTestOne.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserExtraServiceImpl.java" />
+        <option value="$PROJECT_DIR$/filink-user-api/src/main/java/com/fiberhome/filink/userapi/api/UserFeign.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/UserExpireListen.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/resources/i18n/resource_zh_CN.properties" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/resources/i18n/resource_en_US.properties" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/resources/xml/FunctionConfig.xml" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/DepartmentController.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UnifyAuthServiceImpl.java" />
+        <option value="$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UnifyAuthController.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="C:\apache-maven-3.6.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="filink-user-api" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="filink-user-api" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="filink-user-api" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="filink-user-api" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+          <item name="com.fiberhome.filink:filink-common-client:0.0.3-RELEASE" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="745" />
+    <option name="y" value="40" />
+    <option name="width" value="1290" />
+    <option name="height" value="835" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="userapi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-api" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="userapi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="userserver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="userserver" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="userserver" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="i18n" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="xml" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="filink-user-server" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.fiberhome.filink:filink-system-api:0.0.3-RELEASE" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.fiberhome.filink:filink-system-api:0.0.3-RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="filink-system-api-0.0.3-RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.fiberhome.filink:filink-system-api:0.0.3-RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="filink-system-api-0.0.3-RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="filink" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.fiberhome.filink:filink-system-api:0.0.3-RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="filink-system-api-0.0.3-RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="filink" type="462c0819:PsiDirectoryNode" />
+              <item name="exportapi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="filink-user" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.fiberhome.filink:filink-system-api:0.0.3-RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="filink-system-api-0.0.3-RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="filink" type="462c0819:PsiDirectoryNode" />
+              <item name="exportapi" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelOrder2" value="2" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RequestMappingsPanelWidth2" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1566294980190" />
+    <property name="last_opened_file_path" value="D:/单元测试0807/单元测试user0807" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server\src\test\java\com\fiberhome\filink\userserver\testFile" />
+      <recent name="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server\src\test\java\com\fiberhome\filink\userserver" />
+      <recent name="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server\src\test\java\com\fiberhome\filink\userserver\service\impl" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.fiberhome.filink.userserver.service.impl" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.fiberhome.filink.userapi.bean" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-api\src\main\java\com\fiberhome\filink\userapi\bean" />
+      <recent name="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server\src\main\resources" />
+      <recent name="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server\src\test\java\com\fiberhome\filink\userserver\service\impl" />
+      <recent name="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server\src\test\java\com\fiberhome\filink\userserver" />
+      <recent name="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server\src\test\java\com\fiberhome\filink\userserver\controller" />
+    </key>
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:10000/kafka" />
+          <option name="urlPath" value="" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.FilinkUserServerApplication">
+    <configuration name="BeanTest.UnifyAuthParameterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="filink-user-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fiberhome.filink.userserver.bean.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.fiberhome.filink.userserver.bean" />
+      <option name="MAIN_CLASS_NAME" value="com.fiberhome.filink.userserver.bean.BeanTest" />
+      <option name="METHOD_NAME" value="UnifyAuthParameterTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BeanTest.tempAuth" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="filink-user-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fiberhome.filink.userserver.bean.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.fiberhome.filink.userserver.bean" />
+      <option name="MAIN_CLASS_NAME" value="com.fiberhome.filink.userserver.bean.BeanTest" />
+      <option name="METHOD_NAME" value="tempAuth" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BeanTest.tempAuthParameterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="filink-user-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fiberhome.filink.userserver.bean.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.fiberhome.filink.userserver.bean" />
+      <option name="MAIN_CLASS_NAME" value="com.fiberhome.filink.userserver.bean.BeanTest" />
+      <option name="METHOD_NAME" value="tempAuthParameterTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BeanTest.unifyAuthTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="filink-user-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fiberhome.filink.userserver.bean.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.fiberhome.filink.userserver.bean" />
+      <option name="MAIN_CLASS_NAME" value="com.fiberhome.filink.userserver.bean.BeanTest" />
+      <option name="METHOD_NAME" value="unifyAuthTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.fiberhome.filink.userserver in filink-user-server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="filink-user-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fiberhome.filink.userserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.fiberhome.filink.userserver" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="Remote" nameIsGenerated="true">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="10.5.24.224" />
+      <option name="PORT" value="10136" />
+      <option name="AUTO_RESTART" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="10136" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="FilinkUserServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="filink-user-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.fiberhome.filink.userserver.FilinkUserServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.BeanTest.tempAuth" />
+      <item itemvalue="JUnit.BeanTest.tempAuthParameterTest" />
+      <item itemvalue="JUnit.BeanTest.unifyAuthTest" />
+      <item itemvalue="JUnit.BeanTest.UnifyAuthParameterTest" />
+      <item itemvalue="JUnit.com.fiberhome.filink.userserver in filink-user-server" />
+      <item itemvalue="Remote.Unnamed" />
+      <item itemvalue="Spring Boot.FilinkUserServerApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.com.fiberhome.filink.userserver in filink-user-server" />
+        <item itemvalue="JUnit.BeanTest.UnifyAuthParameterTest" />
+        <item itemvalue="JUnit.BeanTest.unifyAuthTest" />
+        <item itemvalue="JUnit.BeanTest.tempAuthParameterTest" />
+        <item itemvalue="JUnit.BeanTest.tempAuth" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\朱奇\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk" />
+          <option name="myCopyRoot" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-api" />
+          <option name="myCopyRoot" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server" />
+          <option name="myCopyRoot" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk\filink-user-server" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk" />
+          <option name="myCopyRoot" value="C:\workFile\zqq\svn\Filink_Project\10-Sys Code\filink-user\trunk" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49e6aebc-1b41-427e-ac3f-8e96870a0302" name="Default Changelist" comment="" />
+      <created>1555593929433</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1555593929433</updated>
+      <workItem from="1555593932003" duration="1503000" />
+      <workItem from="1555596248661" duration="1276000" />
+      <workItem from="1555771511034" duration="190000" />
+      <workItem from="1555897932535" duration="2009000" />
+      <workItem from="1555925670590" duration="2430000" />
+      <workItem from="1555984656866" duration="596000" />
+      <workItem from="1556070818780" duration="594000" />
+      <workItem from="1556157440510" duration="207000" />
+      <workItem from="1561425652055" duration="5340000" />
+      <workItem from="1562204679110" duration="13392000" />
+      <workItem from="1562287880149" duration="10714000" />
+      <workItem from="1562380203587" duration="24035000" />
+      <workItem from="1562548398595" duration="22339000" />
+      <workItem from="1562634148678" duration="8121000" />
+      <workItem from="1562655460029" duration="5823000" />
+      <workItem from="1562676452446" duration="924000" />
+      <workItem from="1562720603366" duration="6862000" />
+      <workItem from="1562747486656" duration="1283000" />
+      <workItem from="1562895993816" duration="6001000" />
+      <workItem from="1562914075654" duration="9189000" />
+      <workItem from="1562982663802" duration="14801000" />
+      <workItem from="1563153731075" duration="8557000" />
+      <workItem from="1563239527554" duration="8393000" />
+      <workItem from="1563326037792" duration="596000" />
+      <workItem from="1563332486686" duration="3735000" />
+      <workItem from="1563415834235" duration="4106000" />
+      <workItem from="1563498049642" duration="8042000" />
+      <workItem from="1563507952157" duration="9889000" />
+      <workItem from="1563759481826" duration="573000" />
+      <workItem from="1563760112095" duration="10480000" />
+      <workItem from="1563843525553" duration="15870000" />
+      <workItem from="1563932114582" duration="16346000" />
+      <workItem from="1564033978552" duration="4777000" />
+      <workItem from="1564105018713" duration="6156000" />
+      <workItem from="1564131108687" duration="614000" />
+      <workItem from="1564359634284" duration="7541000" />
+      <workItem from="1564446476848" duration="14192000" />
+      <workItem from="1564533557963" duration="9681000" />
+      <workItem from="1564553436893" duration="15024000" />
+      <workItem from="1564577466852" duration="590000" />
+      <workItem from="1564620118678" duration="19415000" />
+      <workItem from="1564649317357" duration="1781000" />
+      <workItem from="1564706200607" duration="10921000" />
+      <workItem from="1564796342132" duration="4416000" />
+      <workItem from="1564965702505" duration="3965000" />
+      <workItem from="1564984699297" duration="6729000" />
+      <workItem from="1565053964228" duration="14573000" />
+      <workItem from="1565139472583" duration="11761000" />
+      <workItem from="1565225670431" duration="15111000" />
+      <workItem from="1565313569974" duration="196000" />
+      <workItem from="1565317916775" duration="4306000" />
+      <workItem from="1565572695593" duration="4044000" />
+      <workItem from="1565658035629" duration="8373000" />
+      <workItem from="1565848449257" duration="2778000" />
+      <workItem from="1565922255177" duration="706000" />
+      <workItem from="1565933151597" duration="5060000" />
+      <workItem from="1566179877490" duration="4479000" />
+      <workItem from="1566201153999" duration="4254000" />
+      <workItem from="1566350100940" duration="592000" />
+    </task>
+    <task id="LOCAL-00053">
+      <created>1563956341810</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1563956341810</updated>
+    </task>
+    <task id="LOCAL-00054">
+      <created>1563961519674</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1563961519674</updated>
+    </task>
+    <task id="LOCAL-00055">
+      <created>1563962381956</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1563962381956</updated>
+    </task>
+    <task id="LOCAL-00056">
+      <created>1563967815521</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1563967815521</updated>
+    </task>
+    <task id="LOCAL-00057">
+      <created>1564055183640</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1564055183642</updated>
+    </task>
+    <task id="LOCAL-00058">
+      <created>1564110172236</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1564110172237</updated>
+    </task>
+    <task id="LOCAL-00059">
+      <created>1564382749547</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1564382749548</updated>
+    </task>
+    <task id="LOCAL-00060">
+      <created>1564382813379</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1564382813379</updated>
+    </task>
+    <task id="LOCAL-00061">
+      <created>1564387122283</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1564387122283</updated>
+    </task>
+    <task id="LOCAL-00062">
+      <created>1564453564034</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1564453564034</updated>
+    </task>
+    <task id="LOCAL-00063">
+      <created>1564469454495</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1564469454495</updated>
+    </task>
+    <task id="LOCAL-00064">
+      <created>1564469518257</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1564469518257</updated>
+    </task>
+    <task id="LOCAL-00065">
+      <created>1564568770996</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1564568770996</updated>
+    </task>
+    <task id="LOCAL-00066">
+      <created>1564569300880</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1564569300880</updated>
+    </task>
+    <task id="LOCAL-00067">
+      <created>1564570668315</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1564570668315</updated>
+    </task>
+    <task id="LOCAL-00068">
+      <created>1564572544350</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1564572544350</updated>
+    </task>
+    <task id="LOCAL-00069">
+      <created>1564573233980</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1564573233981</updated>
+    </task>
+    <task id="LOCAL-00070">
+      <created>1564573305678</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1564573305678</updated>
+    </task>
+    <task id="LOCAL-00071">
+      <created>1564573362546</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1564573362546</updated>
+    </task>
+    <task id="LOCAL-00072">
+      <created>1564714297751</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1564714297752</updated>
+    </task>
+    <task id="LOCAL-00073">
+      <created>1564714447107</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1564714447107</updated>
+    </task>
+    <task id="LOCAL-00074">
+      <created>1564806300266</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1564806300267</updated>
+    </task>
+    <task id="LOCAL-00075">
+      <created>1564811023143</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1564811023143</updated>
+    </task>
+    <task id="LOCAL-00076">
+      <created>1564813733006</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1564813733006</updated>
+    </task>
+    <task id="LOCAL-00077">
+      <created>1564987645075</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1564987645077</updated>
+    </task>
+    <task id="LOCAL-00078">
+      <created>1564989478468</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1564989478468</updated>
+    </task>
+    <task id="LOCAL-00079">
+      <created>1564989647075</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1564989647075</updated>
+    </task>
+    <task id="LOCAL-00080">
+      <created>1564991242351</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1564991242351</updated>
+    </task>
+    <task id="LOCAL-00081">
+      <created>1564996411907</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1564996411907</updated>
+    </task>
+    <task id="LOCAL-00082">
+      <created>1564996600635</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1564996600635</updated>
+    </task>
+    <task id="LOCAL-00083">
+      <created>1565059220399</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1565059220400</updated>
+    </task>
+    <task id="LOCAL-00084">
+      <created>1565060797275</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1565060797275</updated>
+    </task>
+    <task id="LOCAL-00085">
+      <created>1565060869151</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1565060869151</updated>
+    </task>
+    <task id="LOCAL-00086">
+      <created>1565087015078</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1565087015078</updated>
+    </task>
+    <task id="LOCAL-00087">
+      <created>1565087034521</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1565087034521</updated>
+    </task>
+    <task id="LOCAL-00088">
+      <created>1565158161407</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1565158161408</updated>
+    </task>
+    <task id="LOCAL-00089">
+      <created>1565161546332</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1565161546332</updated>
+    </task>
+    <task id="LOCAL-00090">
+      <created>1565164318736</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1565164318736</updated>
+    </task>
+    <task id="LOCAL-00091">
+      <created>1565169014754</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1565169014754</updated>
+    </task>
+    <task id="LOCAL-00092">
+      <created>1565243674582</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1565243674582</updated>
+    </task>
+    <task id="LOCAL-00093">
+      <created>1565243788459</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1565243788459</updated>
+    </task>
+    <task id="LOCAL-00094">
+      <created>1565245161250</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1565245161250</updated>
+    </task>
+    <task id="LOCAL-00095">
+      <created>1565660717585</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1565660717586</updated>
+    </task>
+    <task id="LOCAL-00096">
+      <created>1565660748095</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1565660748095</updated>
+    </task>
+    <task id="LOCAL-00097">
+      <created>1565933237307</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1565933237308</updated>
+    </task>
+    <task id="LOCAL-00098">
+      <created>1565933365732</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1565933365732</updated>
+    </task>
+    <task id="LOCAL-00099">
+      <created>1565933824817</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1565933824817</updated>
+    </task>
+    <task id="LOCAL-00100">
+      <created>1565940289368</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1565940289368</updated>
+    </task>
+    <task id="LOCAL-00101">
+      <created>1565940465712</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1565940465712</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="BeanTest_tempAuth - 2019.08.02 at 15h 18m 16s.xml">
+      <configuration name="BeanTest.tempAuth" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BeanTest_tempAuthParameterTest - 2019.08.02 at 15h 25m 10s.xml">
+      <configuration name="BeanTest.tempAuthParameterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BeanTest_unifyAuthTest - 2019.08.02 at 15h 29m 22s.xml">
+      <configuration name="BeanTest.unifyAuthTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BeanTest_UnifyAuthParameterTest - 2019.08.02 at 16h 04m 57s.xml">
+      <configuration name="BeanTest.UnifyAuthParameterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BeanTest_UnifyAuthParameterTest - 2019.08.05 at 15h 37m 17s.xml">
+      <configuration name="BeanTest.UnifyAuthParameterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_fiberhome_filink_userserver_in_filink-user-server - 2019.08.06 at 15h 59m 22s.xml">
+      <configuration name="com.fiberhome.filink.userserver in filink-user-server" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_fiberhome_filink_userserver_in_filink-user-server - 2019.08.06 at 16h 39m 19s.xml">
+      <configuration name="com.fiberhome.filink.userserver in filink-user-server" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_fiberhome_filink_userserver_in_filink-user-server - 2019.08.07 at 17h 31m 14s.xml">
+      <configuration name="com.fiberhome.filink.userserver in filink-user-server" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_fiberhome_filink_userserver_in_filink-user-server - 2019.08.19 at 14h 19m 47s.xml">
+      <configuration name="com.fiberhome.filink.userserver in filink-user-server" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_fiberhome_filink_userserver_in_filink-user-server - 2019.08.19 at 14h 20m 06s.xml">
+      <configuration name="com.fiberhome.filink.userserver in filink-user-server" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="406251000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49541286" visible="true" weight="0.043565683" />
+      <window_info id="Structure" order="1" sideWeight="0.5045872" side_tool="true" weight="0.2124665" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329429" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.76866764" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932975" visible="true" weight="0.29868227" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.6207906" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.329429" />
+      <window_info anchor="bottom" id="Statistic" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49932975" weight="0.23718888" />
+      <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.4953083" weight="0.14348462" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="16" />
+      <window_info anchor="bottom" id="CheckStyle" order="17" weight="0.32921347" />
+      <window_info anchor="bottom" id="Debug with VisualVM" order="18" weight="0.32921347" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven" order="5" sideWeight="0.18780096" visible="true" weight="0.122654155" />
+      <window_info anchor="right" id="Database" order="6" sideWeight="0.37842464" weight="0.18632708" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+      <window_info anchor="right" id="Coverage" order="10" sideWeight="0.62157536" side_tool="true" visible="true" weight="0.5288204" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/ImportServiceImpl.java</url>
+          <line>272</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserServiceImpl.java</url>
+          <line>618</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/RoleServiceImpl.java</url>
+          <line>305</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/RoleServiceImpl.java</url>
+          <line>303</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/service/impl/ImportServiceImplTest.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/test/java/com/fiberhome/filink/userserver/service/impl/ImportServiceImplTest.java</url>
+          <line>88</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/ImportServiceImpl.java</url>
+          <line>291</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/TempAuthServiceImpl.java</url>
+          <line>519</line>
+          <properties />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/TempAuthServiceImpl.java</url>
+          <line>542</line>
+          <properties />
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserExtraServiceImpl.java</url>
+          <line>280</line>
+          <properties />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/ImportServiceImpl.java</url>
+          <line>263</line>
+          <properties />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UserLoginController.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserExtraServiceImpl.java</url>
+          <line>593</line>
+          <properties />
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserExtraServiceImpl.java</url>
+          <line>590</line>
+          <properties />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserExtraServiceImpl.java</url>
+          <line>567</line>
+          <properties />
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UserController.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserServiceImpl.java</url>
+          <line>462</line>
+          <properties />
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/DepartmentServiceImpl.java</url>
+          <line>371</line>
+          <properties class="com.fiberhome.filink.userserver.service.impl.DepartmentServiceImpl" method="queryAllDepartment" />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserServiceImpl.java</url>
+          <line>460</line>
+          <properties class="com.fiberhome.filink.userserver.service.impl.UserServiceImpl" method="queryUserByName" />
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/stream/UpdateUserListenStreamConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/bootstrap-dev.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/stream/UpdateUserListenStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/utils/LogUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/UserStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/utils/WebSocketUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-redis/1.8.8.RELEASE/spring-data-redis-1.8.8.RELEASE.jar!/org/springframework/data/redis/listener/KeyExpirationEventMessageListener.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/UserExpireListen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="53" column="7" selection-start-line="53" selection-end-line="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/bootstrap-test.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/i18n/resource_zh_CN.properties">
+      <provider editor-type-id="ResourceBundle" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2646">
+          <caret line="126" column="33" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/constant/UserConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/utils/CheckEmptyUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_40/src.zip!/java/util/function/Consumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/ForbiddenUserListen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1659">
+          <caret line="99" column="34" selection-start-line="99" selection-start-column="34" selection-end-line="99" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/RedisListenerForUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/UpdateUserListen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="43" column="38" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-api/src/main/java/com/fiberhome/filink/userapi/bean/MenuTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4368">
+          <caret line="219" column="12" selection-start-line="219" selection-start-column="12" selection-end-line="219" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/mapper/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10038">
+          <caret line="478" column="4" selection-start-line="478" selection-start-column="4" selection-end-line="478" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/component/UnLockUserListen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="69" column="51" selection-start-line="69" selection-start-column="51" selection-end-line="69" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/mapper/TempauthMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3087">
+          <caret line="147" column="4" selection-start-line="147" selection-start-column="4" selection-end-line="147" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/TempAuthServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="266" column="24" selection-start-line="266" selection-start-column="18" selection-end-line="266" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/dao/TempauthDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="85" column="12" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/TempAuthService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="966">
+          <caret line="52" column="11" selection-start-line="52" selection-start-column="11" selection-end-line="52" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-api/src/main/java/com/fiberhome/filink/userapi/api/UserFeign.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4011">
+          <caret line="201" column="4" selection-start-line="201" selection-start-column="4" selection-end-line="201" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-api/src/main/java/com/fiberhome/filink/userapi/api/DepartmentFeign.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/dao/UnifyauthDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1911">
+          <caret line="98" column="20" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/mapper/UnifyauthMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6090">
+          <caret line="290" column="46" selection-start-line="290" selection-start-column="38" selection-end-line="290" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/i18n/resource_en_US.properties">
+      <provider editor-type-id="ResourceBundle" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3171">
+          <caret line="151" column="23" selection-start-line="151" selection-start-column="23" selection-end-line="151" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/xml/FunctionConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2541">
+          <caret line="121" column="21" selection-start-line="121" selection-start-column="21" selection-end-line="121" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1113">
+          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/utils/PasswordUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UserLoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/DepartmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="34" column="28" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8652">
+          <caret line="482" column="13" selection-start-line="480" selection-start-column="19" selection-end-line="482" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1218">
+          <caret line="77" column="31" selection-start-line="77" selection-start-column="31" selection-end-line="77" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/RoleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/RoleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2436">
+          <caret line="169" column="23" selection-start-line="169" selection-start-column="23" selection-end-line="169" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/constant/UserI18n.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5187">
+          <caret line="247" column="31" selection-start-line="247" selection-start-column="31" selection-end-line="247" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-api/src/main/java/com/fiberhome/filink/userapi/api/AuthFeign.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/TempAuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1470">
+          <caret line="81" column="36" selection-start-line="81" selection-start-column="36" selection-end-line="81" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7308">
+          <caret line="383" column="59" selection-start-line="383" selection-start-column="59" selection-end-line="383" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/UserExtraService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UserExtraServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6909">
+          <caret line="398" column="18" selection-start-line="398" selection-start-column="18" selection-end-line="398" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/constant/UserResultCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3927">
+          <caret line="187" column="61" selection-start-line="187" selection-start-column="61" selection-end-line="187" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/controller/UnifyAuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/UnifyAuth.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="882">
+          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/UnifyAuthService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/service/impl/UnifyAuthServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filink-user-server/src/main/java/com/fiberhome/filink/userserver/bean/UserParameter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="filink-oss-api" />
+        <module name="filink-oss-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="filink-oss" target="1.8" />
+      <module name="filink-oss-api" target="1.8" />
+      <module name="filink-oss-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

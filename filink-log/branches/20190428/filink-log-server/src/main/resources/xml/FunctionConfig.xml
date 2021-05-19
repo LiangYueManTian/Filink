@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="2201005">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Operation log list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>操作日志列表导出</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201006">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>System log list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>系统日志列表导出</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201007">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Security log list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>安全日志列表导出</optName>
+		</language>
+	</functionCode>
+</functionCodes>

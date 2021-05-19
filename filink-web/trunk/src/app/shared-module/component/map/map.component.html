@@ -1,0 +1,132 @@
+<div class="map-container" #map></div>
+
+<!--左上角选择框-->
+<div class="select-container">
+  <div class="map-select">
+    <nz-dropdown>
+      <a nz-dropdown><span style="min-width: 50px;color:#13c2c2;">{{searchTypeName}}</span><i nz-icon type="down" style="color: #13c2c2;"></i> </a>
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item (click)="searchFacilityName()">
+          <a>{{indexLanguage.searchDeviceName}}</a>
+        </li>
+        <li nz-menu-item (click)="searchAddress()">
+          <a>{{indexLanguage.searchAddress}}</a>
+        </li>
+      </ul>
+    </nz-dropdown>
+  </div>
+  <div class="map-search">
+    <!--设施名称搜索-->
+    <div class="map-search-name" [ngStyle]="{'zIndex': IndexObj.facilityNameIndex}">
+      <input
+        placeholder="{{indexLanguage.enterFacilityName}}"
+        nz-input
+        [(ngModel)]="inputValue"
+        (input)="onInput($event.target?.value)"
+        [nzAutocomplete]="auto"
+        (keydown)="keyDownEvent()"/>
+      <nz-autocomplete nzBackfill #auto>
+        <nz-auto-option *ngFor="let option of options"
+                        (click)="optionChange($event,option.deviceId)"
+                        [nzValue]="option.deviceId"
+                        [nzLabel]="option.deviceName">
+          {{ option.deviceName }}
+        </nz-auto-option>
+      </nz-autocomplete>
+    </div>
+    <!--百度地图地址搜索-->
+    <div class="b-map-location-search" [ngStyle]="{'zIndex': IndexObj.bMapLocationSearch}">
+      <div id="r-result"><input type="text" placeholder="{{indexLanguage.enterPlace}}" id="suggestId" size="20" value=""/></div>
+      <div id="searchResultPanel"></div>
+    </div>
+    <!--谷歌地图地址搜索-->
+    <div class="g-map-location-search" [ngStyle]="{'zIndex': IndexObj.gMapLocationSearch}">
+      <input #input [(ngModel)]="searchKey" placeholder="{{indexLanguage.enterPlace}}" (keyup.enter)="location()"/>
+      <div class="iconfont icon-fiLink fiLink-search location-icon" (click)="location()"></div>
+    </div>
+  </div>
+</div>
+
+<!--提示框-->
+<div *ngIf="isShowInfoWindow" class="info-window-container" [ngStyle]="{left: infoWindowLeft, top: infoWindowTop}">
+  <!--聚合点-->
+  <div *ngIf="infoData.type === 'c'" class="info-window-c" [ngClass]="{'width-items': infoData.data.length > 1}">
+    <div class="info-window-item" *ngFor="let data of infoData.data">
+      <div class="info-window-item-icon" [ngClass]="data.className"></div>
+      <div class="info-window-item-name">{{data.deviceTypeName}}</div>
+      <div class="info-window-item-count">{{data.count}}</div>
+    </div>
+  </div>
+  <!--标记点-->
+  <div *ngIf="infoData.type === 'm'" class="info-window-m">
+    <div class="info-window-m-name">
+      <div>
+        <span class="info-data-w" [ngStyle]="{'background-color': infoData.data.deviceStatusColor,'color':'#fff'}">{{infoData.data.deviceStatusName}}</span>
+        <span>{{infoData.data.deviceName}}</span>
+      </div>
+    </div>
+    <div>
+      <span class="info-data-w" [ngStyle]="{'background-color': infoData.data.areaLevelColor,'color':'#fff'}">{{infoData.data.areaLevelName}}{{typeLg === 'US'?'':InspectionLanguage.area}}</span>
+      <span>{{infoData.data.areaName}}</span>
+    </div>
+    <div>
+      <span class="iconfont icon-fiLink-s fiLink-filink-location-icon disabled-red-icon"></span>
+      <span>{{infoData.data.address}}</span>
+    </div>
+  </div>
+</div>
+
+<!--拓扑-->
+<div *ngIf="infoData.type === 'r'" class="info-window-container" [ngStyle]="{left: infoWindowLeft, top: infoWindowTop}">
+  <div  class="info-window-r">
+    <div  (click)="check()">
+      <span class="icon-fiLink iconfont fiLink-view-topology" ></span>
+      {{indexLanguage.viewTopology}}
+    </div>
+    <div  (click)="showLight()">
+      <span style="color: #FAD707;!important;" class="icon-fiLink iconfont fiLink-topology-highlight"></span>
+      {{indexLanguage.topoLogicalHighLighting}}
+    </div>
+  </div>
+</div>
+
+
+<!--放大缩小-->
+<div class="zoom-control">
+  <div class="zoom-control-item iconfont icon-fiLink fiLink-zoom-in" (click)="zoomIn()" title="{{indexLanguage.magnify}}"></div>
+  <div class="zoom-control-item iconfont icon-fiLink fiLink-zoom-out" style="margin-top: 8px;"  (click)="zoomOut()" title="{{indexLanguage.narrow}}"></div>
+</div>
+
+<!--谷歌地图下 切换地图和卫星-->
+<div class="map-type-control" *ngIf="mapType === 'google'">
+   <!--  roadmap  地图-->
+  <div [ngClass]="mapTypeId === 'roadmap' ? 'map-type-title-s' : 'map-type-title'"
+       (click)="setMapType('roadmap')" title="{{indexLanguage.roadMapTitle}}">{{indexLanguage.roadMap}}</div>
+  <!--  satellite 卫星-->
+  <div [ngClass]="mapTypeId === 'satellite' ? 'map-type-title-s' : 'map-type-title'"
+       (click)="setMapType('satellite')" title="{{indexLanguage.satelliteMapTitle}}">{{indexLanguage.satelliteMap}}</div>
+</div>
+<!--拓扑列表-->
+<nz-modal [(nzVisible)]="isVisible"
+[nzMaskClosable]="false"
+[nzFooter]="tplFooter"
+[nzTitle]="title"
+[nzWidth]=1200
+(nzOnCancel)="modalCancel()">
+<xc-table [dataSet]="_dataSet"
+          [pageBean]="pageBean"
+          [tableConfig]="tableConfig"
+          (pageChange)="pageChange($event)">
+</xc-table>
+</nz-modal>
+<!--弹出框底部-->
+<ng-template #tplFooter>
+  <button class="link-button" nz-button nzType="primary"  (click)="showTopology()">{{commonLanguage.confirm}}</button>
+  <button class="link-button" nz-button nzType="danger" (click)="modalCancel()">{{commonLanguage.cancel}}</button>
+</ng-template>
+<!--拓扑单选框-->
+<ng-template #radioTemp let-data="data">
+  <nz-radio-group [(ngModel)]="selectedAlarmId" (ngModelChange)="selectedAlarmChange($event, data)">
+    <label nz-radio [nzValue]="data.opticCableId"></label>
+  </nz-radio-group>
+</ng-template>

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.template.FacilityDao">
+
+
+    <!--批量插入箱架标签信息-->
+    <insert id="batchSaveBoxLabelInfo" parameterType="com.fiberhome.filink.rfid.bean.facility.BoxInfoBean">
+        INSERT INTO t_box_label
+        (id,
+        box_label,
+        label_type,
+        label_state,
+        device_id,
+        memo,
+        producer,
+        device_form,
+        line_num,
+        column_num,
+        installation_mode,
+        max_fiber_num,
+        seal_mode,
+        lay_mode,
+        standard,
+        follow,
+        last_update_time,
+        alias,
+        label_info,
+        device_name,
+        apparatus_type,
+        device_type,
+        is_delete)
+        VALUES
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.id},
+            #{item.boxLabel},
+            #{item.labelType},
+            #{item.labelState},
+            #{item.deviceId},
+            #{item.memo},
+            #{item.producer},
+            #{item.deviceForm},
+            #{item.lineNum},
+            #{item.columnNum},
+            #{item.installationMode},
+            #{item.maxFiberNum},
+            #{item.sealMode},
+            #{item.layMode},
+            #{item.standard},
+            #{item.follow},
+            #{item.lastUpdateTime},
+            #{item.alias},
+            #{item.labelInfo},
+            #{item.deviceName},
+            #{item.apparatusType},
+            #{item.deviceType},
+            0)
+        </foreach>
+    </insert>
+
+    <!--批量插入盘标签信息-->
+    <insert id="batchSaveBoardLabelInfo" parameterType="com.fiberhome.filink.rfid.bean.facility.BoardInfoBean">
+        INSERT INTO t_board_label
+        (id,
+        board_label,
+        label_type,
+        label_state,
+        box_label,
+        device_id,
+        frame_no,
+        frame_double,
+        board_no,
+        board_name,
+        memo,
+        last_update_time,
+        device_name,
+        is_delete)
+        VALUES
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.id},
+            #{item.boardLabel},
+            #{item.labelType},
+            #{item.labelState},
+            #{item.boxLabel},
+            #{item.deviceId},
+            #{item.frameNo},
+            #{item.frameDouble},
+            #{item.boardNo},
+            #{item.boardName},
+            #{item.memo},
+            #{item.lastUpdateTime},
+            #{item.deviceName},
+            0
+            )
+        </foreach>
+    </insert>
+
+    <!--批量插入端口标签信息-->
+    <insert id="batchSavePortLabelInfo" parameterType="com.fiberhome.filink.rfid.bean.facility.PortInfoBean">
+        INSERT INTO t_port_label
+        (id,
+        port_label,
+        label_type,
+        label_state,
+        box_label,
+        device_id,
+        frame_no,
+        frame_double,
+        board_no,
+        port_no,
+        port_double,
+        port_state,
+        adapter_type,
+        last_update_time,
+        device_name,
+        memo,
+        is_delete)
+        VALUES
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.id},
+            #{item.portLabel},
+            #{item.labelType},
+            #{item.labelState},
+            #{item.boxLabel},
+            #{item.deviceId},
+            #{item.frameNo},
+            #{item.frameDouble},
+            #{item.boardNo},
+            #{item.portNo},
+            #{item.portDouble},
+            #{item.portState},
+            #{item.adapterType},
+            #{item.lastUpdateTime},
+            #{item.deviceName},
+            #{item.memo},
+            0
+            )
+        </foreach>
+    </insert>
+
+    <!--删除箱架标签信息-->
+    <delete id="deleteBoxLabelByIds" parameterType="java.util.List">
+        UPDATE t_box_label SET is_delete = 1 where box_label IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!--删除盘标签信息-->
+    <delete id="deleteBoardLabelByIds" parameterType="java.util.List">
+        UPDATE t_board_label SET is_delete = 1 where board_label IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!--删除端口标签信息-->
+    <delete id="deletePortLabelByIds" parameterType="java.util.List">
+        UPDATE t_port_label SET is_delete = 1 where port_label IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!--更新箱架标签信息-->
+    <update id="updateBoxLabel" parameterType="com.fiberhome.filink.rfid.bean.facility.BoxInfoBean">
+        update t_box_label SET
+        last_update_time = #{lastUpdateTime}
+        <if test="labelType!= null">
+            , label_type = #{labelType}
+        </if>
+        <if test="labelState!= null">
+            ,label_state = #{labelState}
+        </if>
+        <if test="memo!= null">
+            , memo = #{memo}
+        </if>
+        <if test="producer!= null">
+            , producer = #{producer}
+        </if>
+        <if test="deviceForm!= null">
+            , device_form = #{deviceForm}
+        </if>
+        <if test="lineNum!= null">
+            , line_num = #{lineNum}
+        </if>
+        <if test="columnNum!= null">
+            ,column_num = #{columnNum}
+        </if>
+        <if test="installationMode!= null">
+            ,installation_mode = #{installationMode}
+        </if>
+        <if test="maxFiberNum!= null">
+            , max_fiber_num = #{maxFiberNum}
+        </if>
+        <if test="sealMode!= null">
+            ,seal_mode = #{sealMode}
+        </if>
+        <if test="layMode!= null">
+            , lay_mode = #{layMode}
+        </if>
+        <if test="standard!= null">
+            ,standard = #{standard}
+        </if>
+        <if test="follow!= null">
+            ,follow = #{follow}
+        </if>
+        <if test="alias!= null">
+            ,alias = #{alias}
+        </if>
+        <if test="apparatusType">
+            , apparatus_type=#{apparatusType}
+        </if>
+        <if test="deviceType">
+            , device_type=#{deviceType}
+        </if>
+        where box_label = #{boxLabel}
+    </update>
+    <!--更新盘标签信息-->
+    <update id="updateBoardLabel" parameterType="com.fiberhome.filink.rfid.bean.facility.BoardInfoBean">
+        update t_board_label SET
+        last_update_time = #{lastUpdateTime}
+        <if test="labelType!= null">
+            ,label_type = #{labelType}
+        </if>
+        <if test="labelState!= null">
+            , label_state = #{labelState}
+        </if>
+        <if test="deviceName!= null">
+            , device_name = #{deviceName}
+        </if>
+        <if test="boardName!= null">
+            , board_name = #{boardName}
+        </if>
+        <if test="memo!= null">
+            , memo = #{memo}
+        </if>
+        where board_label = #{boardLabel}
+    </update>
+
+    <!--更新端口标签信息-->
+    <update id="updatePortLabel" parameterType="com.fiberhome.filink.rfid.bean.facility.PortInfoBean">
+        update t_port_label SET
+        last_update_time = #{lastUpdateTime}
+        <if test="labelType!= null">
+            ,label_type = #{labelType}
+        </if>
+        <if test="labelState!= null">
+            ,label_state = #{labelState}
+        </if>
+        <if test="deviceName!= null">
+            ,device_name = #{deviceName}
+        </if>
+        <if test="adapterType != null">
+            , adapter_type = #{adapterType}
+        </if>
+        <if test="portState != null">
+            , port_state = #{portState}
+        </if>
+        <if test="memo != null">
+            , memo = #{memo}
+        </if>
+        where port_label = #{portLabel}
+    </update>
+
+    <!--根据设施ID查询箱架标签信息-->
+    <select id="queryBoxLabelByDevId"
+            resultType="com.fiberhome.filink.rfid.bean.facility.BoxInfoBean">
+      SELECT  * from t_box_label where device_id = #{deviceId} and is_delete = 0
+    </select>
+
+    <!--根据框号和盘号查询盘标签信息-->
+    <select id="queryBoardLabelByFraNoAndBoaNo"
+            parameterType="com.fiberhome.filink.rfid.bean.facility.FacilityQueryBean"
+            resultType="com.fiberhome.filink.rfid.bean.facility.BoardInfoBean">
+        SELECT * from t_board_label
+        where is_delete = 0
+        <if test="deviceId != null">
+            and device_id = #{deviceId}
+        </if>
+        <if test="frameNo != null">
+            and frame_no = #{frameNo}
+        </if>
+        <if test="frameDouble != null">
+            and frame_double = #{frameDouble}
+        </if>
+        <if test="boardNo != null">
+            and board_no = #{boardNo}
+        </if>
+    </select>
+
+    <!--根据框号、盘号、端口号查询端口标签信息-->
+    <select id="queryPortLabelByNo" parameterType="com.fiberhome.filink.rfid.bean.facility.FacilityQueryBean"
+            resultType="com.fiberhome.filink.rfid.bean.facility.PortInfoBean">
+        SELECT * from t_port_label
+        where is_delete = 0
+        <if test="deviceId != null">
+            and device_id = #{deviceId}
+        </if>
+        <if test="frameNo != null">
+            and frame_no = #{frameNo}
+        </if>
+        <if test="frameDouble != null">
+            and frame_double = #{frameDouble}
+        </if>
+        <if test="boardNo != null">
+            and board_no = #{boardNo}
+        </if>
+        <if test="portNo != null">
+            and port_no = #{portNo}
+        </if>
+        <if test="portDouble != null">
+            and port_double = #{portDouble}
+        </if>
+    </select>
+
+    <!--根据标签查询箱架信息-->
+    <select id="queryBoxLabelById" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.bean.facility.BoxInfoBean">
+         SELECT  * from t_box_label where box_label = #{label} and is_delete = 0
+    </select>
+
+    <!--根据标签查询盘信息-->
+    <select id="queryBoardLabelById" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.bean.facility.BoardInfoBean">
+         SELECT  * from t_board_label where board_label = #{label} and is_delete = 0
+    </select>
+
+    <!--根据标签查询端口信息-->
+    <select id="queryPortLabelById" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.bean.facility.PortInfoBean">
+         SELECT  * from t_port_label where port_label = #{label} and is_delete = 0
+    </select>
+
+    <!--修改框的状态-->
+    <!--<update id="updateFrameDeviceState" parameterType="com.fiberhome.filink.rfid.resp.template.RealRspDto">-->
+    <update id="updateFrameDeviceState" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE t_frame_real_position
+            SET state=#{item.state}
+            where
+            device_id = #{item.deviceId}
+            and real_no=#{item.realNo}
+            and business_num=#{item.businessNum}
+            and id=#{item.id}
+        </foreach>
+    </update>
+
+    <!--修改盘的状态-->
+    <!--<update id="updateDiscDeviceState" parameterType="com.fiberhome.filink.rfid.resp.template.RealRspDto">-->
+    <update id="updateDiscDeviceState" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE t_disc_real_position
+            SET state=#{item.state}
+            where
+            device_id = #{item.deviceId}
+            and real_no=#{item.realNo}
+            and business_num=#{item.businessNum}
+            and id=#{item.id}
+        </foreach>
+    </update>
+
+    <!-- 查询端口信息-->
+    <select id="queryPortLabelInfo" parameterType="com.fiberhome.filink.rfid.bean.template.PortCableCoreCondition"
+            resultType="com.fiberhome.filink.rfid.bean.facility.PortInfoBean">
+    SELECT * FROM t_port_label tport WHERE
+    tport.device_id = #{resourceDeviceId}
+    AND tport.frame_no = #{resourceFrameNo}
+    AND tport.frame_double =#{resourceBoxSide}
+    AND tport.board_no = #{resourceDiscNo}
+    AND tport.port_no = #{portNo}
+    and tport.port_double=#{resourceDiscSide}
+    and tport.is_delete = 0
+    </select>
+
+    <!--更新箱架标签ID-->
+    <update id="replaceBoxLabel">
+        update t_box_label set box_label = #{newLabel} where box_label = #{oldLabel} and is_delete = 0
+    </update>
+
+    <!--更新盘标签ID-->
+    <update id="replaceBoardLabel">
+        update t_board_label set board_label = #{newLabel} where board_label = #{oldLabel} and is_delete = 0
+    </update>
+
+    <!--更新端口标签ID-->
+    <update id="replacePortLabel">
+        update t_port_label set port_label = #{newLabel} where port_label = #{oldLabel} and is_delete = 0
+    </update>
+
+    <!--更新盘所在箱标签ID-->
+    <update id="replaceBoardBoxLabel">
+        update t_board_label set box_label = #{newLabel} where box_label = #{oldLabel} and is_delete = 0
+    </update>
+
+    <!--更新端口所在箱标签ID-->
+    <update id="replacePortBoxLabel">
+        update t_port_label set box_label = #{newLabel} where box_label = #{oldLabel} and is_delete = 0
+    </update>
+
+    <select id="queryBoxLabelNumByIds" parameterType="java.util.List" resultType="java.lang.Integer">
+        SELECT count(*) from t_box_label where is_delete = 0 and box_label IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryBoardLabelNumByIds" parameterType="java.util.List" resultType="java.lang.Integer">
+        SELECT count(*) from t_board_label where is_delete = 0 and board_label IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryPortLabelNumByIds" parameterType="java.util.List" resultType="java.lang.Integer">
+        SELECT count(*) from t_port_label where is_delete = 0 and port_label IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--回收箱标签-->
+    <update id="recoverBoxLabelByDeviceId" parameterType="java.lang.String">
+        UPDATE t_box_label SET is_delete = 1 WHERE device_id = #{deviceId}
+    </update>
+
+    <!--回收盘标签-->
+    <update id="recoverBoardLabelByDeviceId" parameterType="java.lang.String">
+        UPDATE t_board_label SET is_delete = 1 WHERE device_id = #{deviceId}
+    </update>
+
+    <!--回收端口标签-->
+    <update id="recoverPortLabelByDeviceId" parameterType="java.lang.String">
+        UPDATE t_port_label SET is_delete = 1 WHERE device_id = #{deviceId}
+    </update>
+
+</mapper>

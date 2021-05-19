@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowbusinessserver.dao.statistical.ProcStatisticalDao">
+
+    <!-- 统计列 -->
+    <sql id="statisticalColumnList">
+      count(DISTINCT(pb.proc_id)) as orderCount,
+      prd.device_area_id as areaId,
+      prd.device_area_name as areaName
+    </sql>
+
+    <!-- 公共巡检部门筛选条件 -->
+    <sql id="commonInspectionDepartmentCondition">
+        <if test="bizCondition != null">
+            <if test="bizCondition.permissionDeptIds != null and bizCondition.permissionDeptIds.size() > 0">
+                <if test="bizCondition.permissionDeptIds.size() == 1">
+                    AND pi.accountability_dept =
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionDeptIds.size() > 1">
+                    AND pi.accountability_dept = IN
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId" open="(" close=")" separator=",">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+            </if>
+        </if>
+    </sql>
+
+    <!-- 公共销障部门筛选条件 -->
+    <sql id="commonClearDepartmentCondition">
+        <if test="bizCondition != null">
+            <if test="bizCondition.permissionDeptIds != null and bizCondition.permissionDeptIds.size() > 0">
+                <if test="bizCondition.permissionDeptIds.size() == 1">
+                    AND prdept.accountability_dept =
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionDeptIds.size() > 1">
+                    AND prdept.accountability_dept = IN
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId" open="(" close=")" separator=",">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+            </if>
+        </if>
+    </sql>
+
+    <!-- 公共部门筛选条件 -->
+    <sql id="commonDepartmentCondition">
+        <if test="bizCondition != null">
+            <if test="bizCondition.permissionDeptIds != null and bizCondition.permissionDeptIds.size() > 0">
+                <if test="bizCondition.permissionDeptIds.size() == 1">
+                    AND prdept.accountability_dept =
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionDeptIds.size() > 1">
+                    AND prdept.accountability_dept = IN
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId" open="(" close=")" separator=",">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+            </if>
+        </if>
+    </sql>
+
+    <!-- 统计全状态 -->
+    <sql id = "commonAllStatusCondition">
+        and ((pb.status = 'assigned')
+        OR (pb.status IN('processing','pending','singleBack','turnProcessing','completed')
+        <include refid="commonDepartmentCondition"/>
+        ))
+    </sql>
+
+    <!-- 统计巡检工单全状态 -->
+    <sql id="commonInspectionAllStatusCondition">
+        and pi.status IN('assigned', 'processing','pending','singleBack','turnProcessing','completed')
+    </sql>
+
+    <!-- 统计销障工单全状态 -->
+    <sql id="commonClearAllStatusCondition">
+        and pcf.status IN('assigned', 'processing','pending','singleBack','turnProcessing','completed')
+    </sql>
+
+    <!-- 统计巡检公共的筛选条件 -->
+    <sql id="commonInspectionStatisticalCondition">
+        <if test="bizCondition != null">
+            <!--设施区域ids-->
+            <if test="bizCondition.areaIdList != null and bizCondition.areaIdList.size() > 0">
+                <if test="bizCondition.areaIdList.size() == 1">
+                    AND pi.device_area_id =
+                    <foreach collection="bizCondition.areaIdList" item="areaId">
+                        #{areaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.areaIdList.size() > 1">
+                    AND pi.device_area_id IN
+                    <foreach collection="bizCondition.areaIdList" item="areaId" open="(" close=")" separator=",">
+                        #{areaId}
+                    </foreach>
+                </if>
+            </if>
+
+
+            <!--设施类型筛选types-->
+            <if test="bizCondition.deviceTypeList != null and bizCondition.deviceTypeList.size() > 0">
+                <if test="bizCondition.deviceTypeList.size() == 1">
+                    AND pi.device_type =
+                    <foreach collection="bizCondition.deviceTypeList" item="deviceType">
+                        #{deviceType}
+                    </foreach>
+                </if>
+                <if test="bizCondition.deviceTypeList.size() > 1">
+                    AND pi.device_type IN
+                    <foreach collection="bizCondition.deviceTypeList" item="deviceType" open="(" close=")" separator=",">
+                        #{deviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--统计的时间区间-->
+            <if test="bizCondition.timeList != null and bizCondition.timeList.size() > 0">
+                and UNIX_TIMESTAMP(pi.create_time) between
+                <foreach collection="bizCondition.timeList" item="time" index="index">
+                    <if test="index == 0">
+                        #{time}
+                    </if>
+                    <if test="index == 1">
+                        and #{time}
+                    </if>
+                </foreach>
+            </if>
+
+            <!-- 工单类型筛选 -->
+            <if test="bizCondition.procType != null and bizCondition.procType != ''">
+                and pi.proc_type = #{bizCondition.procType}
+            </if>
+        </if>
+    </sql>
+
+    <!-- 统计销障公共的筛选条件 -->
+    <sql id="commonClearStatisticalCondition">
+        <if test="bizCondition != null">
+            <!--设施区域ids-->
+            <if test="bizCondition.areaIdList != null and bizCondition.areaIdList.size() > 0">
+                <if test="bizCondition.areaIdList.size() == 1">
+                    AND pcf.device_area_id =
+                    <foreach collection="bizCondition.areaIdList" item="areaId">
+                        #{areaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.areaIdList.size() > 1">
+                    AND pcf.device_area_id IN
+                    <foreach collection="bizCondition.areaIdList" item="areaId" open="(" close=")" separator=",">
+                        #{areaId}
+                    </foreach>
+                </if>
+            </if>
+
+
+            <!--设施类型筛选types-->
+            <if test="bizCondition.deviceTypeList != null and bizCondition.deviceTypeList.size() > 0">
+                <if test="bizCondition.deviceTypeList.size() == 1">
+                    AND pcf.device_type =
+                    <foreach collection="bizCondition.deviceTypeList" item="deviceType">
+                        #{deviceType}
+                    </foreach>
+                </if>
+                <if test="bizCondition.deviceTypeList.size() > 1">
+                    AND pcf.device_type IN
+                    <foreach collection="bizCondition.deviceTypeList" item="deviceType" open="(" close=")" separator=",">
+                        #{deviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--统计的时间区间-->
+            <if test="bizCondition.timeList != null and bizCondition.timeList.size() > 0">
+                AND UNIX_TIMESTAMP(pcf.create_time) between
+                <foreach collection="bizCondition.timeList" item="time" index="index">
+                    <if test="index == 0">
+                         #{time}
+                    </if>
+                    <if test="index == 1">
+                        and #{time}
+                    </if>
+                </foreach>
+            </if>
+
+            <!-- 工单类型筛选 -->
+            <if test="bizCondition.procType != null and bizCondition.procType != ''">
+                and pcf.proc_type = #{bizCondition.procType}
+            </if>
+        </if>
+    </sql>
+
+
+    <!-- 统计公共的筛选条件 -->
+    <sql id="commonStatisticalCondition">
+        <if test="bizCondition != null">
+            <!--设施区域ids-->
+            <if test="bizCondition.areaIdList != null and bizCondition.areaIdList.size() > 0">
+                <if test="bizCondition.areaIdList.size() == 1">
+                    AND prd.device_area_id =
+                    <foreach collection="bizCondition.areaIdList" item="areaId">
+                        #{areaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.areaIdList.size() > 1">
+                    AND prd.device_area_id IN
+                    <foreach collection="bizCondition.areaIdList" item="areaId" open="(" close=")" separator=",">
+                        #{areaId}
+                    </foreach>
+                </if>
+            </if>
+
+
+            <!--设施类型筛选types-->
+            <if test="bizCondition.deviceTypeList != null and bizCondition.deviceTypeList.size() > 0">
+                <if test="bizCondition.deviceTypeList.size() == 1">
+                    AND prd.device_type =
+                    <foreach collection="bizCondition.deviceTypeList" item="deviceType">
+                        #{deviceType}
+                    </foreach>
+                </if>
+                <if test="bizCondition.deviceTypeList.size() > 1">
+                    AND prd.device_type IN
+                    <foreach collection="bizCondition.deviceTypeList" item="deviceType" open="(" close=")" separator=",">
+                        #{deviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--统计的时间区间-->
+            <if test="bizCondition.timeList != null and bizCondition.timeList.size() > 0">
+                AND UNIX_TIMESTAMP(pb.create_time) between
+                <foreach collection="bizCondition.timeList" item="time" index="index">
+                    <if test="index == 0">
+                         #{time}
+                    </if>
+                    <if test="index == 1">
+                        and #{time}
+                    </if>
+                </foreach>
+            </if>
+
+            <!-- 工单类型筛选 -->
+            <if test="bizCondition.procType != null and bizCondition.procType != ''">
+                and pb.proc_type = #{bizCondition.procType}
+            </if>
+        </if>
+    </sql>
+
+    <!-- 巡检报表权限条件 -->
+    <sql id="statisticalInspectionPermissionCondition">
+        <if test="bizCondition != null">
+            <!-- 权限设施types -->
+            <if test="bizCondition.permissionDeviceTypes != null and bizCondition.permissionDeviceTypes.size() > 0">
+                <if test="bizCondition.permissionDeviceTypes.size() == 1">
+                    AND pi.device_type =
+                    <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionDeviceTypes.size() > 1">
+                    AND pi.device_type IN
+                    <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType" open="(" close=")" separator=",">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 权限区域ids -->
+            <if test="bizCondition.permissionAreaIds != null and bizCondition.permissionAreaIds.size() > 0">
+                <if test="bizCondition.permissionAreaIds.size() == 1">
+                    AND pi.device_area_id =
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionAreaIds.size() > 1">
+                    AND pi.device_area_id IN
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 操作类型 -->
+            <if test="bizCondition.statisticalType != null and bizCondition.statisticalType != ''">
+                <if test="bizCondition.statisticalType == 1">
+                    <!--未完工列表状态-->
+                    and pi.status IN('assigned', 'processing','pending','singleBack','turnProcessing') AND pi.is_check_single_back = '0'
+                </if>
+                <if test="bizCondition.statisticalType == 2">
+                    <!-- 历史工单状态 -->
+                    AND (pi.status = 'completed' OR (pi.status = 'singleBack' and pi.is_check_single_back = '1'))
+                </if>
+            </if>
+        </if>
+    </sql>
+
+    <!-- 销障报表权限条件 -->
+    <sql id="statisticalClearPermissionCondition">
+        <if test="bizCondition != null">
+            <!-- 权限设施types -->
+            <if test="bizCondition.permissionDeviceTypes != null and bizCondition.permissionDeviceTypes.size() > 0">
+                <if test="bizCondition.permissionDeviceTypes.size() == 1">
+                    AND pcf.device_type =
+                    <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionDeviceTypes.size() > 1">
+                    AND pcf.device_type IN
+                    <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType" open="(" close=")" separator=",">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 权限区域ids -->
+            <if test="bizCondition.permissionAreaIds != null and bizCondition.permissionAreaIds.size() > 0">
+                <if test="bizCondition.permissionAreaIds.size() == 1">
+                    AND pcf.device_area_id =
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionAreaIds.size() > 1">
+                    AND pcf.device_area_id IN
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 操作类型 -->
+            <if test="bizCondition.statisticalType != null and bizCondition.statisticalType != ''">
+                <if test="bizCondition.statisticalType == 1">
+                    <!--未完工列表状态-->
+                    AND (pcf.status = 'assigned'
+                    OR (pcf.status IN('processing','pending','singleBack','turnProcessing') AND pcf.is_check_single_back = '0'))
+                </if>
+                <if test="bizCondition.statisticalType == 2">
+                    <!-- 历史工单状态 -->
+                    AND (pcf.status = 'completed' OR (pcf.status = 'singleBack' and pcf.is_check_single_back = '1'))
+                </if>
+            </if>
+        </if>
+    </sql>
+
+    <!-- 报表权限条件 -->
+    <sql id="statisticalPermissionCondition">
+        <if test="bizCondition != null">
+            <!-- 权限设施types -->
+            <if test="bizCondition.permissionDeviceTypes != null and bizCondition.permissionDeviceTypes.size() > 0">
+                <if test="bizCondition.permissionDeviceTypes.size() == 1">
+                    AND prd.device_type =
+                    <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionDeviceTypes.size() > 1">
+                    AND prd.device_type IN
+                    <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType" open="(" close=")" separator=",">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 权限区域ids -->
+            <if test="bizCondition.permissionAreaIds != null and bizCondition.permissionAreaIds.size() > 0">
+                <if test="bizCondition.permissionAreaIds.size() == 1">
+                    AND prd.device_area_id =
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionAreaIds.size() > 1">
+                    AND prd.device_area_id IN
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 操作类型 -->
+            <if test="bizCondition.statisticalType != null and bizCondition.statisticalType != ''">
+                <if test="bizCondition.statisticalType == 1">
+                    <!--未完工列表状态-->
+                    AND ((pb.status = 'assigned')
+                    OR (pb.status IN('processing','pending','singleBack','turnProcessing') AND pb.is_check_single_back = '0'
+                    <include refid="commonDepartmentCondition"/>
+                    ))
+                </if>
+                <if test="bizCondition.statisticalType == 2">
+                    <!-- 历史工单状态 -->
+                    AND (pb.status = 'completed' OR (pb.status = 'singleBack' and pb.is_check_single_back = '1'))
+                    <include refid="commonDepartmentCondition" />
+                </if>
+            </if>
+        </if>
+    </sql>
+
+
+    <!-- 连接表sql -->
+    <sql id="tableListSql">
+      from proc_base pb
+        left join proc_related_device prd on pb.proc_id = prd.proc_id
+        left join proc_related_department prdept on prdept.proc_id = pb.proc_id
+      where 1=1
+        and pb.is_deleted = '0'
+    </sql>
+
+    <!-- 工单状态统计公共sql -->
+    <sql id="statusCommonSql">
+        select
+        <include refid="statisticalColumnList" />
+        ,pb.status
+        <!-- 连接表sql -->
+        <include refid="tableListSql" />
+        <!-- 工单统计通用查询条件 -->
+        <include refid="commonStatisticalCondition" />
+    </sql>
+
+    <!-- 巡检工单状态公共查询条件 -->
+    <sql id="statusInspectionCommonSql">
+        <include refid="commonInspectionStatisticalCondition" />
+    </sql>
+
+    <!-- 销障工单状态公共查询条件 -->
+    <sql id="statusClearCommonSql">
+        <include refid="commonClearStatisticalCondition" />
+    </sql>
+
+    <!-- 处理方案原因公共sql -->
+    <sql id="processingSchemeCommonSql">
+        select
+        <include refid="statisticalColumnList" />
+        ,pb.processing_scheme as processingScheme
+        <include refid="tableListSql" />
+        <!-- 工单统计通用查询条件 -->
+        <if test="bizCondition != null">
+            <!--设施区域ids-->
+            <if test="bizCondition.areaIdList != null and bizCondition.areaIdList.size() > 0">
+                <if test="bizCondition.areaIdList.size() == 1">
+                    AND prd.device_area_id =
+                    <foreach collection="bizCondition.areaIdList" item="areaId">
+                        #{areaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.areaIdList.size() > 1">
+                    AND prd.device_area_id IN
+                    <foreach collection="bizCondition.areaIdList" item="areaId" open="(" close=")" separator=",">
+                        #{areaId}
+                    </foreach>
+                </if>
+            </if>
+
+
+            <!--设施类型筛选types-->
+            <if test="bizCondition.deviceTypeList != null and bizCondition.deviceTypeList.size() > 0">
+                <if test="bizCondition.deviceTypeList.size() == 1">
+                    AND prd.device_type =
+                    <foreach collection="bizCondition.deviceTypeList" item="deviceType">
+                        #{deviceType}
+                    </foreach>
+                </if>
+                <if test="bizCondition.deviceTypeList.size() > 1">
+                    AND prd.device_type IN
+                    <foreach collection="bizCondition.deviceTypeList" item="deviceType" open="(" close=")" separator=",">
+                        #{deviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--统计的时间区间-->
+            <if test="bizCondition.timeList != null and bizCondition.timeList.size() > 0">
+                AND UNIX_TIMESTAMP(pb.reality_completed_time) between
+                <foreach collection="bizCondition.timeList" item="time" index="index">
+                    <if test="index == 0">
+                        #{time}
+                    </if>
+                    <if test="index == 1">
+                        and #{time}
+                    </if>
+                </foreach>
+            </if>
+
+            <!-- 工单类型筛选 -->
+            <if test="bizCondition.procType != null and bizCondition.procType != ''">
+                and pb.proc_type = #{bizCondition.procType}
+            </if>
+        </if>
+
+    </sql>
+
+
+    <!-- 巡检处理方案公共sql -->
+    <sql id="processingSchemeInspectionCommonSql">
+        <include refid="commonInspectionStatisticalCondition" />
+    </sql>
+
+    <!-- 销障公单处理方案公共sql -->
+    <sql id="processingSchemeClearCommonSql">
+        <include refid="commonClearStatisticalCondition" />
+    </sql>
+
+    <!-- 故障原因公共sql -->
+    <sql id="errorReasonCommonSql">
+        select
+        <include refid="statisticalColumnList" />
+        ,pb.error_reason as errorReason
+        <include refid="tableListSql" />
+        <!-- 工单统计通用查询条件 -->
+        <include refid="commonStatisticalCondition" />
+    </sql>
+
+    <!-- 设施类型公共sql -->
+    <sql id="deviceTypeCommonSql">
+        select
+        <include refid="statisticalColumnList" />
+        ,prd.device_type as deviceType
+        <include refid="tableListSql" />
+        <!-- 工单统计通用查询条件 -->
+        <include refid="commonStatisticalCondition" />
+    </sql>
+
+    <!-- 巡检工单状态分组查询数据 -->
+    <select id="queryListProcInspectionGroupByProcStatus" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcStatusStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pi.proc_id) as orderCount,
+        pi.device_area_id as areaId,
+        pi.status
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <!-- 巡检工单状态统计公共sql -->
+        <include refid="statusInspectionCommonSql" />
+        <!-- 巡检工单全状态查询条件 -->
+        <include refid="commonInspectionAllStatusCondition"/>
+        group by pi.device_area_id, pi.status
+    </select>
+
+    <!-- 销障工单状态分组查询数据 -->
+    <select id="queryListProcClearGroupByProcStatus" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcStatusStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pcf.proc_id) as orderCount,
+        pcf.device_area_id as areaId,
+        pcf.status
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <!-- 销障工单状态统计公共sql -->
+        <include refid="statusClearCommonSql" />
+        <!-- 销障全状态查询条件 -->
+        <include refid="commonClearAllStatusCondition"/>
+        group by pcf.device_area_id, pcf.status
+    </select>
+
+    <!-- 根据工单状态分组查询工单信息 -->
+    <select id="queryListProcGroupByProcStatus" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcStatusStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        <!-- 工单状态统计公共sql -->
+        <include refid="statusCommonSql" />
+        <!-- 工单全状态查询条件 -->
+        <include refid="commonAllStatusCondition"/>
+        group by prd.device_area_id, pb.status
+    </select>
+
+
+
+    <!-- 概览统计巡检工单状态信息 -->
+    <select id="queryListProcInspectionOverviewGroupByProcStatus" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcStatusOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pi.proc_id) as orderCount,
+        pi.status
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <!-- 巡检工单状态统计公共sql -->
+        <include refid="statusInspectionCommonSql" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalInspectionPermissionCondition" />
+        group by pi.status
+    </select>
+
+    <!-- 概览统计销障工单状态信息 -->
+    <select id="queryListProcClearOverviewGroupByProcStatus" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcStatusOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pcf.proc_id) as orderCount,
+        pcf.device_area_id as areaId,
+        pcf.status
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <!-- 销障工单状态统计公共sql -->
+        <include refid="statusClearCommonSql" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalClearPermissionCondition" />
+        group by pcf.status
+    </select>
+
+
+    <!-- 概览统计工单状态信息 -->
+    <select id="queryListProcOverviewGroupByProcStatus" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcStatusOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        <!-- 工单状态统计公共sql -->
+        <include refid="statusCommonSql" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalPermissionCondition" />
+        group by pb.status
+    </select>
+
+
+    <!-- 概览统计巡检工单新增数量信息 -->
+    <select id="queryNowDateInspectionAddOrderCount" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcNowDateAddOrderCountOverview" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select count(pi.proc_id) as orderCount
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <!-- 巡检工单公共条件 -->
+        <include refid="commonInspectionStatisticalCondition" />
+        <include refid="commonInspectionAllStatusCondition" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalInspectionPermissionCondition" />
+        <if test="bizCondition != null">
+            <if test="bizCondition.nowDateTime != null">
+                and UNIX_TIMESTAMP(pi.create_time) >= #{bizCondition.nowDateTime}
+            </if>
+        </if>
+    </select>
+
+    <!-- 概览统计销障工单新增数量信息 -->
+    <select id="queryNowDateClearAddOrderCount" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcNowDateAddOrderCountOverview" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select count(pcf.proc_id) as orderCount
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <!-- 销障工单公共条件 -->
+        <include refid="commonClearStatisticalCondition" />
+        <include refid="commonClearAllStatusCondition" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalClearPermissionCondition" />
+        <if test="bizCondition != null">
+            <if test="bizCondition.nowDateTime != null">
+                and UNIX_TIMESTAMP(pcf.create_time) >= #{bizCondition.nowDateTime}
+            </if>
+        </if>
+    </select>
+
+    <!-- 概览统计工单新增数量信息 -->
+    <select id="queryNowDateAddOrderCount" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcNowDateAddOrderCountOverview" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select count(DISTINCT(pb.proc_id)) as orderCount,
+        prd.device_area_id as areaId,
+        prd.device_area_name as areaName
+        <!-- 连接表sql -->
+        <include refid="tableListSql" />
+        <include refid="commonAllStatusCondition" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalPermissionCondition" />
+        <if test="bizCondition != null">
+            <if test="bizCondition.nowDateTime != null">
+                and UNIX_TIMESTAMP(pb.create_time) >= #{bizCondition.nowDateTime}
+            </if>
+            <!-- 工单类型筛选 -->
+            <if test="bizCondition.procType != null and bizCondition.procType != ''">
+                and pb.proc_type = #{bizCondition.procType}
+            </if>
+        </if>
+    </select>
+
+    <!-- 巡检工单历史处理方案统计信息 -->
+    <select id="queryListProcInspectionGroupByProcProcessingScheme" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcProcessingSchemeStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pi.proc_id) as orderCount,
+        pi.device_area_id as areaId,
+        pi.processing_scheme as processingScheme
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <include refid="processingSchemeInspectionCommonSql" />
+        <!-- 历史工单状态 -->
+        AND (pi.status = 'completed' OR (pi.status = 'singleBack' and pi.is_check_single_back = '1'))
+        group by pi.device_area_id, pi.processing_scheme
+    </select>
+
+    <!-- 销障工单历史处理方案统计信息 -->
+    <select id="queryListProcClearGroupByProcProcessingScheme" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcProcessingSchemeStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pcf.proc_id) as orderCount,
+        pcf.device_area_id as areaId,
+        pcf.processing_scheme as processingScheme
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <include refid="processingSchemeClearCommonSql" />
+        <!-- 历史工单状态 -->
+        AND (pcf.status = 'completed' OR (pcf.status = 'singleBack' and pcf.is_check_single_back = '1'))
+        group by pcf.device_area_id, pcf.processing_scheme
+    </select>
+
+    <!-- 工单历史处理方案统计信息 -->
+    <select id="queryListProcGroupByProcProcessingScheme" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcProcessingSchemeStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        <!-- 工单处理方案公共sql -->
+        <include refid="processingSchemeCommonSql" />
+        <!-- 历史工单状态 -->
+        AND (pb.status = 'completed' OR (pb.status = 'singleBack' and pb.is_check_single_back = '1'))
+        <include refid="commonDepartmentCondition" />
+        group by prd.device_area_id, pb.processing_scheme
+    </select>
+
+
+    <!-- 巡检工单处理方案概览统计信息 -->
+    <select id="queryListProcInspectionOverviewGroupByProcProcessingScheme" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcProcessingSchemeOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pi.proc_id) as orderCount,
+        pi.processing_scheme as processingScheme
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <!-- 巡检工单公共条件 -->
+        <include refid="processingSchemeInspectionCommonSql" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalInspectionPermissionCondition" />
+        group by pi.processing_scheme
+    </select>
+
+    <!-- 销障工单处理方案概览统计信息 -->
+    <select id="queryListProcClearOverviewGroupByProcProcessingScheme" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcProcessingSchemeOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pcf.proc_id) as orderCount,
+        pcf.processing_scheme as processingScheme
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <!-- 销障工单公共条件 -->
+        <include refid="processingSchemeClearCommonSql" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalClearPermissionCondition" />
+        group by pcf.processing_scheme
+    </select>
+
+    <!-- 工单处理方案概览统计信息 -->
+    <select id="queryListProcOverviewGroupByProcProcessingScheme" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcProcessingSchemeOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        <!-- 工单处理方案公共sql -->
+        <include refid="processingSchemeCommonSql" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalPermissionCondition" />
+        group by pb.processing_scheme
+    </select>
+
+
+    <!-- 巡检故障原因统计信息 -->
+    <select id="queryListProcInspectionGroupByErrorReason" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcErrorReasonStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pi.proc_id) as orderCount,
+        pi.device_area_id as areaId,
+        pi.error_reason as errorReason,
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <include refid="commonInspectionStatisticalCondition" />
+        <!-- 巡检工单全状态查询条件 -->
+        <include refid="commonInspectionAllStatusCondition"/>
+        group by pi.device_area_id, pi.error_reason
+    </select>
+
+    <!-- 销障故障原因统计信息 -->
+    <select id="queryListProcClearGroupByErrorReason" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcErrorReasonStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pcf.proc_id) as orderCount,
+        pcf.device_area_id as areaId,
+        pcf.error_reason as errorReason
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <include refid="commonClearStatisticalCondition" />
+        <!-- 巡检工单全状态查询条件 -->
+        <include refid="commonClearAllStatusCondition"/>
+        group by pcf.device_area_id, pcf.error_reason
+    </select>
+
+    <!-- 故障原因统计信息 -->
+    <select id="queryListProcGroupByErrorReason" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcErrorReasonStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        <!-- 故障原因公共sql -->
+        <include refid="errorReasonCommonSql" />
+        <!-- 工单全状态查询条件 -->
+        <include refid="commonAllStatusCondition"/>
+        group by prd.device_area_id, pb.error_reason
+    </select>
+
+    <!-- 巡检设施类型统计信息 -->
+    <select id="queryListProcInspectionGroupByDeviceType" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcDeviceTypeStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pi.proc_id) as orderCount,
+        pi.device_area_id as areaId,
+        pi.device_type as deviceType
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <!-- 巡检工单公共条件 -->
+        <include refid="commonInspectionStatisticalCondition" />
+        <!-- 工单全状态查询条件 -->
+        <include refid="commonInspectionAllStatusCondition"/>
+        group by pi.device_area_id, pi.device_type
+    </select>
+
+
+    <!-- 销障设施类型统计信息 -->
+    <select id="queryListProcClearGroupByDeviceType" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcDeviceTypeStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pcf.proc_id) as orderCount,
+        pcf.device_area_id as areaId,
+        pcf.device_type as deviceType
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <!-- 销障工单公共条件 -->
+        <include refid="commonClearStatisticalCondition" />
+        <!-- 销障工单全状态查询条件 -->
+        <include refid="commonClearAllStatusCondition"/>
+        group by pcf.device_area_id, pcf.device_type
+    </select>
+
+    <!-- 设施类型统计信息 -->
+    <select id="queryListProcGroupByDeviceType" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcDeviceTypeStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        <!-- 设施类型公共sql -->
+        <include refid="deviceTypeCommonSql" />
+        <!-- 工单全状态查询条件 -->
+        <include refid="commonAllStatusCondition"/>
+        group by prd.device_area_id, prd.device_type
+    </select>
+
+    <!-- 概览统计巡检工单故障原因统计信息 -->
+    <select id="queryListProcInspectionOverviewGroupByErrorReason" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcErrorReasonOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pi.proc_id) as orderCount,
+        pi.error_reason as errorReason
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <!-- 巡检工单公共条件 -->
+        <include refid="commonInspectionStatisticalCondition" />
+        <!-- 巡检工单权限筛选条件 -->
+        <include refid="statisticalInspectionPermissionCondition" />
+        group by pi.error_reason
+    </select>
+
+    <!-- 概览统计销障工单故障原因统计信息 -->
+    <select id="queryListProcClearOverviewGroupByErrorReason" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcErrorReasonOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pcf.proc_id) as orderCount,
+        pcf.error_reason as errorReason
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <!-- 销障工单公共条件 -->
+        <include refid="commonClearStatisticalCondition" />
+        <!-- 销障工单权限筛选条件 -->
+        <include refid="statisticalClearPermissionCondition" />
+        group by pcf.error_reason
+    </select>
+
+    <!-- 概览统计工单故障原因统计信息 -->
+    <select id="queryListProcOverviewGroupByErrorReason" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcErrorReasonOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        <!-- 故障原因公共sql -->
+        <include refid="errorReasonCommonSql" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalPermissionCondition" />
+        group by pb.error_reason
+    </select>
+
+
+    <!-- 概览巡检设施类型统计信息 -->
+    <select id="queryListProcInspectionOverviewGroupByDeviceTypeList" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcDeviceTypeOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pi.proc_id) as orderCount,
+        pi.device_type as deviceType
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <!-- 巡检工单公共sql -->
+        <include refid="commonInspectionStatisticalCondition" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalInspectionPermissionCondition" />
+        group by pi.device_type
+    </select>
+
+    <!-- 概览销障设施类型统计信息 -->
+    <select id="queryListProcClearOverviewGroupByDeviceTypeList" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcDeviceTypeOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pcf.proc_id) as orderCount,
+        pcf.device_area_id as areaId,
+        pcf.device_type as deviceType
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <!-- 销障工单公共sql -->
+        <include refid="commonClearStatisticalCondition" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalClearPermissionCondition" />
+        group by pcf.device_type
+    </select>
+
+
+    <!-- 概览设施类型统计信息 -->
+    <select id="queryListProcOverviewGroupByDeviceTypeList" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.overview.ProcDeviceTypeOverviewStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        <!-- 设施类型公共sql -->
+        <include refid="deviceTypeCommonSql" />
+        <!-- 权限筛选条件 -->
+        <include refid="statisticalPermissionCondition" />
+        group by prd.device_type
+    </select>
+
+    <!-- 巡检工单区域比统计 -->
+    <select id="queryListProcInspectionGroupByAreaPercent" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcAreaPercentStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pi.proc_id) as orderCount,
+        pi.device_area_id as areaId
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <!-- 巡检工单公共sql -->
+        <include refid="commonInspectionStatisticalCondition" />
+        <!-- 巡检工单全状态查询条件 -->
+        <include refid="commonInspectionAllStatusCondition"/>
+        group by pi.device_area_id
+    </select>
+
+    <!-- 销障工单区域比统计 -->
+    <select id="queryListProcClearGroupByAreaPercent" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcAreaPercentStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        count(pcf.proc_id) as orderCount,
+        pcf.device_area_id as areaId
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <!-- 销障工单公共sql -->
+        <include refid="commonClearStatisticalCondition" />
+        <!-- 销障工单全状态查询条件 -->
+        <include refid="commonClearAllStatusCondition"/>
+        group by pcf.device_area_id
+    </select>
+
+    <!-- 工单区域比统计 -->
+    <select id="queryListProcGroupByAreaPercent" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcAreaPercentStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        <include refid="statisticalColumnList" />
+        ,prd.device_type as deviceType
+        <include refid="tableListSql" />
+        <!-- 工单统计通用查询条件 -->
+        <include refid="commonStatisticalCondition" />
+        <!-- 工单全状态查询条件 -->
+        <include refid="commonAllStatusCondition"/>
+        group by prd.device_area_id
+    </select>
+
+
+    <!-- 巡检责任单位统计 -->
+    <select id="queryInspectionDeptListGroupByAccountabilityDept" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcDepartmentStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select count(pi.proc_id) as departmentCount, pi.accountability_dept as departmentId
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <if test="bizCondition != null">
+            <!-- 工单类型筛选 -->
+            <if test="bizCondition.procType != null and bizCondition.procType != ''">
+                and pi.proc_type = #{bizCondition.procType}
+            </if>
+
+            <!--统计的时间区间-->
+            <if test="bizCondition.timeList != null and bizCondition.timeList.size() > 0">
+                AND UNIX_TIMESTAMP(pi.create_time) between
+                <foreach collection="bizCondition.timeList" item="time" index="index">
+                    <if test="index == 0">
+                        #{time}
+                    </if>
+                    <if test="index == 1">
+                        and #{time}
+                    </if>
+                </foreach>
+            </if>
+
+            <!-- 责任单位筛选 -->
+            <if test="bizCondition.accountabilityDeptList != null and bizCondition.accountabilityDeptList.size() > 0">
+                <if test="bizCondition.accountabilityDeptList.size() == 1">
+                    and pi.accountability_dept =
+                    <foreach collection="bizCondition.accountabilityDeptList" item="accountabilityDept">
+                        #{accountabilityDept}
+                    </foreach>
+                </if>
+                <if test="bizCondition.accountabilityDeptList.size() > 1">
+                    and pi.accountability_dept in
+                    <foreach collection="bizCondition.accountabilityDeptList" item="accountabilityDept" open="(" close=")" separator=",">
+                        #{accountabilityDept}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 权限筛选条件 -->
+            <include refid="statisticalInspectionPermissionCondition" />
+            group by pi.accountability_dept
+        </if>
+    </select>
+
+
+    <!-- 销障责任单位统计 -->
+    <select id="queryClearDeptListGroupByAccountabilityDept" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcDepartmentStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select count(pcf.proc_id) as departmentCount, pcf.accountability_dept as departmentId
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <if test="bizCondition != null">
+            <!-- 工单类型筛选 -->
+            <if test="bizCondition.procType != null and bizCondition.procType != ''">
+                and pcf.proc_type = #{bizCondition.procType}
+            </if>
+
+            <!--统计的时间区间-->
+            <if test="bizCondition.timeList != null and bizCondition.timeList.size() > 0">
+                AND UNIX_TIMESTAMP(pcf.create_time) between
+                <foreach collection="bizCondition.timeList" item="time" index="index">
+                    <if test="index == 0">
+                         #{time}
+                    </if>
+                    <if test="index == 1">
+                        and #{time}
+                    </if>
+                </foreach>
+            </if>
+
+            <!-- 责任单位筛选 -->
+            <if test="bizCondition.accountabilityDeptList != null and bizCondition.accountabilityDeptList.size() > 0">
+                <if test="bizCondition.accountabilityDeptList.size() == 1">
+                    and pcf.accountability_dept =
+                    <foreach collection="bizCondition.accountabilityDeptList" item="accountabilityDept">
+                        #{accountabilityDept}
+                    </foreach>
+                </if>
+                <if test="bizCondition.accountabilityDeptList.size() > 1">
+                    and pcf.accountability_dept in
+                    <foreach collection="bizCondition.accountabilityDeptList" item="accountabilityDept" open="(" close=")" separator=",">
+                        #{accountabilityDept}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 权限筛选条件 -->
+            <include refid="statisticalClearPermissionCondition" />
+            group by pcf.accountability_dept
+        </if>
+    </select>
+
+    <!-- 责任单位统计 -->
+    <select id="queryDeptListGroupByAccountabilityDept" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcDepartmentStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select count(DISTINCT(pb.proc_id)) as departmentCount, prdept.accountability_dept as departmentId
+        from proc_base pb
+        left join proc_related_device prd on pb.proc_id = prd.proc_id
+        left join proc_related_department prdept on prdept.proc_id = pb.proc_id
+        where 1=1
+        and pb.is_deleted = '0'
+        <if test="bizCondition != null">
+            <!-- 工单类型筛选 -->
+            <if test="bizCondition.procType != null and bizCondition.procType != ''">
+                and pb.proc_type = #{bizCondition.procType}
+            </if>
+
+            <!--统计的时间区间-->
+            <if test="bizCondition.timeList != null and bizCondition.timeList.size() > 0">
+                and UNIX_TIMESTAMP(pb.create_time) between
+                <foreach collection="bizCondition.timeList" item="time" index="index">
+                    <if test="index == 0">
+                        #{time}
+                    </if>
+                    <if test="index == 1">
+                        and #{time}
+                    </if>
+                </foreach>
+            </if>
+
+            <!-- 责任单位筛选 -->
+            <if test="bizCondition.accountabilityDeptList != null and bizCondition.accountabilityDeptList.size() > 0">
+                <if test="bizCondition.accountabilityDeptList.size() == 1">
+                    and prdept.accountability_dept =
+                    <foreach collection="bizCondition.accountabilityDeptList" item="accountabilityDept">
+                        #{accountabilityDept}
+                    </foreach>
+                </if>
+                <if test="bizCondition.accountabilityDeptList.size() > 1">
+                    and prdept.accountability_dept in
+                    <foreach collection="bizCondition.accountabilityDeptList" item="accountabilityDept" open="(" close=")" separator=",">
+                        #{accountabilityDept}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 权限筛选条件 -->
+            <include refid="statisticalPermissionCondition" />
+            group by prdept.accountability_dept
+        </if>
+    </select>
+
+    <!-- 巡检工单设施统计top -->
+    <select id="queryInspectionListDeviceCountGroupByDevice" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcDeviceTopStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select orderTable.deviceCount, orderTable.deviceId,
+        orderTable.deviceName, orderTable.areaName,
+        orderTable.areaId
+        from
+        (
+        select count(DISTINCT(pi.proc_id)) as deviceCount, prd.device_id as deviceId,
+        pi.device_name as deviceName, pi.device_area_name as areaName,
+        pi.device_area_id as areaId
+        from proc_inspection pi
+        left join proc_related_device prd on pi.proc_id = prd.proc_id
+        <!-- 巡检工单统计通用查询条件 -->
+        <include refid="commonInspectionStatisticalCondition" />
+        <!-- 巡检工单全状态查询条件 -->
+        <include refid="commonInspectionAllStatusCondition"/>
+        group by prd.device_id
+        ) as orderTable
+        order by orderTable.deviceCount desc
+        <if test="bizCondition != null">
+            limit 0,${bizCondition.topCount}
+        </if>
+    </select>
+
+    <!-- 销障工单设施统计top -->
+    <select id="queryClearListDeviceCountGroupByDevice" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcDeviceTopStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select orderTable.deviceCount, orderTable.deviceId,
+        orderTable.deviceName, orderTable.areaName,
+        orderTable.areaId
+        from
+        (
+        select count(pcf.proc_id) as deviceCount, pcf.device_id as deviceId,
+        pcf.device_name as deviceName, pcf.device_area_name as areaName,
+        pcf.device_area_id as areaId
+        from proc_clear_failure pcf
+        where 1=1
+        <!-- 销障工单统计通用查询条件 -->
+        <include refid="commonClearStatisticalCondition" />
+        <!-- 销障工单全状态查询条件 -->
+        <include refid="commonClearAllStatusCondition"/>
+        group by pcf.device_id
+        ) as orderTable
+        order by orderTable.deviceCount desc
+        <if test="bizCondition != null">
+            limit 0,${bizCondition.topCount}
+        </if>
+    </select>
+
+
+    <!-- 工单设施统计top -->
+    <select id="queryListDeviceCountGroupByDevice" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcDeviceTopStatistical" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select orderTable.deviceCount, orderTable.deviceId,
+        orderTable.deviceName, orderTable.areaName,
+        orderTable.areaId
+        from
+        (
+        select count(DISTINCT(pb.proc_id)) as deviceCount, prd.device_id as deviceId,
+        prd.device_name as deviceName, prd.device_area_name as areaName,
+        prd.device_area_id as areaId
+        <include refid="tableListSql" />
+        <!-- 工单统计通用查询条件 -->
+        <include refid="commonStatisticalCondition" />
+        <!-- 工单全状态查询条件 -->
+        <include refid="commonAllStatusCondition"/>
+        group by prd.device_id
+        ) as orderTable
+        order by orderTable.deviceCount desc
+        <if test="bizCondition != null">
+            limit 0,${bizCondition.topCount}
+        </if>
+    </select>
+
+    <!-- 查询当天统计的巡检工单增量 -->
+    <select id="queryProcInspectionListByNowDate" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcInfoDateStatistical" parameterType="com.fiberhome.filink.workflowbusinessserver.req.statistical.normal.QueryProcCountSumReq">
+        select count(DISTINCT(pi.proc_id)) as orderCount,
+        pi.device_area_id as areaId,
+        pi.device_type as deviceType,
+        pi.proc_type as procType,
+        case when pi.accountability_dept is not null then pi.accountability_dept
+        else 'noDept'
+        end as accountabilityDept
+        from proc_inspection pi
+        where 1=1
+        and pi.is_deleted = '0'
+        <!--统计的时间区间-->
+        <if test="timeList != null and timeList.size() > 0">
+            and UNIX_TIMESTAMP(pi.create_time) between
+            <foreach collection="timeList" item="time" index="index">
+                <if test="index == 0">
+                    #{time}
+                </if>
+                <if test="index == 1">
+                    and #{time}
+                </if>
+            </foreach>
+        </if>
+        group by pi.device_area_id, pi.device_type, pi.proc_type
+    </select>
+
+
+    <!-- 查询当天统计的销障工单增量 -->
+    <select id="queryProcCLearListByNowDate" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcInfoDateStatistical" parameterType="com.fiberhome.filink.workflowbusinessserver.req.statistical.normal.QueryProcCountSumReq">
+        select count(pcf.proc_id) as orderCount,
+        pcf.device_area_id as areaId,
+        pcf.device_type as deviceType,
+        pcf.proc_type as procType,
+        case when pcf.accountability_dept is not null then pcf.accountability_dept
+        else 'noDept'
+        end as accountabilityDept
+        from proc_clear_failure pcf
+        where 1=1
+        and pcf.is_deleted = '0'
+        <!--统计的时间区间-->
+        <if test="timeList != null and timeList.size() > 0">
+            and UNIX_TIMESTAMP(pcf.create_time) between
+            <foreach collection="timeList" item="time" index="index">
+                <if test="index == 0">
+                    #{time}
+                </if>
+                <if test="index == 1">
+                    and #{time}
+                </if>
+            </foreach>
+        </if>
+        group by pcf.device_area_id, pcf.device_type, pcf.proc_type
+    </select>
+
+    <!-- 查询当天统计的工单增量 -->
+    <select id="queryProcListByNowDate" resultType="com.fiberhome.filink.workflowbusinessserver.bean.statistical.normal.ProcInfoDateStatistical" parameterType="com.fiberhome.filink.workflowbusinessserver.req.statistical.normal.QueryProcCountSumReq">
+        select count(DISTINCT(pb.proc_id)) as orderCount,
+        prd.device_area_id as areaId,
+        prd.device_type as deviceType,
+        pb.proc_type as procType,
+        case when prdept.accountability_dept is not null then prdept.accountability_dept
+        else 'noDept'
+        end as accountabilityDept
+        from proc_base pb
+        left join proc_related_device prd on pb.proc_id = prd.proc_id
+        left join proc_related_department prdept on prdept.proc_id = pb.proc_id
+        where 1=1
+        and pb.is_deleted = '0'
+        <!--统计的时间区间-->
+        <if test="timeList != null and timeList.size() > 0">
+            and UNIX_TIMESTAMP(pb.create_time) between
+            <foreach collection="timeList" item="time" index="index">
+                <if test="index == 0">
+                    #{time}
+                </if>
+                <if test="index == 1">
+                    and #{time}
+                </if>
+            </foreach>
+        </if>
+        group by prd.device_area_id, prd.device_type, pb.proc_type
+    </select>
+
+</mapper>

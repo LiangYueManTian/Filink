@@ -1,0 +1,35 @@
+export default {
+    serialNumber: 'serial number',
+    deptName: 'dept name',
+    deptLevel: 'dept level',
+    deptChargeuser: 'dept chargeuser',
+    deptPhonenum: 'dept phoneNum',
+    address: 'address',
+    deptType: 'dept type',
+    deptFatherid: 'dept fatherId',
+    parmentDeparmentName: 'parmentDeparmentName',
+    staff: 'staff',
+    description: 'description',
+    remark: 'remark',
+    operate: 'operate',
+    addUnit: 'addUnit',
+    update: 'update',
+    deleteHandle: 'deleteHandle',
+    deptNameTips: 'Names consist of Chinese, English, numerals, "-", "_" or spaces,6-32 characters in length!',
+    phoneNumTips: 'Please enter the correct phoneNumber',
+    addUnitTips: 'Success of new units',
+    modifyUnitTips: 'Successful revision',
+    unitNameTips: 'The name of the unit has been used',
+    config: {
+        DEPT_LEVEL_ONE: 'one',
+        DEPT_LEVEL_TWO: 'two',
+        DEPT_LEVEL_THREE: 'three',
+        DEPT_LEVEL_FOUR: 'four',
+        DEPT_LEVEL_FIVE: 'five'
+    },
+    unit: 'unit',
+    cancelText: 'cancel text',
+    okText: 'ok text',
+    unitSelect: 'unit select'
+};
+

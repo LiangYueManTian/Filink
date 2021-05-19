@@ -1,0 +1,22 @@
+.app-download {
+  margin-left: 30px;
+  .app-download-img {
+    margin-top: 20px;
+    display: flex;
+    div {
+      position: relative;
+      img {
+        margin-right: 20px;
+        width: 150px;
+        height: 150px;
+      }
+
+      span {
+        position: absolute;
+        top: 160px;
+        left: 40px;
+      }
+    }
+
+  }
+}

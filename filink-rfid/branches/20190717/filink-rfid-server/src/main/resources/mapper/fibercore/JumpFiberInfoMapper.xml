@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.fibercore.JumpFiberInfoDao">
+
+    <!-- 跳接通用查询映射结果 -->
+    <resultMap id="JumpFiberResultMap" type="com.fiberhome.filink.rfid.bean.fibercore.JumpFiberInfo">
+        <id column="jump_fiber_id" property="jumpFiberId"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="box_side" property="boxSide"/>
+        <result column="frame_no" property="frameNo"/>
+        <result column="disc_no" property="discNo"/>
+        <result column="disc_side" property="discSide"/>
+        <result column="port_no" property="portNo"/>
+        <result column="rfid_code" property="rfidCode"/>
+
+        <result column="opposite_device_id" property="oppositeDeviceId"/>
+        <result column="opposite_box_side" property="oppositeBoxSide"/>
+        <result column="opposite_frame_no" property="oppositeFrameNo"/>
+        <result column="opposite_disc_side" property="oppositeDiscSide"/>
+        <result column="opposite_disc_no" property="oppositeDiscNo"/>
+        <result column="opposite_port_no" property="oppositePortNo"/>
+        <result column="opposite_rfid_code" property="oppositeRfidCode"/>
+
+        <result column="adapter_type" property="adapterType"/>
+        <result column="remark" property="remark"/>
+        <result column="opposite_remark" property="oppositeRemark"/>
+
+        <result column="inner_device" property="innerDevice"/>
+        <result column="branching_unit" property="branchingUnit"/>
+    </resultMap>
+
+    <!-- app跳接信息查询映射结果 -->
+    <resultMap id="JumpFiberInfoRespMapForApp" extends="JumpFiberResultMap"
+               type="com.fiberhome.filink.rfid.resp.fibercore.app.JumpFiberInfoRespForApp">
+
+    </resultMap>
+
+    <!-- 跳接信息查询映射结果 -->
+    <resultMap id="JumpFiberInfoRespMap" extends="JumpFiberResultMap"
+               type="com.fiberhome.filink.rfid.resp.fibercore.JumpFiberInfoResp">
+
+    </resultMap>
+
+    <!--获取跳接信息-->
+    <select id="queryJumpFiberInfoByPortInfo"
+            parameterType="com.fiberhome.filink.rfid.req.fibercore.QueryJumpFiberInfoReq"
+            resultMap="JumpFiberInfoRespMap">
+        SELECT
+        jf.jump_fiber_id,
+        jf.device_id,
+        jf.box_side,
+        jf.frame_no,
+        jf.disc_no,
+        jf.disc_side,
+        jf.port_no,
+        jf.rfid_code,
+        jf.opposite_device_id,
+        jf.opposite_box_side,
+        jf.opposite_frame_no,
+        jf.opposite_disc_side,
+        jf.opposite_disc_no,
+        jf.opposite_port_no,
+        jf.adapter_type,
+        jf.remark,
+        jf.opposite_remark,
+        jf.opposite_rfid_code,
+        jf.branching_unit
+        FROM
+        jump_fiber_info jf
+        <where>
+            AND jf.is_deleted = '0' AND
+            <trim prefix="(" suffix=")" prefixOverrides="AND |OR">
+                <trim prefix="(" suffix=")" prefixOverrides="AND">
+                    <!--rfid_code为空-->
+                    <if test="rfidCode != null and rfidCode != ''">
+                        AND jf.rfid_code = #{rfidCode}
+                    </if>
+                    <!--设施id为空-->
+                    <if test="deviceId != null and deviceId != ''">
+                        AND jf.device_id = #{deviceId}
+                    </if>
+                    <!--框号为0-->
+                    <if test="frameNo != null and frameNo != ''">
+                        AND jf.frame_no = #{frameNo}
+                    </if>
+                    <!--箱架AB面-->
+                    <if test="boxSide != null">
+                        AND jf.box_side = #{boxSide}
+                    </if>
+                    <!--盘号为0-->
+                    <if test="discNo != null and discNo != ''">
+                        AND jf.disc_no = #{discNo}
+                    </if>
+                    <!--盘AB面-->
+                    <if test="discSide != null">
+                        AND jf.disc_side = #{discSide}
+                    </if>
+                    <!--端口号-->
+                    <if test="portNo != null and portNo != ''">
+                        AND jf.port_no = #{portNo}
+                    </if>
+
+                    <!--设施ids用于批量删除设施（用于批量删除设施）-->
+                    <if test="deviceIds != null and deviceIds.size() > 0 ">
+                        <if test="deviceIds.size() == 1">
+                            AND jf.device_id =
+                            <foreach collection="deviceIds" item="deviceId">
+                                #{deviceId}
+                            </foreach>
+                        </if>
+                        <if test="deviceIds.size() > 1">
+                            AND jf.device_id IN
+                            <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                                #{deviceId}
+                            </foreach>
+                        </if>
+                    </if>
+                </trim>
+                OR
+                <trim prefix="(" suffix=")" prefixOverrides="AND">
+                    <!--rfid_code为空-->
+                    <if test="rfidCode != null and rfidCode != ''">
+                        AND jf.opposite_rfid_code = #{rfidCode}
+                    </if>
+                    <!--设施id为空-->
+                    <if test="deviceId != null and deviceId != ''">
+                        AND jf.opposite_device_id = #{deviceId}
+                    </if>
+                    <!--框号为0-->
+                    <if test="frameNo != null and frameNo != ''">
+                        AND jf.opposite_frame_no = #{frameNo}
+                    </if>
+                    <!--箱架AB面-->
+                    <if test="boxSide != null">
+                        AND jf.opposite_box_side = #{boxSide}
+                    </if>
+                    <!--盘号为0-->
+                    <if test="discNo != null and discNo != ''">
+                        AND jf.opposite_disc_no = #{discNo}
+                    </if>
+                    <!--盘AB面-->
+                    <if test="discSide != null">
+                        AND jf.opposite_disc_side = #{discSide}
+                    </if>
+                    <!--端口号-->
+                    <if test="portNo != null and portNo != ''">
+                        AND jf.opposite_port_no = #{portNo}
+                    </if>
+
+                    <!--设施ids用于批量删除设施（用于批量删除设施）-->
+                    <if test="deviceIds != null and deviceIds.size() > 0 ">
+                        <if test="deviceIds.size() == 1">
+                            AND jf.device_id =
+                            <foreach collection="deviceIds" item="deviceId">
+                                #{deviceId}
+                            </foreach>
+                        </if>
+                        <if test="deviceIds.size() > 1">
+                            AND jf.device_id IN
+                            <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                                #{deviceId}
+                            </foreach>
+                        </if>
+                    </if>
+                </trim>
+
+                <trim prefix="(" suffix=")" prefixOverrides="AND">
+                    <!--主键(用于列表导出)-->
+                    <if test="jumpFiberIdList != null and jumpFiberIdList.size() > 0 ">
+                        <if test="jumpFiberIdList.size() == 1">
+                            AND jf.jump_fiber_id =
+                            <foreach collection="jumpFiberIdList" item="jumpFiberId">
+                                #{jumpFiberId}
+                            </foreach>
+                        </if>
+                        <if test="jumpFiberIdList.size() > 1">
+                            AND jf.jump_fiber_id IN
+                            <foreach collection="jumpFiberIdList" item="jumpFiberId" open="(" close=")" separator=",">
+                                #{jumpFiberId}
+                            </foreach>
+                        </if>
+                    </if>
+                </trim>
+            </trim>
+        </where>
+    </select>
+
+    <!--app根据端口信息获取跳接信息-->
+    <select id="queryJumpFiberInfoByPortInfoForApp"
+            parameterType="com.fiberhome.filink.rfid.req.fibercore.app.QueryJumpFiberInfoReqForApp"
+            resultMap="JumpFiberInfoRespMapForApp">
+        SELECT
+        jf.jump_fiber_id,
+        jf.device_id,
+        jf.box_side,
+        jf.frame_no,
+        jf.disc_no,
+        jf.disc_side,
+        jf.port_no,
+        jf.rfid_code,
+        jf.opposite_device_id,
+        jf.opposite_box_side,
+        jf.opposite_frame_no,
+        jf.opposite_disc_side,
+        jf.opposite_disc_no,
+        jf.opposite_port_no,
+        jf.adapter_type,
+        jf.remark,
+        jf.opposite_remark,
+        jf.opposite_rfid_code,
+        jf.branching_unit
+        FROM
+        jump_fiber_info jf
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="AND">
+                AND jf.is_deleted = '0'
+                <!--rfid_code为空-->
+                <if test="rfidCode != null and rfidCode != ''">
+                    AND jf.rfid_code = #{rfidCode}
+                </if>
+                <!--设施id为空-->
+                <if test="deviceId != null and deviceId != ''">
+                    AND jf.device_id = #{deviceId}
+                </if>
+                <!--框号为0-->
+                <if test="frameNo != null and frameNo != ''">
+                    <if test="frameNo != '0'.toString()">
+                        AND jf.frame_no = #{frameNo}
+                    </if>
+                </if>
+                <!--箱架AB面-->
+                <if test="boxSide != null">
+                    AND jf.box_side = #{boxSide}
+                </if>
+                <!--盘号为0-->
+                <if test="discNo != null and discNo != ''">
+                    <if test="discNo != '0'.toString()">
+                        AND jf.disc_no = #{discNo}
+                    </if>
+                </if>
+                <!--盘AB面-->
+                <if test="discSide != null">
+                    AND jf.disc_side = #{discSide}
+                </if>
+                <!--端口号-->
+                <if test="portNo != null and portNo != ''">
+                    <if test="portNo != '0'.toString()">
+                        AND jf.port_no = #{portNo}
+                    </if>
+                </if>
+            </trim>
+            OR
+            <trim prefix="(" suffix=")" prefixOverrides="AND">
+                AND jf.is_deleted = '0'
+                <!--rfid_code为空-->
+                <if test="rfidCode != null and rfidCode != ''">
+                    AND jf.opposite_rfid_code = #{rfidCode}
+                </if>
+                <!--设施id为空-->
+                <if test="deviceId != null and deviceId != ''">
+                    AND jf.opposite_device_id = #{deviceId}
+                </if>
+                <!--框号为0-->
+                <if test="frameNo != null and frameNo != ''">
+                    <if test="frameNo != '0'.toString()">
+                        AND jf.opposite_frame_no = #{frameNo}
+                    </if>
+                </if>
+                <!--箱架AB面-->
+                <if test="boxSide != null">
+                    AND jf.opposite_box_side = #{boxSide}
+                </if>
+                <!--盘号为0-->
+                <if test="discNo != null and discNo != ''">
+                    <if test="discNo != '0'.toString()">
+                        AND jf.opposite_disc_no = #{discNo}
+                    </if>
+                </if>
+                <!--盘AB面-->
+                <if test="discSide != null">
+                    AND jf.opposite_disc_side = #{discSide}
+                </if>
+                <!--端口号-->
+                <if test="portNo != null and portNo != ''">
+                    <if test="portNo != '0'.toString()">
+                        AND jf.opposite_port_no = #{portNo}
+                    </if>
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <!--app获取跳接rfid_code信息（正反匹配删除）-->
+    <select id="getJumpFiberRfidCodeByJumpFiberInfoForApp"
+            parameterType="com.fiberhome.filink.rfid.req.fibercore.QueryJumpFiberInfoReq" resultMap="JumpFiberResultMap">
+        SELECT rfid_code,opposite_rfid_code
+        FROM
+        jump_fiber_info
+        <where>
+            is_deleted = '0' AND
+            (
+            <!--本端端口信息-->
+            device_id = #{deviceId}
+            AND box_side = #{boxSide}
+            AND frame_no = #{frameNo}
+            AND disc_side = #{discSide}
+            AND disc_no = #{discNo}
+            AND port_no = #{portNo}
+
+            <!--对端端口信息-->
+            AND opposite_device_id = #{oppositeDeviceId}
+            AND opposite_box_side = #{oppositeBoxSide}
+            AND opposite_frame_no = #{oppositeFrameNo}
+            AND opposite_disc_side = #{oppositeDiscSide}
+            AND opposite_disc_no = #{oppositeDiscNo}
+            AND opposite_port_no = #{oppositePortNo}
+            )
+            OR
+            (
+            <!--本端端口信息-->
+            device_id = #{oppositeDeviceId}
+            AND box_side = #{oppositeBoxSide}
+            AND frame_no = #{oppositeFrameNo}
+            AND disc_side = #{oppositeDiscSide}
+            AND disc_no = #{oppositeDiscNo}
+            AND port_no = #{oppositePortNo}
+
+            <!--对端端口信息-->
+            AND opposite_device_id = #{deviceId}
+            AND opposite_box_side = #{boxSide}
+            AND opposite_frame_no = #{frameNo}
+            AND opposite_disc_side = #{discSide}
+            AND opposite_disc_no = #{discNo}
+            AND opposite_port_no = #{portNo}
+            )
+        </where>
+    </select>
+
+    <!--app删除当前跳接信息（正反匹配删除）-->
+    <update id="deleteJumpFiberInfoByJumpFiberInfoForApp"
+            parameterType="com.fiberhome.filink.rfid.req.fibercore.app.PortCableCoreInfoReqForApp">
+        UPDATE jump_fiber_info
+        SET is_deleted = '1',
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        <where>
+            (
+            <!--本端端口信息-->
+            device_id = #{deviceId}
+            AND box_side = #{boxSide}
+            AND frame_no = #{frameNo}
+            AND disc_side = #{discSide}
+            AND disc_no = #{discNo}
+            AND port_no = #{portNo}
+
+            <!--对端端口信息-->
+            AND opposite_device_id = #{oppositeDeviceId}
+            AND opposite_box_side = #{oppositeBoxSide}
+            AND opposite_frame_no = #{oppositeFrameNo}
+            AND opposite_disc_side = #{oppositeDiscSide}
+            AND opposite_disc_no = #{oppositeDiscNo}
+            AND opposite_port_no = #{oppositePortNo}
+            )
+            OR
+            (
+            <!--本端端口信息-->
+            device_id = #{oppositeDeviceId}
+            AND box_side = #{oppositeBoxSide}
+            AND frame_no = #{oppositeFrameNo}
+            AND disc_side = #{oppositeDiscSide}
+            AND disc_no = #{oppositeDiscNo}
+            AND port_no = #{oppositePortNo}
+
+            <!--对端端口信息-->
+            AND opposite_device_id = #{deviceId}
+            AND opposite_box_side = #{boxSide}
+            AND opposite_frame_no = #{frameNo}
+            AND opposite_disc_side = #{discSide}
+            AND opposite_disc_no = #{discNo}
+            AND opposite_port_no = #{portNo}
+            )
+        </where>
+    </update>
+
+    <!--app删除端口对应跳接信息-->
+    <update id="deleteJumpFiberInfoByPortInfoFroApp"
+            parameterType="com.fiberhome.filink.rfid.req.fibercore.app.JumpFiberInfoReqForApp">
+        UPDATE jump_fiber_info
+        SET is_deleted = '1',
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        <where>
+            (rfid_code = #{oppositeRfidCode} AND device_id = #{oppositeDeviceId} AND box_side = #{oppositeBoxSide} AND frame_no = #{oppositeFrameNo} AND
+            disc_side = #{oppositeDiscSide} AND disc_no = #{oppositeDiscNo} AND port_no = #{oppositePortNo})
+            OR
+            (opposite_rfid_code = #{oppositeRfidCode} AND opposite_device_id = #{oppositeDeviceId} AND opposite_box_side = #{oppositeBoxSide}
+            AND opposite_frame_no = #{oppositeFrameNo} AND opposite_disc_side = #{oppositeDiscSide} AND opposite_disc_no = #{oppositeDiscNo} AND
+            opposite_port_no = #{oppositePortNo})
+        </where>
+    </update>
+
+    <!--app删除分路器端口对应跳接信息-->
+    <update id="deleteJumpFiberInfoByPortInfoToBranchingUnitFroApp"
+            parameterType="com.fiberhome.filink.rfid.req.fibercore.app.JumpFiberInfoReqForApp">
+        UPDATE jump_fiber_info
+        SET is_deleted = '1',
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        <where>
+            (rfid_code = #{rfidCode} AND opposite_rfid_code = #{oppositeRfidCode})
+            OR
+            (opposite_rfid_code = #{rfidCode} AND rfid_code = #{oppositeRfidCode})
+        </where>
+    </update>
+
+    <!--app跳接信息保存-->
+    <insert id="addJumpFiberInfo" parameterType="java.util.List">
+        INSERT INTO jump_fiber_info (
+        jump_fiber_id,
+        device_id,
+        box_side,
+        frame_no,
+        disc_side,
+        disc_no,
+        port_no,
+        rfid_code,
+        opposite_device_id,
+        opposite_box_side,
+        opposite_frame_no,
+        opposite_disc_side,
+        opposite_disc_no,
+        opposite_port_no,
+        adapter_type,
+        remark,
+        opposite_remark,
+        opposite_rfid_code,
+        inner_device,
+        branching_unit,
+        create_time,
+        create_user
+        )
+        VALUES
+        <foreach collection="operationJumpFiberInfoReqForAppList" item="jumpFiberInfo" index="index" open="" close=""
+                 separator=",">
+            (
+            #{jumpFiberInfo.jumpFiberId},
+            #{jumpFiberInfo.deviceId},
+            #{jumpFiberInfo.boxSide},
+            #{jumpFiberInfo.frameNo},
+            #{jumpFiberInfo.discSide},
+            #{jumpFiberInfo.discNo},
+            #{jumpFiberInfo.portNo},
+            #{jumpFiberInfo.rfidCode},
+            #{jumpFiberInfo.oppositeDeviceId},
+            #{jumpFiberInfo.oppositeBoxSide},
+            #{jumpFiberInfo.oppositeFrameNo},
+            #{jumpFiberInfo.oppositeDiscSide},
+            #{jumpFiberInfo.oppositeDiscNo},
+            #{jumpFiberInfo.oppositePortNo},
+            #{jumpFiberInfo.adapterType},
+            #{jumpFiberInfo.remark},
+            #{jumpFiberInfo.oppositeRemark},
+            #{jumpFiberInfo.oppositeRfidCode},
+            #{jumpFiberInfo.innerDevice},
+            #{jumpFiberInfo.branchingUnit},
+            #{jumpFiberInfo.createTime},
+            #{jumpFiberInfo.createUser}
+            )
+        </foreach>
+
+    </insert>
+
+    <!-- 跳接信息查询映射结果 -->
+    <resultMap id="queryCabinet" extends="JumpFiberResultMap"
+               type="com.fiberhome.filink.rfid.resp.statistics.JumpConnectionStatisticsResp">
+
+    </resultMap>
+    <!-- 查询柜内跳接-->
+    <select id="queryInCabinet"
+            parameterType="com.fiberhome.filink.rfid.req.statistics.jumpconnection.JumpConnectionStatisticsReq"
+            resultMap="queryCabinet">
+        SELECT
+        jfi.jump_fiber_id,
+        jfi.device_id,
+        jfi.box_side,
+        jfi.frame_no,
+        jfi.disc_side,
+        jfi.disc_no,
+        jfi.port_no,
+        jfi.rfid_code,
+        jfi.opposite_device_id,
+        jfi.opposite_box_side,
+        jfi.opposite_frame_no,
+        jfi.opposite_disc_side,
+        jfi.opposite_disc_no,
+        jfi.opposite_port_no,
+        jfi.adapter_type,
+        jfi.remark,
+        jfi.opposite_remark,
+        jfi.opposite_rfid_code,
+        jfi.inner_device,
+        jfi.branching_unit
+        FROM jump_fiber_info jfi
+        <where>
+            jfi.is_deleted = '0'
+            and jfi.inner_device = '0'
+            <if test="deviceId != null and deviceId != ''">
+                and jfi.device_id = #{deviceId}
+            </if>
+        </where>
+    </select>
+    <!-- 查询柜间跳接-->
+    <select id="queryOutCabinet"
+            parameterType="com.fiberhome.filink.rfid.req.statistics.jumpconnection.JumpConnectionStatisticsReq"
+            resultMap="queryCabinet">
+        SELECT
+        jfi.jump_fiber_id,
+        jfi.device_id,
+        jfi.box_side,
+        jfi.frame_no,
+        jfi.disc_side,
+        jfi.disc_no,
+        jfi.port_no,
+        jfi.rfid_code,
+        jfi.opposite_device_id,
+        jfi.opposite_box_side,
+        jfi.opposite_frame_no,
+        jfi.opposite_disc_side,
+        jfi.opposite_disc_no,
+        jfi.opposite_port_no,
+        jfi.adapter_type,
+        jfi.remark,
+        jfi.opposite_remark,
+        jfi.opposite_rfid_code,
+        jfi.inner_device,
+        jfi.branching_unit
+        FROM jump_fiber_info jfi
+        <where>
+            jfi.is_deleted = '0'
+            and jfi.inner_device = 1
+            <if test="deviceId != null and deviceId != '' and oppositeDeviceId != null and oppositeDeviceId != ''">
+                and (
+                (jfi.device_id = #{deviceId} and jfi.opposite_device_id = #{oppositeDeviceId})
+                or (jfi.device_id = #{oppositeDeviceId} and jfi.opposite_device_id = #{deviceId})
+                )
+            </if>
+        </where>
+    </select>
+
+    <select id="queryJumpFiberInfoByDeviceId"
+            parameterType="java.util.List"
+            resultMap="queryCabinet">
+        SELECT
+        jfi.jump_fiber_id,
+        jfi.device_id,
+        jfi.box_side,
+        jfi.frame_no,
+        jfi.disc_side,
+        jfi.disc_no,
+        jfi.port_no,
+        jfi.rfid_code,
+        jfi.opposite_device_id,
+        jfi.opposite_box_side,
+        jfi.opposite_frame_no,
+        jfi.opposite_disc_side,
+        jfi.opposite_disc_no,
+        jfi.opposite_port_no,
+        jfi.adapter_type,
+        jfi.remark,
+        jfi.opposite_remark,
+        jfi.opposite_rfid_code,
+        jfi.inner_device,
+        jfi.branching_unit
+        FROM jump_fiber_info jfi
+        <where>
+            jfi.is_deleted = '0'
+            AND (
+                jfi.device_id in
+                <foreach collection="list" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                or jfi.opposite_device_id in
+                <foreach collection="list" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                )
+        </where>
+    </select>
+
+    <!-- app修改本端跳接智能标签id-->
+    <update id="updateThisRfIdCodeForApp" parameterType="com.fiberhome.filink.rfid.req.fibercore.app.OperationJumpFiberInfoReqForApp">
+        UPDATE jump_fiber_info jfi
+        <set>
+          jfi.rfid_code = #{oppositeRfidCode}
+        </set>
+        <where>
+            jfi.is_deleted = '0' AND
+            jfi.rfid_code = #{rfidCode}
+        </where>
+    </update>
+
+    <!-- app修改对端跳接智能标签id-->
+    <update id="updateOppositeRfIdCodeForApp" parameterType="com.fiberhome.filink.rfid.req.fibercore.app.OperationJumpFiberInfoReqForApp">
+        UPDATE jump_fiber_info jfi
+        <set>
+            jfi.opposite_rfid_code = #{oppositeRfidCode}
+        </set>
+        <where>
+            jfi.is_deleted = '0' AND
+            jfi.opposite_rfid_code = #{rfidCode}
+        </where>
+    </update>
+
+    <!--根据智能标签id获取跳接信息-->
+    <select id="getJumpFiberInfoByRfidCode" parameterType="java.lang.String" resultMap="JumpFiberResultMap">
+        SELECT jfi.*
+        FROM
+        jump_fiber_info jfi
+        <where>
+            jfi.is_deleted = '0' AND
+            (jfi.rfid_code = #{rfidCode} OR jfi.opposite_rfid_code = #{rfidCode})
+        </where>
+    </select>
+
+    <!--根据id删除跳接信息-->
+    <update id="deleteJumpFiberInfoById">
+        UPDATE jump_fiber_info
+        SET
+          is_deleted = '1',
+          update_time = #{updateTime},
+          update_user = #{updateUser}
+        <where>
+            <!--跳接ids-->
+            <if test="jumpFiberIdList != null and jumpFiberIdList.size() > 0 ">
+                <if test="jumpFiberIdList.size() == 1">
+                    AND jump_fiber_id =
+                    <foreach collection="jumpFiberIdList" item="jumpFiberId">
+                        #{jumpFiberId}
+                    </foreach>
+                </if>
+                <if test="jumpFiberIdList.size() > 1">
+                    AND jump_fiber_id IN
+                    <foreach collection="jumpFiberIdList" item="jumpFiberId" open="(" close=")" separator=",">
+                        #{jumpFiberId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </update>
+</mapper>

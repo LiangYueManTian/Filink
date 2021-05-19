@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowserver.dao.ActProcessTaskConfigDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.workflowserver.bean.ActProcessTaskConfig">
+        <result column="proc_id" property="procId" />
+        <result column="proc_type" property="procType" />
+        <result column="proc_name" property="procName" />
+        <result column="proc_task_name" property="procTaskName" />
+        <result column="proc_task_desc" property="procTaskDesc" />
+        <result column="proc_status_name" property="procStatusName" />
+        <result column="proc_status_code" property="procStatusCode" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+          proc_id, proc_type, proc_name, proc_task_name, proc_task_desc, proc_status_name, proc_status_code
+    </sql>
+
+    <select id="queryListProcessTaskConfig" resultMap="BaseResultMap" parameterType="com.fiberhome.filink.workflowserver.bean.ActProcessTaskConfig" >
+        select <include refid="Base_Column_List" />
+        from act_process_task_config
+        where 1=1
+        <if test="procId != null">
+            and proc_id = #{procId, jdbcType=VARCHAR}
+        </if>
+        <if test="procType != null">
+            and proc_type = #{procType, jdbcType=VARCHAR}
+        </if>
+        <if test="procName != null">
+            and proc_name = #{procName, jdbcType=VARCHAR}
+        </if>
+        <if test="procTaskName != null">
+            and proc_task_name = #{procTaskName, jdbcType=VARCHAR}
+        </if>
+        <if test="procTaskDesc != null">
+            and proc_task_desc = #{procTaskDesc, jdbcType=VARCHAR}
+        </if>
+        <if test="procStatusName != null">
+            and proc_status_name = #{procStatusName, jdbcType=VARCHAR}
+        </if>
+        <if test="procStatusCode != null">
+            and proc_status_code = #{procStatusCode, jdbcType=VARCHAR}
+        </if>
+    </select>
+
+</mapper>

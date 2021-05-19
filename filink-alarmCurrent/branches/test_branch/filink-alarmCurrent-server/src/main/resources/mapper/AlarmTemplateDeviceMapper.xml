@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmcurrentserver.dao.AlarmTemplateDeviceDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmcurrentserver.bean.AlarmTemplateDevice">
+        <result column="template_id" property="templateId" />
+        <result column="device_name" property="deviceName" />
+        <result column="device_id" property="deviceId" />
+    </resultMap>
+
+    <insert id="addAlarmTemplateDevice">
+        INSERT INTO alarm_template_device (template_id,device_name,device_id) VALUE
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.templateId},
+            #{item.deviceName},
+            #{item.deviceId}
+            )
+        </foreach>
+    </insert>
+
+    <sql id="BaseResultSql">
+        template_id,device_name,device_id
+    </sql>
+
+    <delete id="batchDeleteAlarmTemplateDevice">
+        DELETE FROM alarm_template_device WHERE template_id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="batchUpdateAlarmTemplateDevice" parameterType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmTemplateDevice">
+        UPDATE alarm_template_device SET device_name=#{deviceName},device_id=#{deviceId} WHERE template_id=#{templateId}
+    </update>
+
+    <select id="queryAlarmDeviceById" parameterType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmTemplateDevice"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_template_device WHERE template_id=#{id}
+    </select>
+
+</mapper>

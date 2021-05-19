@@ -1,0 +1,491 @@
+<protocol>
+    <hardwareVersion>1.7</hardwareVersion>
+    <softwareVersion>1.7</softwareVersion>
+    <request>
+        <headParam id="frameHead" name="帧地址头" type="int" length="2"/>
+        <headParam id="cmdLen" name="命令长度" type="int" length="2"/>
+        <headParam id="protocolFlag" name="协议标志位" type="string" length="4"/>
+        <headParam id="cmdId" name="命令序列号" type="int" length="4"/>
+        <headParam id="equipmentId" name="设备id" type="int" length="4"/>
+        <headParam id="cmdType" name="命令类型" type="int" length="2"/>
+        <headParam reserved="true" length="16"/>
+        <headParam id="len" name="净荷长度" type="int" length="2"/>
+    </request>
+    <response>
+        <success>
+            <dataParams></dataParams>
+        </success>
+        <failed>
+            <dataParams></dataParams>
+        </failed>
+    </response>
+    <datas>
+        <data cmdId="0x2201">
+            <dataRequest>
+                <dataParams>
+                    <dataParam length="3" reserved="true"/>
+                    <dataParam id="status" name="状态值" type="int" length="1" random="true"/>
+                    <dataParam id="item" name="循环次数" type="int" length="2" foreach="true"/>
+                    <foreach countReference="item">
+                        <dataParam id="slotNum" name="槽标识" type="int" length="2"/>
+                        <dataParam id="operate" name="操作" type="int" length="2" resultMap="operateMap"/>
+                    </foreach>
+                    <dataParam length="8" reserved="true"/>
+                </dataParams>
+            </dataRequest>
+            <dataResponse>
+                <dataParams>
+                    <dataParam length="4" reserved="true"/>
+                    <dataParam id="item" name="循环次数" type="int" length="2"/>
+                    <dataParam id="slotNum" name="槽标识" type="int" length="2"/>
+                    <dataParam id="result" name="锁芯执行结果" type="int" length="2" resultMap="lockResultMap"/>
+                </dataParams>
+            </dataResponse>
+        </data>
+
+        <data cmdId="0x2204">
+            <dataRequest>
+                <dataParams>
+                    <dataParam reserved="true" length="4"/>
+                    <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                    <dataParam id="softwareVersion" name="软件版本" type="String" length="20"/>
+                    <dataParam id="hardwareVersion" name="硬件版本" type="String" length="20"/>
+                    <dataParam id="moduleType" name="通信模块类型" type="int" length="4" resultMap="moduleResult"/>
+                    <dataParam reserved="true" length="8"/>
+                </dataParams>
+            </dataRequest>
+            <dataResponse>
+                <dataParams>
+                    <dataParam reserved="true" length="4"/>
+                    <dataParam id="item" name="循环次数" type="int" length="2"/>
+                    <dataParam id="dataClass" name="消息类别" type="int" length="4"/>
+                    <dataParam id="size" name="数值长度" type="int" length="2"/>
+                    <dataParam id="data" name="数值" lengthReference="size" type="int"/>
+                    <dataParam id="addedData" name="附加长度" length="4"/>
+                    <dataParam reserved="true" length="8"/>
+                </dataParams>
+            </dataResponse>
+        </data>
+
+        <data cmdId="0x2205">
+            <dataRequest>
+                <dataParams>
+                    <dataParam reserved="true" length="4"/>
+                    <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                    <dataParam reserved="true" length="8"/>
+                </dataParams>
+            </dataRequest>
+        </data>
+
+        <data cmdId="0x2206">
+            <dataRequest>
+
+            </dataRequest>
+            <dataResponse>
+                <dataParams>
+                    <dataParam reserved="true" length="4"/>
+                    <dataParam reserved="true" length="8"/>
+                </dataParams>
+            </dataResponse>
+        </data>
+
+        <data cmdId="0x2207">
+            <dataRequest>
+                <dataParams>
+                    <dataParam reserved="true" length="4"/>
+                    <dataParam id="item" name="循环次数" type="int" length="4" foreach="true"/>
+                    <foreach>
+                        <dataParam id="dataClass" name="消息类别" type="int" length="4" chooseHandler="sendChoose"/>
+                    </foreach>
+                    <dataParam reserved="true" length="8"/>
+                </dataParams>
+            </dataRequest>
+        </data>
+
+        <data cmdId="0x2208">
+            <dataRequest>
+                <dataParams>
+                    <dataParam reserved="true" length="4"/>
+                    <dataParam id="item" name="循环次数" type="int" length="4" foreach="true"/>
+                    <foreach countReference="item">
+                        <dataParam id="dataClass" name="消息类别" type="int" length="4" chooseHandler="receiveChoose"/>
+                    </foreach>
+                    <dataParam reserved="true" length="8"/>
+                </dataParams>
+            </dataRequest>
+            <dataResponse>
+
+            </dataResponse>
+        </data>
+
+        <data cmdId="0x3201">
+            <dataRequest>
+                <dataParams>
+                    <dataParam reserved="true" length="4"/>
+                    <dataParam id="time" name="消息时间" length="7" handler="dateHandler"/>
+                    <dataParam id="lockType" name="开锁方式" type="int" length="1" resultMap="lockTypeResult"/>
+                    <dataParam id="lockNum" name="锁具编号" type="int" length="1"/>
+                    <dataParam id="lockState" name="门锁状态" type="int" length="2"/>
+                    <dataParam reserved="true" length="8"/>
+                </dataParams>
+            </dataRequest>
+            <dataResponse>
+
+            </dataResponse>
+        </data>
+
+        <data cmdId="0x3202">
+            <dataRequest>
+
+            </dataRequest>
+            <dataResponse>
+                <dataParams>
+                    <dataParam reserved="true" length="4"/>
+                    <dataParam id="time" name="消息时间" handler="dateHandler" length="7"/>
+                    <dataParam id="lockNum" name="门锁状态" type="int" length="2"/>
+                    <dataParam reserved="true" length="8"/>
+                </dataParams>
+            </dataResponse>
+        </data>
+    </datas>
+
+    <chooseHandlers>
+        <chooseHandler id="receiveChoose">
+            <choose id="electricity" code="0x3901" name="电量">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="temperature" code="0x3902" name="温度">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="notClosed" code="0x3903" name="未关门">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size" dataFormat="unlockHandler"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="violenceClose" code="0x3904" name="暴力关门">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="shake" code="0x3905" name="震动">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="humidity" code="0x3906" name="湿度">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="voltage" code="0x3907" name="电压">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="leach" code="0x3908" name="水浸">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="lean" code="0x3909" name="倾斜">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="pryDoor" code="0x3910" name="撬门">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="pryLock" code="0x3911" name="撬锁">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="unlock" code="0x3912" name="未关锁">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size" dataFormat="unlockHandler"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="currentTime" code="0x2001" name="当前时间">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size" dataFormat="dateDecoder"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="restartTime" code="0x2002" name="重启时间">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size" dataFormat="dateDecoder"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="workTime" code="0x2003" name="工作时长">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size" dataFormat="dateDecoder"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="isUpdate" code="0x2004" name="是否需要升级">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="wirelessModuleSignal" code="0x2005" name="无线模块信号值">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="supplyElectricityWay" code="0x2006" name="供电方式">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+            <choose id="moduleType" code="0x2007" name="模块类型">
+                <dataParam id="time" name="消息时间" length="7" dataFormat="dateDecoder"/>
+                <dataParam id="alarmFlag" name="告警标志" type="int" resultMap="alarmFlagResult" length="1"/>
+                <dataParam id="size" name="数值长度" type="int" length="2"/>
+                <dataParam id="data" name="数值" lengthReference="size"/>
+                <dataParam id="addedData" name="附加长度" type="int" length="4"/>
+            </choose>
+        </chooseHandler>
+
+
+        <chooseHandler id="sendChoose">
+            <choose id="electricity" code="0x3901" name="电量">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="2"/>
+                <dataParam id="data" name="数值" type="int" length="2"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="temperature" code="0x3902" name="温度">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="2"/>
+                <dataParam id="data" name="数值" type="int" length="2"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="notClosed" code="0x3903" name="未关门">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="2"/>
+                <dataParam id="data" name="数值" type="int" length="2"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="violenceClose" code="0x3904" name="暴力关门">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="2"/>
+                <dataParam id="data" name="数值" type="int" length="2"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="shake" code="0x3905" name="震动">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="2"/>
+                <dataParam id="data" name="数值" type="int" length="2"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="humidity" code="0x3906" name="湿度">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="2"/>
+                <dataParam id="data" name="数值" type="int" length="2"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="voltage" code="0x3907" name="电压">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="2"/>
+                <dataParam id="data" name="数值" type="int" length="2"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="leach" code="0x3908" name="水浸">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="2"/>
+                <dataParam id="data" name="数值" type="int" length="2"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="lean" code="0x3909" name="倾斜">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="2"/>
+                <dataParam id="data" name="数值" type="int" length="2"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="currentTime" code="0x2001" name="当前时间">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="7"/>
+                <dataParam id="data" name="数值" type="int" length="7"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="restartTime" code="0x2002" name="重启时间">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="7"/>
+                <dataParam id="data" name="数值" type="int" length="7"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="workTime" code="0x2003" name="工作时长">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="7"/>
+                <dataParam id="data" name="数值" type="int" length="7"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="isUpdate" code="0x2004" name="是否需要升级">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="1"/>
+                <dataParam id="data" name="数值" type="int" length="1"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="wirelessModuleSignal" code="0x2005" name="无线模块信号值">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="1"/>
+                <dataParam id="data" name="数值" type="int" length="1"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+            <choose id="supplyElectricityWay" code="0x2006" name="供电方式">
+                <dataParam id="size" name="数值长度" type="int" length="2" data="1"/>
+                <dataParam id="data" name="数值" type="int" length="1"/>
+                <dataParam reserved="true" length="4"/>
+            </choose>
+        </chooseHandler>
+    </chooseHandlers>
+
+    <dataFormats>
+        <dataFormat id="dateDecoder" className="com.fiberhome.filink.station_server.dataHandler.impl.DateDecoder">
+            <dataFormatParam id="year" name="年" type="int" length="2"/>
+            <dataFormatParam id="month" name="月" type="int" length="1"/>
+            <dataFormatParam id="day" name="日" type="int" length="1"/>
+            <dataFormatParam id="hour" name="时" type="int" length="1"/>
+            <dataFormatParam id="minute" name="分" type="int" length="1"/>
+            <dataFormatParam id="second" name="秒" type="int" length="1"/>
+        </dataFormat>
+
+        <dataFormat id="dateEncoder" className="com.fiberhome.filink.station_server.dataHandler.impl.DateEncoder">
+            <dataFormatParam id="year" name="年" type="int" length="2"/>
+            <dataFormatParam id="month" name="月" type="int" length="1"/>
+            <dataFormatParam id="day" name="日" type="int" length="1"/>
+            <dataFormatParam id="hour" name="时" type="int" length="1"/>
+            <dataFormatParam id="minute" name="分" type="int" length="1"/>
+            <dataFormatParam id="second" name="秒" type="int" length="1"/>
+        </dataFormat>
+
+        <dataFormat id="unlockHandler" className="com.fiberhome.filink.station_server.dataHandler.impl.UnlockHandler"
+                    resultMap="doorLockMap">
+            <dataFormatParam name="4" length="1"/>
+            <dataFormatParam name="3" length="1"/>
+            <dataFormatParam name="2" length="1"/>
+            <dataFormatParam name="1" length="1"/>
+        </dataFormat>
+    </dataFormats>
+
+    <resultMaps>
+        <resultMap id="doorLockMap">
+            <!--门状态:   锁状态:  0:无效 1:开 2:关-->
+            <dataResult code="0x00" msg="22"/>
+            <dataResult code="0x01" msg="21"/>
+            <dataResult code="0x02" msg="11"/>
+            <dataResult code="0x03" msg="12"/>
+            <dataResult code="0x7b" msg="02"/>
+            <dataResult code="0x7c" msg="01"/>
+            <dataResult code="0x7d" msg="10"/>
+            <dataResult code="0x7e" msg="20"/>
+            <dataResult code="0x7f" msg="00"/>
+        </resultMap>
+
+        <resultMap id="operateMap">
+            <dataResult code="0" msg="开锁"/>
+            <dataResult code="1" msg="关锁"/>
+        </resultMap>
+
+        <resultMap id="lockResultMap">
+            <dataResult code="0" msg="成功"/>
+            <dataResult code="1" msg="密钥未配置"/>
+            <dataResult code="2" msg="参数错误"/>
+            <dataResult code="3" msg="锁已开"/>
+            <dataResult code="4" msg="激活唯一码不正确"/>
+            <dataResult code="5" msg="未配置锁具"/>
+            <dataResult code="6" msg="其他"/>
+        </resultMap>
+
+        <resultMap id="lockTypeResult">
+            <dataResult code="0" msg="其他"/>
+            <dataResult code="1" msg="PDA开锁"/>
+            <dataResult code="2" msg="网管开锁"/>
+        </resultMap>
+
+        <resultMap id="alarmFlagResult">
+            <dataResult code="0" msg="无告警"/>
+            <dataResult code="1" msg="告警"/>
+            <dataResult code="2" msg="正常"/>
+        </resultMap>
+
+        <resultMap id="moduleResult">
+            <dataResult code="1" msg="2g模块"/>
+            <dataResult code="2" msg="NB模块"/>
+        </resultMap>
+    </resultMaps>
+
+    <details>
+        <detailParam id="001" name="详情"/>
+        <detailParam id="002" name="设施日志"/>
+        <detailParam id="003" name="电子锁"/>
+    </details>
+
+    <configurations>
+        <configuration id="threshold" name="阈值">
+            <configurationParam id="electricityThreshold" name="电量告警阈值" type="input" code="0x111"/>
+            <configurationParam id="highTempThreshold" name="高温告警阈值" type="input" code="0x111"/>
+            <configurationParam id="lowTempThreshold" name="低温告警阈值" type="input" code="0x111"/>
+            <configurationParam id="leanThreshold" name="倾斜阈值" type="input" code="0x111"/>
+            <configurationParam id="tempThreshold" name="温度阈值" type="input" code="0x111"/>
+        </configuration>
+        <configuration id="deviceConfig" name="设施配置">
+            <configurationParam id="pixel" name="照片像素" type="select" code="0x222">
+                <selectParam id="160x128" name="160x128像素"/>
+                <selectParam id="360x240" name="360x240像素"/>
+                <selectParam id="640x480" name="640x480像素"/>
+                <selectParam id="1280x1024" name="1280x1024像素"/>
+            </configurationParam>
+            <configurationParam id="ftpIp" name="ftp IP" type="input" code="0x333"/>
+            <configurationParam id="ftpPort" name="端口号" type="input" code="0x333"/>
+            <configurationParam id="username" name="用户名" type="input" code="0x333"/>
+            <configurationParam id="password" name="密码" type="input" code="0x333"/>
+        </configuration>
+        <configuration id="cycle" name="周期">
+            <configurationParam id="heartbeatCycle" name="心跳周期" type="select" code="0x444">
+                <selectParam id="4" name="4h"/>
+                <selectParam id="8" name="8h"/>
+                <selectParam id="12" name="12h"/>
+            </configurationParam>
+            <configurationParam id="unlockAlarmCycle" name="未关门告警时长" type="select" code="0x555">
+                <selectParam id="4" name="4h"/>
+                <selectParam id="8" name="8h"/>
+                <selectParam id="12" name="12h"/>
+            </configurationParam>
+            <configurationParam id="exceptionHeartbeatCycle" name="异常心跳周期" type="select" code="0x666">
+                <selectParam id="4" name="4h"/>
+                <selectParam id="8" name="8h"/>
+                <selectParam id="12" name="12h"/>
+                <selectParam id="24" name="24h"/>
+                <selectParam id="0" name="0"/>
+            </configurationParam>
+        </configuration>
+    </configurations>
+</protocol>
+

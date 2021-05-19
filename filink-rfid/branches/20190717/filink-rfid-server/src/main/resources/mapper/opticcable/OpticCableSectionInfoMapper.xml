@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.opticcable.OpticCableSectionInfoDao">
+
+    <!-- 光缆段通用查询映射结果 -->
+    <resultMap id="OpticCableSectionInfoResultMap"
+               type="com.fiberhome.filink.rfid.bean.opticcable.OpticCableSectionInfo">
+        <id column="optic_cable_section_id" property="opticCableSectionId"/>
+        <result column="optic_cable_section_name" property="opticCableSectionName"/>
+        <result column="belong_optic_cable_id" property="belongOpticCableId"/>
+        <result column="length" property="length"/>
+        <result column="area_id" property="areaId"/>
+        <result column="start_node" property="startNode"/>
+        <result column="start_node_device_type" property="startNodeDeviceType"/>
+        <result column="termination_node" property="terminationNode"/>
+        <result column="termination_node_device_type" property="terminationNodeDeviceType"/>
+        <result column="core_num" property="coreNum"/>
+        <result column="status" property="status"/>
+        <result column="serial_num" property="serialNum"/>
+        <result column="remark" property="remark"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!-- 光缆段查询映射结果 -->
+    <resultMap id="OpticCableSectionInfoRespMap" extends="OpticCableSectionInfoResultMap"
+               type="com.fiberhome.filink.rfid.resp.opticcable.OpticCableSectionInfoResp">
+        <result column="optic_cable_name" property="opticCableName"/>
+    </resultMap>
+
+    <!-- app请求光缆段基础信息 -->
+    <resultMap id="OpticCableSectionInfoRespForApp" extends="OpticCableSectionInfoResultMap"
+               type="com.fiberhome.filink.rfid.resp.opticcable.app.OpticCableSectionInfoRespForApp">
+        <result column="optic_cable_name" property="opticCableName"/>
+    </resultMap>
+
+
+    <!--光缆段排序sql-->
+    <sql id="sortBySql">
+        <if test="sortCondition.sortField == null and sortCondition.sortField !='' ">
+            ORDER BY oci.create_time DESC
+        </if>
+        <if test="sortCondition.sortField != null and sortCondition.sortField != '' ">
+            <if test="sortCondition.sortField == 'opticCableName'">
+                order by oci.optic_cable_name
+            </if>
+            <if test="sortCondition.sortField == 'opticCableSectionName'">
+                order by ocsi.optic_cable_section_name
+            </if>
+            <if test="sortCondition.sortField == 'belongOpticCableId'">
+                order by ocsi.belong_optic_cable_id
+            </if>
+            <if test="sortCondition.sortField == 'length'">
+                order by CONVERT(ocsi.length ,SIGNED)
+            </if>
+            <if test="sortCondition.sortField == 'areaId'">
+                order by ocsi.area_id
+            </if>
+            <if test="sortCondition.sortField == 'startNode'">
+                order by ocsi.start_node
+            </if>
+            <if test="sortCondition.sortField == 'startNodeDeviceType'">
+                order by ocsi.start_node_device_type
+            </if>
+            <if test="sortCondition.sortField == 'terminationNode'">
+                order by ocsi.termination_node
+            </if>
+            <if test="sortCondition.sortField == 'terminationNodeDeviceType'">
+                order by ocsi.termination_node_device_type
+            </if>
+            <if test="sortCondition.sortField == 'coreNum'">
+                order by CONVERT(ocsi.core_num,SIGNED)
+            </if>
+            <if test="sortCondition.sortField == 'status'">
+                order by ocsi.status
+            </if>
+            <if test="sortCondition.sortField == 'serialNum'">
+                order by ocsi.serial_num
+            </if>
+            <if test="sortCondition.sortField == 'remark'">
+                order by ocsi.remark
+            </if>
+        </if>
+        <!--排序方式-->
+        <if test="sortCondition.sortRule != null and sortCondition.sortRule != ''">
+            ${sortCondition.sortRule}
+        </if>
+    </sql>
+    <!--光缆段的过滤-->
+    <sql id="filterBySql">
+        <if test="bizCondition != null and bizCondition != null">
+            <!--所属光缆id-->
+            <if test="bizCondition.belongOpticCableId != null and bizCondition.belongOpticCableId != ''">
+                AND ocsi.belong_optic_cable_id = #{bizCondition.belongOpticCableId}
+            </if>
+            <!--所属设备id-->
+            <if test="bizCondition.deviceId != null and bizCondition.deviceId != ''">
+                AND (ocsi.start_node = #{bizCondition.deviceId}
+                OR ocsi.termination_node = #{bizCondition.deviceId})
+            </if>
+            <if test="bizCondition.opticCableName != null and bizCondition.opticCableName != '' ">
+                AND oci.optic_cable_name like concat('%',#{bizCondition.opticCableName},'%')
+            </if>
+            <if test="bizCondition.opticCableSectionName  != null and bizCondition.opticCableSectionName != ''">
+                AND ocsi.optic_cable_section_name like concat('%',#{bizCondition.opticCableSectionName},'%')
+            </if>
+            <if test="bizCondition.belongOpticCableId != null and bizCondition.opticCableSectionName != ''">
+                AND ocsi.belong_optic_cable_id = #{bizCondition.belongOpticCableId}
+            </if>
+            <if test="bizCondition.length != null and bizCondition.length != ''">
+                AND CONVERT(ocsi.length ,SIGNED) <![CDATA[${bizCondition.lengthOperateValue}]]> #{bizCondition.length}
+            </if>
+            <if test="bizCondition.startNode != null and bizCondition.startNode != ''">
+                AND ocsi.start_node = #{bizCondition.startNode}
+            </if>
+            <if test="bizCondition.startNodes != null and bizCondition.startNodes.size()>0">
+                AND ocsi.start_node in
+                <foreach collection="bizCondition.startNodes" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="bizCondition.terminationNode  != null and bizCondition.terminationNode != ''">
+                AND ocsi.termination_node = #{bizCondition.terminationNode}
+            </if>
+            <if test="bizCondition.terminationNodes != null and bizCondition.terminationNodes.size()>0">
+                AND ocsi.termination_node in
+                <foreach collection="bizCondition.terminationNodes" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="bizCondition.coreNum != null and bizCondition.coreNum != ''">
+                AND CONVERT(ocsi.core_num,SIGNED)  <![CDATA[${bizCondition.coreNumOperateValue}]]>
+                #{bizCondition.coreNum}
+            </if>
+            <if test="bizCondition.status != null and bizCondition.status != ''">
+                AND ocsi.status = #{bizCondition.status}
+            </if>
+            <if test="bizCondition.serialNum != null and bizCondition.serialNum != ''">
+                AND ocsi.serial_num like concat('%',#{bizCondition.serialNum},'%')
+            </if>
+            <if test="bizCondition.remark != null and bizCondition.remark != ''">
+                AND ocsi.remark like concat('%',#{bizCondition.remark},'%')
+            </if>
+            <if test="bizCondition.areaIds != null and bizCondition.areaIds.size > 0">
+                AND ocsi.area_id in
+                <foreach collection="bizCondition.areaIds" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="bizCondition.startNodeDeviceTypes != null and bizCondition.startNodeDeviceTypes.size > 0">
+                AND ocsi.start_node_device_type in
+                <foreach collection="bizCondition.startNodeDeviceTypes" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="bizCondition.terminationNodeDeviceTypes != null and bizCondition.terminationNodeDeviceTypes.size > 0">
+                AND ocsi.termination_node_device_type in
+                <foreach collection="bizCondition.terminationNodeDeviceTypes" item="item" open="(" close=")"
+                         separator=",">
+                    #{item}
+                </foreach>
+            </if>
+
+            <!--权限区域ids-->
+            <if test="bizCondition.permissionAreaIds != null and bizCondition.permissionAreaIds.size() > 0">
+                <if test="bizCondition.permissionAreaIds.size() == 1">
+                    AND ocsi.area_id =
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionAreaIds.size() > 1">
+                    AND ocsi.area_id IN
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId" open="(" close=")"
+                             separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--光缆段idList-->
+            <if test="bizCondition.opticCableSectionIdList != null and bizCondition.opticCableSectionIdList.size() > 0">
+                <if test="bizCondition.opticCableSectionIdList.size() == 1">
+                    AND ocsi.optic_cable_section_id =
+                    <foreach collection="bizCondition.opticCableSectionIdList" item="opticCableSectionId">
+                        #{opticCableSectionId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.opticCableSectionIdList.size() > 1">
+                    AND ocsi.optic_cable_section_id IN
+                    <foreach collection="bizCondition.opticCableSectionIdList" item="opticCableSectionId" open="("
+                             close=")" separator=",">
+                        #{opticCableSectionId}
+                    </foreach>
+                </if>
+            </if>
+        </if>
+    </sql>
+
+
+    <sql id="selectColumn">
+        ocsi.optic_cable_section_id,
+        ocsi.optic_cable_section_name,
+        ocsi.belong_optic_cable_id,
+        ocsi.length,
+        ocsi.area_id,
+        ocsi.start_node,
+        ocsi.start_node_device_type,
+        ocsi.termination_node,
+        ocsi.termination_node_device_type,
+        ocsi.core_num,
+        ocsi.status,
+        ocsi.serial_num,
+        ocsi.remark,
+        ocsi.is_deleted,
+        ocsi.create_user,
+        ocsi.create_time,
+        ocsi.update_user,
+        ocsi.update_time
+    </sql>
+
+    <!--分页查询光缆段列表-->
+    <select id="selectOpticCableSection" parameterType="com.fiberhome.filink.bean.QueryCondition"
+            resultMap="OpticCableSectionInfoRespMap">
+        SELECT
+        oci.optic_cable_name,
+        <include refid="selectColumn"></include>
+        FROM
+        optic_cable_section_info ocsi
+        left join optic_cable_info oci
+        on ocsi.belong_optic_cable_id = oci.optic_cable_id
+        <where>
+            ocsi.is_deleted = '0'
+            <include refid="filterBySql"></include>
+            <include refid="sortBySql"></include>
+        </where>
+        <if test="pageCondition.beginNum != null and pageCondition.pageSize != null">
+            LIMIT
+            #{pageCondition.beginNum},#{pageCondition.pageSize}
+        </if>
+    </select>
+
+    <!--拓扑根据光缆id查询光缆段列表-->
+    <select id="opticCableSectionByIdForTopology"
+            parameterType="com.fiberhome.filink.rfid.req.opticcable.OpticCableSectionInfoReq"
+            resultMap="OpticCableSectionInfoRespMap">
+        SELECT
+        <include refid="selectColumn"></include>
+        FROM
+        optic_cable_section_info ocsi
+        <where>
+            ocsi.is_deleted = '0'
+            AND ocsi.belong_optic_cable_id = #{belongOpticCableId}
+            <!--权限区域ids-->
+            <if test="permissionAreaIds != null and permissionAreaIds.size() > 0">
+                <if test="permissionAreaIds.size() == 1">
+                    AND ocsi.area_id =
+                    <foreach collection="permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="permissionAreaIds.size() > 1">
+                    AND ocsi.area_id IN
+                    <foreach collection="permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!--根据设施查询光缆段-->
+    <select id="opticCableSectionByDevice" parameterType="java.util.List"
+            resultMap="OpticCableSectionInfoRespMap">
+        SELECT
+        <include refid="selectColumn"></include>
+        FROM
+        optic_cable_section_info ocsi
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="AND">
+                <!--设施ids-->
+                <if test="deviceIds != null and deviceIds.size() > 0">
+                    <if test="deviceIds.size() == 1">
+                        AND ocsi.start_node =
+                        <foreach collection="deviceIds" item="deviceId">
+                            #{deviceId}
+                        </foreach>
+                    </if>
+                    <if test="deviceIds.size() > 1">
+                        AND ocsi.start_node IN
+                        <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                            #{deviceId}
+                        </foreach>
+                    </if>
+                </if>
+            </trim>
+            OR
+            <trim prefix="(" suffix=")" prefixOverrides="AND">
+                <!--设施ids-->
+                <if test="deviceIds != null and deviceIds.size() > 0">
+                    <if test="deviceIds.size() == 1">
+                        AND ocsi.termination_node =
+                        <foreach collection="deviceIds" item="deviceId">
+                            #{deviceId}
+                        </foreach>
+                    </if>
+                    <if test="deviceIds.size() > 1">
+                        AND ocsi.termination_node IN
+                        <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                            #{deviceId}
+                        </foreach>
+                    </if>
+                </if>
+            </trim>
+            AND ocsi.is_deleted = '0'
+        </where>
+    </select>
+
+    <!--查询光缆段总数-->
+    <select id="opticCableSectionByIdTotal" parameterType="com.fiberhome.filink.bean.QueryCondition"
+            resultType="java.lang.Integer">
+        select
+        count(ocsi.optic_cable_section_id)
+        from optic_cable_section_info ocsi
+        left join optic_cable_info oci
+        on ocsi.belong_optic_cable_id = oci.optic_cable_id
+        <where>
+            ocsi.is_deleted = '0'
+            <include refid="filterBySql"></include>
+            <include refid="sortBySql"></include>
+        </where>
+
+    </select>
+
+    <!--查询光缆段列表-->
+    <select id="queryOpticCableSection"
+            parameterType="com.fiberhome.filink.rfid.req.opticcable.OpticCableSectionInfoReq"
+            resultMap="OpticCableSectionInfoRespMap">
+        SELECT
+        <include refid="selectColumn"></include>
+        FROM
+        optic_cable_section_info ocsi
+        <where>
+            ocsi.is_deleted = '0'
+            AND ocsi.belong_optic_cable_id = #{belongOpticCableId}
+        </where>
+    </select>
+
+    <!--删除光缆段-->
+    <update id="deleteOpticCableSectionByOpticCableSectionId"
+            parameterType="com.fiberhome.filink.rfid.req.opticcable.OpticCableSectionInfoReq">
+        update optic_cable_section_info ocsi
+        <set>
+            ocsi.is_deleted = 1,
+            ocsi.update_user = #{updateUser},
+            ocsi.update_time = #{updateTime}
+        </set>
+        <where>
+            ocsi.optic_cable_section_id= #{opticCableSectionId}
+        </where>
+    </update>
+
+    <!--app请求光缆段基础信息-->
+    <select id="queryOpticCableSectionListForApp"
+            parameterType="com.fiberhome.filink.rfid.req.opticcable.app.OpticCableSectionInfoReqForApp"
+            resultMap="OpticCableSectionInfoRespForApp">
+        SELECT
+          oci.optic_cable_name,
+          <include refid="selectColumn"></include>
+        FROM
+        optic_cable_section_info ocsi
+        left join optic_cable_info oci
+        on ocsi.belong_optic_cable_id = oci.optic_cable_id
+        <where>
+            ocsi.is_deleted = '0'
+            <!--光缆段id-->
+            <if test="opticCableSectionId != null and opticCableSectionId != ''">
+                AND ocsi.optic_cable_section_id = #{opticCableSectionId}
+            </if>
+            <!--光缆段名字-->
+            <if test="opticCableSectionName != null and opticCableSectionName != ''">
+                AND ocsi.optic_cable_section_name = #{opticCableSectionName}
+            </if>
+            <!--所属光缆id-->
+            <if test="belongOpticCableId != null and belongOpticCableId != ''">
+                AND ocsi.belong_optic_cable_id = #{belongOpticCableId}
+            </if>
+            <!--起始节点设施ID-->
+            <if test="startNode != null and startNode != ''">
+                AND (ocsi.start_node = #{startNode} or ocsi.termination_node = #{startNode})
+            </if>
+            <!--终止节点设施ID-->
+            <if test="terminationNode != null and terminationNode != ''">
+                AND (ocsi.start_node = #{terminationNode} or ocsi.termination_node = #{terminationNode})
+            </if>
+            <if test="startNode != null and startNode != ''and terminationNode != null and terminationNode != ''">
+                AND ((ocsi.start_node = #{startNode} and ocsi.termination_node = #{terminationNode})
+                or (ocsi.start_node = #{terminationNode} and ocsi.termination_node = #{startNode}))
+            </if>
+            <!--区域ID-->
+            <if test="areaId != null and areaId != ''">
+                AND ocsi.area_id = #{areaId}
+            </if>
+        </where>
+
+    </select>
+
+    <!--app光缆段基础信息上传-->
+    <insert id="addOpticCableSectionInfoForApp"
+            parameterType="com.fiberhome.filink.rfid.req.opticcable.app.OperatorOpticCableSectionInfoReqForApp">
+        INSERT INTO optic_cable_section_info (
+            belong_optic_cable_id,
+            `length`,
+            optic_cable_section_id,
+            optic_cable_section_name,
+            serial_num,
+            `STATUS`,
+            area_id,
+            core_num,
+            remark,
+            start_node,
+            start_node_device_type,
+            termination_node,
+            termination_node_device_type,
+            create_user,
+            create_time
+        )
+        VALUES
+        (
+            #{belongOpticCableId},
+            #{length},
+            #{opticCableSectionId},
+            #{opticCableSectionName},
+            #{serialNum},
+            #{status},
+            #{areaId},
+            #{coreNum},
+            #{remark},
+            #{startNode},
+            #{startNodeDeviceType},
+            #{terminationNode},
+            #{terminationNodeDeviceType},
+            #{createUser},
+            #{createTime}
+        )
+    </insert>
+
+    <!--更新光缆段-->
+    <update id="updateOpticCableSectionInfoForApp"
+            parameterType="com.fiberhome.filink.rfid.req.opticcable.app.OperatorOpticCableSectionInfoReqForApp">
+        update optic_cable_section_info
+        <set>
+            belong_optic_cable_id = #{belongOpticCableId},
+            `length` = #{length},
+            optic_cable_section_name = #{opticCableSectionName},
+            serial_num = #{serialNum},
+            `STATUS` = #{status},
+            area_id= #{areaId},
+            core_num = #{coreNum},
+            remark = #{remark},
+            start_node = #{startNode},
+            start_node_device_type = #{startNodeDeviceType},
+            termination_node = #{terminationNode},
+            termination_node_device_type = #{terminationNodeDeviceType},
+            update_user = #{updateUser},
+            update_time = #{updateTime}
+        </set>
+        <where>
+            optic_cable_section_id = #{opticCableSectionId}
+            and is_deleted = '0'
+        </where>
+    </update>
+    <!--删除光缆段-->
+    <update id="deleteOpticCableSectionInfoForApp"
+            parameterType="com.fiberhome.filink.rfid.req.opticcable.app.OperatorOpticCableSectionInfoReqForApp">
+        update optic_cable_section_info ocsi
+        <set>
+            ocsi.is_deleted = 1,
+            ocsi.update_user = #{updateUser},
+            ocsi.update_time = #{updateTime}
+        </set>
+        <where>
+            ocsi.optic_cable_section_id= #{opticCableSectionId}
+        </where>
+    </update>
+
+    <!--根据光缆id查询光缆段信息-->
+    <select id="queryOpticCableSectionInfoByOpticCableId"
+            parameterType="com.fiberhome.filink.rfid.req.opticcable.OpticCableSectionInfoReq"
+            resultMap="OpticCableSectionInfoResultMap">
+        select
+        <include refid="selectColumn"></include>
+        from optic_cable_section_info ocsi
+        <where>
+            ocsi.is_deleted = '0'
+            <if test="belongOpticCableId != null and belongOpticCableId!=''">
+                AND ocsi.belong_optic_cable_id = #{belongOpticCableId}
+            </if>
+
+            <if test="opticCableSectionId != null and opticCableSectionId!=''">
+                AND ocsi.optic_cable_section_id = #{opticCableSectionId}
+            </if>
+
+            <!-- 区域权限 -->
+            <if test="permissionAreaIds != null and permissionAreaIds.size() > 0 ">
+                <if test="permissionAreaIds.size() == 1">
+                    AND ocsi.area_id =
+                    <foreach collection="permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="permissionAreaIds.size() > 1">
+                    AND ocsi.area_id IN
+                    <foreach collection="permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+
+        </where>
+    </select>
+
+    <update id="updateOpticCableSectionUsedCoreNum"
+            parameterType="com.fiberhome.filink.rfid.bean.opticcable.OpticCableSectionInfo">
+        update optic_cable_section_info ocsi
+        <set>
+            ocsi.used_core_num=#{usedCoreNum}
+        </set>
+        <where>
+            ocsi.is_deleted = '0'
+            and optic_cable_section_id = #{opticCableSectionId}
+        </where>
+    </update>
+
+    <!-- 查询光缆段中纤芯总数和占用纤芯数 -->
+    <select id="queryOpticCableSectionById"
+            parameterType="com.fiberhome.filink.rfid.req.statistics.opticable.CoreStatisticsReq"
+            resultType="com.fiberhome.filink.rfid.resp.statistics.CoreStatisticsResp">
+        SELECT
+        sum(ocsi.core_num) totalCount,
+        sum(ocsi.used_core_num) usedCount
+        from optic_cable_section_info ocsi
+        <where>
+            ocsi.is_deleted = '0'
+           and  ocsi.optic_cable_section_id in
+            <foreach collection="opticalCableSegment" index="index" item="item" open="("
+                     separator="," close=")">
+                <if test="(index % 999) == 998">NULL ) OR ocsi.optic_cable_section_id IN (</if>
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <!--根据名字获取光缆段信息-->
+    <select id="queryOpticCableSectionByName" resultMap="OpticCableSectionInfoResultMap">
+        SELECT
+            ocsi.optic_cable_section_id,
+            ocsi.optic_cable_section_name
+        FROM
+          optic_cable_section_info ocsi
+        <where>
+            <if test="opticCableSectionName != null and opticCableSectionName != ''">
+                and ocsi.optic_cable_section_name = #{opticCableSectionName}
+            </if>
+            <if test="belongOpticCableId != null and belongOpticCableId != ''">
+                and ocsi.belong_optic_cable_id = #{belongOpticCableId}
+            </if>
+            and ocsi. is_deleted = '0'
+        </where>
+    </select>
+
+    <!--更新光缆段使用状态-->
+    <update id="updateOpticCableSectionStatusByIds">
+        UPDATE optic_cable_section_info ocsi
+          SET ocsi.status = #{status}
+          <where>
+              ocsi.is_deleted = '0'
+              <!-- 光缆段 -->
+              <if test="opticCableSectionIdList != null and opticCableSectionIdList.size() > 0 ">
+                  <if test="opticCableSectionIdList.size() == 1">
+                      AND ocsi.optic_cable_section_id =
+                      <foreach collection="opticCableSectionIdList" item="opticCableSectionId">
+                          #{opticCableSectionId}
+                      </foreach>
+                  </if>
+                  <if test="opticCableSectionIdList.size() > 1">
+                      AND ocsi.optic_cable_section_id IN
+                      <foreach collection="opticCableSectionIdList" item="opticCableSectionId" open="(" close=")" separator=",">
+                          #{opticCableSectionId}
+                      </foreach>
+                  </if>
+              </if>
+          </where>
+    </update>
+
+</mapper>

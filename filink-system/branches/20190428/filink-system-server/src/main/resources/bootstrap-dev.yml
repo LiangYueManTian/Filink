@@ -1,0 +1,197 @@
+language.environment: CN
+readLogFilePath: /yy_filink/filink_log/systemLog/
+readListExcelPath: D:/testFile/
+listExcelSize: 10
+writeDevicePicPath: D:/writeDevicePicPath/
+poolSize: 50
+daysOverdue: 7
+#设施协议文件大小（字节），不建议超过1M
+#不要超过前端Nginx配置的上传数据大小（这个值比较小）
+#不要超过springboot配置上传文件大小（这个值比较大）
+DeviceProtocolFileSize: 1048576
+LicenseFileSize: 1048576
+
+#注册服务
+eureka:
+  client:
+    service-url:
+      #      向两个eureka注册
+      #      defaultZone: http://10.5.24.141:8762/eureka/
+      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+
+server:
+  port: 9901
+
+  #mybaties
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  type-aliases-package:
+
+logging:
+  level:
+    com.fiberhome.filink.securitystrategy.dao: DEBUG
+spring:
+  application:
+    name: filink-system-server
+  http:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+
+  redis:
+    host: 10.5.24.142
+    port: 6379
+    password: filink
+    database: 0
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://10.5.43.18:3306/filink_sys?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: wistronits@123
+    #      初始化大小
+    initialSize: 5
+    #      最小连接数
+    minIdle: 5
+    #      最大连接数
+    maxActive: 20
+    #      获取连接等待超时时间
+    maxWait: 60000
+    #      间隔多久检测一次 检测需要关闭的空闲连接 单位毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    #      一个连接最小生存时间
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    #      配置监控统计拦截的filter , 去掉后监控sql无法统计wall用于防火墙
+    filters: stat,wall,log4j
+    logSlowSql: true
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.24.224:9092
+          zkNodes: 10.5.24.224:2181
+
+      bindings:
+        system_input:
+#         # 输出topic
+          destination: filink_system
+          # 指定消费组 多实例情况下只有一个消费 除非需要所有实例都要消费 否则必须指定
+          group: filink_system_server
+          contentType: application/json
+        system_output:
+        #   监听topic
+          destination: filink_system
+          contentType: application/json
+        #发送短信
+        sms_output:
+          destination: filink_sms
+          contentType: application/json
+        #websocket
+        menu_websocket_output:
+          destination: filink_websocket
+          contentType: application/json
+        websocket_output:
+          destination: filink_websocket
+          contentType: application/json
+        export_input:
+            #         # 输出topic
+          destination: filink_export
+            # 指定消费组 多实例情况下只有一个消费 除非需要所有实例都要消费 否则必须指定
+          group: filink_export
+          contentType: application/json
+# 链路追踪
+  zipkin:
+    base-url: http://10.5.24.144:9411
+  sleuth:
+    sampler:
+# 监控开发百分比  默认是0.1  开发环境设置成1
+      percentage: 1
+  data:
+    mongodb:
+#      uri: mongodb://10.5.24.143:27017
+      host: 10.5.24.143
+      port: 27017
+      database: filink-system
+
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+
+    test:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+
+
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: true
+
+
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 50000
+  ConnectTimeout: 50000
+
+language:
+  environment: CN
+
+#阿里云短信邮箱等测试用信息
+send:
+# 短信
+  message:
+#    短信签名
+    signName: 基础设施
+#    模板code
+    templateCode: SMS_153885498
+#    设施名称
+    devName: 系统阿里云短信配置测试
+#    门号
+    doorNo: 测试
+#    告警信息
+    alarmDes: 测试
+# 邮箱
+  mail:
+#    控制台创建的发信地址
+    accountName: filink@fi-link.net
+#    发信人昵称
+    fromAlias: 系统参数
+#    控制台创建的标签
+    tagName: test
+#    邮件主题
+    subject: 测试邮箱服务配置
+#    邮件正文
+    htmlBody: 测试邮箱服务配置
+
+
+logstash:
+  url: 10.5.24.142:4560
+
+#是否需要权限拉去，默认是true,如果不false就不允许你去拉取配置中心Server更新的内容
+management:
+  security:
+    enabled: false
+
+  # 启动暴露url
+  endpoints:
+    web:
+      expose: "*"

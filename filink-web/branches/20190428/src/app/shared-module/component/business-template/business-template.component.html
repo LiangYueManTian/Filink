@@ -1,0 +1,19 @@
+<div class="business-template">
+  <div class="config-info">
+    <p>模板</p>
+    <app-template-search
+      (chooseTemplate)="selectTemplate($event)"
+    ></app-template-search>
+    <div class="handle-button">
+      <button nz-button nzType="primary" class="link-button" style="margin-right: 20px">新增模板</button>
+      <button nz-button nzType="danger" class="link-button">确认模板</button>
+    </div>
+  </div>
+
+  <div class="detail-info">
+    <p>{{templateInfo.name}}</p>
+    <div class="template-info" id="template-info-canvas">
+    </div>
+  </div>
+</div>
+<app-add-template></app-add-template>

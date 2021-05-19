@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="1504101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} login success</detailInfoTemplate>
+			<optName>login</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 登录成功</detailInfoTemplate>
+			<optName>登录</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1504102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} Downtime offline</detailInfoTemplate>
+			<optName>login</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 超时下线</detailInfoTemplate>
+			<optName>超时下线</optName>
+		</language>
+	</functionCode>
+</functionCodes>

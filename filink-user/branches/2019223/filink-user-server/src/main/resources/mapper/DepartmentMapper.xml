@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.userserver.dao.DepartmentDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.userserver.bean.Department">
+        <id column="id" property="id" />
+        <result column="dept_name" property="deptName" />
+        <result column="dept_chargeuser" property="deptChargeuser" />
+        <result column="dept_phonenum" property="deptPhonenum" />
+        <result column="address" property="address" />
+        <result column="dept_type" property="deptType" />
+        <result column="dept_fatherId" property="deptFatherid" />
+        <result column="dept_level" property="deptLevel" />
+        <result column="remark" property="remark" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="parmentDeparmentName" property="parmentDeparmentName"/>
+
+        <association property="parmentDepartment" column="paramentDepartment" javaType="com.fiberhome.filink.userserver.bean.Department">
+            <id column="deptId" property="id"/>
+            <result column="deptName" property="deptName"/>
+        </association>
+
+        <collection property="childDepartmentList" ofType="com.fiberhome.filink.userserver.bean.Department"
+                    javaType="java.util.ArrayList" select="selectFullDepartMent"
+                    column="id">
+        </collection>
+    </resultMap>
+    
+    <select id="selectFullDepartMent" parameterType="string"  resultMap="BaseResultMap">
+        SELECT
+            <include refid="deptInfo"/>
+            ,depart2.dept_name as parmentDeparmentName
+        FROM
+            department AS department
+        LEFT JOIN department AS depart2 ON depart2.id = department.dept_fatherId
+        WHERE depart2.id = #{departId} AND department.is_deleted = 0 AND  depart2.is_deleted = 0
+    </select>
+
+    <sql id="deptInfo">
+        department.id,department.dept_name,department.dept_chargeuser,department.dept_phonenum,
+        department.address,department.dept_type,department.dept_fatherId,department.dept_level,
+        department.is_deleted,department.remark,department.create_user,department.create_time,
+        department.update_user,department.update_time
+    </sql>
+
+    <select id="queryAllDepartment" resultMap="BaseResultMap">
+        SELECT
+          id,dept_name,dept_level
+        FROM
+          department
+        WHERE dept_level = 1 AND is_deleted = 0
+    </select>
+
+    <update id="deleteDepartment">
+        UPDATE department SET is_deleted = 1 WHERE  id IN
+        <foreach collection="departIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="queryDepartmentList"  resultMap="BaseResultMap">
+        SELECT
+            department.*, parDept.id AS deptId,
+            parDept.dept_name AS deptName
+        FROM
+            department AS department
+        LEFT JOIN department AS parDept ON department.dept_fatherId = parDept.id
+        WHERE department.is_deleted = 0
+        Limit #{page},#{pageNum}
+    </select>
+
+    <select id="batchQueryDepartmentList"  resultMap="BaseResultMap">
+        SELECT
+        department.*
+        FROM
+        department WHERE is_deleted AND id IN
+        <foreach collection="deptIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryDepartmentByName" resultMap="BaseResultMap">
+        SELECT
+          *
+        FROM
+          department
+        WHERE
+          dept_name like "%${dept_name}%"
+    </select>
+
+    <select id="queryDeptByParentIds"  resultMap="BaseResultMap">
+        SELECT
+          department.*
+        FROM
+          department WHERE is_deleted = 0 AND dept_fatherId IN
+        <foreach collection="deptIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryDepartmentByField" parameterType="com.fiberhome.filink.userserver.bean.DepartmentParamter"  resultMap="BaseResultMap">
+        SELECT
+        department.*, parDept.id AS deptId,
+        parDept.dept_name AS deptName,
+        parDept.dept_name AS parmentDeparmentName
+        FROM
+        department AS department
+        LEFT JOIN department AS parDept ON department.dept_fatherId = parDept.id
+        <where>
+            department.is_deleted = 0
+            <if test="deptName != null">
+                AND department.dept_name LIKE  "%${deptName}%"
+            </if>
+            <if test="deptLevel != null">
+                AND department.dept_level = #{deptLevel}
+            </if>
+            <if test="deptLevel == null">
+                AND department.dept_level = 1
+            </if>
+            <if test="deptChargeuser != null">
+                AND department.dept_chargeuser LIKE "%${deptChargeuser}%"
+            </if>
+            <if test="deptPhonenum != null">
+                AND department.dept_phonenum LIKE "%${deptPhonenum}%"
+            </if>
+            <if test="address != null">
+                AND department.address LIKE "%${address}%"
+            </if>
+            <if test="parmentDeparmentName">
+                AND parDept.dept_name LIKE "%${parmentDeparmentName}%"
+            </if>
+            <if test="remark != null">
+                AND department.remark LIKE "%${remark}%"
+            </if>
+        </where>
+        <if test="sortProperties == 'deptName' and sort != null">
+            ORDER BY department.dept_name ${sort}
+        </if>
+        <if test="sortProperties == 'deptChargeuser' and sort != null">
+            ORDER BY department.dept_chargeuser ${sort}
+        </if>
+        <if test="sortProperties == 'deptPhonenum' and sort != null">
+            ORDER BY department.dept_phonenum ${sort}
+        </if>
+        <if test="sortProperties == 'address' and sort != null">
+            ORDER BY department.address ${sort}
+        </if>
+        <if test="sortProperties == 'parmentDeparmentName' and sort != null">
+            ORDER BY parDept.dept_name ${sort}
+        </if>
+        <if test="sortProperties == 'remark' and sort != null">
+            ORDER BY department.remark ${sort}
+        </if>
+        <if test="sort == null">
+            ORDER BY create_time DESC
+        </if>
+        LIMIT #{startNum},#{pageSize}
+    </select>
+
+
+    <select id="queryDepartmentNumber" parameterType="com.fiberhome.filink.userserver.bean.DepartmentParamter"  resultType= "Long">
+        SELECT
+        count(*)
+        FROM
+        department AS department
+        LEFT JOIN department AS parDept ON department.dept_fatherId = parDept.id
+        <where>
+            department.is_deleted = 0
+            <if test="deptName != null">
+                AND department.dept_name LIKE  "%${deptName}%"
+            </if>
+            <if test="deptLevel != null">
+                AND department.dept_level = #{deptLevel}
+            </if>
+            <if test="deptLevel == null">
+                AND department.dept_level = 1
+            </if>
+            <if test="deptChargeuser != null">
+                AND department.dept_chargeuser LIKE "%${deptChargeuser}%"
+            </if>
+            <if test="deptPhonenum != null">
+                AND department.dept_phonenum LIKE "%${deptPhonenum}%"
+            </if>
+            <if test="address != null">
+                AND department.address LIKE "%${address}%"
+            </if>
+            <if test="parmentDeparmentName">
+                AND parDept.dept_name LIKE "%${parmentDeparmentName}%"
+            </if>
+            <if test="remark != null">
+                AND department.remark LIKE "%${remark}%"
+            </if>
+        </where>
+    </select>
+
+    <select id="verifyDepartmentByField" parameterType="com.fiberhome.filink.userserver.bean.DepartmentParamter"  resultMap="BaseResultMap">
+        SELECT
+        <include refid="deptInfo"/>
+        FROM
+        department AS department
+        <where>
+            department.is_deleted = 0
+            <if test="deptName != null">
+                AND department.dept_name =  #{deptName}
+            </if>
+            <if test="deptPhonenum != null">
+                AND department.dept_phonenum =  #{deptPhonenum}
+            </if>
+
+        </where>
+    </select>
+
+    <select id="queryToltalDepartment" resultMap="BaseResultMap">
+        SELECT
+        id,dept_name,dept_level
+        FROM
+        department
+        WHERE is_deleted = 0
+    </select>
+
+    <update id="updateDepartmentParentId">
+        UPDATE department  SET dept_fatherId = #{parentId} WHERE id = #{id}
+    </update>
+</mapper>

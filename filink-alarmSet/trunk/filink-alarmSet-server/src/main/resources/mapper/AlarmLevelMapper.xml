@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmLevelDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmLevel">
+        <id column="id" property="id" />
+        <result column="alarm_level_code" property="alarmLevelCode" />
+        <result column="alarm_level_name" property="alarmLevelName" />
+        <result column="alarm_level_color" property="alarmLevelColor" />
+        <result column="alarm_level_sound" property="alarmLevelSound" />
+        <result column="is_play" property="isPlay" />
+        <result column="play_count" property="playCount" />
+        <result column="order_field" property="orderField"/>
+    </resultMap>
+
+    <sql id="AlarmLevleSql">
+        id,alarm_level_code,alarm_level_name,alarm_level_color,alarm_level_sound,is_play,play_count
+    </sql>
+
+    <select id="selectAlarmLevel" resultMap="BaseResultMap">
+        SELECT alarm_level_code, alarm_level_name FROM alarm_level
+    </select>
+
+    <select id="queryAlarmLevelColor" resultMap="BaseResultMap">
+        SELECT alarm_level_color FROM alarm_level a WHERE a.id != #{id}
+    </select>
+
+    <!--根据告警级别编码查询告警级别设置信息-->
+    <select id="queryAlarmLevelSetFeign" resultMap="BaseResultMap" parameterType="string">
+        SELECT
+        <include refid="AlarmLevleSql"/>
+         FROM alarm_level a WHERE a.alarm_level_code = #{alarmLevelCode}
+    </select>
+</mapper>

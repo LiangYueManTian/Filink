@@ -1,0 +1,64 @@
+<!--<div style="width: 100%;height: 100%;background-image: url(//gw.alicdn.com/tfs/TB1ittHRFXXXXcSXFXXXXXXXXXX-2880-1280.jpg);overflow: hidden">-->
+  <!--<form style="margin: 350px auto" nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">-->
+    <!--<nz-form-item>-->
+      <!--<nz-form-control>-->
+        <!--<nz-input-group [nzPrefix]="prefixUser">-->
+          <!--<input type="text" nz-input formControlName="userName" placeholder="Username">-->
+        <!--</nz-input-group>-->
+        <!--<nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">Please input-->
+          <!--your username!-->
+        <!--</nz-form-explain>-->
+      <!--</nz-form-control>-->
+    <!--</nz-form-item>-->
+    <!--<nz-form-item>-->
+      <!--<nz-form-control>-->
+        <!--<nz-input-group [nzPrefix]="prefixLock">-->
+          <!--<input type="password" nz-input formControlName="password" placeholder="Password">-->
+        <!--</nz-input-group>-->
+        <!--<nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please input-->
+          <!--your Password!-->
+        <!--</nz-form-explain>-->
+      <!--</nz-form-control>-->
+    <!--</nz-form-item>-->
+    <!--<nz-form-item>-->
+      <!--<nz-form-control>-->
+        <!--<label nz-checkbox formControlName="remember">-->
+          <!--<span>Remember me</span>-->
+        <!--</label>-->
+        <!--<a class="login-form-forgot" class="login-form-forgot">Forgot password</a>-->
+        <!--<button nz-button class="login-form-button"  [nzType]="'primary'">Log in</button>-->
+        <!--Or-->
+        <!--<a href="">register now!</a>-->
+      <!--</nz-form-control>-->
+    <!--</nz-form-item>-->
+  <!--</form>-->
+<!--</div>-->
+
+<!--<ng-template #prefixUser><i nz-icon type="user"></i></ng-template>-->
+<!--<ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>-->
+
+<div class="login">
+  <div class="login-form">
+    <div class="login-form-left">
+      <img src="../../../assets/img/login/login_left.png" alt="登入图片">
+    </div>
+    <div class="login-form-right">
+      <div class="login-tab" (click)="changeAutoLoginType()">
+        <div>{{loginTitle}}</div>
+        <img *ngIf="autoLoginType" src="../../../assets/img/login/icon_login_phone.png" alt="手机登入">
+        <img *ngIf="!autoLoginType" src="../../../assets/img/login/icon_login_user.png" alt="用户登入" >
+      </div>
+      <div class="login-title">
+        <p class="name">FILink物联管理平台</p>
+      </div>
+      <div class="login-user">
+        <app-user-login *ngIf="autoLoginType"></app-user-login>
+        <app-phone-login *ngIf="!autoLoginType"></app-phone-login>
+      </div>
+      <div class="login-footer">
+        <p>copyright &copy; 2019 烽火集团 All rights Reserved</p>
+      </div>
+
+    </div>
+  </div>
+</div>

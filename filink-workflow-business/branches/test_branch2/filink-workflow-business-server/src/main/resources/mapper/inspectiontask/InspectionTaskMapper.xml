@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowbusinessserver.dao.inspectiontask.InspectionTaskDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.workflowbusinessserver.bean.inspectiontask.InspectionTask">
+        <id column="inspection_task_id" property="inspectionTaskId" />
+        <result column="inspection_task_name" property="inspectionTaskName" />
+        <result column="inspection_task_status" property="inspectionTaskStatus" />
+        <result column="inspection_task_type" property="inspectionTaskType" />
+        <result column="task_period" property="taskPeriod" />
+        <result column="proc_plan_date" property="procPlanDate" />
+        <result column="task_start_time" property="taskStartTime" />
+        <result column="task_end_time" property="taskEndTime" />
+        <result column="is_open" property="isOpen" />
+        <result column="is_select_all" property="isSelectAll" />
+        <result column="inspection_area_id" property="inspectionAreaId" />
+        <result column="inspection_device_count" property="inspectionDeviceCount"/>
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        inspection_task_id, inspection_task_name, inspection_task_status, inspection_task_type,
+        task_period, proc_plan_date, task_start_time, task_end_time,
+        is_open, is_select_all, inspection_area_id, inspection_device_count, is_deleted,
+        create_user, create_time, update_user, update_time
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="query_condition">
+        <if test="bizCondition != null">
+            <if test="bizCondition.inspectionTaskName != null and bizCondition.inspectionTaskName != ''">
+                AND instr(ik.inspection_task_name, #{bizCondition.inspectionTaskName}) > 0
+            </if>
+            <if test="bizCondition.inspectionTaskStatus != null and bizCondition.inspectionTaskStatus != ''">
+                AND ik.inspection_task_status = #{bizCondition.inspectionTaskStatus}
+            </if>
+            <if test="bizCondition.taskPeriod != null
+                        and bizCondition.taskPeriodOperateValue != null and bizCondition.taskPeriodOperateValue != ''">
+                AND ik.task_period <![CDATA[${bizCondition.taskPeriodOperateValue}]]> #{bizCondition.taskPeriod}
+            </if>
+            <if test="bizCondition.inspectionDeviceCount != null
+                    and bizCondition.inspectionDeviceCountOperateValue != null  and bizCondition.inspectionDeviceCountOperateValue != ''">
+                AND ik.inspection_device_count <![CDATA[${bizCondition.inspectionDeviceCountOperateValue}]]> #{bizCondition.inspectionDeviceCount}
+            </if>
+            <if test="bizCondition.procPlanDate != null
+                    and bizCondition.procPlanDateOperateValue != null and bizCondition.procPlanDateOperateValue != ''">
+                AND ik.proc_plan_date <![CDATA[${bizCondition.procPlanDateOperateValue}]]> #{bizCondition.procPlanDate}
+            </if>
+            <if test="bizCondition.isOpen != null and bizCondition.isOpen != ''">
+                AND ik.is_open = #{bizCondition.isOpen}
+            </if>
+            <if test="bizCondition.isOpens != null and bizCondition.isOpens.size() > 0">
+                AND ik.is_open in
+                <foreach item="item" index="index" collection="bizCondition.isOpens" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="bizCondition.inspectionAreaIds != null and bizCondition.inspectionAreaIds.size() > 0">
+                AND ik.inspection_area_id in
+                <foreach item="item" index="index" collection="bizCondition.inspectionAreaIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="bizCondition.deptIds != null and bizCondition.deptIds.size() > 0">
+                AND ite.accountability_dept in
+                <foreach item="item" index="index" collection="bizCondition.deptIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <!-- 巡检任务状态集合 -->
+            <if test="bizCondition.inspectionTaskStatusList != null and bizCondition.inspectionTaskStatusList.size() > 0">
+                AND ik.inspection_task_status in
+                <foreach item="item" index="index" collection="bizCondition.inspectionTaskStatusList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <!-- 巡检任务类型集合 -->
+            <if test="bizCondition.inspectionTaskTypes != null and bizCondition.inspectionTaskTypes.size() > 0">
+                AND ik.inspection_task_type in
+                <foreach item="item" index="index" collection="bizCondition.inspectionTaskTypes" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <!-- 巡检任务编号集合 -->
+            <if test="bizCondition.inspectionTaskIds != null and bizCondition.inspectionTaskIds.size() > 0">
+                AND ik.inspection_task_id in
+                <foreach item="item" index="index" collection="bizCondition.inspectionTaskIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <!-- 区域 -->
+            <if test="bizCondition.permissionAreaIds != null and bizCondition.permissionAreaIds.size() > 0 ">
+                <if test="bizCondition.permissionAreaIds.size() == 1">
+                    AND itd.device_area_id =
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionAreaIds.size() > 1">
+                    AND itd.device_area_id IN
+                    <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+            <!-- 部门 -->
+            <if test="bizCondition.permissionDeptIds != null and bizCondition.permissionDeptIds.size() > 0 ">
+                <if test="bizCondition.permissionDeptIds.size() == 1">
+                    AND ite.accountability_dept =
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionDeptIds.size() > 1">
+                    AND ite.accountability_dept IN
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId" open="(" close=")" separator=",">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+            </if>
+        </if>
+        AND ik.is_deleted = '0'
+
+        <!--巡检开始时间-->
+        <if test="bizCondition.startTimes != null and bizCondition.startTimes.size() > 0">
+            AND UNIX_TIMESTAMP(ik.task_start_time) between
+            <foreach collection="bizCondition.startTimes" item="startTime" index="index">
+                <if test="index == 0">
+                    #{startTime}
+                </if>
+                <if test="index == 1">
+                    and #{startTime}
+                </if>
+            </foreach>
+        </if>
+
+        <!--巡检结束时间-->
+        <if test="bizCondition.endTimes != null and bizCondition.endTimes.size() > 0">
+            AND UNIX_TIMESTAMP(ik.task_end_time) between
+            <foreach collection="bizCondition.endTimes" item="endTime" index="index">
+                <if test="index == 0">
+                    #{endTime}
+                </if>
+                <if test="index == 1">
+                    and #{endTime}
+                </if>
+            </foreach>
+        </if>
+    </sql>
+
+
+    <!-- 查询巡检任务名称是否存在 -->
+    <select id = "queryInspectionTaskNameIsExists" resultType="int" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.inspectiontask.InspectionTask">
+        select count(1) from inspection_task
+        where 1=1
+        <if test="inspectionTaskName != null">
+            and inspection_task_name = #{inspectionTaskName,jdbcType=VARCHAR}
+        </if>
+        <if test="inspectionTaskId != null">
+            and inspection_task_id != #{inspectionTaskId, jdbcType=VARCHAR}
+        </if>
+        <if test="isDeleted != null">
+            and is_deleted = #{isDeleted, jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <!-- 根据巡检任务编号查询巡检任务 -->
+    <select id="selectInspectionTaskForInspectionTaskIds" resultMap="BaseResultMap" parameterType="java.util.List">
+        select
+        <include refid="Base_Column_List"/>
+        from inspection_task
+        where 1=1
+        <if test="list != null and list.size() > 0">
+            <if test="list.size() == 1">
+                AND inspection_task_id =
+                <foreach item="item"  collection="list">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="list.size() > 1">
+                AND inspection_task_id in
+                <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                    <if test="(index % 999) == 998">NULL ) OR inspection_task_id IN (</if>
+                    #{item}
+                </foreach>
+            </if>
+        </if>
+
+    </select>
+
+    <!-- 查询巡检任务分页 -->
+    <select id="queryListInspectionTaskByPage" resultType="string" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select DISTINCT(ik.inspection_task_id)
+        from inspection_task ik
+        left join inspection_task_department ite on ite.inspection_task_id = ik.inspection_task_id
+        left join inspection_task_device itd on itd.inspection_task_id = ik.inspection_task_id
+        where 1=1
+        <include refid="query_condition" />
+        <if test="sortCondition != null">
+            <if test="sortCondition.sortField != null">
+                <if test="sortCondition.sortField == 'inspectionTaskId'">
+                    ORDER BY ik.inspection_task_id
+                </if>
+                <if test="sortCondition.sortField == 'inspectionTaskName'">
+                    ORDER BY ik.inspection_task_name
+                </if>
+                <if test="sortCondition.sortField == 'inspectionTaskStatus'">
+                    ORDER BY ik.inspection_task_status
+                </if>
+                <if test="sortCondition.sortField == 'taskPeriod'">
+                    ORDER BY ik.task_period
+                </if>
+                <if test="sortCondition.sortField == 'procPlanDate'">
+                    ORDER BY ik.proc_plan_date
+                </if>
+                <if test="sortCondition.sortField == 'startTime'">
+                    ORDER BY ik.task_start_time
+                </if>
+                <if test="sortCondition.sortField == 'endTime'">
+                    ORDER BY ik.task_end_time
+                </if>
+                <if test="sortCondition.sortField == 'isOpen'">
+                    ORDER BY ik.is_open
+                </if>
+                <if test="sortCondition.sortField == 'isSelectAll'">
+                    ORDER BY ik.is_select_all
+                </if>
+                <if test="sortCondition.sortField == 'inspectionAreaId'">
+                    ORDER BY ik.inspection_area_id
+                </if>
+                <if test="sortCondition.sortField == 'inspectionDeviceCount'">
+                    ORDER BY ik.inspection_device_count
+                </if>
+                <if test="sortCondition.sortField == 'isDeleted'">
+                    ORDER BY ik.is_deleted
+                </if>
+                <if test="sortCondition.sortField == 'createUser'">
+                    ORDER BY ik.create_user
+                </if>
+                <if test="sortCondition.sortField == 'createTime'">
+                    ORDER BY ik.create_time
+                </if>
+                <if test="sortCondition.sortField == 'updateUser'">
+                    ORDER BY ik.update_user
+                </if>
+                <if test="sortCondition.sortField == 'updateTime'">
+                    ORDER BY ik.update_time
+                </if>
+                ${sortCondition.sortRule}
+            </if>
+        </if>
+        <if test="sortCondition == null">
+            ORDER BY ik.create_time DESC
+        </if>
+        <if test="pageCondition != null">
+            LIMIT #{pageCondition.beginNum},#{pageCondition.pageSize}
+        </if>
+    </select>
+
+    <!-- 查询巡检任务数据个数 -->
+    <select id="queryListInspectionTaskCount" resultType="int" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select count(DISTINCT(ik.inspection_task_id))
+        from inspection_task ik
+        left join inspection_task_department ite on ite.inspection_task_id = ik.inspection_task_id
+        left join inspection_task_device itd on itd.inspection_task_id = ik.inspection_task_id
+        where 1=1
+        <include refid="query_condition" />
+    </select>
+
+    <!-- 批量删除巡检任务 -->
+    <update id = "deleteInspectionTaskBatch" parameterType="java.util.Map">
+        <if test="list != null">
+            update inspection_task set is_deleted = #{isDeleted, jdbcType=VARCHAR}
+            <if test="updateUser != null">
+                ,update_user = #{updateUser, jdbcType=VARCHAR}
+            </if>
+            <if test="updateTime != null">
+                ,update_time = #{updateTime}
+            </if>
+            where 1=1
+            and inspection_task_id in
+            <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </update>
+
+    <!-- 批量开启或关闭巡检任务 -->
+    <update id = "updateInspectionTaskOpenAndCloseBatch" parameterType="java.util.Map">
+        <if test="list != null">
+            update inspection_task set is_open = #{updateTask.isOpen, jdbcType=VARCHAR}
+            <if test="updateTask.updateUser != null">
+                ,update_user = #{updateTask.updateUser, jdbcType=VARCHAR}
+            </if>
+            <if test="updateTask.updateTime != null">
+                ,update_time = #{updateTask.updateTime}
+            </if>
+            where 1=1
+            and inspection_task_id in
+            <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </update>
+
+    <!-- 批量更新巡检任务 -->
+    <update id = "updateInspectionTaskInfoBatch" parameterType="java.util.List">
+        update inspection_task
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="inspection_device_count =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.inspectionDeviceCount != null">
+                        when inspection_task_id=#{item.inspectionTaskId} then #{item.inspectionDeviceCount}
+                    </if>
+                </foreach>
+            </trim>
+
+        </trim>
+        where 1=1
+        <!--巡检任务ids-->
+        <if test="list != null and list.size() > 0">
+            <if test="list.size() == 1">
+                AND inspection_task_id =
+                <foreach collection="list" item="item">
+                    #{item.inspectionTaskId}
+                </foreach>
+            </if>
+            <if test="list.size() > 1">
+                AND inspection_task_id IN
+                <foreach collection="list" item="item" open="(" close=")" separator=",">
+                    #{item.inspectionTaskId}
+                </foreach>
+            </if>
+        </if>
+    </update >
+
+</mapper>

@@ -1,0 +1,42 @@
+<div style="background: #ffffff;">
+  <nz-tabset [nzAnimated]="false" (nzSelectChange)="selectChange()">
+    <nz-tab nzTitle="当前告警" [nzForceRender]="true">
+      <div style="display: flex;justify-content: space-around;width: 100%">
+        <div echarts [options]="ringOption" class="demo-chart ring"></div>
+        <div echarts [options]="chartOption" class="demo-chart chart"></div>
+        <div echarts [options]="columnarOption" class="demo-chart columnar"></div>
+      </div>
+      <div>
+        <div style="box-shadow: 0 1px 2px rgba(0,0,0,.15), 0 -1px 0 rgba(0,0,0,.02);width: 100%;">
+          <xc-table [dataSet]="_dataSet" [pageBean]="pageBean" [tableConfig]="tableConfig" (pageChange)="pageChange($event)">
+          </xc-table>
+        </div>
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle="历史告警" [nzForceRender]="true">
+      <div style="display: flex;justify-content: space-around;width: 100%">
+        <div echarts [options]="ringOption_1" class="demo-chart ring"></div>
+        <div echarts [options]="chartOption_1" class="demo-chart chart"></div>
+        <div echarts [options]="columnarOption_1" class="demo-chart columnar"></div>
+      </div>
+      <div>
+        <xc-table
+          [dataSet]="_dataSetHistory"
+          [pageBean]="pageBean"
+          [tableConfig]="tableConfig_H"
+          (pageChange)="pageChange($event)">
+        </xc-table>
+      </div>
+    </nz-tab>
+  </nz-tabset>
+</div>
+
+<ng-template #alarmLevelTemp let-data="data">
+  <div class="hidden" title="{{data.alarmLevelName}}">
+    <span class="box-color-icon"
+          [ngStyle]="data.style"
+          style="display: inline-block;margin-right: 5px;">
+    </span>
+    {{data.alarmLevelName}}
+  </div>
+</ng-template>

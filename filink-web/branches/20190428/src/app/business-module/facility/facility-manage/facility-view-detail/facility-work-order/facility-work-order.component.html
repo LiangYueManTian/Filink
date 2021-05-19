@@ -1,0 +1,10 @@
+<div style="display: flex;">
+  <nz-card class="card" style="" nzTitle="销障工单">
+    <app-clear-barrier-table [facilityId]="deviceId"></app-clear-barrier-table>
+    <span class="more" (click)="navigatorTo('/business/work-order/clear-barrier/unfinished')">更多 >></span>
+  </nz-card>
+  <nz-card class="card-right" nzTitle="巡检工单">
+    <app-inspection-table [facilityId]="deviceId"></app-inspection-table>
+    <span class="more" (click)="navigatorTo('/business/work-order/inspection/unfinished')">更多 >></span>
+  </nz-card>
+</div>

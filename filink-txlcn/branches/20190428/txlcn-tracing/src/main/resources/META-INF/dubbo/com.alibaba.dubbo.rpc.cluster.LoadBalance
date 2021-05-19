@@ -1,0 +1,4 @@
+txlcn_random=com.fiberhome.filink.txlcntracing.dubbo.TxlcnRandomLoadBalance
+txlcn_roundrobin=com.fiberhome.filink.txlcntracing.dubbo.TxlcnRoundRobinLoadBalance
+txlcn_leastactive=com.fiberhome.filink.txlcntracing.dubbo.TxlcnLeastActiveLoadBalance
+txlcn_consistenthash=com.fiberhome.filink.txlcntracing.dubbo.TxlcnConsistentHashLoadBalance

@@ -1,0 +1,4 @@
+com\fiberhome\filink\alarmCurrent_api\api\AlarmCurrentFeign.class
+com\fiberhome\filink\alarmCurrent_api\bean\AlarmCurrent.class
+com\fiberhome\filink\alarmCurrent_api\fallback\AlarmFeignFallback.class
+com\fiberhome\filink\alarmCurrent_api\FilinkAlarmCurrentApiApplication.class

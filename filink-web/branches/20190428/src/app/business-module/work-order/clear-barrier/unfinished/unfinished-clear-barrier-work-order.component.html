@@ -1,0 +1,46 @@
+<div class="box-warp bg-c">
+  <!--<div class="statistics">-->
+    <!--<div class="statistics-item" (click)="filterByStatus()">-->
+      <!--<div class="statistics-item-left iconfont fiLink-work-order-all statistics-all-color statistics-size"></div>-->
+      <!--<div class="statistics-item-right">-->
+        <!--<div class="statistics-all-color statistics-num">{{totalCount}}</div>-->
+        <!--<div class="statistics-title">{{workOrderLanguage.all}}</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="statistics-item" (click)="filterByStatus('assigned')">-->
+      <!--<div class="statistics-item-left iconfont fiLink-assigned-w statistics-assigned-color statistics-size"></div>-->
+      <!--<div class="statistics-item-right">-->
+        <!--<div class="statistics-assigned-color statistics-num">{{assignedCount}}</div>-->
+        <!--<div class="statistics-title">{{workOrderLanguage.assigned}}</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="statistics-item" (click)="filterByStatus('pending')">-->
+      <!--<div class="statistics-item-left iconfont fiLink-processed statistics-pending-color statistics-size"></div>-->
+      <!--<div class="statistics-item-right">-->
+        <!--<div class="statistics-pending-color statistics-num">{{pendingCount}}</div>-->
+        <!--<div class="statistics-title">{{workOrderLanguage.pending}}</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="statistics-item" (click)="filterByStatus('processing')">-->
+      <!--<div class="statistics-item-left iconfont fiLink-processing statistics-processing-color statistics-size"></div>-->
+      <!--<div class="statistics-item-right">-->
+        <!--<div class="statistics-processing-color statistics-num">{{processingCount}}</div>-->
+        <!--<div class="statistics-title">{{workOrderLanguage.processing}}</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="statistics-item" style="margin-right: 0">-->
+      <!--<div class="statistics-item-left iconfont fiLink-add-arrow statistics-add-color statistics-size"></div>-->
+      <!--<div class="statistics-item-right">-->
+        <!--<div class="statistics-add-color statistics-num">{{increaseCount}}</div>-->
+        <!--<div class="statistics-title">{{workOrderLanguage.addWorkOrder}}</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <div class="table-container bg-c-w">
+    <app-unfinished-clear-barrier-work-order-table #table (workOrderEvent)="workOrderEvent($event)">
+    </app-unfinished-clear-barrier-work-order-table>
+  </div>
+</div>
+
+
+

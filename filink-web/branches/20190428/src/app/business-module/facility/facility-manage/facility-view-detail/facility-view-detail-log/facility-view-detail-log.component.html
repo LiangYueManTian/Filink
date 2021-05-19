@@ -1,0 +1,27 @@
+<div style="display: flex;">
+  <nz-card class="card"  nzTitle="设施日志">
+    <xc-table [dataSet]="facilityLogSet"
+              [pageBean]="facilityLogPageBean"
+              [tableConfig]="facilityLogTableConfig"
+              (pageChange)="facilityLogPageChange($event)">
+    </xc-table>
+    <span class="more" (click)="navigatorTo('business/facility/facility-log')">更多 >></span>
+  </nz-card>
+  <nz-card  class="card-right" nzTitle="操作日志">
+    <xc-table [dataSet]="operationLogSet"
+              [pageBean]="operationLogPageBean"
+              [tableConfig]="operationLogTableConfig"
+              (pageChange)="operationLogPageChange($event)">
+    </xc-table>
+    <span class="more" (click)="navigatorTo('business/system/log')">更多 >></span>
+  </nz-card>
+</div>
+<!--todo 操作结果-->
+<ng-template #optResult let-data="data">
+  <div *ngIf="data.optResult === 'failure' || data.optResult === '失败'" style="display: flex"><i
+    style="align-self: center" class="icon-fiLink fiLink-fail iconfont "></i> <span
+    style="margin-left: 10px;line-height: 24px">{{_logLanguage.failure}}</span></div>
+  <div *ngIf="data.optResult === 'success' || data.optResult === '成功'" style="display: flex"><i
+    style="align-self: center" class="icon-fiLink fiLink-success iconfont "></i><span
+    style="margin-left: 10px;line-height: 24px">{{_logLanguage.success}}</span></div>
+</ng-template>

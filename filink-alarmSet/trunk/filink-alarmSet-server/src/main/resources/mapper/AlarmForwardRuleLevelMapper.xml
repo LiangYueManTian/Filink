@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmsetserver.dao.AlarmForwardRuleLevelDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmsetserver.bean.AlarmForwardRuleLevel">
+        <result column="rule_id" property="ruleId" />
+        <result column="alarm_level_id" property="alarmLevelId" />
+    </resultMap>
+
+    <delete id="batchDeleteAlarmLevel">
+        DELETE FROM alarm_forward_rule_level WHERE rule_id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <delete id="deleteAlarmLevel">
+        DELETE FROM alarm_forward_rule_level WHERE rule_id=#{ruleId}
+    </delete>
+
+    <insert id="addAlarmLevel">
+        INSERT INTO alarm_forward_rule_level (rule_id, alarm_level_id) VALUE
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.ruleId},
+            #{item.alarmLevelId}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryAlarmFilterRuleAlarmLevelById" resultMap="BaseResultMap">
+        SELECT rule_id,alarm_level_id FROM alarm_forward_rule_level WHERE rule_id=#{id}
+    </select>
+
+</mapper>

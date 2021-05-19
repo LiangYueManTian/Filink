@@ -1,0 +1,20 @@
+export default {
+  'setColumn': '设置列',
+  'SelectAllRow': '选中所有行',
+  'SelectOddRow': '选中偶数行',
+  'SelectEvenRow': '选中奇数行',
+  'Total': '共',
+  'items': '条',
+  'filter': '过滤',
+  'prompt': '提示',
+  'promptContent': '是否确认删除？',
+  'okText': '确认',
+  'cancelText': '取消',
+  'openText': '开',
+  'closeText': '关',
+  'noData': '暂无数据',
+  'add': '新增',
+  'delete': '删除',
+  'operate': '操作',
+  'update': '修改'
+};

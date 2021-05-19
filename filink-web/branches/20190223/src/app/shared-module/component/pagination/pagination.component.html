@@ -1,0 +1,52 @@
+<ng-template #renderItemTemplate let-type let-page="page">
+  <a class="ant-pagination-item-link" *ngIf="type==='pre'"><i nz-icon type="left"></i></a>
+  <a class="ant-pagination-item-link" *ngIf="type==='next'"><i nz-icon type="right"></i></a>
+  <a *ngIf="type=='page'">{{page}}</a>
+</ng-template>
+
+<ng-container>
+  <ul class="ant-pagination">
+    <li (click)="previous()" class="ant-pagination-prev">
+      <ng-template [ngTemplateOutlet]="xcItemRender"
+                   [ngTemplateOutletContext]="{ $implicit: 'pre'}"></ng-template>
+    </li>
+    <li (click)="jump(firstIndex)" class="ant-pagination-item"
+        [class.ant-pagination-item-active]="xcPageIndex === firstIndex">
+      <ng-template [ngTemplateOutlet]="xcItemRender"
+                   [ngTemplateOutletContext]="{ $implicit: 'page',page:firstIndex}"></ng-template>
+    </li>
+    <li (click)="jump(item)" *ngFor="let item of pages" class="ant-pagination-item"
+        [class.ant-pagination-item-active]="xcPageIndex === item">
+      <ng-template [ngTemplateOutlet]="xcItemRender"
+                   [ngTemplateOutletContext]="{ $implicit: 'page',page: item }"></ng-template>
+    </li>
+    <li (click)="jump(lastIndex)" class="ant-pagination-item"
+        [class.ant-pagination-item-active]="xcPageIndex === lastIndex">
+      <ng-template [ngTemplateOutlet]="xcItemRender"
+                   [ngTemplateOutletContext]="{ $implicit: 'page',page:lastIndex}"></ng-template>
+    </li>
+    <li (click)="next()" class="ant-pagination-next">
+      <ng-template [ngTemplateOutlet]="xcItemRender"
+                   [ngTemplateOutletContext]="{ $implicit: 'next'}"></ng-template>
+    </li>
+    <li>
+      <nz-select
+        *ngIf="xcShowSizeChanger"
+        class="ant-pagination-options-size-changer"
+        [ngModel]="xcPageSize"
+        (ngModelChange)="onPageSizeChange($event)">
+        <nz-option
+          *ngFor="let option of xcPageSizeOptions"
+          [nzLabel]="option + locale.items_per_page"
+          [nzValue]="option">
+        </nz-option>
+        <nz-option
+          *ngIf="xcPageSizeOptions.indexOf(xcPageSize)==-1"
+          [nzLabel]="xcPageSize + locale.items_per_page"
+          [nzValue]="xcPageSize">
+        </nz-option>
+      </nz-select>
+    </li>
+
+  </ul>
+</ng-container>

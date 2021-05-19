@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.screen.dao.LargeScreenDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.screen.bean.LargeScreen">
+        <id column="large_screen_id" property="largeScreenId" />
+        <result column="large_screen_name" property="largeScreenName" />
+    </resultMap>
+    <!--查询所有大屏-->
+    <select id="queryLargeScreenAll" resultMap="BaseResultMap">
+        SELECT large_screen_id,large_screen_name FROM large_screen
+    </select>
+    <!--查询大屏名称是否重复-->
+    <select id="queryLargeScreenNameRepeat" parameterType="com.fiberhome.filink.screen.bean.LargeScreen" resultType="string">
+        SELECT large_screen_id FROM large_screen WHERE large_screen_id != #{largeScreenId} AND large_screen_name = #{largeScreenName}
+    </select>
+    <!--根据大屏ID修改大屏名称-->
+    <update id="updateLargeScreenNameById" parameterType="com.fiberhome.filink.screen.bean.LargeScreen">
+        UPDATE large_screen SET large_screen_name = #{largeScreenName} WHERE large_screen_id = #{largeScreenId}
+    </update>
+</mapper>

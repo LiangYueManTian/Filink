@@ -1,0 +1,37 @@
+-------------------------------------------------------------------------------
+Test set: com.fiberhome.filink.userserver.DepartmentServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 11, Skipped: 0, Time elapsed: 0.187 sec <<< FAILURE! - in com.fiberhome.filink.userserver.DepartmentServiceImplTest
+conditionDepartment(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.15 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+queryAllDepartment(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+queryDepartmenttByField(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+addDept(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+queryFullDepartMent(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+updateDept(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.006 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+queryDepartmentList(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+queryTotalDepartment(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.005 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+queryDeptInfoById(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+queryDeptInfoById1(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+
+deleteDept(com.fiberhome.filink.userserver.DepartmentServiceImplTest)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.IllegalStateException: Missing @Injectable for field "com.fiberhome.filink.userserver.stream.UpdateUserStream updateUserStream" in DepartmentServiceImpl
+

@@ -1,0 +1,50 @@
+<div class="facility-list">
+  <xc-table [dataSet]="_dataSet"
+            [pageBean]="pageBean"
+            [tableConfig]="tableConfig"
+            (pageChange)="pageChange($event)">
+  </xc-table>
+
+  <nz-modal [(nzVisible)]="isVisible"
+            [nzMaskClosable]="false"
+            [nzFooter]="tplFooter"
+            [nzTitle]="title"
+            (nzOnCancel)="modalCancel()" >
+    <form nz-form [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired >{{language.agreement.protocolName}}</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input  [(ngModel)]="agreementName" formControlName="agreementName" autocomplete="off">
+          <nz-form-explain style="color: red" *ngIf="validateForm.controls['agreementName'].dirty && validateForm.controls['agreementName'].hasError('required')">
+            此项为必填项</nz-form-explain>
+          <nz-form-explain style="color: red" *ngIf="validateForm.controls['agreementName'].dirty && validateForm.controls['agreementName'].hasError('maxlength')">
+            最大长度为32</nz-form-explain>
+          <nz-form-explain style="color: red" *ngIf="validateForm.controls['agreementName'].dirty && validateForm.controls['agreementName'].hasError('duplicated')">
+            输入格式不正确</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24"  nzRequired>{{language.agreement.fileName}}</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input *ngIf="isVisible" type="file" style="display: none" id="file" (change)="fileChange($event)">
+          <span *ngIf="fileName" style="margin-right: 15px">{{fileName}}</span>
+          <button nz-button (click)="upload()">
+            <i nz-icon type="upload"></i><span>上传脚本文件</span>
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-modal>
+
+  <!--TODO 弹出框底部-->
+  <ng-template #tplFooter>
+    <button nz-button nzType="primary" [nzLoading]="submitLoading" (click)="submit()" [disabled]="!(fileName && validateForm.controls['agreementName'].valid)">{{language.table.okText}}</button>
+    <button nz-button nzType="danger" (click)="modalCancel()">{{language.table.cancelText}}</button>
+  </ng-template>
+
+  <!--TODO 文件下载-->
+  <ng-template #fileNameRef let-data="data">
+    <a href="javascript:void (0)" (click)="download(data)" class="table-text-td">{{data.fileName}}</a>
+  </ng-template>
+</div>
+

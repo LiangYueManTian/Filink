@@ -1,0 +1,92 @@
+<div class="box-warp">
+  <div class="in-container">
+    <div>
+   <span class="area-detail-title">
+      {{pageTitle}}
+    </span>
+    </div>
+    <xc-form [column]="formColumn" (formInstance)="formInstance($event)"></xc-form>
+    <div style="padding-left: 20px">
+      <button class="link-button" nz-button nzType="primary" style="margin-right: 20px"
+              [nzLoading]="isLoading"
+              [disabled]="!isConfirmButton()"
+              type="button"
+              (click)="inspectionTaskDetail()">{{language.handleOk}}
+      </button>
+      <button class="link-button" nz-button nzType="danger" (click)="goBack()">{{language.handleCancel}}</button>
+    </div>
+  </div>
+</div>
+<!--起始时间-->
+<ng-template #taskStartTime let-formGroup="formGroup" let-col="col">
+  <form [formGroup]="formGroup">
+    <nz-date-picker [nzDisabledDate]="disabledStartDate" nzShowTime formControlName="taskStartTime"></nz-date-picker>
+  </form>
+</ng-template>
+<!--结束时间-->
+<ng-template #taskEndTime let-formGroup="formGroup" let-col="col">
+  <form [formGroup]="formGroup">
+    <nz-date-picker [nzDisabledDate]="disabledEndDate" nzShowTime formControlName="taskEndTime"></nz-date-picker>
+  </form>
+</ng-template>
+
+<!--区域选择模版-->
+<ng-template #areaSelector let-formGroup="formGroup" let-col="col">
+  <div>
+    <span class="area-name" [title]="areaName">{{areaName}}</span>
+    <button class="open-button"  [disabled]="areaDisabled"  type ="button" ><i><span
+      class="icon-fiLink fiLink-search-index iconfont"  (click)="showAreaSelectorModal()"></span> </i>
+    </button>
+  </div>
+</ng-template>
+<xc-tree-area-selector
+  [(xcVisible)]="areaSelectVisible"
+  [treeSelectorConfig]="areaSelectorConfig"
+  (selectDataChange)="areaSelectChange($event)"
+>
+</xc-tree-area-selector>
+
+<!--责任人单位模版-->
+<ng-template #departmentSelector let-formGroup="formGroup" let-col="col">
+  <div>
+    <span class="area-name" [title]="departmentSelectorName">{{departmentSelectorName}}</span>
+    <button class="open-button" type="button" [disabled]="departmentSelectorDisabled" >
+      <i><span class="icon-fiLink fiLink-search-index iconfont" (click)="showDepartmentSelectorModal()">
+      </span></i>
+    </button>
+  </div>
+</ng-template>
+<!--责任人单位-->
+<xc-tree-area-selector
+  [(xcVisible)]="isUnitVisible"
+  [treeSelectorConfig]="treeSelectorConfig"
+  (selectDataChange)="selectDataChange($event)"
+>
+</xc-tree-area-selector>
+
+<!--巡检设施模板-->
+<ng-template #inspectionFacilitiesSelector let-formGroup="formGroup" let-col="col">
+  <div>
+    <input readonly="readonly" class="area-name" [title]="inspectionFacilitiesSelectorName"
+           [(ngModel)]="inspectionFacilitiesSelectorName">
+    <button class="open-button" type="button" [disabled]="inspectionFacilitiesSelectorDisabled">
+      <i><span (click)="showInspectionFacilitiesSelectorModal()"
+      class="icon-fiLink fiLink-search-index iconfont"></span></i></button>
+  </div>
+</ng-template>
+<!--巡检设施-->
+<xc-map-selector-inspection
+  [(xcVisible)]="mapVisible"
+  [areaId]="areaId"
+  [selectorType]="'inspectionTask'"
+  [deviceSet]="deviceSet"
+  (selectDataChange)="mapSelectDataChange($event)"
+  [mapSelectorConfig]="mapSelectorConfig"
+>
+</xc-map-selector-inspection>
+
+
+
+
+
+

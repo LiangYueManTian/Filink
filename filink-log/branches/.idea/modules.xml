@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/branches.iml" filepath="$PROJECT_DIR$/.idea/branches.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2019223/filink-log.iml" filepath="$PROJECT_DIR$/2019223/filink-log.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2019223/filink-log-api/filink-log-api.iml" filepath="$PROJECT_DIR$/2019223/filink-log-api/filink-log-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2019223/filink-log-server/filink-log-server.iml" filepath="$PROJECT_DIR$/2019223/filink-log-server/filink-log-server.iml" />
+    </modules>
+  </component>
+</project>

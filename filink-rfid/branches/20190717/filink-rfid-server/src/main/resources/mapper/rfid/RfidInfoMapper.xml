@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.rfid.RfidInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="RfidInfoResultMap" type="com.fiberhome.filink.rfid.bean.rfid.RfidInfo">
+        <id column="rfid_id" property="rfidId" />
+        <result column="rfid_code" property="rfidCode" />
+        <result column="remark" property="remark" />
+        <result column="rfid_type" property="rfidType" />
+        <result column="mark_type" property="markType" />
+        <result column="rfid_status" property="rfidStatus" />
+        <result column="device_id" property="deviceId" />
+    </resultMap>
+
+    <!-- rfid查询映射结果 -->
+    <resultMap id="RfidInfoRespMap" extends="RfidInfoResultMap" type="com.fiberhome.filink.rfid.resp.rfid.RfidInfoResp">
+
+    </resultMap>
+
+    <!--获取rfid信息-->
+    <select id="queryRfidInfo" parameterType="com.fiberhome.filink.rfid.req.rfid.QueryRfidInfoReq" resultMap="RfidInfoRespMap">
+        SELECT
+            ri.rfid_id,
+            ri.rfid_code,
+            ri.remark,
+            ri.rfid_type,
+            ri.mark_type,
+            ri.rfid_status,
+            ri.device_id
+        FROM
+          rfid_info ri
+        <where>
+            ri.is_deleted = '0'
+            <if test="rfidId != null and rfidId != '' ">
+                AND ri.rfid_id = #{rfidId}
+            </if>
+            <if test="rfidCode != null and rfidCode != '' ">
+                AND ri.rfid_code = #{rfidCode}
+            </if>
+            <if test="remark != null and remark != '' ">
+                AND ri.remark = #{remark}
+            </if>
+            <if test="rfidType != null and rfidType != '' ">
+                AND ri.rfid_type = #{rfidType}
+            </if>
+            <if test="rfidStatus != null and rfidStatus != '' ">
+                AND ri.rfid_status = #{rfidStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--获取rfid信息-->
+    <select id="queryRfidInfoByRfidCode" parameterType="java.lang.String" resultType="string">
+        SELECT
+          ri.rfid_code
+        FROM
+          rfid_info ri
+        <where>
+            ri.is_deleted = '0'
+            <if test="rfidCode != null and rfidCode != '' ">
+                AND ri.rfid_code = #{rfidCode}
+            </if>
+        </where>
+    </select>
+
+    <!--智能标签信息保存-->
+    <insert id="addRfidInfo" parameterType="java.util.List">
+        INSERT INTO rfid_info (
+            rfid_id,
+            rfid_code,
+            remark,
+            rfid_type,
+            mark_type,
+            rfid_status,
+            device_id,
+            create_time,
+            create_user
+          )
+        VALUES
+        <foreach collection="insertRfidInfoReqList" item="insertRfidInfo" index="index" open="" close="" separator=",">
+            (
+            #{insertRfidInfo.rfidId},
+            #{insertRfidInfo.rfidCode},
+            #{insertRfidInfo.remark},
+            #{insertRfidInfo.rfidType},
+            #{insertRfidInfo.markType},
+            #{insertRfidInfo.rfidStatus},
+            #{insertRfidInfo.deviceId},
+            #{insertRfidInfo.createTime},
+            #{insertRfidInfo.createUser}
+            )
+        </foreach>
+
+    </insert>
+
+    <!--智能标签信息删除-->
+    <update id="deleteRfidInfo" parameterType="com.fiberhome.filink.rfid.req.rfid.DeleteRfidInfoReq">
+        UPDATE rfid_info
+        SET is_deleted = '1',
+            update_user = #{updateUser},
+            update_time = #{updateTime}
+        <where>
+            rfid_code = #{rfidCode}
+        </where>
+    </update>
+
+    <!--根据设施id删除智能标签信息-->
+    <update id="deleteRfidInfoByDeviceId" parameterType="com.fiberhome.filink.rfid.req.rfid.DeleteRfidInfoReq">
+        UPDATE rfid_info
+        SET is_deleted = '1',
+        update_user = #{updateUser},
+        update_time = #{updateTime}
+        <where>
+            device_id = #{deviceId}
+        </where>
+    </update>
+
+    <update id="changeLabel" parameterType="java.lang.String">
+        update rfid_info set rfid_code = #{newLabel} where rfid_code = #{oldLabel}
+    </update>
+</mapper>

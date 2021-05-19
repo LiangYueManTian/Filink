@@ -1,0 +1,15 @@
+<div class="work-order-detail">
+  <div>
+    <span class="work-order-detail-title">
+      {{pageTitle}}
+    </span>
+  </div>
+  <div style="padding-left: 20px">
+    <xc-form [column]="formColumn" (formInstance)="formInstance($event)"></xc-form>
+    <div style="padding-left: 20px">
+      <button class="link-button" nz-button nzType="primary" style="margin-right: 20px">确定
+      </button>
+      <button class="link-button" nz-button nzType="danger" (click)="goBack()">取消</button>
+    </div>
+  </div>
+</div>

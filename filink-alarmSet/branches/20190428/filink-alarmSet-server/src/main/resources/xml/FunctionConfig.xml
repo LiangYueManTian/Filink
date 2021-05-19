@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+
+	<functionCode functionId="1701201">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm level alarm level name is ${alarmLevelName}
+			</detailInfoTemplate>
+			<optName>updateAlarmLevel</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警级别:${alarmLevelName}</detailInfoTemplate>
+			<optName>修改告警级别</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm set alarm set name is ${alarmName}</detailInfoTemplate>
+			<optName>updateAlarmCurrentSet</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了当前告警设置:${alarmName}</detailInfoTemplate>
+			<optName>修改当前告警设置</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701301">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update warehousing time warehousing time name is ${delayName}
+			</detailInfoTemplate>
+			<optName>updateAlarmDelay</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了历史告警设置:${delayName}</detailInfoTemplate>
+			<optName>修改历史告警设置</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701304">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add alarm filter rule alarm filter rule name is ${ruleName}</detailInfoTemplate>
+			<optName>addAlarmFilterRule</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了告警过滤:${ruleName}</detailInfoTemplate>
+			<optName>新增告警过滤</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701305">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete alarm filter rule alarm filter rule name is ${ruleName}
+			</detailInfoTemplate>
+			<optName>batchDeleteAlarmFilterRule</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了告警过滤:${ruleName}</detailInfoTemplate>
+			<optName>删除告警过滤</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701306">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm filter rule alarm filter rule name is${ruleName}
+			</detailInfoTemplate>
+			<optName>updateAlarmFilterRule</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警过滤信息:${ruleName}</detailInfoTemplate>
+			<optName>修改告警过滤信息</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701307">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm filter rule status alarm filter rule status name is
+				${ruleName}</detailInfoTemplate>
+			<optName>batchUpdateAlarmFilterRuleStatus</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警过滤状态:${ruleName}</detailInfoTemplate>
+			<optName>修改告警过滤状态</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701308">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm filter rule stored alarm filter rule stored name is${ruleName}
+			</detailInfoTemplate>
+			<optName>batchUpdateAlarmFilterRuleStored</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警过滤存库:${ruleName}</detailInfoTemplate>
+			<optName>修改告警过滤存库</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701601">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add alarm forward rule alarm forward rule is ${id}</detailInfoTemplate>
+			<optName>addAlarmForwardRule</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了告警远程通知:${id}</detailInfoTemplate>
+			<optName>新增告警远程通知</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701602">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete alarm forward rule alarm forward rule is ${id}</detailInfoTemplate>
+			<optName>deleteAlarmForwardRule</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了告警远程通知:${id}</detailInfoTemplate>
+			<optName>删除告警远程通知</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701603">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm forward rule alarm forward rule is ${id}</detailInfoTemplate>
+			<optName>updateAlarmForwardRule</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警远程通知:${id}</detailInfoTemplate>
+			<optName>修改告警远程通知</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701604">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm forward rule status alarm forward rule status is ${id}
+			</detailInfoTemplate>
+			<optName>batchUpdateAlarmForwardRuleStatus</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警远程通知状态:${id}</detailInfoTemplate>
+			<optName>修改告警远程通知状态</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701605">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm forward rule push type alarm forward rule push type is
+				${id}</detailInfoTemplate>
+			<optName>batchUpdateAlarmForwardRulePushType</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警远程通知推送类型:${id}</detailInfoTemplate>
+			<optName>修改告警远程通知推送类型</optName>
+		</language>
+	</functionCode>1701501
+
+	<functionCode functionId="1701501">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add alarm order rule alarm order rule is${orderName}</detailInfoTemplate>
+			<optName>addAlarmOrderRule</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了告警转工单规则:${orderName}</detailInfoTemplate>
+			<optName>新增告警转工单规则</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701502">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete alarm order rule alarm order rule is${orderName}</detailInfoTemplate>
+			<optName>batchDeleteAlarmOrderRule</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了告警转工单规则:${orderName}</detailInfoTemplate>
+			<optName>删除告警转工单规则</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701503">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm order rule alarm order rule is${orderName}</detailInfoTemplate>
+			<optName>updateAlarmOrderRule</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警转工单规则:${orderName}</detailInfoTemplate>
+			<optName>修改告警转工单规则</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701504">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update alarm order rule push type alarm order rule push type is
+				${orderName}</detailInfoTemplate>
+			<optName>batchUpdateAlarmOrderRuleStatus</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了告警转工单规则状态:${orderName}</detailInfoTemplate>
+			<optName>修改告警转工单规则状态</optName>
+		</language>
+	</functionCode>
+</functionCodes>

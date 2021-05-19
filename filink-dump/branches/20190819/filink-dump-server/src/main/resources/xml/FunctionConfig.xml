@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="2801001">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} dump the ${dumpName}</detailInfoTemplate>
+			<optName>Operation log dump</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}转储了${dumpName}</detailInfoTemplate>
+			<optName>操作日志转储</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2801002">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} dump the ${dumpName}</detailInfoTemplate>
+			<optName>System log dump</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}转储了${dumpName}</detailInfoTemplate>
+			<optName>系统日志转储</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2801003">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} dump the ${dumpName}</detailInfoTemplate>
+			<optName>Security log dump</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}转储了${dumpName}</detailInfoTemplate>
+			<optName>安全日志转储</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2801004">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} dump the ${dumpName}</detailInfoTemplate>
+			<optName>Alarm dump</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}转储了${dumpName}</detailInfoTemplate>
+			<optName>告警转储</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2801005">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} dump the ${dumpName}</detailInfoTemplate>
+			<optName>Device log dump</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}转储了:${dumpName}</detailInfoTemplate>
+			<optName>设施日志转储</optName>
+		</language>
+	</functionCode>
+</functionCodes>

@@ -1,0 +1,8 @@
+2019-08-19 14:20:05.374 [main] INFO  c.f.f.u.c.UserLoginController
+                -User null login：Check if the user can login
+2019-08-19 14:20:05.471 [main] INFO  c.f.f.u.c.UserLoginController
+                -User null login：Check if the user can login without passing
+2019-08-19 14:20:05.482 [main] INFO  c.f.f.u.c.UserLoginController
+                -User null login：Check if the user can login
+2019-08-19 14:20:05.829 [main] INFO  c.f.f.u.c.UserLoginController
+                -User null login：Query user related information

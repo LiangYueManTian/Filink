@@ -1,0 +1,602 @@
+2019-05-27 17:07:41.126 [main] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-device-server/default": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-05-27 17:07:41.137 [main] INFO  c.f.f.d.FilinkDeviceServerApplication
+                -No active profile set, falling back to default profiles: default
+2019-05-27 17:07:47.026 [main] INFO  org.eclipse.jetty.util.log
+                -Logging initialized @11447ms to org.eclipse.jetty.util.log.Slf4jLog
+2019-05-27 17:07:47.126 [main] INFO  org.eclipse.jetty.server.Server
+                -jetty-9.4.7.v20170914
+2019-05-27 17:07:47.168 [main] INFO  org.eclipse.jetty.server.session
+                -DefaultSessionIdManager workerName=node0
+2019-05-27 17:07:47.168 [main] INFO  org.eclipse.jetty.server.session
+                -No SessionScavenger set, using defaults
+2019-05-27 17:07:47.170 [main] INFO  org.eclipse.jetty.server.session
+                -Scavenging every 600000ms
+2019-05-27 17:07:47.177 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -Initializing Spring embedded WebApplicationContext
+2019-05-27 17:07:47.246 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================德鲁伊数据源初始化============================
+2019-05-27 17:07:47.267 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================初始化用户名：admin===========================
+2019-05-27 17:07:47.268 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -=========================初始化密码：admin=============================
+2019-05-27 17:07:47.268 [main] INFO  c.f.f.s.c.DruidConfiguration
+                -
+2019-05-27 17:07:50.088 [main] INFO  o.e.j.server.handler.ContextHandler
+                -Started o.s.b.c.e.j.JettyEmbeddedWebAppContext@7af8b02{/,[file:///C:/Users/%E6%9C%B1%E5%A5%87/AppData/Local/Temp/jetty-docbase.267928040437531039.9301/, jar:file:/C:/locM2/org/webjars/jquery/2.1.1/jquery-2.1.1.jar!/META-INF/resources, jar:file:/C:/locM2/org/webjars/d3js/3.4.11/d3js-3.4.11.jar!/META-INF/resources],AVAILABLE}
+2019-05-27 17:07:50.089 [main] INFO  org.eclipse.jetty.server.Server
+                -Started @14511ms
+2019-05-27 17:07:55.258 [main] INFO  c.alibaba.druid.pool.DruidDataSource
+                -{dataSource-1} inited
+2019-05-27 17:07:55.387 [main] WARN  c.b.m.toolkit.TableInfoHelper
+                -Warn: Could not find @TableId in Class: com.fiberhome.filink.fdevice.bean.area.AreaDeptInfo.
+2019-05-27 17:07:55.387 [main] WARN  c.b.m.mapper.AutoSqlInjector
+                -class com.fiberhome.filink.fdevice.bean.area.AreaDeptInfo ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2019-05-27 17:08:00.825 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -jolokia: No access restrictor found, access to any MBean is allowed
+2019-05-27 17:08:06.690 [main] INFO  org.mongodb.driver.cluster
+                -Cluster created with settings {hosts=[10.5.24.224:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2019-05-27 17:08:06.691 [main] INFO  org.mongodb.driver.cluster
+                -Adding discovered server 10.5.24.224:27017 to client view of cluster
+2019-05-27 17:08:06.776 [cluster-ClusterId{value='5ceba8f60b9423155ce21bfb', description='null'}-10.5.24.224:27017] INFO  org.mongodb.driver.connection
+                -Opened connection [connectionId{localValue:1, serverValue:738}] to 10.5.24.224:27017
+2019-05-27 17:08:06.780 [cluster-ClusterId{value='5ceba8f60b9423155ce21bfb', description='null'}-10.5.24.224:27017] INFO  org.mongodb.driver.cluster
+                -Monitor thread successfully connected to server with description ServerDescription{address=10.5.24.224:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 20]}, minWireVersion=0, maxWireVersion=5, maxDocumentSize=16777216, roundTripTimeNanos=1224616}
+2019-05-27 17:08:06.781 [cluster-ClusterId{value='5ceba8f60b9423155ce21bfb', description='null'}-10.5.24.224:27017] INFO  org.mongodb.driver.cluster
+                -Discovered cluster type of STANDALONE
+2019-05-27 17:08:11.959 [main] INFO  com.zaxxer.hikari.HikariDataSource
+                -HikariPool-1 - Started.
+2019-05-27 17:08:12.139 [main] INFO  c.f.f.txlcntc.corelog.H2DbHelper
+                -Init H2 DATABASE at C:\workFile\zqq\code\filink-device\trunk\.txlcn\filink-device-server-9301
+2019-05-27 17:08:14.934 [main] WARN  c.n.c.sources.URLConfigurationSource
+                -No URLs will be polled as dynamic configuration sources.
+2019-05-27 17:08:14.934 [main] INFO  c.n.c.sources.URLConfigurationSource
+                -To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-05-27 17:08:14.944 [main] INFO  c.n.config.DynamicPropertyFactory
+                -DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@4f759ca1
+2019-05-27 17:08:17.652 [main] WARN  c.n.c.sources.URLConfigurationSource
+                -No URLs will be polled as dynamic configuration sources.
+2019-05-27 17:08:17.653 [main] INFO  c.n.c.sources.URLConfigurationSource
+                -To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-05-27 17:08:46.299 [main] WARN  o.s.c.c.c.ConfigServicePropertySourceLocator
+                -Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/filink-device-server/default": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2019-05-27 17:08:46.302 [main] INFO  c.f.f.d.FilinkDeviceServerApplication
+                -No active profile set, falling back to default profiles: default
+2019-05-27 17:08:46.700 [main] INFO  c.f.f.d.FilinkDeviceServerApplication
+                -Started FilinkDeviceServerApplication in 1.715 seconds (JVM running for 71.121)
+2019-05-27 17:08:46.863 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:zookeeper.version=3.4.8--1, built on 02/06/2016 03:18 GMT
+2019-05-27 17:08:46.864 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:host.name=LAPTOP-LHHP5IPK.wh.wistronits.com
+2019-05-27 17:08:46.867 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.version=1.8.0_40
+2019-05-27 17:08:46.867 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.vendor=Oracle Corporation
+2019-05-27 17:08:46.870 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.home=C:\Program Files\Java\jdk1.8.0_40\jre
+2019-05-27 17:08:46.871 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.class.path=C:\Program Files\Java\jdk1.8.0_40\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_40\jre\lib\rt.jar;C:\workFile\zqq\code\filink-device\trunk\filink-device-server\target\classes;C:\workFile\zqq\code\filink-device\trunk\filink-device-fdevice\target\classes;C:\locM2\com\fiberhome\filink\filink-log-api\0.0.2-RELEASE\filink-log-api-0.0.2-RELEASE.jar;C:\locM2\com\fiberhome\filink\filink-common-client\0.0.2-RELEASE\filink-common-client-0.0.2-RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-starter\1.5.8.RELEASE\spring-boot-starter-1.5.8.RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot\1.5.8.RELEASE\spring-boot-1.5.8.RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-autoconfigure\1.5.8.RELEASE\spring-boot-autoconfigure-1.5.8.RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-starter-logging\1.5.8.RELEASE\spring-boot-starter-logging-1.5.8.RELEASE.jar;C:\locM2\ch\qos\logback\logback-classic\1.1.11\logback-classic-1.1.11.jar;C:\locM2\org\slf4j\jcl-over-slf4j\1.7.25\jcl-over-slf4j-1.7.25.jar;C:\locM2\org\slf4j\jul-to-slf4j\1.7.25\jul-to-slf4j-1.7.25.jar;C:\locM2\org\slf4j\log4j-over-slf4j\1.7.25\log4j-over-slf4j-1.7.25.jar;C:\locM2\org\springframework\spring-core\4.3.12.RELEASE\spring-core-4.3.12.RELEASE.jar;C:\locM2\org\yaml\snakeyaml\1.17\snakeyaml-1.17.jar;C:\locM2\org\springframework\boot\spring-boot-starter-aop\1.5.8.RELEASE\spring-boot-starter-aop-1.5.8.RELEASE.jar;C:\locM2\org\springframework\spring-aop\4.3.12.RELEASE\spring-aop-4.3.12.RELEASE.jar;C:\locM2\org\aspectj\aspectjweaver\1.8.11\aspectjweaver-1.8.11.jar;C:\locM2\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;C:\locM2\xml-apis\xml-apis\1.4.01\xml-apis-1.4.01.jar;C:\locM2\com\fiberhome\filink\filink-system-api\0.0.2-RELEASE\filink-system-api-0.0.2-RELEASE.jar;C:\locM2\org\apache\poi\poi\3.12\poi-3.12.jar;C:\locM2\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;C:\locM2\org\aspectj\aspectjrt\1.8.11\aspectjrt-1.8.11.jar;C:\locM2\ant\ant\1.6.5\ant-1.6.5.jar;C:\locM2\com\fiberhome\filink\filink-user-api\0.0.2-RELEASE\filink-user-api-0.0.2-RELEASE.jar;C:\locM2\com\fiberhome\filink\filink-common-server\0.0.2-RELEASE\filink-common-server-0.0.2-RELEASE.jar;C:\locM2\org\jmockit\jmockit\1.33\jmockit-1.33.jar;C:\locM2\org\springframework\cloud\spring-cloud-config-client\1.4.5.RELEASE\spring-cloud-config-client-1.4.5.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-context\1.3.5.RELEASE\spring-cloud-context-1.3.5.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-hystrix\1.4.6.RELEASE\spring-cloud-starter-hystrix-1.4.6.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-netflix-hystrix\1.4.6.RELEASE\spring-cloud-starter-netflix-hystrix-1.4.6.RELEASE.jar;C:\locM2\com\netflix\hystrix\hystrix-core\1.5.12\hystrix-core-1.5.12.jar;C:\locM2\org\hdrhistogram\HdrHistogram\2.1.9\HdrHistogram-2.1.9.jar;C:\locM2\com\netflix\hystrix\hystrix-metrics-event-stream\1.5.12\hystrix-metrics-event-stream-1.5.12.jar;C:\locM2\com\netflix\hystrix\hystrix-serialization\1.5.12\hystrix-serialization-1.5.12.jar;C:\locM2\com\fasterxml\jackson\module\jackson-module-afterburner\2.8.10\jackson-module-afterburner-2.8.10.jar;C:\locM2\com\netflix\hystrix\hystrix-javanica\1.5.12\hystrix-javanica-1.5.12.jar;C:\locM2\org\ow2\asm\asm\5.0.4\asm-5.0.4.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-starter-hystrix-dashboard-1.4.6.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-netflix-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-starter-netflix-hystrix-dashboard-1.4.6.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-netflix-hystrix-dashboard\1.4.6.RELEASE\spring-cloud-netflix-hystrix-dashboard-1.4.6.RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-starter-freemarker\1.5.8.RELEASE\spring-boot-starter-freemarker-1.5.8.RELEASE.jar;C:\locM2\org\freemarker\freemarker\2.3.26-incubating\freemarker-2.3.26-incubating.jar;C:\locM2\org\webjars\jquery\2.1.1\jquery-2.1.1.jar;C:\locM2\org\webjars\d3js\3.4.11\d3js-3.4.11.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-config\1.4.5.RELEASE\spring-cloud-starter-config-1.4.5.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-netflix-eureka-client\1.4.6.RELEASE\spring-cloud-starter-netflix-eureka-client-1.4.6.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-netflix-core\1.4.6.RELEASE\spring-cloud-netflix-core-1.4.6.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-netflix-eureka-client\1.4.6.RELEASE\spring-cloud-netflix-eureka-client-1.4.6.RELEASE.jar;C:\locM2\com\netflix\eureka\eureka-client\1.7.2\eureka-client-1.7.2.jar;C:\locM2\org\codehaus\jettison\jettison\1.3.7\jettison-1.3.7.jar;C:\locM2\stax\stax-api\1.0.1\stax-api-1.0.1.jar;C:\locM2\com\netflix\netflix-commons\netflix-eventbus\0.3.0\netflix-eventbus-0.3.0.jar;C:\locM2\com\netflix\netflix-commons\netflix-infix\0.3.0\netflix-infix-0.3.0.jar;C:\locM2\commons-jxpath\commons-jxpath\1.3\commons-jxpath-1.3.jar;C:\locM2\joda-time\joda-time\2.9.9\joda-time-2.9.9.jar;C:\locM2\org\antlr\antlr-runtime\3.4\antlr-runtime-3.4.jar;C:\locM2\org\antlr\stringtemplate\3.2.1\stringtemplate-3.2.1.jar;C:\locM2\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\locM2\com\google\code\gson\gson\2.8.2\gson-2.8.2.jar;C:\locM2\org\apache\commons\commons-math\2.2\commons-math-2.2.jar;C:\locM2\com\netflix\archaius\archaius-core\0.7.4\archaius-core-0.7.4.jar;C:\locM2\javax\ws\rs\jsr311-api\1.1.1\jsr311-api-1.1.1.jar;C:\locM2\com\netflix\servo\servo-core\0.10.1\servo-core-0.10.1.jar;C:\locM2\com\netflix\servo\servo-internal\0.10.1\servo-internal-0.10.1.jar;C:\locM2\com\sun\jersey\jersey-core\1.19.1\jersey-core-1.19.1.jar;C:\locM2\com\sun\jersey\jersey-client\1.19.1\jersey-client-1.19.1.jar;C:\locM2\com\sun\jersey\contribs\jersey-apache-client4\1.19.1\jersey-apache-client4-1.19.1.jar;C:\locM2\com\google\inject\guice\4.1.0\guice-4.1.0.jar;C:\locM2\javax\inject\javax.inject\1\javax.inject-1.jar;C:\locM2\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;C:\locM2\com\netflix\eureka\eureka-core\1.7.2\eureka-core-1.7.2.jar;C:\locM2\org\codehaus\woodstox\woodstox-core-asl\4.4.1\woodstox-core-asl-4.4.1.jar;C:\locM2\javax\xml\stream\stax-api\1.0-2\stax-api-1.0-2.jar;C:\locM2\org\codehaus\woodstox\stax2-api\3.1.4\stax2-api-3.1.4.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-netflix-archaius\1.4.6.RELEASE\spring-cloud-starter-netflix-archaius-1.4.6.RELEASE.jar;C:\locM2\commons-configuration\commons-configuration\1.8\commons-configuration-1.8.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-netflix-ribbon\1.4.6.RELEASE\spring-cloud-starter-netflix-ribbon-1.4.6.RELEASE.jar;C:\locM2\com\netflix\ribbon\ribbon\2.2.5\ribbon-2.2.5.jar;C:\locM2\com\netflix\ribbon\ribbon-transport\2.2.5\ribbon-transport-2.2.5.jar;C:\locM2\io\reactivex\rxnetty-contexts\0.4.9\rxnetty-contexts-0.4.9.jar;C:\locM2\io\reactivex\rxnetty-servo\0.4.9\rxnetty-servo-0.4.9.jar;C:\locM2\io\reactivex\rxnetty\0.4.9\rxnetty-0.4.9.jar;C:\locM2\com\netflix\ribbon\ribbon-core\2.2.5\ribbon-core-2.2.5.jar;C:\locM2\com\netflix\ribbon\ribbon-httpclient\2.2.5\ribbon-httpclient-2.2.5.jar;C:\locM2\com\netflix\netflix-commons\netflix-commons-util\0.1.1\netflix-commons-util-0.1.1.jar;C:\locM2\com\netflix\ribbon\ribbon-loadbalancer\2.2.5\ribbon-loadbalancer-2.2.5.jar;C:\locM2\com\netflix\netflix-commons\netflix-statistics\0.1.1\netflix-statistics-0.1.1.jar;C:\locM2\io\reactivex\rxjava\1.2.0\rxjava-1.2.0.jar;C:\locM2\com\netflix\ribbon\ribbon-eureka\2.2.5\ribbon-eureka-2.2.5.jar;C:\locM2\com\thoughtworks\xstream\xstream\1.4.10\xstream-1.4.10.jar;C:\locM2\xmlpull\xmlpull\1.1.3.1\xmlpull-1.1.3.1.jar;C:\locM2\xpp3\xpp3_min\1.1.4c\xpp3_min-1.1.4c.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-feign\1.4.6.RELEASE\spring-cloud-starter-feign-1.4.6.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-openfeign\1.4.6.RELEASE\spring-cloud-starter-openfeign-1.4.6.RELEASE.jar;C:\locM2\io\github\openfeign\feign-core\9.5.0\feign-core-9.5.0.jar;C:\locM2\org\jvnet\animal-sniffer-annotation\1.0\animal-sniffer-annotation-1.0.jar;C:\locM2\io\github\openfeign\feign-slf4j\9.5.0\feign-slf4j-9.5.0.jar;C:\locM2\io\github\openfeign\feign-hystrix\9.5.0\feign-hystrix-9.5.0.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-bus-kafka\1.3.4.RELEASE\spring-cloud-starter-bus-kafka-1.3.4.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-stream-kafka\1.3.3.RELEASE\spring-cloud-starter-stream-kafka-1.3.3.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-stream-binder-kafka\1.3.3.RELEASE\spring-cloud-stream-binder-kafka-1.3.3.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-stream-binder-kafka-core\1.3.3.RELEASE\spring-cloud-stream-binder-kafka-core-1.3.3.RELEASE.jar;C:\locM2\org\springframework\integration\spring-integration-kafka\2.1.2.RELEASE\spring-integration-kafka-2.1.2.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-stream-codec\1.3.3.RELEASE\spring-cloud-stream-codec-1.3.3.RELEASE.jar;C:\locM2\org\apache\kafka\kafka_2.11\0.10.1.1\kafka_2.11-0.10.1.1.jar;C:\locM2\com\yammer\metrics\metrics-core\2.2.0\metrics-core-2.2.0.jar;C:\locM2\org\scala-lang\scala-library\2.11.8\scala-library-2.11.8.jar;C:\locM2\com\101tec\zkclient\0.9\zkclient-0.9.jar;C:\locM2\org\apache\zookeeper\zookeeper\3.4.8\zookeeper-3.4.8.jar;C:\locM2\io\netty\netty\3.7.0.Final\netty-3.7.0.Final.jar;C:\locM2\org\scala-lang\modules\scala-parser-combinators_2.11\1.0.4\scala-parser-combinators_2.11-1.0.4.jar;C:\locM2\org\apache\kafka\kafka-clients\0.10.1.1\kafka-clients-0.10.1.1.jar;C:\locM2\net\jpountz\lz4\lz4\1.3.0\lz4-1.3.0.jar;C:\locM2\org\xerial\snappy\snappy-java\1.1.2.6\snappy-java-1.1.2.6.jar;C:\locM2\org\springframework\kafka\spring-kafka\1.1.7.RELEASE\spring-kafka-1.1.7.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-bus\1.3.4.RELEASE\spring-cloud-bus-1.3.4.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-stream\1.3.3.RELEASE\spring-cloud-stream-1.3.3.RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-starter-validation\1.5.8.RELEASE\spring-boot-starter-validation-1.5.8.RELEASE.jar;C:\locM2\org\springframework\spring-messaging\4.3.12.RELEASE\spring-messaging-4.3.12.RELEASE.jar;C:\locM2\org\springframework\integration\spring-integration-jmx\4.3.12.RELEASE\spring-integration-jmx-4.3.12.RELEASE.jar;C:\locM2\org\springframework\spring-tuple\1.0.0.RELEASE\spring-tuple-1.0.0.RELEASE.jar;C:\locM2\org\springframework\integration\spring-integration-tuple\1.0.0.RELEASE\spring-integration-tuple-1.0.0.RELEASE.jar;C:\locM2\org\springframework\retry\spring-retry\1.2.1.RELEASE\spring-retry-1.2.1.RELEASE.jar;C:\locM2\org\springframework\integration\spring-integration-core\4.3.12.RELEASE\spring-integration-core-4.3.12.RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-starter-actuator\1.5.8.RELEASE\spring-boot-starter-actuator-1.5.8.RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-actuator\1.5.8.RELEASE\spring-boot-actuator-1.5.8.RELEASE.jar;C:\locM2\org\springframework\spring-web\4.3.12.RELEASE\spring-web-4.3.12.RELEASE.jar;C:\locM2\org\springframework\spring-beans\4.3.12.RELEASE\spring-beans-4.3.12.RELEASE.jar;C:\locM2\org\springframework\spring-context\4.3.12.RELEASE\spring-context-4.3.12.RELEASE.jar;C:\locM2\org\springframework\spring-expression\4.3.12.RELEASE\spring-expression-4.3.12.RELEASE.jar;C:\locM2\com\alibaba\fastjson\1.2.44\fastjson-1.2.44.jar;C:\locM2\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;C:\locM2\commons-beanutils\commons-beanutils\1.9.3\commons-beanutils-1.9.3.jar;C:\locM2\commons-collections\commons-collections\3.2.2\commons-collections-3.2.2.jar;C:\locM2\commons-io\commons-io\1.3.2\commons-io-1.3.2.jar;C:\locM2\com\alibaba\druid\1.1.9\druid-1.1.9.jar;C:\locM2\com\baomidou\mybatis-plus-boot-starter\2.2.0\mybatis-plus-boot-starter-2.2.0.jar;C:\locM2\com\baomidou\mybatis-plus\2.2.0\mybatis-plus-2.2.0.jar;C:\locM2\com\baomidou\mybatis-plus-support\2.2.0\mybatis-plus-support-2.2.0.jar;C:\locM2\com\baomidou\mybatis-plus-core\2.2.0\mybatis-plus-core-2.2.0.jar;C:\locM2\org\mybatis\mybatis-spring\1.3.2\mybatis-spring-1.3.2.jar;C:\locM2\org\mybatis\mybatis\3.4.6\mybatis-3.4.6.jar;C:\locM2\com\baomidou\mybatis-plus-generate\2.2.0\mybatis-plus-generate-2.2.0.jar;C:\locM2\org\springframework\boot\spring-boot-starter-jdbc\1.5.8.RELEASE\spring-boot-starter-jdbc-1.5.8.RELEASE.jar;C:\locM2\org\apache\tomcat\tomcat-jdbc\8.5.23\tomcat-jdbc-8.5.23.jar;C:\locM2\org\apache\tomcat\tomcat-juli\8.5.23\tomcat-juli-8.5.23.jar;C:\locM2\org\springframework\spring-jdbc\4.3.12.RELEASE\spring-jdbc-4.3.12.RELEASE.jar;C:\locM2\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar;C:\locM2\com\github\tomakehurst\wiremock\2.5.1\wiremock-2.5.1.jar;C:\locM2\org\eclipse\jetty\jetty-server\9.4.7.v20170914\jetty-server-9.4.7.v20170914.jar;C:\locM2\org\eclipse\jetty\jetty-http\9.4.7.v20170914\jetty-http-9.4.7.v20170914.jar;C:\locM2\org\eclipse\jetty\jetty-io\9.4.7.v20170914\jetty-io-9.4.7.v20170914.jar;C:\locM2\org\eclipse\jetty\jetty-servlet\9.4.7.v20170914\jetty-servlet-9.4.7.v20170914.jar;C:\locM2\org\eclipse\jetty\jetty-security\9.4.7.v20170914\jetty-security-9.4.7.v20170914.jar;C:\locM2\org\eclipse\jetty\jetty-servlets\9.4.7.v20170914\jetty-servlets-9.4.7.v20170914.jar;C:\locM2\org\eclipse\jetty\jetty-continuation\9.4.7.v20170914\jetty-continuation-9.4.7.v20170914.jar;C:\locM2\org\eclipse\jetty\jetty-util\9.4.7.v20170914\jetty-util-9.4.7.v20170914.jar;C:\locM2\org\eclipse\jetty\jetty-webapp\9.4.7.v20170914\jetty-webapp-9.4.7.v20170914.jar;C:\locM2\org\eclipse\jetty\jetty-xml\9.4.7.v20170914\jetty-xml-9.4.7.v20170914.jar;C:\locM2\org\apache\httpcomponents\httpclient\4.5.3\httpclient-4.5.3.jar;C:\locM2\org\apache\httpcomponents\httpcore\4.4.8\httpcore-4.4.8.jar;C:\locM2\org\xmlunit\xmlunit-core\2.3.0\xmlunit-core-2.3.0.jar;C:\locM2\org\xmlunit\xmlunit-legacy\2.3.0\xmlunit-legacy-2.3.0.jar;C:\locM2\com\jayway\jsonpath\json-path\2.2.0\json-path-2.2.0.jar;C:\locM2\net\minidev\json-smart\2.2.1\json-smart-2.2.1.jar;C:\locM2\net\minidev\accessors-smart\1.1\accessors-smart-1.1.jar;C:\locM2\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;C:\locM2\net\sf\jopt-simple\jopt-simple\4.9\jopt-simple-4.9.jar;C:\locM2\junit\junit\4.12\junit-4.12.jar;C:\locM2\org\apache\commons\commons-lang3\3.4\commons-lang3-3.4.jar;C:\locM2\com\flipkart\zjsonpatch\zjsonpatch\0.2.1\zjsonpatch-0.2.1.jar;C:\locM2\org\apache\commons\commons-collections4\4.0\commons-collections4-4.0.jar;C:\locM2\com\github\jknack\handlebars\4.0.6\handlebars-4.0.6.jar;C:\locM2\org\antlr\antlr4-runtime\4.5.1-1\antlr4-runtime-4.5.1-1.jar;C:\locM2\com\fiberhome\filink\filink-common-bean\0.0.2-RELEASE\filink-common-bean-0.0.2-RELEASE.jar;C:\locM2\javax\servlet\javax.servlet-api\3.1.0\javax.servlet-api-3.1.0.jar;C:\locM2\org\projectlombok\lombok\1.16.18\lombok-1.16.18.jar;C:\locM2\com\fiberhome\filink\filink-common-redis\0.0.2-RELEASE\filink-common-redis-0.0.2-RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-starter-data-redis\1.5.8.RELEASE\spring-boot-starter-data-redis-1.5.8.RELEASE.jar;C:\locM2\org\springframework\data\spring-data-redis\1.8.8.RELEASE\spring-data-redis-1.8.8.RELEASE.jar;C:\locM2\org\springframework\data\spring-data-keyvalue\1.2.8.RELEASE\spring-data-keyvalue-1.2.8.RELEASE.jar;C:\locM2\org\springframework\spring-tx\4.3.12.RELEASE\spring-tx-4.3.12.RELEASE.jar;C:\locM2\org\springframework\spring-oxm\4.3.12.RELEASE\spring-oxm-4.3.12.RELEASE.jar;C:\locM2\org\springframework\spring-context-support\4.3.12.RELEASE\spring-context-support-4.3.12.RELEASE.jar;C:\locM2\redis\clients\jedis\2.9.0\jedis-2.9.0.jar;C:\locM2\org\apache\commons\commons-pool2\2.4.2\commons-pool2-2.4.2.jar;C:\locM2\com\fiberhome\filink\filink-common-mongo\0.0.2-RELEASE\filink-common-mongo-0.0.2-RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-starter-data-mongodb\1.5.8.RELEASE\spring-boot-starter-data-mongodb-1.5.8.RELEASE.jar;C:\locM2\org\mongodb\mongodb-driver\3.4.3\mongodb-driver-3.4.3.jar;C:\locM2\org\mongodb\mongodb-driver-core\3.4.3\mongodb-driver-core-3.4.3.jar;C:\locM2\org\mongodb\bson\3.4.3\bson-3.4.3.jar;C:\locM2\org\springframework\data\spring-data-mongodb\1.10.8.RELEASE\spring-data-mongodb-1.10.8.RELEASE.jar;C:\locM2\org\springframework\data\spring-data-commons\1.13.8.RELEASE\spring-data-commons-1.13.8.RELEASE.jar;C:\locM2\com\fiberhome\filink\filink-lock-api\0.0.2-RELEASE\filink-lock-api-0.0.2-RELEASE.jar;C:\locM2\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.0.Final\hibernate-jpa-2.1-api-1.0.0.Final.jar;C:\locM2\com\fiberhome\filink\filink-alarmCurrent-api\0.0.2-RELEASE\filink-alarmCurrent-api-0.0.2-RELEASE.jar;C:\locM2\com\fiberhome\filink\filink-workflow-business-api\0.0.2-RELEASE\filink-workflow-business-api-0.0.2-RELEASE.jar;C:\workFile\zqq\code\filink-device\trunk\filink-device-api\target\classes;C:\locM2\com\fiberhome\filink\txlcn-tc\0.0.1-RELEASE\txlcn-tc-0.0.1-RELEASE.jar;C:\locM2\com\fiberhome\filink\txlcn-logger\0.0.1-RELEASE\txlcn-logger-0.0.1-RELEASE.jar;C:\locM2\commons-dbutils\commons-dbutils\1.7\commons-dbutils-1.7.jar;C:\locM2\com\zaxxer\HikariCP\2.5.1\HikariCP-2.5.1.jar;C:\locM2\com\fiberhome\filink\txlcn-common\0.0.1-RELEASE\txlcn-common-0.0.1-RELEASE.jar;C:\locM2\com\fiberhome\filink\txlcn-tracing\0.0.1-RELEASE\txlcn-tracing-0.0.1-RELEASE.jar;C:\locM2\com\fiberhome\filink\txlcn-txmsg\0.0.1-RELEASE\txlcn-txmsg-0.0.1-RELEASE.jar;C:\locM2\com\h2database\h2\1.4.196\h2-1.4.196.jar;C:\locM2\com\github\jsqlparser\jsqlparser\1.3\jsqlparser-1.3.jar;C:\locM2\org\springframework\boot\spring-boot-configuration-processor\1.5.8.RELEASE\spring-boot-configuration-processor-1.5.8.RELEASE.jar;C:\locM2\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\locM2\com\caucho\hessian\4.0.38\hessian-4.0.38.jar;C:\locM2\io\protostuff\protostuff-core\1.6.0\protostuff-core-1.6.0.jar;C:\locM2\io\protostuff\protostuff-api\1.6.0\protostuff-api-1.6.0.jar;C:\locM2\io\protostuff\protostuff-runtime\1.6.0\protostuff-runtime-1.6.0.jar;C:\locM2\io\protostuff\protostuff-collectionschema\1.6.0\protostuff-collectionschema-1.6.0.jar;C:\locM2\com\esotericsoftware\kryo-shaded\4.0.0\kryo-shaded-4.0.0.jar;C:\locM2\com\esotericsoftware\minlog\1.3.0\minlog-1.3.0.jar;C:\locM2\org\objenesis\objenesis\2.2\objenesis-2.2.jar;C:\locM2\com\google\guava\guava\18.0\guava-18.0.jar;C:\locM2\com\fiberhome\filink\txlcn-txmsg-netty\0.0.1-RELEASE\txlcn-txmsg-netty-0.0.1-RELEASE.jar;C:\locM2\io\netty\netty-all\4.1.31.Final\netty-all-4.1.31.Final.jar;C:\workFile\zqq\code\filink-device\trunk\filink-device-picture\target\classes;C:\locM2\com\fiberhome\filink\filink-oss-api\0.0.2-RELEASE\filink-oss-api-0.0.2-RELEASE.jar;C:\locM2\io\github\openfeign\form\feign-form\3.0.3\feign-form-3.0.3.jar;C:\locM2\io\github\openfeign\form\feign-form-spring\3.0.3\feign-form-spring-3.0.3.jar;C:\locM2\commons-fileupload\commons-fileupload\1.3.3\commons-fileupload-1.3.3.jar;C:\locM2\net\logstash\logback\logstash-logback-encoder\4.9\logstash-logback-encoder-4.9.jar;C:\locM2\ch\qos\logback\logback-core\1.1.11\logback-core-1.1.11.jar;C:\locM2\com\fasterxml\jackson\core\jackson-databind\2.8.10\jackson-databind-2.8.10.jar;C:\locM2\com\fasterxml\jackson\core\jackson-annotations\2.8.0\jackson-annotations-2.8.0.jar;C:\locM2\com\fasterxml\jackson\core\jackson-core\2.8.10\jackson-core-2.8.10.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-zipkin\1.3.5.RELEASE\spring-cloud-starter-zipkin-1.3.5.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter-sleuth\1.3.5.RELEASE\spring-cloud-starter-sleuth-1.3.5.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-starter\1.3.5.RELEASE\spring-cloud-starter-1.3.5.RELEASE.jar;C:\locM2\org\springframework\security\spring-security-rsa\1.0.3.RELEASE\spring-security-rsa-1.0.3.RELEASE.jar;C:\locM2\org\bouncycastle\bcpkix-jdk15on\1.55\bcpkix-jdk15on-1.55.jar;C:\locM2\org\bouncycastle\bcprov-jdk15on\1.55\bcprov-jdk15on-1.55.jar;C:\locM2\org\springframework\cloud\spring-cloud-sleuth-core\1.3.5.RELEASE\spring-cloud-sleuth-core-1.3.5.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-sleuth-zipkin\1.3.5.RELEASE\spring-cloud-sleuth-zipkin-1.3.5.RELEASE.jar;C:\locM2\org\springframework\cloud\spring-cloud-commons\1.3.5.RELEASE\spring-cloud-commons-1.3.5.RELEASE.jar;C:\locM2\org\springframework\security\spring-security-crypto\4.2.3.RELEASE\spring-security-crypto-4.2.3.RELEASE.jar;C:\locM2\io\zipkin\zipkin2\zipkin\2.7.1\zipkin-2.7.1.jar;C:\locM2\io\zipkin\reporter2\zipkin-reporter\2.5.0\zipkin-reporter-2.5.0.jar;C:\locM2\io\zipkin\reporter2\zipkin-sender-kafka11\2.5.0\zipkin-sender-kafka11-2.5.0.jar;C:\locM2\io\zipkin\reporter2\zipkin-sender-amqp-client\2.5.0\zipkin-sender-amqp-client-2.5.0.jar;C:\workFile\zqq\code\filink-device\trunk\filink-device-parts\target\classes;C:\locM2\de\codecentric\spring-boot-admin-starter-client\1.5.7\spring-boot-admin-starter-client-1.5.7.jar;C:\locM2\de\codecentric\spring-boot-admin-client\1.5.7\spring-boot-admin-client-1.5.7.jar;C:\locM2\org\springframework\boot\spring-boot-starter-web\1.5.8.RELEASE\spring-boot-starter-web-1.5.8.RELEASE.jar;C:\locM2\org\springframework\boot\spring-boot-starter-tomcat\1.5.8.RELEASE\spring-boot-starter-tomcat-1.5.8.RELEASE.jar;C:\locM2\org\apache\tomcat\embed\tomcat-embed-core\8.5.23\tomcat-embed-core-8.5.23.jar;C:\locM2\org\apache\tomcat\tomcat-annotations-api\8.5.23\tomcat-annotations-api-8.5.23.jar;C:\locM2\org\apache\tomcat\embed\tomcat-embed-el\8.5.23\tomcat-embed-el-8.5.23.jar;C:\locM2\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.23\tomcat-embed-websocket-8.5.23.jar;C:\locM2\org\hibernate\hibernate-validator\5.3.5.Final\hibernate-validator-5.3.5.Final.jar;C:\locM2\javax\validation\validation-api\1.1.0.Final\validation-api-1.1.0.Final.jar;C:\locM2\org\jboss\logging\jboss-logging\3.3.1.Final\jboss-logging-3.3.1.Final.jar;C:\locM2\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;C:\locM2\org\springframework\spring-webmvc\4.3.12.RELEASE\spring-webmvc-4.3.12.RELEASE.jar;C:\locM2\org\jolokia\jolokia-core\1.3.7\jolokia-core-1.3.7.jar;C:\locM2\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2018.3.5\lib\idea_rt.jar;C:\Users\朱奇\.IntelliJIdea2018.3\system\captureAgent\debugger-agent.jar
+2019-05-27 17:08:46.872 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.library.path=C:\Program Files\Java\jdk1.8.0_40\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\app\mldnadmin\product\12.2.0\dbhome_1\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Java\jdk1.8.0_40\bin;C:\Program Files\Java\jdk1.8.0_40\jre\bin;D:\Program Files (x86)\MySQL\MySQL Server 5.0\bin;D:\Program Files\Git\cmd;C:\Program Files (x86)\MySQL\MySQL Server 5.0\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Redis;C:\Program Files\TortoiseSVN\bin;C:\apache-maven-3.6.0\bin;C:\Users\朱奇\AppData\Local\Microsoft\WindowsApps;;.
+2019-05-27 17:08:46.872 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.io.tmpdir=C:\Users\朱奇\AppData\Local\Temp\
+2019-05-27 17:08:46.872 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:java.compiler=<NA>
+2019-05-27 17:08:46.873 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.name=Windows 8.1
+2019-05-27 17:08:46.874 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.arch=amd64
+2019-05-27 17:08:46.874 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:os.version=6.3
+2019-05-27 17:08:46.874 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.name=朱奇
+2019-05-27 17:08:46.875 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.home=C:\Users\朱奇
+2019-05-27 17:08:46.877 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Client environment:user.dir=C:\workFile\zqq\code\filink-device\trunk
+2019-05-27 17:08:46.878 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.24.224:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@5f706285
+2019-05-27 17:08:46.967 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.24.224/10.5.24.224:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-05-27 17:08:46.971 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.24.224/10.5.24.224:2181, initiating session
+2019-05-27 17:08:46.979 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.24.224/10.5.24.224:2181, sessionid = 0x100052db3ad24a2, negotiated timeout = 10000
+2019-05-27 17:08:47.741 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x100052db3ad24a2 closed
+2019-05-27 17:08:47.741 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x100052db3ad24a2
+2019-05-27 17:08:47.745 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.24.224:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@50639d25
+2019-05-27 17:08:47.751 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.24.224/10.5.24.224:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-05-27 17:08:47.754 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.24.224/10.5.24.224:2181, initiating session
+2019-05-27 17:08:47.759 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.24.224/10.5.24.224:2181, sessionid = 0x100052db3ad24a3, negotiated timeout = 10000
+2019-05-27 17:08:48.080 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.24.224:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@5914afb2
+2019-05-27 17:08:48.120 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.24.224/10.5.24.224:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-05-27 17:08:48.124 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.24.224/10.5.24.224:2181, initiating session
+2019-05-27 17:08:48.129 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.24.224/10.5.24.224:2181, sessionid = 0x100052db3ad24a4, negotiated timeout = 10000
+2019-05-27 17:08:48.242 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x100052db3ad24a4 closed
+2019-05-27 17:08:48.243 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x100052db3ad24a4
+2019-05-27 17:08:48.248 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.24.224:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@47261424
+2019-05-27 17:08:48.252 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.24.224/10.5.24.224:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-05-27 17:08:48.254 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.24.224/10.5.24.224:2181, initiating session
+2019-05-27 17:08:48.257 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.24.224/10.5.24.224:2181, sessionid = 0x100052db3ad24a5, negotiated timeout = 10000
+2019-05-27 17:08:48.567 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.24.224:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@68eebd0f
+2019-05-27 17:08:48.569 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.24.224/10.5.24.224:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-05-27 17:08:48.573 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.24.224/10.5.24.224:2181, initiating session
+2019-05-27 17:08:48.581 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.24.224/10.5.24.224:2181, sessionid = 0x100052db3ad24a6, negotiated timeout = 10000
+2019-05-27 17:08:48.681 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x100052db3ad24a6 closed
+2019-05-27 17:08:48.681 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x100052db3ad24a6
+2019-05-27 17:08:48.682 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.24.224:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@7e34178d
+2019-05-27 17:08:48.687 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.24.224/10.5.24.224:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-05-27 17:08:48.691 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.24.224/10.5.24.224:2181, initiating session
+2019-05-27 17:08:48.695 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.24.224/10.5.24.224:2181, sessionid = 0x100052db3ad24a7, negotiated timeout = 10000
+2019-05-27 17:08:49.008 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Initializing Eureka in region us-east-1
+2019-05-27 17:08:49.088 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON encoding codec LegacyJacksonJson
+2019-05-27 17:08:49.088 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using JSON decoding codec LegacyJacksonJson
+2019-05-27 17:08:49.484 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML encoding codec XStreamXml
+2019-05-27 17:08:49.485 [main] INFO  c.n.d.p.DiscoveryJerseyProvider
+                -Using XML decoding codec XStreamXml
+2019-05-27 17:08:50.129 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver
+                -Resolving eureka endpoints via configuration
+2019-05-27 17:08:50.368 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Disable delta property : false
+2019-05-27 17:08:50.368 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Single vip registry refresh property : null
+2019-05-27 17:08:50.369 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Force full registry fetch : false
+2019-05-27 17:08:50.369 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application is null : false
+2019-05-27 17:08:50.369 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Registered Applications size is zero : true
+2019-05-27 17:08:50.369 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Application version is -1: true
+2019-05-27 17:08:50.369 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Getting all instance registry info from the eureka server
+2019-05-27 17:08:50.595 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -The response status is 200
+2019-05-27 17:08:50.598 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Starting heartbeat executor: renew interval is: 30
+2019-05-27 17:08:50.600 [main] INFO  c.n.discovery.InstanceInfoReplicator
+                -InstanceInfoReplicator onDemand update allowed rate per min is 4
+2019-05-27 17:08:50.603 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Discovery Client initialized at timestamp 1558948130603 with initial instances count: 5
+2019-05-27 17:08:51.121 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Saw local status change event StatusChangeEvent [timestamp=1558948131121, current=UP, previous=STARTING]
+2019-05-27 17:08:51.123 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-DEVICE-SERVER/LAPTOP-LHHP5IPK.wh.wistronits.com:filink-device-server:9301: registering service...
+2019-05-27 17:08:51.176 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-DEVICE-SERVER/LAPTOP-LHHP5IPK.wh.wistronits.com:filink-device-server:9301 - registration status: 204
+2019-05-27 17:08:51.218 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.24.224:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@3f060041
+2019-05-27 17:08:51.220 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.24.224/10.5.24.224:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-05-27 17:08:51.223 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.24.224/10.5.24.224:2181, initiating session
+2019-05-27 17:08:51.229 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.24.224/10.5.24.224:2181, sessionid = 0x100052db3ad24a8, negotiated timeout = 10000
+2019-05-27 17:08:51.258 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Session: 0x100052db3ad24a8 closed
+2019-05-27 17:08:51.258 [main-EventThread] INFO  org.apache.zookeeper.ClientCnxn
+                -EventThread shut down for session: 0x100052db3ad24a8
+2019-05-27 17:08:51.258 [main] INFO  org.apache.zookeeper.ZooKeeper
+                -Initiating client connection, connectString=10.5.24.224:2181 sessionTimeout=10000 watcher=org.I0Itec.zkclient.ZkClient@d2383c3
+2019-05-27 17:08:51.260 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Opening socket connection to server 10.5.24.224/10.5.24.224:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-05-27 17:08:51.262 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Socket connection established to 10.5.24.224/10.5.24.224:2181, initiating session
+2019-05-27 17:08:51.264 [main-SendThread(10.5.24.224:2181)] INFO  org.apache.zookeeper.ClientCnxn
+                -Session establishment complete on server 10.5.24.224/10.5.24.224:2181, sessionid = 0x100052db3ad24a9, negotiated timeout = 10000
+2019-05-27 17:08:52.505 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-05-27 17:08:52.790 [main] INFO  o.e.jetty.server.AbstractConnector
+                -Started ServerConnector@5bf9c995{HTTP/1.1,[http/1.1]}{0.0.0.0:9301}
+2019-05-27 17:08:53.169 [main] INFO  c.f.f.f.u.FiLinkDeviceXmlResolver
+                -device: 060 configuration node is null>>>>>>
+2019-05-27 17:08:53.169 [main] INFO  c.f.f.f.u.FiLinkDeviceXmlResolver
+                -device: 090 configuration node is null>>>>>>
+2019-05-27 17:08:53.170 [main] INFO  c.f.f.f.u.FiLinkDeviceXmlResolver
+                -device: 150 configuration node is null>>>>>>
+2019-05-27 17:08:53.272 [main] INFO  c.f.f.t.c.aspect.AspectLogHelper
+                -Aspect log table finished (H2 DATABASE)
+2019-05-27 17:08:53.273 [main] INFO  c.f.f.t.corelog.txc.TxcLogHelper
+                -Txc log table finish (H2 DATABASE)
+2019-05-27 17:08:53.343 [main] INFO  c.f.f.t.i.NettyRpcClientInitializer
+                -Try connect socket(/127.0.0.1:8070) - count 1
+2019-05-27 17:08:54.828 [main] WARN  c.f.f.t.i.NettyRpcClientInitializer
+                -Connect socket(/127.0.0.1:8070) fail. 6000ms latter try again.
+2019-05-27 17:09:00.830 [main] INFO  c.f.f.t.i.NettyRpcClientInitializer
+                -Try connect socket(/127.0.0.1:8070) - count 2
+2019-05-27 17:09:01.834 [main] WARN  c.f.f.t.i.NettyRpcClientInitializer
+                -Connect socket(/127.0.0.1:8070) fail. 6000ms latter try again.
+2019-05-27 17:09:07.835 [main] INFO  c.f.f.t.i.NettyRpcClientInitializer
+                -Try connect socket(/127.0.0.1:8070) - count 3
+2019-05-27 17:09:08.842 [main] WARN  c.f.f.t.i.NettyRpcClientInitializer
+                -Connect socket(/127.0.0.1:8070) fail. 6000ms latter try again.
+2019-05-27 17:09:14.843 [main] INFO  c.f.f.t.i.NettyRpcClientInitializer
+                -Try connect socket(/127.0.0.1:8070) - count 4
+2019-05-27 17:09:15.849 [main] WARN  c.f.f.t.i.NettyRpcClientInitializer
+                -Connect socket(/127.0.0.1:8070) fail. 6000ms latter try again.
+2019-05-27 17:09:21.851 [main] INFO  c.f.f.t.i.NettyRpcClientInitializer
+                -Try connect socket(/127.0.0.1:8070) - count 5
+2019-05-27 17:09:22.864 [main] WARN  c.f.f.t.i.NettyRpcClientInitializer
+                -Connect socket(/127.0.0.1:8070) fail. 6000ms latter try again.
+2019-05-27 17:09:28.866 [main] INFO  c.f.f.t.i.NettyRpcClientInitializer
+                -Try connect socket(/127.0.0.1:8070) - count 6
+2019-05-27 17:09:29.870 [main] WARN  c.f.f.t.i.NettyRpcClientInitializer
+                -Connect socket(/127.0.0.1:8070) fail. 6000ms latter try again.
+2019-05-27 17:09:35.871 [main] INFO  c.f.f.t.i.NettyRpcClientInitializer
+                -Try connect socket(/127.0.0.1:8070) - count 7
+2019-05-27 17:09:36.875 [main] WARN  c.f.f.t.i.NettyRpcClientInitializer
+                -Connect socket(/127.0.0.1:8070) fail. 6000ms latter try again.
+2019-05-27 17:09:42.877 [main] INFO  c.f.f.t.i.NettyRpcClientInitializer
+                -Try connect socket(/127.0.0.1:8070) - count 8
+2019-05-27 17:09:43.882 [main] WARN  c.f.f.t.i.NettyRpcClientInitializer
+                -Connect socket(/127.0.0.1:8070) fail. 6000ms latter try again.
+2019-05-27 17:09:49.884 [main] WARN  c.f.f.t.i.NettyRpcClientInitializer
+                -Finally, netty connection fail , socket is /127.0.0.1:8070
+2019-05-27 17:09:49.898 [main] ERROR c.f.f.t.txmsg.AutoTMClusterEngine
+                -request fail. non tx-manager is alive. on reportInvalidTM.
+2019-05-27 17:09:49.908 [main] INFO  c.f.filink.txlcntc.txmsg.TMSearcher
+                -Searching for more TM...
+2019-05-27 17:09:49.927 [main] ERROR o.s.boot.SpringApplication
+                -Application startup failed
+java.lang.IllegalStateException: Failed to execute ApplicationRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:726)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:713)
+	at org.springframework.boot.SpringApplication.afterRefresh(SpringApplication.java:703)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:304)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+Caused by: java.lang.IllegalStateException: There is no normal TM.
+	at com.fiberhome.filink.txlcntc.txmsg.TMSearcher.search(TMSearcher.java:83)
+	at com.fiberhome.filink.txlcntc.txmsg.AutoTMClusterEngine.prepareToResearchTMCluster(AutoTMClusterEngine.java:83)
+	at com.fiberhome.filink.txlcntc.txmsg.AutoTMClusterEngine.onConnectFail(AutoTMClusterEngine.java:69)
+	at com.fiberhome.filink.txlcntc.txmsg.TCSideRpcInitCallBack.lambda$connectFail$3(TCSideRpcInitCallBack.java:107)
+	at com.fiberhome.filink.txlcntc.txmsg.TCSideRpcInitCallBack$$Lambda$42/665734621.accept(Unknown Source)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at com.fiberhome.filink.txlcntc.txmsg.TCSideRpcInitCallBack.connectFail(TCSideRpcInitCallBack.java:107)
+	at com.fiberhome.filink.txlcntxmsgnetty.impl.NettyRpcClientInitializer.connect(NettyRpcClientInitializer.java:125)
+	at com.fiberhome.filink.txlcntxmsgnetty.impl.NettyRpcClientInitializer.init(NettyRpcClientInitializer.java:85)
+	at com.fiberhome.filink.txlcntc.txmsg.TCRpcServer.init(TCRpcServer.java:58)
+	at com.fiberhome.filink.txlcncommon.runner.TxLcnApplicationRunner.run(TxLcnApplicationRunner.java:56)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:723)
+	... 6 common frames omitted
+2019-05-27 17:09:49.932 [main] WARN  c.netflix.discovery.DiscoveryClient
+                -Saw local status change event StatusChangeEvent [timestamp=1558948189932, current=DOWN, previous=UP]
+2019-05-27 17:09:49.933 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-DEVICE-SERVER/LAPTOP-LHHP5IPK.wh.wistronits.com:filink-device-server:9301: registering service...
+2019-05-27 17:09:49.954 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient
+                -DiscoveryClient_FILINK-DEVICE-SERVER/LAPTOP-LHHP5IPK.wh.wistronits.com:filink-device-server:9301 - registration status: 204
+2019-05-27 17:09:51.736 [main] INFO  c.f.f.t.i.NettyRpcServerInitializer
+                -server was down.
+2019-05-27 17:09:51.742 [main] INFO  c.f.f.t.i.NettyRpcClientInitializer
+                -RPC client was down.
+2019-05-27 17:09:51.745 [main] INFO  com.zaxxer.hikari.pool.HikariPool
+                -HikariPool-1 - Close initiated...
+2019-05-27 17:09:51.752 [main] INFO  com.zaxxer.hikari.pool.HikariPool
+                -HikariPool-1 - Closed.
+2019-05-27 17:09:51.752 [main] INFO  c.f.f.txlcntc.corelog.H2DbHelper
+                -log hikariDataSource close.
+2019-05-27 17:09:51.762 [main] WARN  o.s.c.a.AnnotationConfigApplicationContext
+                -Exception thrown from ApplicationListener handling ContextClosedEvent
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaAutoServiceRegistration': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1078)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:283)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:253)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:399)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:991)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:76)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+2019-05-27 17:09:51.763 [main] WARN  o.s.c.a.AnnotationConfigApplicationContext
+                -Exception thrown from ApplicationListener handling ContextClosedEvent
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaAutoServiceRegistration': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1078)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:283)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:253)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:399)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:991)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:76)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+2019-05-27 17:09:51.763 [main] WARN  o.s.c.a.AnnotationConfigApplicationContext
+                -Exception thrown from ApplicationListener handling ContextClosedEvent
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaAutoServiceRegistration': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1078)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:283)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:253)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:399)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:991)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:76)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+2019-05-27 17:09:51.763 [main] WARN  o.s.c.a.AnnotationConfigApplicationContext
+                -Exception thrown from ApplicationListener handling ContextClosedEvent
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaAutoServiceRegistration': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1078)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:283)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:253)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:399)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:991)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:76)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+2019-05-27 17:09:51.764 [main] WARN  o.s.c.a.AnnotationConfigApplicationContext
+                -Exception thrown from ApplicationListener handling ContextClosedEvent
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaAutoServiceRegistration': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1078)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:283)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:253)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:399)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:991)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:76)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+2019-05-27 17:09:51.764 [main] WARN  o.s.c.a.AnnotationConfigApplicationContext
+                -Exception thrown from ApplicationListener handling ContextClosedEvent
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaAutoServiceRegistration': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1078)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:283)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:253)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:399)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:991)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:76)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+2019-05-27 17:09:51.765 [main] WARN  o.s.c.a.AnnotationConfigApplicationContext
+                -Exception thrown from ApplicationListener handling ContextClosedEvent
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaAutoServiceRegistration': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1078)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:283)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:253)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:399)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:991)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:76)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+2019-05-27 17:09:51.765 [main] WARN  o.s.c.a.AnnotationConfigApplicationContext
+                -Exception thrown from ApplicationListener handling ContextClosedEvent
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaAutoServiceRegistration': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:216)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1078)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.getTargetBean(ApplicationListenerMethodAdapter.java:283)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:253)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:177)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:140)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:393)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:399)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:347)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:991)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:76)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:961)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.destroySingletons(FactoryBeanRegistrySupport.java:230)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:968)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1030)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1006)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:958)
+	at org.springframework.boot.SpringApplication.handleRunFailure(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107)
+	at com.fiberhome.filink.device.FilinkDeviceServerApplication.main(FilinkDeviceServerApplication.java:24)
+2019-05-27 17:09:51.769 [main] INFO  c.alibaba.druid.pool.DruidDataSource
+                -{dataSource-1} closed
+2019-05-27 17:09:51.770 [main] INFO  c.netflix.discovery.DiscoveryClient
+                -Shutting down DiscoveryClient ...
+2019-05-27 17:09:51.775 [main] WARN  o.s.c.a.CommonAnnotationBeanPostProcessor
+                -Invocation of destroy method failed on bean with name 'scopedTarget.eurekaClient': org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaInstanceConfigBean': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+2019-05-27 17:09:51.781 [main] INFO  o.e.jetty.server.AbstractConnector
+                -Stopped ServerConnector@5bf9c995{HTTP/1.1,[http/1.1]}{0.0.0.0:9301}
+2019-05-27 17:09:51.781 [main] INFO  org.eclipse.jetty.server.session
+                -Stopped scavenging
+2019-05-27 17:09:51.782 [main] INFO  o.e.j.s.h.ContextHandler.application
+                -Destroying Spring FrameworkServlet 'dispatcherServlet'
+2019-05-27 17:09:51.783 [main] INFO  o.e.j.server.handler.ContextHandler
+                -Stopped o.s.b.c.e.j.JettyEmbeddedWebAppContext@7af8b02{/,[file:///C:/Users/%E6%9C%B1%E5%A5%87/AppData/Local/Temp/jetty-docbase.267928040437531039.9301/, jar:file:/C:/locM2/org/webjars/jquery/2.1.1/jquery-2.1.1.jar!/META-INF/resources, jar:file:/C:/locM2/org/webjars/d3js/3.4.11/d3js-3.4.11.jar!/META-INF/resources],UNAVAILABLE}

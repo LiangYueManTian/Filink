@@ -1,0 +1,140 @@
+language.environment: CN
+#readLogFilePath=D:/userLog/
+readLogFilePath: /yy_filink/filink_log/userLog/
+readListExcelPath: D:/export/
+maxExportDataSize: 200000
+listExcelSize: 20000
+
+server:
+  port: 9201
+
+
+spring:
+  application:
+    name: filink-userTest-server
+
+  redis:
+    host: 10.5.24.224
+    port: 6379
+    password: filink
+    database: 0
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://10.5.24.224:3306/filink_user?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: wistronits@123
+    #      初始化大小
+    initialSize: 5
+    #      最小连接数
+    minIdle: 5
+    #      最大连接数
+    maxActive: 20
+    #      获取连接等待超时时间
+    maxWait: 60000
+    #      间隔多久检测一次 检测需要关闭的空闲连接 单位毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    #      一个连接最小生存时间
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    #      配置监控统计拦截的filter , 去掉后监控sql无法统计wall用于防火墙
+    filters: stat,wall,log4j
+    logSlowSql: true
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.24.224:9092
+          zkNodes: 10.5.24.224:2181
+      bindings:
+        websocket_output:
+          destination:  filink_websocket
+          contentType:  application/json
+        updateOutput:
+          destination:  update_userInfo
+          contentType:  application/json
+
+        updateInPut:
+          destination:  update_userInfo
+          contentType:  application/json
+          group: filink_user_server
+
+        userForbiddenInput:
+          destination:  user_forbidden
+          contentType:  application/json
+          group: filink_user_server
+
+        unlock_user:
+          destination:  unlock_user
+          contentType:  application/json
+          group: filink_user_server
+
+        user_expire:
+          destination:  user_expire
+          contentType:  application/json
+          group: filink_user_server
+  # 链路追踪
+  zipkin:
+    base-url: http://10.5.24.144:9411
+  sleuth:
+    sampler:
+      #    监控开发百分比  默认是0.1  开发环境设置成1
+      percentage: 1
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: true
+
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+#mybaties
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package:
+
+#是否需要权限拉去，默认是true,如果不false就不允许你去拉取配置中心Server更新的内容
+management:
+  security:
+    enabled: false
+
+  # 启动暴露url
+  endpoints:
+    web:
+      expose: "*"
+
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+  instance:
+    prefer-ip-address: true
+#spring:
+#  profiles:
+#    active: dev
+

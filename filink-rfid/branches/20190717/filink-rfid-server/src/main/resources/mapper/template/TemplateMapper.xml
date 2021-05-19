@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.template.TemplateDao">
+
+    <select id="isExitsTemplateName" resultType="java.lang.Integer">
+      SELECT  count(*) FROM  t_template t where t.is_deleted ='0' and t.name=#{name} and t.template_type=#{templateType}
+    </select>
+    <!--保存模版 -->
+    <insert id="saveTemplate" parameterType="com.fiberhome.filink.rfid.req.template.TemplateReqDto">
+        INSERT  INTO t_template(
+        id,name,row,
+        col,
+        template_type,
+        reversible,
+        child_template_id,
+        put_state
+        )
+        VALUES(
+      #{id},#{name},
+      #{row},#{col},
+      #{templateType},
+      #{reversible},#{childTemplateId},
+      #{putState}
+        )
+    </insert>
+
+    <!-- 通过模板类型查询框模板信息 -->
+    <select id="queryFrameTemplate" parameterType="com.fiberhome.filink.rfid.bean.template.TemplateVO"
+            resultType="com.fiberhome.filink.rfid.resp.template.TemplateRspDto">
+        SELECT * FROM t_template t WHERE
+        FIND_IN_SET(t.id,(
+        SELECT GROUP_CONCAT( DISTINCT t1.child_template_id ORDER BY t1.child_template_id )
+        FROM t_template t1 WHERE t1.template_type = #{templateType}))
+        union
+        SELECT * FROM t_template t
+        where
+        1=1 and t.is_deleted ='0'
+        <if test="name!=null">
+            and t.NAME LIKE concat('%',#{name},'%') ESCAPE '#'
+        </if>
+        <if test="reversible!=null">
+            and t.reversible= #{reversible}
+        </if>
+    </select>
+
+    <select id="queryBoxTemplateById" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.resp.template.TemplateRspDto">
+        SELECT * FROM t_template
+      WHERE
+	FIND_IN_SET(id,
+		(
+			SELECT GROUP_CONCAT(
+					DISTINCT child_template_id
+					ORDER BY child_template_id )
+			FROM t_template
+			WHERE
+				FIND_IN_SET( id,
+					(
+						SELECT GROUP_CONCAT(
+								DISTINCT child_template_id
+								ORDER BY child_template_id )
+						FROM t_template t
+						WHERE t.id =  #{id}
+					)
+				)
+		)
+	)
+UNION
+	SELECT* FROM
+		t_template
+	WHERE FIND_IN_SET(id,(
+				SELECT GROUP_CONCAT(
+						DISTINCT child_template_id
+						ORDER BY child_template_id)
+				FROM t_template t
+				WHERE t.id = #{id}))
+UNION
+		SELECT * FROM t_template
+		WHERE
+		 is_deleted ='0' and id = #{id}
+    </select>
+
+
+    <!--查询箱模板类型 查询全部的数据 -->
+    <select id="queryBoxTemplate" parameterType="com.fiberhome.filink.rfid.bean.template.TemplateVO"
+            resultType="com.fiberhome.filink.rfid.resp.template.TemplateRspDto">
+        SELECT * FROM t_template t
+        WHERE FIND_IN_SET(t.id,(SELECT GROUP_CONCAT(
+        DISTINCT t1.child_template_id
+        ORDER BY
+        t1.child_template_id)
+        FROM t_template t1
+        WHERE FIND_IN_SET(t1.id,(
+        SELECT GROUP_CONCAT(
+        DISTINCT t2.child_template_id
+        ORDER BY
+        t2.child_template_id)
+        FROM
+        t_template t2
+        WHERE
+        t2.template_type = #{templateType}
+        )
+        )
+        )
+        )
+        OR FIND_IN_SET(t.id,(SELECT
+        GROUP_CONCAT(
+        DISTINCT t3.child_template_id
+        ORDER BY
+        t3.child_template_id)
+        FROM t_template t3
+        WHERE t3.template_type = #{templateType})
+        )
+        union
+        SELECT * FROM t_template t
+        where
+        1=1 and t.is_deleted ='0'
+        <if test="name!=null">
+            and t.NAME LIKE concat('%',#{name},'%') ESCAPE '#'
+        </if>
+        <if test="reversible!=null">
+            and t.reversible= #{reversible}
+        </if>
+        <!-- 这里是计算坐标图的时候需要 -->
+        <if test="id!=null">
+            and t.id=#{id}
+        </if>
+    </select>
+
+
+    <!--查询单盘模板全部信息-->
+    <select id="queryBoardTemplate" parameterType="com.fiberhome.filink.rfid.bean.template.TemplateVO"
+            resultType="com.fiberhome.filink.rfid.resp.template.TemplateRspDto">
+        select*from t_template t
+        where
+        1=1 and t.is_deleted ='0'
+        <if test="name!=null">
+            and t.NAME LIKE concat('%',#{name},'%') ESCAPE '#'
+        </if>
+        <if test="reversible!=null">
+            and t.reversible= #{reversible}
+        </if>
+        <if test="templateType!=null">
+            and t.template_type=#{templateType}
+        </if>
+    </select>
+
+
+    <!--保存关系表 便于后续存储-->
+    <insert id="saveRelationTemplate" parameterType="list">
+        insert INTO t_relation_device (
+        id,device_id,device_name,relation_id,box_trend,box_code_rule,
+        frame_trend,frame_code_rule,disc_trend,disc_code_rule,box_template_id,
+        device_type,box_name)
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.deviceId},
+            #{item.deviceName},
+            #{item.relationId},
+            #{item.boxTrend},
+            #{item.boxCodeRule},
+            #{item.frameTrend},
+            #{item.frameCodeRule},
+            #{item.discTrend},
+            #{item.discCodeRule},
+            #{item.boxTemplateId},
+            #{item.deviceType},
+            #{item.boxName}
+            )
+        </foreach>
+    </insert>
+
+    <!--根据子集去查询全部的模板数据-->
+    <select id="queryChildTemplate" resultType="com.fiberhome.filink.rfid.resp.template.TemplateRspDto"
+            parameterType="list">
+        SELECT *FROM t_template t WHERE t.is_deleted ='0' and t.id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--保存App框的坐标位置 -->
+    <insert id="saveAppRealPositionFrame" parameterType="list">
+        <include refid="saveFrameInfo"/>
+    </insert>
+
+    <!--保存App盘的坐标位置-->
+    <insert id="saveAppRealPositionDisc" parameterType="list">
+        <include refid="saveDiscInfo"/>
+    </insert>
+
+
+    <sql id="saveFrameInfo">
+        INSERT INTO t_frame_real_position (
+        id,parent_id,col_no,
+        row_no,abscissa,
+        ordinate,side,
+        state,device_id,
+        device_type,
+        height,width,
+        business_num,real_no,
+        box_id
+        )VALUES
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.id},
+            #{item.parentId},
+            #{item.colNo},
+            #{item.rowNo},
+            #{item.abscissa},
+            #{item.ordinate},
+            #{item.side},
+            #{item.state},
+            #{item.deviceId},
+            #{item.deviceType},
+            #{item.height},
+            #{item.width},
+            #{item.businessNum},
+            #{item.realNo},
+            #{item.boxId}
+            )
+        </foreach>
+    </sql>
+    <!--保存框的坐标位置 -->
+    <insert id="saveRealPositionFrame" parameterType="list">
+        <include refid="saveFrameInfo"/>
+    </insert>
+
+    <!--保存箱模板关系-->
+    <insert id="saveRealPositionBox" parameterType="list">
+        INSERT INTO t_box_real_position (
+        id,parent_id,col_no,
+        row_no,abscissa,
+        ordinate,side,
+        state,device_id,
+        device_type,
+        height,width,
+        business_num
+        ,real_no
+        )VALUES
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.id},
+            #{item.parentId},
+            #{item.colNo},
+            #{item.rowNo},
+            #{item.abscissa},
+            #{item.ordinate},
+            #{item.side},
+            #{item.state},
+            #{item.deviceId},
+            #{item.deviceType},
+            #{item.height},
+            #{item.width},
+            #{item.businessNum},
+            #{item.realNo}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 保存盘信息-->
+    <sql id="saveDiscInfo">
+        INSERT INTO t_disc_real_position (
+        id,parent_id,col_no,
+        row_no,abscissa,
+        ordinate,
+        state,device_id,
+        device_type,
+        height,width,
+        business_num,real_no,
+        box_id,frame_id,
+        put_state,
+        bus_state
+        )VALUES
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.id},
+            #{item.parentId},
+            #{item.colNo},
+            #{item.rowNo},
+            #{item.abscissa},
+            #{item.ordinate},
+            #{item.state},
+            #{item.deviceId},
+            #{item.deviceType},
+            #{item.height},
+            #{item.width},
+            #{item.businessNum},
+            #{item.realNo},
+            #{item.boxId},
+            #{item.frameId},
+            #{item.putState},
+            #{item.busState}
+            )
+        </foreach>
+    </sql>
+    <!--保存盘的坐标-->
+    <insert id="saveRealPositionDisc" parameterType="list">
+        <include refid="saveDiscInfo"/>
+    </insert>
+
+    <!--保存端口信息-->
+    <sql id="savePortInfo">
+        INSERT INTO t_port_real_position (
+        id,col_no,parent_id,
+        row_no,abscissa,
+        ordinate,side,
+        state,device_id,
+        device_type,
+        height,width,
+        business_num,real_no,
+        box_id,
+        frame_id,
+        disc_id,
+        put_state,
+        port_state,
+        disc_num,
+        bus_binding_state,
+        bus_state,
+        port_cable_state
+        )VALUES
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.id},
+            #{item.colNo},
+            #{item.parentId},
+            #{item.rowNo},
+            #{item.abscissa},
+            #{item.ordinate},
+            #{item.side},
+            #{item.state},
+            #{item.deviceId},
+            #{item.deviceType},
+            #{item.height},
+            #{item.width},
+            #{item.businessNum},
+            #{item.realNo},
+            #{item.boxId},
+            #{item.frameId},
+            #{item.discId},
+            #{item.putState},
+            #{item.portState},
+            #{item.discNum},
+            #{item.busBindingState},
+            #{item.busState},
+            #{item.portCableState}
+            )
+        </foreach>
+    </sql>
+    <!--保存端口的坐标-->
+    <insert id="saveRealPositionPort" parameterType="list">
+        <include refid="savePortInfo"/>
+    </insert>
+
+    <!-- 插入模板 -->
+    <sql id="batchInsertTemplate">
+        INSERT INTO t_template
+        (
+        id,
+        name,
+        row,
+        col,
+        template_type,
+        reversible,
+        child_template_id,
+        put_state
+        )
+        VALUES
+        <foreach item="item" index="index" collection="list" separator=",">
+            (
+            #{item.id},
+            #{item.name},
+            #{item.row},
+            #{item.col},
+            #{item.templateType},
+            #{item.reversible},
+            #{item.childTemplateId},
+            #{item.putState}
+            )
+        </foreach>
+    </sql>
+
+    <!--批量保存模板-->
+    <insert id="batchSaveTemplate" parameterType="list">
+        <include refid="batchInsertTemplate"/>
+    </insert>
+
+    <sql id="queryReal">
+        SELECT box.* FROM
+        t_relation_device device,
+        t_box_real_position box
+        WHERE
+        device.relation_id = box.id and device.is_deleted='0'
+        <if test="deviceId!=null">
+            and device.device_id=#{deviceId}
+        </if>
+        <if test="relationId!=null">
+            and device.relation_id=#{relationId}
+        </if>
+    </sql>
+
+    <!--查询实景图坐标通过设施id -->
+    <select id="queryBoxRealPosition" parameterType="com.fiberhome.filink.rfid.req.template.RealReqDto"
+            resultType="com.fiberhome.filink.rfid.resp.template.RealRspDto">
+        <include refid="queryReal"/>
+    </select>
+
+    <select id="queryBoxReal" parameterType="com.fiberhome.filink.rfid.req.template.RealReqDto"
+            resultType="com.fiberhome.filink.rfid.resp.template.RealPositionRspDto">
+        <include refid="queryReal"/>
+    </select>
+    <select id="queryFrameRealP" parameterType="list"
+            resultType="com.fiberhome.filink.rfid.resp.template.RealPositionRspDto">
+        SELECT *FROM t_frame_real_position t WHERE t.is_deleted='0' and t.parent_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+    <select id="queryDiscRealP" parameterType="list"
+            resultType="com.fiberhome.filink.rfid.resp.template.RealPositionRspDto">
+        SELECT *FROM t_disc_real_position t WHERE t.is_deleted='0' and t.parent_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+    <select id="queryPortRealP" parameterType="list"
+            resultType="com.fiberhome.filink.rfid.resp.template.RealPositionRspDto">
+        SELECT *FROM t_port_real_position t WHERE t.is_deleted='0' and t.parent_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+    <!--查询框的坐标-->
+    <select id="queryFrameReal" resultType="com.fiberhome.filink.rfid.resp.template.RealRspDto"
+            parameterType="list">
+        SELECT *FROM t_frame_real_position t WHERE t.is_deleted='0' and t.parent_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--查询盘的坐标-->
+    <select id="queryDiscReal" resultType="com.fiberhome.filink.rfid.resp.template.RealRspDto"
+            parameterType="list">
+        SELECT *FROM t_disc_real_position t WHERE t.is_deleted='0' and t.parent_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--查询端口的坐标-->
+    <select id="queryPortReal" resultType="com.fiberhome.filink.rfid.resp.template.RealRspDto"
+            parameterType="list">
+        SELECT *FROM t_port_real_position t WHERE t.is_deleted='0' and t.parent_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--查询框的信息通过框id -->
+    <select id="queryFrameRealPositionById" resultType="com.fiberhome.filink.rfid.resp.template.RealRspDto"
+            parameterType="java.lang.String">
+        select*from t_frame_real_position t where t.is_deleted='0' and t.id=#{frameId}
+    </select>
+
+
+    <resultMap id="deviceRfidAndIdMap" type="com.fiberhome.filink.rfid.bean.facility.BaseInfoBean">
+        <id column="device_id" property="deviceId"/>
+        <result column="box_label" property="boxLabel"/>
+    </resultMap>
+    <!-- 根据设施id查询设施rfid-->
+    <select id="getDeviceRfidById" parameterType="java.util.List" resultMap="deviceRfidAndIdMap">
+        select
+        tbl.device_id,
+        tbl.box_label
+        from t_box_label tbl
+        <where>
+            tbl.device_id in
+            <foreach collection="deviceIdList" item="item" open="(" close=")"
+                     separator=",">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <!--通过id 获取端口信息-->
+    <select id="getPortRealById" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.bean.template.PortCableCoreCondition">
+       SELECT
+	tp.port_state portState,
+	tp.business_num portNo,
+	tp.device_id resourceDeviceId,
+	tp.side resourceDiscSide,
+	tb.side resourceBoxSide,
+	tf.business_num resourceFrameNo,
+	td.business_num resourceDiscNo
+    FROM
+        (
+            SELECT *
+            FROM t_port_real_position
+            WHERE is_deleted='0' and id = #{portId}
+            ) tp
+    LEFT JOIN t_disc_real_position td ON tp.parent_id = td.id
+    LEFT JOIN t_frame_real_position tf ON tf.id = td.parent_id
+    LEFT JOIN t_box_real_position tb ON tb.id = tf.parent_id
+
+    </select>
+    <!--App端 设施信息 接口查询 -->
+    <select id="queryFacilityInfoByCondition" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.req.template.TemplateReqDto">
+        select*from t_relation_device t where t.is_deleted='0' and t.device_id=#{deviceId}
+    </select>
+
+    <!--通过端口 ID 查询端口号-->
+    <select id="queryPortNumByPortId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT CONCAT_WS('-',
+		CONCAT(tf.business_num,IF (tb.side=0, 'A', 'B')),
+		td.business_num,
+		CONCAT(tp.business_num,IF (tp.side=0, 'A', 'B'))
+	)
+      FROM
+	(SELECT*FROM t_port_real_position WHERE is_deleted='0' and
+			id = #{portId}) tp
+    LEFT JOIN t_disc_real_position td ON tp.parent_id = td.id
+    LEFT JOIN t_frame_real_position tf ON tf.id = td.parent_id
+    LEFT JOIN t_box_real_position tb ON tb.id = tf.parent_id
+    </select>
+
+    <!-- 批量获取对端端口信息-->
+    <select id="batchQueryPortInfo" parameterType="com.fiberhome.filink.rfid.resp.fibercore.JumpFiberInfoResp"
+            resultType="com.fiberhome.filink.rfid.bean.facility.PortInfoBean">
+        SELECT *FROM t_port_label t where
+        1=1
+        <if test="deviceId!=null">
+            AND device_id=#{oppositeDeviceId}
+        </if>
+        <if test="oppositeFrameNo!=null">
+            AND frame_double=#{oppositeBoxSide}
+        </if>
+        <if test="oppositeFrameNo!=null">
+            AND frame_no=#{oppositeFrameNo}
+        </if>
+        <if test="oppositeDiscSide!=null">
+            AND port_double=#{oppositeDiscSide}
+        </if>
+        <if test="oppositePortNo!=null">
+            AND port_no=#{oppositePortNo}
+        </if>
+        <if test="oppositeDiscNo!=null">
+            AND board_no=#{oppositeDiscNo}
+        </if>
+    </select>
+
+    <!-- 修改关系表-->
+    <update id="updateRelation" parameterType="com.fiberhome.filink.rfid.req.template.TemplateReqDto">
+        UPDATE t_relation_device set box_template_id=#{boxTemplateId} where
+        device_id=#{deviceId}
+    </update>
+
+    <!--获取box坐标图通过deviceId-->
+    <select id="queryRealPositionByDeviceId" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.resp.template.RealRspDto">
+        SELECT b.* FROM
+        t_relation_device r,
+        t_box_real_position b
+        WHERE r.relation_id = b.id AND r.device_id = #{deviceId} and b.is_deleted='0'
+    </select>
+
+    <!--获取box坐标图通过deviceId-->
+    <select id="queryDiscRealPosition" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.resp.template.RealRspDto">
+        SELECT * FROM
+        t_disc_real_position b
+        WHERE b.device_id = #{deviceId} and b.is_deleted='0'
+    </select>
+
+    <!--获取box坐标图通过deviceId-->
+    <select id="queryFrameRealPosition" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.resp.template.RealRspDto">
+        SELECT * FROM
+        t_frame_real_position b
+        WHERE b.device_id = #{deviceId} and b.is_deleted='0'
+    </select>
+
+    <!--批量修改框的信息-->
+    <update id="updateAppFrameInfo" parameterType="com.fiberhome.filink.rfid.resp.template.RealRspDto">
+        <foreach collection="list" item="item" separator=";" index="index" open="" close="">
+            UPDATE t_frame_real_position t
+            SET t.abscissa=#{item.abscissa},
+            t.ordinate=#{item.ordinate},
+            t.height=#{item.height},
+            t.width=#{item.width},
+            t.col_no=#{item.colNo},
+            t.row_no=#{item.rowNo},
+            t.real_no=#{item.realNo},
+            t.state=#{item.state}
+            WHERE
+            t.id=#{item.id}
+        </foreach>
+    </update>
+
+    <!--批量修改盘的数据-->
+    <update id="updateAppDiscInfo" parameterType="list">
+        <foreach collection="list" item="item" separator=";" index="index" open="" close="">
+            UPDATE t_disc_real_position t
+            SET t.abscissa=#{item.abscissa},
+            t.ordinate=#{item.ordinate},
+            t.height=#{item.height},
+            t.width=#{item.width},
+            t.col_no=#{item.colNo},
+            t.row_no=#{item.rowNo},
+            t.real_no=#{item.realNo},
+            t.state=#{item.state}
+            WHERE
+            t.id=#{item.id}
+        </foreach>
+    </update>
+    <!--批量修改端口状态 -->
+    <update id="updateAppPortInfo" parameterType="list">
+        <foreach collection="list" item="item" separator=";" index="index" open="" close="">
+            UPDATE t_port_real_position t
+            SET t.abscissa=#{item.abscissa},
+            t.ordinate=#{item.ordinate},
+            t.height=#{item.height},
+            t.width=#{item.width},
+            t.col_no=#{item.colNo},
+            t.row_no=#{item.rowNo},
+            t.real_no=#{item.realNo},
+            t.state=#{item.state}
+            WHERE
+            t.id=#{item.id}
+        </foreach>
+    </update>
+
+    <!--修改端口状态-->
+    <update id="updatePortState" parameterType="com.fiberhome.filink.rfid.req.template.RealPortReqDto">
+        UPDATE t_port_real_position t set t.state=#{state}
+        where t.id=#{portId}
+    </update>
+
+    <!--修改盘的状态-->
+    <update id="updateDiscState" parameterType="com.fiberhome.filink.rfid.req.template.RealPortReqDto">
+        UPDATE t_disc_real_position t set t.state=#{state}
+        where t.id=#{discId}
+    </update>
+
+    <!--修改端口的绑定状态-->
+    <update id="updateBusBindingPortState" parameterType="com.fiberhome.filink.rfid.req.template.RealPortReqDto">
+        update t_port_real_position t set t.bus_binding_state=#{busBindingState} ,t.bus_state=#{busState}
+        <if test="portState!=null">
+            , t.port_state=#{portState}
+        </if>
+        WHERE
+        t.id=#{portId}
+    </update>
+    <!--修改盘的绑定状态-->
+    <update id="updateBusBindingDiscState" parameterType="com.fiberhome.filink.rfid.req.template.RealPortReqDto">
+        update t_disc_real_position t set t.bus_state=#{busState} where t.id=#{discId}
+    </update>
+
+    <select id="querySameDiscPort" parameterType="java.lang.String"
+            resultType="com.fiberhome.filink.rfid.resp.template.RealRspDto">
+        SELECT * FROM t_port_real_position t WHERE
+        t.parent_id = (
+        SELECT t.parent_id FROM t_port_real_position t
+        WHERE t.id = #{portId} and t.is_deleted='0' )
+    </select>
+
+    <!--根据端口信息查询端口id-->
+    <select id="queryPortIdByPortInfo" parameterType="com.fiberhome.filink.rfid.req.template.PortInfoReqDto"
+            resultType="java.lang.String">
+        SELECT t.id FROM t_port_real_position t
+        WHERE
+            t.business_num = #{portNo}
+        AND t.parent_id = (
+            SELECT d.id FROM t_disc_real_position d WHERE
+                d.business_num = #{discNo} AND d.parent_id = (
+                SELECT 	f.id FROM t_frame_real_position f WHERE
+                    f.side =#{boxSide}
+                AND f.business_num = #{frameNo}
+                AND f.device_id = #{deviceId}
+                and f.is_deleted='0'
+            )
+        )
+        AND t.side =#{discSide}
+    </select>
+    <!--查询模板是否被占用-->
+    <select id="queryTemplateExistsById" parameterType="list" resultType="java.lang.Integer">
+        select count(*) from t_relation_device r where r.is_deleted='0' and r.box_template_id in
+        <foreach collection="list" item="item" open="(" close=")"
+                 separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <!--查询设施是否被占用 -->
+    <select id="queryDeviceExistsById" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from t_relation_device t where t.device_id=#{deviceId} and t.is_deleted='0'
+    </select>
+
+    <!--修改模板信息-->
+    <update id="updateTemplate" parameterType="com.fiberhome.filink.rfid.req.template.TemplateReqDto">
+        UPDATE t_template
+        SET col=#{col},
+        row=#{row},
+        child_template_id=#{childTemplateId},
+        reversible=#{reversible},
+        <if test="putState!=null">
+            put_state=#{putState},
+        </if>
+        name=#{name}
+        WHERE
+        id=#{id}
+    </update>
+
+    <!--删除模板-->
+    <update id="deleteTemplateById" parameterType="java.lang.String">
+         UPDATE  t_template set is_deleted ='1' where id=#{templateId}
+    </update>
+
+    <!--查询全部的模板数据 根据模板类型-->
+    <select id="queryTemplateByType" parameterType="java.lang.Integer"
+            resultType="com.fiberhome.filink.rfid.resp.template.TemplateRspDto">
+        SELECT *FROM t_template where template_type=#{type} and is_deleted=0
+    </select>
+
+
+    <!--批量修改成端端口信息-->
+    <update id="batchUpdatePortCableState" parameterType="list">
+        <foreach collection="list" item="item" open="" close="" separator=";" index="index">
+            UPDATE t_port_real_position set port_cable_state=#{item.portCableState}
+            where id=#{item.portId}
+        </foreach>
+    </update>
+
+    <!-- 删除设施id-->
+    <delete id="deleteDeviceEntity" parameterType="java.lang.String">
+      update t_relation_device  set is_deleted='1' where device_id=#{deviceId};
+      update t_frame_real_position  set is_deleted='1' where device_id=#{deviceId};
+      update t_box_real_position  set is_deleted='1' where device_id=#{deviceId};
+      update t_disc_real_position  set is_deleted='1' where device_id=#{deviceId};
+      update t_port_real_position  set is_deleted='1' where device_id=#{deviceId};
+    </delete>
+
+    <delete id="deletePort" parameterType="list">
+        delete from t_port_real_position where box_id in
+        <foreach collection="list" item="item" open="(" close=")"
+                 separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+
+</mapper>

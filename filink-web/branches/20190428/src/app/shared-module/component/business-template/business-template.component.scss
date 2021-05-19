@@ -1,0 +1,25 @@
+.business-template {
+  display: flex;
+  height: 90%;
+
+  .config-info {
+    height: 100%;
+    width: 285px;
+    .handle-button {
+      margin-top: 50px;
+    }
+  }
+
+  .detail-info {
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+    overflow: hidden;
+    .template-info {
+      margin-top: 12px;
+      border: 1px solid #e8e8e8;
+      width: calc(100% - 30px);
+      height: 70%;
+    }
+  }
+}

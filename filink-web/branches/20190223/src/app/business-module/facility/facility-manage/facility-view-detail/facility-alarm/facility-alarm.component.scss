@@ -1,0 +1,38 @@
+.demo-chart {
+  width: 300px;
+  height: 300px;
+}
+
+.ring {
+  flex: 2;
+}
+
+.chart {
+  flex: 3;
+}
+
+.columnar {
+  flex: 4;
+}
+:host ::ng-deep {
+  .ant-tabs-nav{
+    padding-left: 15px;
+    line-height: 41px;
+  }
+  .ant-tabs-nav .ant-tabs-tab-active {
+    color: #36cfc9;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .ant-tabs-ink-bar {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    box-sizing: border-box;
+    height: 3px;
+    background-color: #36cfc9;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+  }
+}

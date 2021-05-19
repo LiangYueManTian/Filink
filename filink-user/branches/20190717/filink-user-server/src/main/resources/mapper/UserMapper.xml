@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.userserver.dao.UserDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.userserver.bean.User">
+        <id column="id" property="id" />
+        <result column="user_code" property="userCode" />
+        <result column="user_nickname" property="userNickname" />
+        <result column="user_name" property="userName" />
+        <result column="user_status" property="userStatus" />
+        <result column="dept_id" property="deptId" />
+        <result column="role_id" property="roleId" />
+        <result column="address" property="address" />
+        <result column="phone_number" property="phoneNumber" />
+        <result column="email" property="email" />
+        <result column="password" property="password" />
+        <result column="userdesc" property="userDesc" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="last_login_ip" property="lastLoginIp" />
+        <result column="is_deleted" property="deleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="login_time" property="loginTime" />
+        <result column="count_validity_time" property="countValidityTime" />
+        <result column="login_sourse" property="loginSourse" />
+        <result column="login_type" property="loginType"/>
+        <result column="max_users" property="maxUsers"/>
+        <result column="loginIp" property="loginIp" />
+        <result column="unlocked_time" property="unlockTime" />
+        <result column="pushId" property="pushId" />
+        <result column="country_code" property="countryCode" />
+
+
+        <association property="role" column="role_id" javaType="com.fiberhome.filink.userserver.bean.Role">
+            <id column="roleId" property="id"/>
+            <result column="role_name" property="roleName"/>
+
+            <collection property="permissionList" ofType="com.fiberhome.filink.userserver.bean.Permission"
+                        javaType="java.util.ArrayList" column="permissionIds">
+                <result column="permissionId" property="id"/>
+                <result column="permissionName" property="name"/>
+                <result column="permissionMenuId" property="menuId"/>
+                <result column="permissionRouteUrl" property="route_url"/>
+                <result column="permissionInterfaceUrl" property="interfaceUrl"/>
+            </collection>
+
+            <collection property="roleDevicetypeList" ofType="com.fiberhome.filink.userserver.bean.RoleDeviceType"
+                        javaType="java.util.ArrayList" column="deviceTypeIds">
+                <result column="deviceTypeId" property="deviceTypeId"/>
+            </collection>
+        </association>
+
+        <association property="department" column="deptId" javaType="com.fiberhome.filink.userserver.bean.Department">
+            <id column="deptId" property="id"/>
+            <result column="dept_name" property="deptName"/>
+        </association>
+    </resultMap>
+    <!--查询用户列表-->
+    <select id="selectUserList" resultMap="BaseResultMap">
+        SELECT
+          <include refid="userInfoAllColumn" />
+        FROM user u ${entityWrapper.sqlSegment()}
+    </select>
+
+    <sql id="userInfoAllColumn" >
+      user.id,user.user_code,user.user_nickname,user.user_name,user.user_status,user.dept_id,user.role_id,user.address,user.phone_number,
+      user.email,user.password,user.count_validity_time,user.userdesc,user.last_login_ip,user.login_type,user.unlocked_time,user.login_sourse,
+      user.max_users,user.is_deleted,user.login_time,user.last_login_time,user.create_time,user.loginIp,user.country_code
+    </sql>
+
+    <!--删除多个用户-->
+    <update id="deleteUser">
+        UPDATE user u SET u.`is_deleted`= #{userType} WHERE u.`id` IN
+        <foreach collection="userIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--根据用户id查询用户详情-->
+    <select id="queryUserById" resultMap="BaseResultMap">
+      SELECT
+        <include refid="userInfoAllColumn" />
+      FROM user WHERE `id` = #{id} AND is_deleted = 0
+    </select>
+
+    <!--根据用户名查询用户详情-->
+    <select id="queryUserByName" resultMap="BaseResultMap">
+      SELECT
+        <include refid="userInfoAllColumn" />
+          ,role.id as roleId,role.role_name as role_name
+          ,dept.id as deptId,dept.dept_name as dept_name
+          ,permission.id as permissionId,permission.name as permissionName,permission.menu_id as permissionMenuId
+          ,permission.route_url as permissionRouteUrl,permission.interface_url as permissionInterfaceUrl
+          ,role_devicetype.deviceTypeId as deviceTypeId
+        FROM
+          user as user
+          LEFT JOIN role as role ON user.role_id = role.id
+          LEFT JOIN role_permission as role_permission ON role_permission.role_id = role.id
+          LEFT JOIN permission as permission ON role_permission.permission_id = permission.id
+          LEFT JOIN role_devicetype as role_devicetype ON role.id = role_devicetype.roleId
+          LEFT JOIN department as dept ON user.dept_id = dept.id
+        WHERE binary user.user_code = #{userName} AND user.is_deleted = 0
+    </select>
+
+    <update id="updateUserStatus">
+        UPDATE user u SET u.`user_status`= #{userStatus}, u.unlocked_time = null WHERE u.`id` IN
+        <foreach collection="userIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="modifyPWD">
+        UPDATE `user` SET `password` = #{newPWD}  WHERE id = #{userId}
+    </update>
+
+    <select id="queryUserByDepts" resultMap="BaseResultMap">
+        SELECT
+          <include refid="userInfoAllColumn" />
+        FROM
+          user as user
+        WHERE user.is_deleted = 0
+        <if test="deptIdArray != null">
+            AND user.`dept_id` IN
+            <foreach collection="deptIdArray" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="queryUserByRoles" resultMap="BaseResultMap">
+        SELECT
+          <include refid="userInfoAllColumn" />
+        FROM
+          user as user
+        WHERE user.is_deleted = 0 AND user.`role_id` IN
+        <foreach collection="roleIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryUserByField" parameterType="com.fiberhome.filink.userserver.bean.UserParameter"  resultMap="BaseResultMap">
+        SELECT
+        <include refid="userInfoAllColumn" />
+        ,role.id as roleId,role.role_name as role_name
+        ,dept.id as deptId,dept.dept_name as dept_name
+        FROM
+        user as user
+        LEFT JOIN role as role ON user.role_id = role.id
+        LEFT JOIN department as dept ON user.dept_id = dept.id
+        <where>
+            user.is_deleted = 0
+            <if test="ids != null">
+                AND user.id IN
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="departmentNameList != null">
+                AND dept.dept_name IN
+                <foreach collection="departmentNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="roleNameList != null">
+                AND role.role_name IN
+                <foreach collection="roleNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="userNickname != null">
+                AND user.user_nickname LIKE concat('%',#{userNickname},'%')
+            </if>
+            <if test="userName != null">
+                AND user.user_name LIKE concat('%',#{userName},'%')
+            </if>
+            <if test="userCode != null">
+                AND user.user_code LIKE concat('%',#{userCode},'%')
+            </if>
+            <if test="userStatus != null">
+                AND user.user_status = #{userStatus}
+            </if>
+            <if test="department != null">
+                AND dept.dept_name LIKE concat('%',#{department},'%')
+            </if>
+            <if test="address != null">
+                AND user.address LIKE concat('%',#{address},'%')
+            </if>
+            <if test="phoneNumber != null">
+                AND user.phone_number LIKE concat('%',#{phoneNumber},'%')
+            </if>
+            <if test="email != null">
+                AND user.email LIKE concat('%',#{email},'%')
+            </if>
+            <if test="role != null">
+                AND role.role_name LIKE concat('%',#{role},'%')
+            </if>
+            <if test="lastLoginIp != null">
+                AND user.last_login_ip LIKE concat('%',#{lastLoginIp},'%')
+            </if>
+            <if test="userDesc != null">
+                AND user.userdesc LIKE concat('%',#{userDesc},'%')
+            </if>
+            <if test="loginType != null">
+                AND user.login_type = #{loginType}
+            </if>
+            <if test="deptId != null">
+                AND user.dept_id = #{deptId}
+            </if>
+            <if test="lastLoginTime != null and lastLoginTimeEnd != null">
+                AND user.last_login_time >= #{lastLoginTime}
+                AND user.last_login_time &lt;= #{lastLoginTimeEnd}
+            </if>
+        </where>
+        <if test="sortProperties == 'department' and sort != null">
+            ORDER BY dept.dept_name ${sort}
+        </if>
+        <if test="sortProperties == 'role' and sort != null">
+            ORDER BY role.role_name ${sort}
+        </if>
+        <if test="sortProperties != null and sortProperties != 'department' and sortProperties != 'role' and sort != null">
+            ORDER BY user.${sortProperties} ${sort}
+        </if>
+        <if test="sort == null">
+            ORDER BY user.create_time DESC
+        </if>
+        LIMIT #{startNum},#{pageSize}
+    </select>
+
+    <select id="queryUserNum" parameterType="com.fiberhome.filink.userserver.bean.UserParameter"  resultType="Long">
+        SELECT
+        count(user.id)
+        FROM
+        user as user
+        LEFT JOIN role as role ON user.role_id = role.id
+        LEFT JOIN department as dept ON user.dept_id = dept.id
+        <where>
+            user.is_deleted = 0
+            <if test="ids != null">
+                AND user.id IN
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="userNickname != null">
+                AND user.user_nickname LIKE concat('%',#{userNickname},'%')
+            </if>
+            <if test="userName != null">
+                AND user.user_name LIKE concat('%',#{userName},'%')
+            </if>
+            <if test="userCode != null">
+                AND user.user_code LIKE concat('%',#{userCode},'%')
+            </if>
+            <if test="userStatus != null">
+                AND user.user_status = #{userStatus}
+            </if>
+            <if test="department != null">
+                AND dept.dept_name LIKE concat('%',#{department},'%')
+            </if>
+            <if test="departmentNameList != null">
+                AND dept.dept_name IN
+                <foreach collection="departmentNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="roleNameList != null">
+                AND role.role_name IN
+                <foreach collection="roleNameList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="address != null">
+                AND user.address LIKE concat('%',#{address},'%')
+            </if>
+            <if test="phoneNumber != null">
+                AND user.phone_number LIKE concat('%',#{phoneNumber},'%')
+            </if>
+            <if test="email != null">
+                AND user.email LIKE concat('%',#{email},'%')
+            </if>
+            <if test="role != null">
+                AND role.role_name LIKE concat('%',#{role},'%')
+            </if>
+
+            <if test="lastLoginIp != null">
+                AND user.last_login_ip LIKE concat('%',#{lastLoginIp},'%')
+            </if>
+            <if test="userDesc != null">
+                AND user.userdesc LIKE concat('%',#{userDesc},'%')
+            </if>
+            <if test="loginType != null">
+                AND user.login_type = #{loginType}
+            </if>
+            <if test="deptId != null">
+                AND user.dept_id = #{deptId}
+            </if>
+            <if test="lastLoginTime != null and lastLoginTimeEnd != null">
+                AND user.last_login_time >= #{lastLoginTime}
+                AND user.last_login_time &lt;= #{lastLoginTimeEnd}
+            </if>
+        </where>
+        <if test="sortProperties == 'department' and sort != null">
+            ORDER BY dept.dept_name ${sort}
+        </if>
+        <if test="sortProperties == 'role' and sort != null">
+            ORDER BY role.role_name ${sort}
+        </if>
+        <if test="sortProperties != null and sortProperties != 'department' and sortProperties != 'role' and sort != null">
+            ORDER BY user.${sortProperties} ${sort}
+        </if>
+        <if test="sort == null">
+            ORDER BY user.create_time DESC
+        </if>
+    </select>
+
+    <select id="queryUserInfoById" resultMap="BaseResultMap">
+        SELECT
+          <include refid="userInfoAllColumn" />
+          ,role.id as roleId,role.role_name as role_name
+          ,dept.id as deptId,dept.dept_name as dept_name
+        FROM
+          user as user
+          LEFT JOIN role as role ON user.role_id = role.id
+          LEFT JOIN department as dept ON user.dept_id = dept.id
+        WHERE user.id = #{userId} AND user.is_deleted = 0
+    </select>
+
+    <select id="queryAllUser" resultMap="BaseResultMap">
+        SELECT
+        <include refid="userInfoAllColumn" />
+        FROM
+          user as user
+        WHERE user.is_deleted = 0
+    </select>
+
+    <update id="updateUserValidityTime">
+        UPDATE user u SET u.`count_validity_time`= #{countValidityTime} WHERE u.`id` = #{id}
+    </update>
+
+    <select id="queryUserByUserCode" resultMap="BaseResultMap">
+        SELECT
+        <include refid="userInfoAllColumn" />
+        FROM
+          user as user
+        WHERE user.user_code = #{userCode} AND user.is_deleted = 0
+        Limit 1
+    </select>
+
+    <select id="batchQueryUserByIds" resultMap="BaseResultMap">
+        SELECT
+          <include refid="userInfoAllColumn" />
+        FROM
+          user as user
+        WHERE user.is_deleted = 0 AND user.`id` IN
+        <foreach collection="userIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <insert id="batchAddUser">
+        INSERT INTO `user` (
+            `id`,`user_code`,`user_nickname`,`user_name`,`user_status`,`dept_id`,
+            `role_id`,`address`,`phone_number`,`email`,`password`,`count_validity_time`,
+            `userdesc`,`login_type`,
+            `max_users`,`is_deleted`,`create_user`,`create_time`
+        )
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.id},#{item.userCode},#{item.userNickname},#{item.userName},
+            #{item.userStatus},#{item.deptId},#{item.roleId},#{item.address},
+            #{item.phoneNumber},#{item.email},#{item.password},#{item.countValidityTime},
+            #{item.userDesc},#{item.loginType},#{item.maxUsers},#{item.deleted},
+            #{item.createUser},#{item.createTime})
+        </foreach>
+    </insert>
+
+    <select id="queryUserByPhone" resultMap="BaseResultMap">
+        SELECT
+            <include refid="userInfoAllColumn" />
+        FROM
+            `user` AS  user
+        WHERE
+            user.phone_number = #{phoneNumber}
+        AND user.is_deleted = 0
+    </select>
+
+    <select id="queryUserByIdList" resultMap="BaseResultMap">
+        SELECT
+            <include refid="userInfoAllColumn" />
+            ,role.id as roleId,role.role_name as role_name
+            ,dept.id as deptId,dept.dept_name as dept_name
+            ,permission.id as permissionId,permission.name as permissionName,permission.menu_id as permissionMenuId
+            ,permission.route_url as permissionRouteUrl,permission.interface_url as permissionInterfaceUrl
+            ,role_devicetype.deviceTypeId as deviceTypeId
+        FROM
+            `user` AS  user
+            LEFT JOIN role as role ON user.role_id = role.id
+            LEFT JOIN role_permission as role_permission ON role_permission.role_id = role.id
+            LEFT JOIN permission as permission ON role_permission.permission_id = permission.id
+            LEFT JOIN role_devicetype as role_devicetype ON role.id = role_devicetype.roleId
+            LEFT JOIN department as dept ON user.dept_id = dept.id
+        WHERE
+            user.id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryUserByDeptList" resultMap="BaseResultMap">
+        SELECT
+            <include refid="userInfoAllColumn" />
+            ,role.id as roleId,role.role_name as role_name
+            ,dept.id as deptId,dept.dept_name as dept_name
+            ,permission.id as permissionId,permission.name as permissionName,permission.menu_id as permissionMenuId
+            ,permission.route_url as permissionRouteUrl,permission.interface_url as permissionInterfaceUrl
+            ,role_devicetype.deviceTypeId as deviceTypeId
+        FROM
+            `user` AS  user
+            LEFT JOIN role as role ON user.role_id = role.id
+            LEFT JOIN role_permission as role_permission ON role_permission.role_id = role.id
+            LEFT JOIN permission as permission ON role_permission.permission_id = permission.id
+            LEFT JOIN role_devicetype as role_devicetype ON role.id = role_devicetype.roleId
+            LEFT JOIN department as dept ON user.dept_id = dept.id
+        WHERE
+            user.is_deleted = 0
+            AND  user.dept_id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryAllUserDetailInfo" resultMap="BaseResultMap">
+        SELECT
+            <include refid="userInfoAllColumn" />
+            ,role.id as roleId,role.role_name as role_name
+            ,dept.id as deptId,dept.dept_name as dept_name
+            ,permission.id as permissionId,permission.name as permissionName,permission.menu_id as permissionMenuId
+            ,permission.route_url as permissionRouteUrl,permission.interface_url as permissionInterfaceUrl
+            ,role_devicetype.deviceTypeId as deviceTypeId
+        FROM
+            `user` AS  user
+            LEFT JOIN role as role ON user.role_id = role.id
+            LEFT JOIN role_permission as role_permission ON role_permission.role_id = role.id
+            LEFT JOIN permission as permission ON role_permission.permission_id = permission.id
+            LEFT JOIN role_devicetype as role_devicetype ON role.id = role_devicetype.roleId
+            LEFT JOIN department as dept ON user.dept_id = dept.id
+        WHERE
+            user.is_deleted = 0
+    </select>
+
+    <update id="updateStatusAndUnlockTime">
+        UPDATE `user`
+        SET unlocked_time = #{unlockTime}
+        ,user_status = #{userStatus}
+        WHERE
+            id =  #{id}
+    </update>
+
+    <select id="queryUserByDeptAndDeviceType" resultType="String">
+        SELECT
+            user.id
+        FROM
+            `user` as `user`
+            LEFT JOIN role_devicetype as deviceType ON `user`.role_id = deviceType.roleId
+            WHERE user.dept_id IN
+            <foreach collection="deptList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            AND deviceType.deviceTypeId IN
+            <foreach collection="deviceTypes" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+    </select>
+
+    <update id="batchUpdateUnlockTime">
+        UPDATE `user`
+            SET unlocked_time = NULL,user_status = 1
+        WHERE
+            id IN
+            <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+    </update>
+
+    <select id="queryUserIdByName" resultType="String">
+        SELECT
+            id
+        FROM
+            `user`
+        WHERE
+        user_name LIKE concat('%',#{userName},'%')
+    </select>
+
+    <select id="queryUserByPermission" parameterType="com.fiberhome.filink.userserver.bean.UserParameter" resultMap="BaseResultMap">
+        SELECT
+        <include refid="userInfoAllColumn" />
+        FROM
+            `user` as `user`
+        <where>
+            user.is_deleted = 0
+            <if test="roleIdList != null">
+                AND user.role_id IN
+                <foreach collection="roleIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="userNickname != null">
+                AND user.user_nickname LIKE concat('%',#{userNickname},'%')
+            </if>
+            <if test="userName != null">
+                AND user.user_name LIKE concat('%',#{userName},'%')
+            </if>
+            <if test="userCode != null">
+                AND user.user_code LIKE concat('%',#{userCode},'%')
+            </if>
+            <if test="userStatus != null">
+                AND user.user_status = #{userStatus}
+            </if>
+            <if test="address != null">
+                AND user.address LIKE concat('%',#{address},'%')
+            </if>
+            <if test="phoneNumber != null">
+                AND user.phone_number LIKE concat('%',#{phoneNumber},'%')
+            </if>
+            <if test="email != null">
+                AND user.email LIKE concat('%',#{email},'%')
+            </if>
+            <if test="lastLoginIp != null">
+                AND user.last_login_ip LIKE concat('%',#{lastLoginIp},'%')
+            </if>
+            <if test="userDesc != null">
+                AND user.userdesc LIKE concat('%',#{userDesc},'%')
+            </if>
+            <if test="loginType != null">
+                AND user.login_type = #{loginType}
+            </if>
+            <if test="lastLoginTime != null and lastLoginTimeEnd != null">
+                AND user.last_login_time >= #{lastLoginTime}
+                AND user.last_login_time &lt;= #{lastLoginTimeEnd}
+            </if>
+        </where>
+        <if test="sortProperties != null and sortProperties != 'department' and sortProperties != 'role' and sort != null">
+            ORDER BY user.${sortProperties} ${sort}
+        </if>
+        <if test="sort == null">
+            ORDER BY user.create_time DESC
+        </if>
+        LIMIT #{startNum},#{pageSize}
+    </select>
+
+    <select id="queryUserNumberByPermission" parameterType="com.fiberhome.filink.userserver.bean.UserParameter"  resultType="Long">
+        SELECT
+        COUNT(user.id)
+        FROM
+        `user` as `user`
+        <where>
+            user.is_deleted = 0
+            <if test="roleIdList != null">
+                AND user.role_id IN
+                <foreach collection="roleIdList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="userNickname != null">
+                AND user.user_nickname LIKE concat('%',#{userNickname},'%')
+            </if>
+            <if test="userName != null">
+                AND user.user_name LIKE concat('%',#{userName},'%')
+            </if>
+            <if test="userCode != null">
+                AND user.user_code LIKE concat('%',#{userCode},'%')
+            </if>
+            <if test="userStatus != null">
+                AND user.user_status = #{userStatus}
+            </if>
+            <if test="address != null">
+                AND user.address LIKE concat('%',#{address},'%')
+            </if>
+            <if test="phoneNumber != null">
+                AND user.phone_number LIKE concat('%',#{phoneNumber},'%')
+            </if>
+            <if test="email != null">
+                AND user.email LIKE concat('%',#{email},'%')
+            </if>
+            <if test="lastLoginIp != null">
+                AND user.last_login_ip LIKE concat('%',#{lastLoginIp},'%')
+            </if>
+            <if test="userDesc != null">
+                AND user.userdesc LIKE concat('%',#{userDesc},'%')
+            </if>
+            <if test="loginType != null">
+                AND user.login_type = #{loginType}
+            </if>
+            <if test="lastLoginTime != null and lastLoginTimeEnd != null">
+                AND user.last_login_time >= #{lastLoginTime}
+                AND user.last_login_time &lt;= #{lastLoginTimeEnd}
+            </if>
+        </where>
+        <if test="sortProperties != null and sortProperties != 'department' and sortProperties != 'role' and sort != null">
+            ORDER BY user.${sortProperties} ${sort}
+        </if>
+        <if test="sort == null">
+            ORDER BY user.create_time DESC
+        </if>
+    </select>
+
+    <select id="queryUserInfoByDeptAndDeviceType" resultMap="BaseResultMap">
+        SELECT
+        <include refid="userInfoAllColumn" />,dept.id as deptId,dept.dept_name as dept_name
+        FROM
+        `user` as `user`
+        LEFT JOIN department as dept ON user.dept_id = dept.id
+        LEFT JOIN role_devicetype as deviceType ON `user`.role_id = deviceType.roleId
+        WHERE user.user_status = 1 AND user.dept_id IN
+        <foreach collection="deptList" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        AND deviceType.deviceTypeId IN
+        <foreach collection="deviceTypes" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="queryUserDetailById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="userInfoAllColumn" />
+        ,role.id as roleId,role.role_name as role_name
+        ,dept.id as deptId,dept.dept_name as dept_name
+        ,permission.id as permissionId,permission.name as permissionName,permission.menu_id as permissionMenuId
+        ,permission.route_url as permissionRouteUrl,permission.interface_url as permissionInterfaceUrl
+        ,role_devicetype.deviceTypeId as deviceTypeId
+        FROM
+        user as user
+        LEFT JOIN role as role ON user.role_id = role.id
+        LEFT JOIN role_permission as role_permission ON role_permission.role_id = role.id
+        LEFT JOIN permission as permission ON role_permission.permission_id = permission.id
+        LEFT JOIN role_devicetype as role_devicetype ON role.id = role_devicetype.roleId
+        LEFT JOIN department as dept ON user.dept_id = dept.id
+        WHERE binary user.id = #{id} AND user.is_deleted = 0
+    </select>
+
+    <select id="queryUserByRoleAndDepartment" resultMap="BaseResultMap">
+        SELECT
+        <include refid="userInfoAllColumn" />
+        FROM
+        `user` AS  user
+        WHERE
+            user.is_deleted = 0
+        <if test="roleIdList != null">
+            AND user.role_id IN
+            <foreach collection="roleIdList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deptIdList != null">
+        AND user.dept_id IN
+            <foreach collection="deptIdList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,12 @@
+<div class="box-warp">
+  <xc-table [dataSet]="_dataSet" 
+    [pageBean]="pageBean" 
+    [tableConfig]="tableConfig" 
+    (pageChange)="pageChange($event)">
+  </xc-table>
+</div>
+
+<ng-template #loginSourseTemp let-data="data">
+  <span *ngIf="data.loginSource === '1'">{{this.language.pcTerminal}}</span>
+  <span *ngIf="data.loginSource === '0'">{{this.language.mobileTerminal}}</span>
+</ng-template>

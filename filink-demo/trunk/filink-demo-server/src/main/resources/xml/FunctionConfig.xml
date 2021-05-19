@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="1301101">
+<!--英文-->
+		<language type="US">
+			<detailInfoTemplate>this is a demo</detailInfoTemplate>
+			<optName>demo</optName>
+		</language>
+<!--中文-->
+		<language type="CN">
+			<detailInfoTemplate>示例项目----记录日志</detailInfoTemplate>
+			<optName>记录日志</optName>
+		</language>
+
+	</functionCode>
+
+</functionCodes>

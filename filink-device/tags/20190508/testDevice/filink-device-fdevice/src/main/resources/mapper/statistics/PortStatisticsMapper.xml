@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.statistics.PortStatisticsDao">
+
+    <resultMap id="deviceNumDto" type="com.fiberhome.filink.deviceapi.bean.DevicePortUtilizationRate">
+        <result column="id" property="id"/>
+        <result column="utilization_rate" property="utilizationRate"/>
+    </resultMap>
+
+    <insert id="addPortStatistics"
+            parameterType="java.util.List">
+        insert into
+        device_port_utilization_rate
+        (id,device_id,utilization_rate)
+        value
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.deviceId},
+            #{item.utilizationRate}
+            )
+        </foreach>
+
+    </insert>
+    <delete id="deletePortStatistics"
+            parameterType="java.util.List">
+        delete from
+        device_port_utilization_rate
+        <where>
+            device_id in
+            <foreach collection="list" item="item" open="(" separator="," close=")">
+                #{item.deviceId}
+            </foreach>
+        </where>
+    </delete>
+    <!--根据设施id查询端口使用率-->
+    <select id="queryPortStatisticsByDeviceId"
+            parameterType="java.lang.String" resultType="java.lang.Double">
+        select
+            dpur.utilization_rate
+        from
+            device_port_utilization_rate dpur
+        <where>
+            <if test="deviceId != null and  deviceId != ''">
+                dpur.device_id = #{deviceId}
+            </if>
+        </where>
+    </select>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="deviceInfoMap" type="com.fiberhome.filink.fdevice.dto.TopNPortStatisticsResp">
+        <id column="device_id" property="deviceId"/>
+        <result column="utilization_rate" property="utilizationRate"/>
+    </resultMap>
+
+    <select id="queryPortStatistics" parameterType="com.fiberhome.filink.deviceapi.bean.TopNoPortStatisticsReq"
+            resultMap="deviceInfoMap">
+        select
+        dpur.device_id,
+        dpur.utilization_rate
+        from
+        device_port_utilization_rate dpur
+        left join
+        device_info di on dpur.device_id =di.device_id
+        <where>
+            di.is_deleted ='0'
+            <if test="areaIds != null and areaIds.size() > 0">
+                and di.area_id in
+                <foreach collection="areaIds" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="deviceTypes != null and deviceTypes.size() > 0">
+                and di.device_type in
+                <foreach collection="deviceTypes" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+        order by
+        utilization_rate desc
+        <if test="topN != null and topN != ''">
+            LIMIT 0, #{topN}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,90 @@
+<!--为了减少性能消耗采用手写弹框-->
+<div class="map-selector-modal-disk" [hidden]="!xcVisible">
+  <div class="map-selector-modal">
+    <div class="map-selector-title">
+      <span style="padding-left: 26px;font-weight: bold;">{{mapSelectorConfig.title}}</span>
+      <span style="float: right;width: 50px;text-align: center;cursor: pointer" (click)="handleCancel()">
+        <i style="font-size: 14px;color: #36cfc9" nz-icon type="close" theme="outline"></i>
+      </span>
+    </div>
+    <div [ngStyle]="{width:mapSelectorConfig.width}" style="display: flex;margin: 0 auto" #mapSelectorDom>
+      <div style="flex: 1;margin-left: 10px">
+        <div style="line-height: 42px;padding-left: 18px">
+          <i class="map-util icon-fiLink-l iconfont fiLink-arrow-select" [class.background]="drawType==='arrow'"
+             (click)="chooseUtil('arrow')"></i>
+          <i [hidden]="mapBoxSelect" class="map-util icon-fiLink-l iconfont fiLink-box-select" [class.background]="drawType==='rectangle'"
+             (click)="chooseUtil('rectangle')"></i>
+        </div>
+        <nz-card style="position: relative" [ngStyle]="{height:mapSelectorConfig.height}">
+          <div id="_mapContainer" style="height: 425px">
+          </div>
+          <!--搜索位置-->
+          <div class="search" *ngIf="mapType !== 'baidu'">
+            <input nz-dropdown #input [(ngModel)]="searchKey" (keyup.enter)="location()"/>
+            <div class="location-icon" (click)="location()"></div>
+          </div>
+          <!--提示框-->
+          <div *ngIf="isShowInfoWindow" class="info-window-container"
+               [ngStyle]="{left: infoWindowLeft, top: infoWindowTop}">
+            <div *ngIf="infoData.type === 'c'" class="info-window-c">
+              <div class="info-window-item" *ngFor="let data of infoData.data">
+                <div class="info-window-item-icon" [ngClass]="data.className"></div>
+                <div class="info-window-item-name">{{data.deviceTypeName}}</div>
+                <div class="info-window-item-count">{{data.count}}</div>
+              </div>
+            </div>
+            <div *ngIf="infoData.type === 'm'" class="info-window-m">
+              <div class="info-window-m-name">
+                <div class="info-window-m-icon" [ngClass]="infoData.data.className"></div>
+                <!--<div class="info-window-m-icon"></div>-->
+                <div>{{infoData.data.name}}</div>
+              </div>
+              <div>{{infoData.data.number}}</div>
+              <div>{{infoData.data.address}}</div>
+            </div>
+          </div>
+          <div class="progress-bar" *ngIf="isShowProgressBar">
+            <p>{{language.loading}}...</p>
+            <nz-progress [nzPercent]="percent" nzStatus="active"></nz-progress>
+          </div>
+        </nz-card>
+      </div>
+      <div class="table-left" style="width: 50%">
+        <div style="padding:0 10px;display: flex;justify-content: space-between">
+          <span
+            style="line-height: 32px">{{language.selected}}：{{selectData.length}}/{{treeNodeSum}}{{language.count}}</span>
+        </div>
+        <div class="table-content-inspection" style="padding: 10px">
+          <div style="width: 100%;overflow: auto">
+            <nz-card style="" [ngStyle]="{height:mapSelectorConfig.height}">
+              <xc-table style="width: 100%" [dataSet]="selectPageData"
+                        [pageBean]="selectPageBean"
+                        [tableConfig]="selectorConfig"
+                        (pageChange)="selectPageChange($event)">
+              </xc-table>
+            </nz-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-selector-footer" style="height: 58px;padding-right:8px;text-align: right">
+      <button [hidden]="selectHiddenButton" class="link-button" [nzLoading]="isLoading" nz-button nzType="primary" (click)="handleOk()">
+        {{language.confirm}}
+      </button>
+      <button [hidden]="switchHiddenButton" class="link-button"  nz-button nzType="primary"
+              (click)="handleCancel()">
+        {{language.confirm}}
+      </button>
+      <button class="link-button" nz-button nzType="danger" (click)="handleCancel()">{{language.cancel}}</button>
+      <button [hidden]="isHiddenButton" class="link-button" nz-button nzType="danger" (click)="getFacilityFilterByAreaId(areaId, deviceType)">
+        {{language.reset}}</button>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #handleTemp let-data="data">
+  <span class="handle-icon" nz-tooltip [nzTitle]="language.unSelect" (click)="handleDelete(data)">
+    <i nz-icon type="minus-square" theme="outline"></i>
+  </span>
+</ng-template>

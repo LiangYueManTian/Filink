@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.statistics.StatisticsDao">
+
+    <resultMap id="deviceNumDto" type="com.fiberhome.filink.fdevice.dto.DeviceNumDto">
+        <result column="area_id" property="areaId"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="deploy_status" property="deployStatus"/>
+        <result column="device_num" property="deviceNum"/>
+    </resultMap>
+
+    <select id="queryDeviceCount" resultMap="deviceNumDto">
+        select count(*) device_num, a.device_type, a.area_id from device_info a
+        where a.is_deleted != '1'
+        <if test="areaIds != null and areaIds.size() > 0">
+            AND a.area_id IN
+            <foreach collection="areaIds" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceTypes != null and deviceTypes.size() > 0">
+            AND a.device_type IN
+            <foreach collection="deviceTypes" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        group by a.device_type, a.area_id
+    </select>
+
+    <select id="queryDeviceStatusCount" resultMap="deviceNumDto">
+        select count(*) device_num, a.area_id, a.device_status from device_info a
+        where a.is_deleted != '1'
+        <if test="areaIds != null and areaIds.size() > 0">
+            AND a.area_id IN
+            <foreach collection="areaIds" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceType != null and deviceType != '' ">
+            AND a.device_type = #{deviceType}
+        </if>
+        group by a.area_id, a.device_status
+    </select>
+
+    <select id="queryDeployStatusCount" resultMap="deviceNumDto">
+        select count(*) device_num, a.area_id, a.deploy_status from device_info a
+        where a.is_deleted != '1'
+        <if test="areaIds != null and areaIds.size() > 0">
+            AND a.area_id IN
+            <foreach collection="areaIds" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceType != null and deviceType != '' ">
+            AND a.device_type = #{deviceType}
+        </if>
+        group by a.area_id, a.deploy_status
+    </select>
+
+    <select id="queryDeviceTypeCount" resultMap="deviceNumDto" parameterType="list">
+        select count(*) device_num, a.device_type from device_info a
+        where a.is_deleted != '1'
+        <if test="list != null and list.size() > 0">
+            AND a.area_id IN
+            <foreach collection="list" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        group by a.device_type
+    </select>
+
+    <select id="queryUserDeviceStatusCount" resultMap="deviceNumDto">
+        select count(*) device_num, a.device_status from device_info a
+        where a.is_deleted != '1'
+        <if test="areaIds != null and areaIds.size() > 0">
+            AND a.area_id IN
+            <foreach collection="areaIds" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceTypes != null and deviceTypes.size() > 0">
+            AND a.device_type IN
+            <foreach collection="deviceTypes" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        group by a.device_status
+    </select>
+
+    <select id="queryUserDeviceAndStatusCount" resultMap="deviceNumDto">
+        select count(*) device_num, a.device_type, a.device_status from device_info a
+        where a.is_deleted != '1'
+        <if test="areaIds != null and areaIds.size() > 0">
+            AND a.area_id IN
+            <foreach collection="areaIds" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceTypes != null and deviceTypes.size() > 0">
+            AND a.device_type IN
+            <foreach collection="deviceTypes" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        group by a.device_type, a.device_status
+    </select>
+
+</mapper>

@@ -1,0 +1,72 @@
+server:
+  port: 10250
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://filink:123456@39.98.72.132:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+#    ---------------------------------------------------
+
+spring:
+  application:
+    name: filink-dump-server
+
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 39.98.72.132:9092
+          zkNodes: 39.98.72.132:2181
+  data:
+    mongodb:
+      alarm_history:
+        host: 39.98.72.132
+        port: 27017
+        database: mongoOne
+      alarm_current:
+        host: 39.98.72.132
+        port: 27017
+        database: mongoTwo
+      device_log:
+        host: 39.98.72.132
+        port: 27017
+        database: mongoThree
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: true
+
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+
+#是否需要权限拉去，默认是true,如果不false就不允许你去拉取配置中心Server更新的内容
+management:
+  security:
+    enabled: false
+
+  # 启动暴露url
+  endpoints:
+    web:
+      expose: "*"
+logging:
+  level: debug

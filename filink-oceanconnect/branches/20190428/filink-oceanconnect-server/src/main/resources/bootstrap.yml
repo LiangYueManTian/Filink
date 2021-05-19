@@ -1,0 +1,17 @@
+
+
+spring:
+  cloud:
+    config:
+      name: filink-oceanconnect
+      label: filink-oceanconnect
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: FILINK-CONFIG-SERVER
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://filink:123456@10.5.24.224:8761/eureka/
+

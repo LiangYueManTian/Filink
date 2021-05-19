@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.statistics.SensorLimitDao">
+
+    <resultMap id="sensorLimit" type="com.fiberhome.filink.fdevice.bean.Sensor.SensorLimit">
+        <result column="device_id" property="deviceId"/>
+        <result column="temperature_max" property="temperatureMax"/>
+        <result column="temperature_max_time" property="temperatureMaxTime"/>
+        <result column="temperature_min" property="temperatureMin"/>
+        <result column="temperature_min_time" property="temperatureMinTime"/>
+        <result column="humidity_max" property="humidityMax"/>
+        <result column="humidity_max_time" property="humidityMaxTime"/>
+        <result column="humidity_min" property="humidityMin"/>
+        <result column="humidity_min_time" property="humidityMinTime"/>
+    </resultMap>
+
+    <resultMap id="sensorTopNum" type="com.fiberhome.filink.fdevice.dto.SensorTopNum">
+        <result column="device_id" property="deviceId"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="sensor_value" property="sensorValue"/>
+        <result column="sampling_time" property="samplingTime"/>
+    </resultMap>
+
+    <select id="queryDeviceSensorTopNum" resultMap="sensorTopNum">
+        SELECT b.device_id, b.device_name,
+        <choose>
+            <when test="sensorType == 'temperature' and isTop == true " >
+                a.temperature_max as sensor_value, a.temperature_max_time as sampling_time
+            </when>
+            <when test="sensorType == 'temperature' and isTop == false " >
+                a.temperature_min as sensor_value, a.temperature_min_time as sampling_time
+            </when>
+            <when test="sensorType == 'humidity' and isTop == true " >
+                a.humidity_max as sensor_value, a.humidity_max_time as sampling_time
+            </when>
+            <when test="sensorType == 'humidity' and isTop == false " >
+                a.humidity_min as sensor_value, a.humidity_min_time as sampling_time
+            </when>
+        </choose>
+        FROM device_sensor_limit a inner join device_info b on a.device_id=b.device_id
+        WHERE b.is_deleted != '1'
+        <if test="areaIdList != null and areaIdList.size() > 0">
+            AND b.area_id IN
+            <foreach collection="areaIdList" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="deviceType != null and deviceType != '' ">
+            AND b.device_type = #{deviceType}
+        </if>
+        <choose>
+            <when test="sensorType == 'temperature' and isTop == true " >
+                order by a.temperature_max desc
+            </when>
+            <when test="sensorType == 'temperature' and isTop == false " >
+                order by a.temperature_min asc
+            </when>
+            <when test="sensorType == 'humidity' and isTop == true " >
+                order by a.humidity_max desc
+            </when>
+            <when test="sensorType == 'humidity' and isTop == false " >
+                order by a.humidity_min asc
+            </when>
+        </choose>
+        limit #{topTotal}
+    </select>
+
+</mapper>

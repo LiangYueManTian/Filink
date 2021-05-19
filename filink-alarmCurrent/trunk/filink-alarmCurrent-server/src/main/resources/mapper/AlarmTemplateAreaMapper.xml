@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmcurrentserver.dao.AlarmTemplateAreaDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmcurrentserver.bean.AlarmTemplateArea">
+        <result column="template_id" property="templateId" />
+        <result column="area_name" property="areaName" />
+        <result column="area_id" property="areaId" />
+    </resultMap>
+
+    <insert id="addAlarmTemplateArea">
+        INSERT INTO alarm_template_area (template_id,area_name,area_id) VALUE
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.templateId},
+            #{item.areaName},
+            #{item.areaId}
+            )
+        </foreach>
+    </insert>
+
+    <sql id="BaseResultSql">
+        template_id,area_name,area_id
+    </sql>
+
+    <delete id="batchDeleteAlarmTemplateArea">
+        DELETE FROM alarm_template_area WHERE template_id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="batchUpdateAlarmTemplateArea">
+        UPDATE alarm_template_area SET area_name=#{areaName},area_id=#{areaId} WHERE template_id=#{templateId}
+    </update>
+
+    <select id="queryAlarmAreaById" parameterType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmTemplateArea"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_template_area WHERE template_id=#{id}
+    </select>
+
+
+</mapper>

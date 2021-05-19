@@ -1,0 +1,45 @@
+.facility-alarm-panel-container {
+  overflow: auto;
+  max-height: calc(100vh - 175px);
+  font-size: 12px;
+  padding: 0 15px;
+  .current-alarm {
+    .current-alarm-title {
+      display: flex;
+      height: 30px;
+      align-items: center;
+      .current-alarm-title-text {
+        flex: 1;
+      }
+      .current-alarm-title-more {
+        cursor: pointer;
+        color: #b3b3b3;
+      }
+    }
+    .current-alarm-table {
+
+    }
+  }
+  .history-alarm {
+    margin: 15px 0;
+    max-height: 280px;
+    .history-alarm-title {
+      display: flex;
+      height: 30px;
+      align-items: center;
+      .history-alarm-title-text {
+        flex: 1;
+      }
+      .history-alarm-title-more {
+        cursor: pointer;
+        color: #b3b3b3;
+      }
+    }
+    .history-alarm-table {
+       .chart-style {
+          max-height: 200px;
+          width: 100%;
+       }
+    }
+  }
+}

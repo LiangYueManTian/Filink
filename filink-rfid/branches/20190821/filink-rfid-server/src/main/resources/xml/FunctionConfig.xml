@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<!--光缆 start-->
+	<functionCode functionId="1201101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add optical cable name is ${opticCableName}</detailInfoTemplate>
+			<optName>addOpticalCable</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增光缆信息:${opticCableName}</detailInfoTemplate>
+			<optName>新增光缆信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1201102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update optical cable name is ${opticCableName}</detailInfoTemplate>
+			<optName>updateOpticCable</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改光缆信息:${opticCableName}</detailInfoTemplate>
+			<optName>修改光缆信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1201103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete optical cable name is ${opticCableName}</detailInfoTemplate>
+			<optName>deleteOpticCable</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除光缆信息:${opticCableName}</detailInfoTemplate>
+			<optName>删除光缆信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1201104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}export optical cable name is ${listName}</detailInfoTemplate>
+			<optName>exportOpticCable</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出光缆信息:${listName}</detailInfoTemplate>
+			<optName>导出光缆信息</optName>
+		</language>
+	</functionCode>
+
+	<!--光缆 end-->
+	<!--光缆段 start-->
+	<functionCode functionId="1202101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add optical cable section  no is ${opticCableSectionName}</detailInfoTemplate>
+			<optName>addOpticalCableSection</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增光缆段信息:${opticCableSectionName}</detailInfoTemplate>
+			<optName>新增光缆段信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1202102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update optical cable section no is ${opticCableSectionName}</detailInfoTemplate>
+			<optName>updateOpticalCableSection</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改光缆段信息:${opticCableSectionName}</detailInfoTemplate>
+			<optName>修改光缆段信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1202103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete optical cable section no is ${opticCableSectionName}</detailInfoTemplate>
+			<optName>deleteOpticalCableSection</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除光缆段信息:${opticCableSectionName}</detailInfoTemplate>
+			<optName>删除光缆段信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1202104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}export optical cable section name is ${listName}</detailInfoTemplate>
+			<optName>exportOpticCableSection</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出光缆段信息:${listName}</detailInfoTemplate>
+			<optName>导出光缆段信息</optName>
+		</language>
+	</functionCode>
+	<!--光缆段end-->
+	<!--光缆段智能标签 start-->
+	<functionCode functionId="1205101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add optical cable section GIS no is ${rfidCode}</detailInfoTemplate>
+			<optName>addOpticalCableSectionGIS</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增光缆段智能标签信息:${rfidCode}</detailInfoTemplate>
+			<optName>新增光缆段智能标签信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1205102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update optical cable section GIS no is ${rfidCode}</detailInfoTemplate>
+			<optName>updateOpticalCableSectionGIS</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改光缆段智能标签信息:${rfidCode}</detailInfoTemplate>
+			<optName>修改光缆段智能标签信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1205103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete optical cable section GIS no is ${rfidCode}</detailInfoTemplate>
+			<optName>deleteOpticalCableSectionGIS</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除光缆段智能标签信息:${rfidCode}</detailInfoTemplate>
+			<optName>删除光缆段智能标签信息</optName>
+		</language>
+	</functionCode>
+	<!--光缆段智能标签end-->
+	<!--熔纤 start-->
+	<functionCode functionId="1203101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add core core no is ${cableCoreNo}</detailInfoTemplate>
+			<optName>addCoreCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增熔纤信息:${cableCoreNo}</detailInfoTemplate>
+			<optName>新增熔纤信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1203102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update core core no is ${cableCoreNo}</detailInfoTemplate>
+			<optName>updateCoreCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改熔纤信息:${cableCoreNo}</detailInfoTemplate>
+			<optName>修改熔纤信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1203103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete core core no is ${cableCoreNo}</detailInfoTemplate>
+			<optName>deleteCoreCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除熔纤信息:${cableCoreNo}</detailInfoTemplate>
+			<optName>删除熔纤信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1203104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete core optic cable section id is ${resource}</detailInfoTemplate>
+			<optName>deleteCoreCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}清空熔纤信息，光缆段为:${resource}</detailInfoTemplate>
+			<optName>清空熔纤信息</optName>
+		</language>
+	</functionCode>
+	<!--熔纤 end-->
+
+	<!--成端 start-->
+	<functionCode functionId="1204101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add port port no is ${portNo}</detailInfoTemplate>
+			<optName>addPortCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增成端信息:${portNo}</detailInfoTemplate>
+			<optName>新增成端信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1204102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update port port no is ${portNo}</detailInfoTemplate>
+			<optName>updatePortCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改成端信息:${portNo}</detailInfoTemplate>
+			<optName>修改成端信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1204103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete port port no is ${portNo}</detailInfoTemplate>
+			<optName>deletePortCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除成端信息:${portNo}</detailInfoTemplate>
+			<optName>删除成端信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1204104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}clear frame frame no is ${resourceFrameNo}</detailInfoTemplate>
+			<optName>clearPortCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}清空成端信息，框号为:${resourceFrameNo}</detailInfoTemplate>
+			<optName>清空成端信息</optName>
+		</language>
+	</functionCode>
+	<!--成端 end-->
+
+	<!--跳接 start-->
+	<functionCode functionId="1206101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add jump core no is ${portNo}</detailInfoTemplate>
+			<optName>addJumpCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增跳接信息:${portNo}</detailInfoTemplate>
+			<optName>新增跳接信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1206102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update jump core no is ${portNo}</detailInfoTemplate>
+			<optName>updateJumpCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改跳接信息:${portNo}</detailInfoTemplate>
+			<optName>修改跳接信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1206103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete jump core no is ${portNo}</detailInfoTemplate>
+			<optName>deleteJumpCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除跳接信息:${portNo}</detailInfoTemplate>
+			<optName>删除跳接信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1206104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}export jump core no is ${listName}</detailInfoTemplate>
+			<optName>exportJumpCore</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出跳接信息:${listName}</detailInfoTemplate>
+			<optName>导出跳接信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1206105">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update rfid code is ${rfidCode}</detailInfoTemplate>
+			<optName>updateJumpCoreRfIdCode</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改智能标签id:${rfidCode}</detailInfoTemplate>
+			<optName>修改智能标签id</optName>
+		</language>
+	</functionCode>
+	<!--跳接 end-->
+
+	<!--rfid start-->
+	<functionCode functionId="1207101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add rfid code is ${rfidCode}</detailInfoTemplate>
+			<optName>addRfid</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增智能标签信息:${rfidCode}</detailInfoTemplate>
+			<optName>新增智能标签信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1207102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update rfid code no is ${rfidCode}</detailInfoTemplate>
+			<optName>updateRfid</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改智能标签信息:${rfidCode}</detailInfoTemplate>
+			<optName>修改智能标签信息</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1207103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete rfid code no is ${rfidCode}</detailInfoTemplate>
+			<optName>deleteRfid</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除智能标签信息:${rfidCode}</detailInfoTemplate>
+			<optName>删除智能标签信息</optName>
+		</language>
+	</functionCode>
+	<!--rfid end-->
+<!--统计导出 start-->
+	<functionCode functionId="1208101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical export of Optical Cable ${listName}</detailInfoTemplate>
+			<optName>Statistical export of Optical Cable</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}光缆统计导出:${listName}</detailInfoTemplate>
+			<optName>光缆统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1208102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical export of Optical Cable Section ${listName}</detailInfoTemplate>
+			<optName>Statistical export of Optical Cable Section</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}光缆段统计导出:${listName}</detailInfoTemplate>
+			<optName>光缆段统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1208103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical export of Fiber Core ${listName}</detailInfoTemplate>
+			<optName>Statistical export of Fiber Core</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}纤芯统计导出:${listName}</detailInfoTemplate>
+			<optName>纤芯统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1208104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical export of jump connection in cabinet ${listName}</detailInfoTemplate>
+			<optName>Statistical export of jump connection in cabinet</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}柜内跳接关系统计导出:${listName}</detailInfoTemplate>
+			<optName>柜内跳接关系统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1208105">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical export of jump connection out cabinet  ${listName}</detailInfoTemplate>
+			<optName>Statistical export of jump connection out cabinet </optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}柜内跳接关系统计导出:${listName}</detailInfoTemplate>
+			<optName>柜间跳接关系统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1208106">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical export of Fiber Jumping Side Ports ${listName}</detailInfoTemplate>
+			<optName>Statistical export of Fiber Jumping Side Ports </optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}跳纤侧端口统计导出:${listName}</detailInfoTemplate>
+			<optName>跳纤侧端口统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1208107">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical export of Melt  fiber port ${listName}</detailInfoTemplate>
+			<optName>Statistical export of Melt fiber port </optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}熔纤侧端口统计导出:${listName}</detailInfoTemplate>
+			<optName>熔纤侧端口统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1208108">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical export of disc port ${listName}</detailInfoTemplate>
+			<optName>Statistical export of disc port </optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}盘端口统计导出:${listName}</detailInfoTemplate>
+			<optName>盘端口统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1208109">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical export of frame port ${listName}</detailInfoTemplate>
+			<optName>Statistical export of frame port </optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}框端口统计导出:${listName}</detailInfoTemplate>
+			<optName>框端口统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1208110">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}Statistical Export of Port Resource Usage Rate ${listName}</detailInfoTemplate>
+			<optName>Statistical Export of Port Resource Usage Rate </optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}端口资源使用率统计导出:${listName}</detailInfoTemplate>
+			<optName>端口资源使用率统计导出</optName>
+		</language>
+	</functionCode>
+	<!--统计导出 end-->
+
+</functionCodes>

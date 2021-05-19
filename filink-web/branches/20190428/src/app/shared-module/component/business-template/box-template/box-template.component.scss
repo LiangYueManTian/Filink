@@ -1,0 +1,14 @@
+.box-template {
+  width: 900px;
+  height: 400px;
+  display: flex;
+  .search-info {
+    height: 100%;
+  }
+
+  .template-info {
+    margin-left: 40px;
+    border: 1px solid #e8e8e8;
+    width: 100%;
+  }
+}

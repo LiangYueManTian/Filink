@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.device.DeviceInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="deviceInfoMap" type="com.fiberhome.filink.fdevice.bean.device.DeviceInfo">
+        <id column="device_id" property="deviceId"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="device_code" property="deviceCode"/>
+        <result column="address" property="address"/>
+        <result column="accountability_unit" property="accountabilityUnit"/>
+        <result column="deploy_status" property="deployStatus"/>
+        <result column="province_name" property="provinceName"/>
+        <result column="city_name" property="cityName"/>
+        <result column="district_name" property="districtName"/>
+        <result column="position_gps" property="positionGps"/>
+        <result column="position_base" property="positionBase"/>
+        <result column="area_id" property="areaId"/>
+        <result column="remarks" property="remarks"/>
+        <result column="specific_field_id" property="specificFieldId"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="serial_num" property="serialNum"/>
+    </resultMap>
+
+    <!-- 首页查询带区域信息映射结果 -->
+    <resultMap id="ResultMapTemp" type="com.fiberhome.filink.fdevice.dto.HomeDeviceInfoDto">
+        <id column="device_id" property="deviceId"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="device_code" property="deviceCode"/>
+        <result column="address" property="address"/>
+        <result column="position_base" property="positionBase"/>
+        <result column="area_id" property="areaId"/>
+        <result column="area_name" property="areaName"/>
+    </resultMap>
+
+    <!--根据名称查询设施-->
+    <select id="selectByName" parameterType="string" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE device_name = #{deviceName}
+        and is_deleted != 1
+    </select>
+
+    <!--插入设施-->
+    <insert id="insertDevice" parameterType="com.fiberhome.filink.fdevice.bean.device.DeviceInfo"
+            useGeneratedKeys="true" keyProperty="ID">
+        INSERT INTO device_info
+        (
+        device_id, device_type, device_name, device_status, device_code, address, accountability_unit,
+        deploy_status,
+        province_name, city_name, district_name, position_gps ,position_base, area_id, remarks,
+        specific_field_id, create_user,create_time, update_user,update_time
+        )
+        VALUES
+        (
+        #{deviceId},#{deviceType},#{deviceName},#{deviceStatus},#{deviceCode},#{address},#{accountabilityUnit},#{deployStatus},
+        #{provinceName},#{cityName},#{districtName},#{positionGps},#{positionBase},#{areaId},#{remarks},
+        #{specificFieldId},#{createUser},#{createTime},#{updateUser},#{updateTime}
+        )
+        <selectKey resultType="string" order="BEFORE" keyProperty="deviceId">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
+    </insert>
+
+
+    <!--分页模糊查询设施-->
+    <select id="selectDevice" resultMap="deviceInfoMap">
+        SELECT * FROM device_info ${ew.customSqlSegment}
+    </select>
+
+    <!--根据关联区域id查询-->
+    <select id="queryDeviceByAreaId" parameterType="string" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE area_id = #{areaId} and is_deleted !=1
+    </select>
+    <!--查询未关联区域设施-->
+    <select id="queryDeviceAreaIdIsNull" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE area_id is NULL and is_deleted !=1
+    </select>
+    <!--关联区域-->
+    <update id="setAreaDevice">
+        UPDATE device_info SET
+        area_id = #{areaId}
+        WHERE device_id IN
+        <foreach item="list" index="index" collection="list" open="(" separator="," close=")">
+            #{list}
+        </foreach>
+        and is_deleted !=1
+    </update>
+    <!--根据id集合批量查询设施-->
+    <select id="selectByIds" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE device_id IN
+        <foreach collection="list" index="index" item="deviceIds" open="(" separator="," close=")">
+            #{deviceIds}
+        </foreach>
+        and is_deleted !=1
+    </select>
+    <!--删除该区域下的所有设施-->
+    <update id="setAreaDeviceIsNull">
+        UPDATE  device_info SET
+        area_id = NULL WHERE area_id=#{areaId} and is_deleted !=1
+    </update>
+    <!--根据id查询设施-->
+    <select id="selectDeviceById" resultMap="deviceInfoMap" parameterType="string">
+        SELECT * FROM device_info
+        WHERE device_id = #{id} and is_deleted !=1
+    </select>
+    <!--校验设施代号-->
+    <select id="checkDeviceCode" resultMap="deviceInfoMap" parameterType="string">
+        SELECT * FROM device_info
+        WHERE device_code = #{deviceCode}
+    </select>
+
+    <!--首页查询设施信息-->
+    <select id="queryDeviceAreaList" resultMap="ResultMapTemp">
+        SELECT device_id,device_type,device_name,device_status,device_code,
+        d.address,position_base,a.area_id,area_name FROM device_info d
+        JOIN area_info a on d.area_id = a.area_id WHERE d.is_deleted != '1'
+    </select>
+    <!--首页查询设施信息-->
+    <select id="queryDeviceAreaById" resultMap="ResultMapTemp" parameterType="string">
+        SELECT device_id,device_type,device_name,device_status,device_code,d.province_name,d.city_name,
+        d.district_name,d.address,position_gps,position_base,a.area_id,area_name FROM device_info d
+        JOIN area_info a on d.area_id = a.area_id WHERE d.is_deleted != '1' AND device_id = #{deviceId}
+    </select>
+
+    <!--根据ID号删除设施-->
+    <update id="deleteDeviceByIds" parameterType="list">
+        UPDATE device_info SET
+        is_deleted = 1
+        WHERE device_id IN
+        <foreach collection="array" item="item" separator="," index="index" open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--根据ID数组查询设施列表-->
+    <select id="selectDeviceByIds" parameterType="list" resultMap="deviceInfoMap">
+        SELECT * FROM device_info
+        WHERE device_id IN
+        <foreach collection="array" item="item" separator="," index="index" open="(" close=")">
+            #{item}
+        </foreach>
+        AND is_deleted != 1
+    </select>
+
+    <!--根据序列号查询设施列表-->
+    <select id="selectDeviceBySeriaNumber" resultMap="deviceInfoMap" parameterType="string">
+        SELECT * FROM device_info WHERE serial_num = #{seriaNum}
+    </select>
+
+    <!--带分页信息的设施列表查询-->
+    <select id="selectDeviceByPage" resultMap="DeviceInfoDtoMap"
+            parameterType="com.fiberhome.filink.bean.QueryCondition">
+        SELECT * FROM device_info d
+        JOIN area_info a ON d.area_id = a.area_id
+        <where>
+            <if test="map.deviceType != null and map.deviceType != ''">
+                AND d.device_type = #{map.deviceType}
+            </if>
+            <if test="map.deviceStatus != null and map.deviceStatus != ''">
+                AND d.device_status = #{map.deviceStatus}
+            </if>
+            <if test="map.deviceName != null and map.deviceName != ''">
+                AND d.device_name like '%${map.deviceName}%'
+            </if>
+            <if test="map.deviceCode != null and map.deviceCode != ''">
+                AND d.device_code like '%${map.deviceCode}%'
+            </if>
+            <if test="map.provinceName != null and map.provinceName != ''">
+                AND d.province_name like '%${map.provinceName}%'
+            </if>
+            <if test="map.cityName != null and map.cityName != ''">
+                AND d.city_name like '%${map.cityName}%'
+            </if>
+            <if test="map.districtName != null and map.districtName != ''">
+                AND d.district_name like '%${map.districtName}%'
+            </if>
+            <if test="map.address != null and map.address != ''">
+                AND d.address like '%${map.address}%'
+            </if>
+            <if test="map.deployStatus != null and map.deployStatus != ''">
+                AND d.deploy_status = #{map.deployStatus}
+            </if>
+            <if test="map.areaName != null and map.areaName != ''">
+                AND a.area_name like '%${map.areaName}%'
+            </if>
+            <if test="map.remarks != null and map.remarks != ''">
+                AND d.remarks like '%${map.remarks}%'
+            </if>
+            AND d.is_deleted != 1
+        </where>
+        <if test="sort != null">
+            <if test="sort.sortField == 'deviceType'">
+                ORDER BY d.device_type
+            </if>
+            <if test="sort.sortField == 'deviceName'">
+                ORDER BY d.device_name
+            </if>
+            <if test="sort.sortField == 'deviceCode'">
+                ORDER BY d.device_code
+            </if>
+            <if test="sort.sortField == 'areaName'">
+                ORDER BY a.area_name
+            </if>
+            <if test="sort.sortField == 'provinceName'">
+                ORDER BY d.province_name
+            </if>
+            <if test="sort.sortField == 'cityName'">
+                ORDER BY d.city_name
+            </if>
+            <if test="sort.sortField == 'districtName'">
+                ORDER BY d.district_name
+            </if>
+            <if test="sort.sortField == 'address'">
+                ORDER BY d.address
+            </if>
+            <if test="sort.sortField == 'deployStatus'">
+                ORDER BY d.deploy_status
+            </if>
+            <if test="sort.sortField == 'deviceStatus'">
+                ORDER BY d.device_status
+            </if>
+            <if test="sort.sortField == 'remarks'">
+                ORDER BY d.remarks
+            </if>
+            <if test="sort.sortRule == 'asc'">
+                ASC
+            </if>
+            <if test="sort.sortRule == 'desc'">
+                DESC
+            </if>
+        </if>
+        <if test="sort == null or (sort.sortRule == null or sort.sortRule == '') or (sort.sortField == null or sort.sortField == '')">
+            ORDER BY d.create_time DESC
+        </if>
+        LIMIT #{page.beginNum}, #{page.pageSize}
+    </select>
+
+    <!--查询设施数-->
+    <select id="seleteDeviceCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM device_info d
+        JOIN area_info a ON d.area_id = a.area_id
+        <where>
+            <if test="map.deviceType != null and map.deviceType != ''">
+                AND d.device_type = #{map.deviceType}
+            </if>
+            <if test="map.deviceName != null and map.deviceName != ''">
+                AND d.device_name like '%${map.deviceName}%'
+            </if>
+            <if test="map.deviceCode != null and map.deviceCode != ''">
+                AND d.device_code like '%${map.deviceCode}%'
+            </if>
+            <if test="map.provinceName != null and map.provinceName != ''">
+                AND d.province_name like '%${map.provinceName}%'
+            </if>
+            <if test="map.cityName != null and map.cityName != ''">
+                AND d.city_name like '%${map.cityName}%'
+            </if>
+            <if test="map.districtName != null and map.districtName != ''">
+                AND d.district_name like '%${map.districtName}%'
+            </if>
+            <if test="map.address != null and map.address != ''">
+                AND d.address like '%${map.address}%'
+            </if>
+            <if test="map.deployStatus != null and map.deployStatus != ''">
+                AND d.deploy_status = #{map.deployStatus}
+            </if>
+            <if test="map.areaName != null and map.areaName != ''">
+                AND a.area_name like '%${map.areaName}%'
+            </if>
+            <if test="map.remarks != null and map.remarks != ''">
+                AND d.remarks like '%${map.remarks}%'
+            </if>
+            AND d.is_deleted != 1
+        </where>
+    </select>
+
+    <!--设施DTO map-->
+    <resultMap id="DeviceInfoDtoMap" type="com.fiberhome.filink.fdevice.dto.DeviceInfoDto">
+        <id column="device_id" property="deviceId"/>
+        <result column="device_type" property="deviceType"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="device_code" property="deviceCode"/>
+        <result column="address" property="address"/>
+        <result column="deploy_status" property="deployStatus"/>
+        <result column="province_name" property="provinceName"/>
+        <result column="city_name" property="cityName"/>
+        <result column="district_name" property="districtName"/>
+        <result column="position_gps" property="positionGps"/>
+        <result column="position_base" property="positionBase"/>
+        <result column="remarks" property="remarks"/>
+        <result column="specific_field_id" property="specificFieldId"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="serial_num" property="serialNum"/>
+        <association property="areaInfo" column="area_id"
+                     select="com.fiberhome.filink.fdevice.dao.area.AreaInfoDao.selectAreaInfoById"/>
+    </resultMap>
+
+
+</mapper>

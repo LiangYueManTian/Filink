@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="filink-device-api" />
+        <module name="filink-device-fdevice" />
+        <module name="filink-device-parts" />
+        <module name="filink-device-picture" />
+        <module name="filink-device-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="filink-device" target="1.8" />
+      <module name="filink-device-api" target="1.8" />
+      <module name="filink-device-fdevice" target="1.8" />
+      <module name="filink-device-parts" target="1.8" />
+      <module name="filink-device-picture" target="1.8" />
+      <module name="filink-device-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

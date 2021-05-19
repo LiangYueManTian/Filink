@@ -1,0 +1,54 @@
+<nz-card nzTitle="{{language.InfrastructureDetails}}" [nzExtra]="extraTemplate">
+  <div  class="detail-container">
+    <!--基本信息-->
+    <div  class="device-detail-info">
+        <ul>
+          <li class="facility-item">
+            <span class="label">{{language.infrastructureName}}：</span>
+            <span class="value hidden" [title]="facilityInfo.deviceName">{{facilityInfo.deviceName}}</span>
+          </li>
+          <li class="facility-item">
+            <span class="label">{{language.infrastructureCode}}：</span>
+            <span class="value hidden" [title]="facilityInfo.deviceCode">{{facilityInfo.deviceCode}}</span>
+          </li>
+          <li class="facility-item">
+            <span class="label">{{language.deviceType_a}}：</span>
+            <span class="value hidden" [title]="facilityInfo.deviceType">{{facilityInfo.deviceType}}</span>
+          </li>
+          <li class="facility-item">
+            <span class="label">{{language.region}}：</span>
+            <span class="value hidden" [title]="facilityInfo.provinceName+facilityInfo.cityName+facilityInfo.districtName">{{facilityInfo.provinceName}}{{facilityInfo.cityName}}{{facilityInfo.districtName}}</span>
+          </li>
+          <li class="facility-item">
+            <span class="label">{{language.logicalArea}}：</span>
+            <span class="value hidden" [title]="facilityInfo.areaInfo?.areaName">{{facilityInfo.areaInfo?.areaName}}</span>
+          </li>
+          <li class="facility-item">
+            <span class="label">{{language.address}}：</span>
+            <span class="value hidden" [title]="facilityInfo.address">{{facilityInfo.address}}</span>
+          </li>
+          <li class="facility-item">
+            <span class="label">{{language.accountabilityUnit}}：</span>
+            <span class="value hidden" [title]="facilityInfo.areaInfo?.accountabilityUnitName">{{facilityInfo.areaInfo?.accountabilityUnitName}}</span>
+          </li>
+        </ul>
+    </div>
+    <!--实景图-->
+    <div class="realistic-picture">
+      <p>{{language.realisticPicture}}</p>
+      <div class="img-container">
+        <img class="info-img" *ngIf="devicePicUrl" (click)="clickImage()" [src]="devicePicUrl"
+             alt="">
+      </div>
+    </div>
+    <!--缩略图-->
+    <div class="thumbnail">
+      <p>{{language.thumbnail}}</p>
+      <div class="img-container" id="thumbnail" (click)="clickMap()">
+      </div>
+    </div>
+  </div>
+</nz-card>
+<ng-template #extraTemplate>
+  <span class="update-time">{{language.updateTime}}： {{facilityInfo.utime | dynamic: 'date' : null}}</span>
+</ng-template>

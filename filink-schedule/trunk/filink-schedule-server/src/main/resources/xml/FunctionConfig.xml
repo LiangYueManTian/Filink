@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="2301105">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} deleted the ${taskName}</detailInfoTemplate>
+			<optName>Delete expired export tasks</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了${taskName}</detailInfoTemplate>
+			<optName>删除过期导出任务</optName>
+		</language>
+	</functionCode>
+
+
+	<functionCode functionId="2301106">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} execute the ${statisticalName}</detailInfoTemplate>
+			<optName>Proc day add statistical</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 执行 ${statisticalName}</detailInfoTemplate>
+			<optName>工单日增量统计</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="2301107">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} execute the ${statisticalName}</detailInfoTemplate>
+			<optName>Proc week add statistical</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 执行 ${statisticalName}</detailInfoTemplate>
+			<optName>工单周增量统计</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="2301108">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} execute the ${statisticalName}</detailInfoTemplate>
+			<optName>Proc month add statistical</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 执行 ${statisticalName}</detailInfoTemplate>
+			<optName>工单月增量统计</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="2301109">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} execute the ${statisticalName}</detailInfoTemplate>
+			<optName>Proc year add statistical</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 执行 ${statisticalName}</detailInfoTemplate>
+			<optName>工单年增量统计</optName>
+		</language>
+	</functionCode>
+</functionCodes>

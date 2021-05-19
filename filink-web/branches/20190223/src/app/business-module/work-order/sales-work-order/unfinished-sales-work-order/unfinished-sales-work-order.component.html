@@ -1,0 +1,46 @@
+<div class="box-warp">
+  <div class="circle-container">
+    <div class="circle">
+      <canvas id="canvas1"></canvas>
+      <div class="text">
+        <div class="number">89</div>
+        <div class="title">全部工单</div>
+      </div>
+    </div>
+    <div class="circle">
+      <canvas id="canvas2"></canvas>
+      <div class="text">
+        <div class="number">28</div>
+        <div class="title">待指派</div>
+      </div>
+    </div>
+    <div class="circle">
+      <canvas id="canvas3"></canvas>
+      <div class="text">
+        <div class="number">16</div>
+        <div class="title">待处理</div>
+      </div>
+    </div>
+    <div class="circle">
+      <canvas id="canvas4"></canvas>
+      <div class="text">
+        <div class="number">21</div>
+        <div class="title">处理中</div>
+      </div>
+    </div>
+    <div class="circle">
+      <canvas id="canvas5"></canvas>
+      <div class="text">
+        <div class="number">14</div>
+        <div class="title">今日新增</div>
+      </div>
+    </div>
+  </div>
+  <div class="table-container">
+    <xc-table [dataSet]="_dataSet"
+              [pageBean]="pageBean"
+              [tableConfig]="tableConfig"
+              (pageChange)="pageChange($event)">
+    </xc-table>
+  </div>
+</div>

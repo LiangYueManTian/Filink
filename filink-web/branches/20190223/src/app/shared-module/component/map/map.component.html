@@ -1,0 +1,20 @@
+<div class="map-container" #map></div>
+<!--提示框-->
+<div *ngIf="isShowInfoWindow" class="info-window-container" [ngStyle]="{left: infoWindowLeft, top: infoWindowTop}">
+  <div *ngIf="infoData.type === 'c'" class="info-window-c">
+    <div class="info-window-item" *ngFor="let data of infoData.data">
+      <div class="info-window-item-icon" [ngClass]="data.className"></div>
+      <div class="info-window-item-name">{{data.deviceTypeName}}</div>
+      <div class="info-window-item-count">{{data.count}}</div>
+    </div>
+  </div>
+  <div *ngIf="infoData.type === 'm'" class="info-window-m">
+    <div class="info-window-m-name">
+      <div class="info-window-m-icon" [ngClass]="infoData.data.className"></div>
+      <!--<div class="info-window-m-icon"></div>-->
+      <div>{{infoData.data.name}}</div>
+    </div>
+    <div>{{infoData.data.number}}</div>
+    <div>{{infoData.data.address}}</div>
+  </div>
+</div>

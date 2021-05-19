@@ -1,0 +1,4 @@
+D:\filink\10-Sys Code\filink-alarmCurrent\branches\2019223\filink-alarmCurrent-api\src\main\java\com\fiberhome\filink\alarmCurrent_api\api\AlarmCurrentFeign.java
+D:\filink\10-Sys Code\filink-alarmCurrent\branches\2019223\filink-alarmCurrent-api\src\main\java\com\fiberhome\filink\alarmCurrent_api\bean\AlarmCurrent.java
+D:\filink\10-Sys Code\filink-alarmCurrent\branches\2019223\filink-alarmCurrent-api\src\main\java\com\fiberhome\filink\alarmCurrent_api\FilinkAlarmCurrentApiApplication.java
+D:\filink\10-Sys Code\filink-alarmCurrent\branches\2019223\filink-alarmCurrent-api\src\main\java\com\fiberhome\filink\alarmCurrent_api\fallback\AlarmFeignFallback.java

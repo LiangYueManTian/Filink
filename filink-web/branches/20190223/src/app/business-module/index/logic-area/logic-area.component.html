@@ -1,0 +1,21 @@
+<div class="logic-area-container">
+  <div class="logic-area-title" (click)="close()" title="{{title}}">
+    <div class="icon-logic-area"></div>
+    <div class="text">{{title}}</div>
+  </div>
+  <div class="search">
+    <nz-dropdown>
+    <input nz-dropdown #input [(ngModel)]="searchKey" (ngModelChange)="search()"/>
+      <ul nz-menu nzSelectable class="result-content">
+        <li nz-menu-item class="result-item" *ngFor="let item of searchResult" (click)="selectNode(item)">
+          {{item.name}}
+        </li>
+        <li *ngIf="searchResult.length===0"><span style="padding-left: 30px;">{{noDataTip}}</span></li>
+      </ul>
+    </nz-dropdown>
+    <div class="search-icon" (click)="search()"></div>
+  </div>
+  <div class="tree">
+    <ul id="ztree" class="ztree link-tree selector-table-tree"></ul>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="2201005">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Operation log list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>操作日志列表导出</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201006">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>System log list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>系统日志列表导出</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201007">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Security log list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>安全日志列表导出</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201011">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} add log template: ${name}</detailInfoTemplate>
+			<optName>add log template</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了日志模板:${name}</detailInfoTemplate>
+			<optName>新增日志模板</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201012">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} update log template: ${name}</detailInfoTemplate>
+			<optName>update log template</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了日志模板:${name}</detailInfoTemplate>
+			<optName>修改日志模板</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201013">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} delete log template: ${name}</detailInfoTemplate>
+			<optName>delete log template</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了日志模板:${name}</detailInfoTemplate>
+			<optName>删除日志模板</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201015">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Export log type statistics</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>导出日志类型统计</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201016">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Export operation type statistics</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>导出操作类型统计</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="2201017">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Export security level statistics</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>导出安全级别统计</optName>
+		</language>
+	</functionCode>
+</functionCodes>

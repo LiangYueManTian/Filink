@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.rfid.dao.rfid.OpticCableSectionRfidInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.rfid.bean.rfid.OpticCableSectionRfidInfo">
+        <id column="optic_status_id" property="opticStatusId"/>
+        <result column="optic_cable_section_id" property="opticCableSectionId"/>
+        <result column="rfid_code" property="rfidCode"/>
+        <result column="position" property="position"/>
+        <result column="ruried_depth" property="ruriedDepth"/>
+        <result column="temperature" property="temperature"/>
+        <result column="vibrate" property="vibrate"/>
+        <result column="distance_starting_position" property="distanceStartingPosition"/>
+        <result column="rfid_seq" property="rfidSeq"/>
+        <result column="remark" property="remark"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!-- 光缆段rfId查询映射结果 -->
+    <resultMap id="OpticCableSectionRfIdInfoResultMap" extends="BaseResultMap"
+               type="com.fiberhome.filink.rfid.resp.rfid.OpticCableSectionRfidInfoResp">
+    </resultMap>
+    <!-- 光缆段rfId查询映射结果 -->
+    <resultMap id="OpticCableSectionRfIdInfoAppResultMap" extends="BaseResultMap"
+               type="com.fiberhome.filink.rfid.resp.rfid.app.OpticCableSectionRfidInfoRespApp">
+        <result column="optic_cable_section_name" property="opticCableSectionName"/>
+    </resultMap>
+    <!--排序条件-->
+    <sql id="orderBySql">
+        <if test="sortCondition.sortField != null and sortCondition.sortField != '' ">
+            <if test="sortCondition.sortField == 'rfidCode'">
+                order by ocsri.rfid_code
+            </if>
+            <if test="sortCondition.sortField == 'position'">
+                order by ocsri.position
+            </if>
+            <if test="sortCondition.sortField == 'ruriedDepth'">
+                order by ocsri.ruried_depth
+            </if>
+            <if test="sortCondition.sortField == 'temperature'">
+                order by ocsri.temperature
+            </if>
+            <if test="sortCondition.sortField == 'vibrate'">
+                order by ocsri.vibrate
+            </if>
+            <if test="sortCondition.sortField == 'distanceStartingPosition'">
+                order by ocsri.distance_starting_position
+            </if>
+            <if test="sortCondition.sortField == 'remark'">
+                order by ocsri.remark
+            </if>
+        </if>
+        <!--排序方式-->
+        <if test="sortCondition.sortRule != null and sortCondition.sortRule != ''">
+            ${sortCondition.sortRule}
+        </if>
+    </sql>
+
+
+    <!--根据光缆段id查询rfId信息-->
+    <select id="opticCableSectionById" parameterType="com.fiberhome.filink.bean.QueryCondition"
+            resultMap="OpticCableSectionRfIdInfoResultMap">
+        SELECT
+        ocsri.optic_status_id,
+        ocsri.optic_cable_section_id,
+        ocsri.rfid_code,
+        ocsri.position,
+        ocsri.ruried_depth,
+        ocsri.temperature,
+        ocsri.vibrate,
+        ocsri.distance_starting_position,
+        ocsri.rfid_seq,
+        ocsri.remark
+        FROM
+        optic_cable_section_rfid_info ocsri
+        <where>
+            ocsri.is_deleted = '0'
+            <if test="bizCondition.opticCableSectionId != null and bizCondition.opticCableSectionId != ''">
+                and optic_cable_section_id = #{bizCondition.opticCableSectionId}
+            </if>
+        </where>
+        <!--光缆段rfid排序字段-->
+        <include refid="orderBySql"></include>
+    </select>
+
+    <!--app根据光缆段id查询rfId信息-->
+    <select id="queryOpticCableSectionRfidInfo"
+            parameterType="com.fiberhome.filink.rfid.req.rfid.app.OpticCableSectionRfidInfoReqApp"
+            resultMap="OpticCableSectionRfIdInfoAppResultMap">
+        SELECT
+        ocsri.optic_status_id,
+        ocsri.optic_cable_section_id,
+        ocsi.optic_cable_section_name,
+        ocsri.rfid_code,
+        ocsri.position,
+        ocsri.ruried_depth,
+        ocsri.temperature,
+        ocsri.vibrate,
+        ocsri.distance_starting_position,
+        ocsri.rfid_seq,
+        ocsri.remark,
+        <include refid="LongitudeAndLatitude"></include>
+        from optic_cable_section_rfid_info ocsri left join optic_cable_section_info ocsi
+        on ocsri.optic_cable_section_id = ocsi.optic_cable_section_id
+        <where>
+            1=1 and ocsri.is_deleted = '0'
+            <if test="opticStatusId != null and opticStatusId !=''">
+                and ocsri.optic_status_id = #{opticStatusId}
+            </if>
+            <if test="opticCableSectionId != null and opticCableSectionId !=''">
+                and ocsri.optic_cable_section_id = #{opticCableSectionId}
+            </if>
+        </where>
+        <if test="position != null and position != null and radius != null and radius != ''">
+            HAVING
+            distance  <![CDATA[<=]]>  #{radius}
+            ORDER BY
+            distance ASC
+        </if>
+    </select>
+    <!--计算经纬度距离-->
+    <sql id="LongitudeAndLatitude">
+      ROUND(
+	6378.138 * 2 * ASIN(
+		SQRT(
+			POW(
+				SIN(
+					(
+					SUBSTRING_INDEX(#{position},',',-1)	 * PI() / 180 - SUBSTRING_INDEX(ocsri.position,',',-1) * PI() / 180
+					) / 2
+				),
+				2
+			) + COS(SUBSTRING_INDEX(#{position},',',-1) * PI() / 180) * COS(SUBSTRING_INDEX(ocsri.position,',',-1) * PI() / 180) * POW(
+				SIN(
+					(
+						SUBSTRING_INDEX(#{position},',',1) * PI() / 180 - SUBSTRING_INDEX(ocsri.position,',',1) * PI() / 180
+					) / 2
+				),
+				2
+			)
+		)
+	) * 1000
+) AS distance
+  </sql>
+
+    <!--app上传光缆段GIS标签信息-->
+    <insert id="addOpticCableSectionRfidInfo"
+            parameterType="com.fiberhome.filink.rfid.req.rfid.app.UploadOpticCableSectionRfidInfoReqApp">
+        INSERT INTO optic_cable_section_rfid_info (
+        optic_status_id,
+        optic_cable_section_id,
+        rfid_code,
+        position,
+        ruried_depth,
+        temperature,
+        vibrate,
+        distance_starting_position,
+        rfid_seq,
+        remark,
+        is_deleted,
+        create_user,
+        create_time
+        )
+        VALUES
+        <foreach collection="segmentGISList" item="item" index="index" open="" close="" separator=",">
+            (
+            #{item.opticStatusId},
+            #{item.opticCableSectionId},
+            #{item.rfidCode},
+            #{item.position},
+            #{item.ruriedDepth},
+            #{item.temperature},
+            #{item.vibrate},
+            #{item.distanceStartingPosition},
+            #{item.rfidSeq},
+            #{item.remark},
+            0,
+            #{item.createUser},
+            #{item.createTime}
+            )
+        </foreach>
+    </insert>
+
+    <!--app修改光缆段GIS标签信息-->
+    <update id="updateOpticCableSectionRfidInfo"
+            parameterType="com.fiberhome.filink.rfid.req.rfid.app.UploadOpticCableSectionRfidInfoReqApp">
+        update optic_cable_section_rfid_info
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="optic_cable_section_id =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.opticCableSectionId}
+                </foreach>
+            </trim>
+            <trim prefix="rfid_code =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.rfidCode}
+                </foreach>
+            </trim>
+            <trim prefix="position =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.position}
+                </foreach>
+            </trim>
+            <trim prefix="ruried_depth =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.ruriedDepth}
+                </foreach>
+            </trim>
+            <trim prefix="temperature =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.temperature}
+                </foreach>
+            </trim>
+            <trim prefix="vibrate =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.vibrate}
+                </foreach>
+            </trim>
+            <trim prefix="distance_starting_position =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.distanceStartingPosition}
+                </foreach>
+            </trim>
+            <trim prefix="rfid_seq =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.rfidSeq}
+                </foreach>
+            </trim>
+            <trim prefix="remark =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.remark}
+                </foreach>
+            </trim>
+            <trim prefix="update_user =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.updateUser}
+                </foreach>
+            </trim>
+            <trim prefix="update_time =case" suffix="end,">
+                <foreach collection="segmentGISList" item="item" index="index">
+                    when optic_status_id = #{item.opticStatusId} then #{item.updateTime}
+                </foreach>
+            </trim>
+
+        </trim>
+        <where>
+            is_deleted = 0
+            and optic_status_id in
+            <foreach collection="segmentGISList" index="index" item="item"
+                     separator="," open="(" close=")">
+                #{item.opticStatusId,jdbcType=INTEGER}
+            </foreach>
+        </where>
+    </update>
+
+    <!--app删除gis标签信息-->
+    <update id="deleteOpticCableSectionRfidInfo"
+            parameterType="com.fiberhome.filink.rfid.req.rfid.app.UploadOpticCableSectionRfidInfoReqApp">
+        update optic_cable_section_rfid_info
+        <set>
+            is_deleted = 1,
+            update_time = #{updateTime},
+            update_user = #{updateUser}
+        </set>
+        <where>
+            <!--主键ids-->
+            <if test="segmentGISList != null and segmentGISList.size() > 0">
+                <if test="segmentGISList.size() == 1">
+                    AND optic_status_id =
+                    <foreach collection="segmentGISList" item="item">
+                        #{item.opticStatusId}
+                    </foreach>
+                </if>
+                <if test="segmentGISList.size() > 1">
+                    AND optic_status_id IN
+                    <foreach collection="segmentGISList" item="item" index="index" open="(" close=")" separator=",">
+                        #{item.opticStatusId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--光缆段ids-->
+            <if test="opticCableSectionIdList != null and opticCableSectionIdList.size() > 0">
+                <if test="opticCableSectionIdList.size() == 1">
+                    AND optic_cable_section_id =
+                    <foreach collection="opticCableSectionIdList" item="opticCableSectionId">
+                        #{opticCableSectionId}
+                    </foreach>
+                </if>
+                <if test="opticCableSectionIdList.size() > 1">
+                    AND optic_cable_section_id IN
+                    <foreach collection="opticCableSectionIdList" item="opticCableSectionId" open="(" close=")"
+                             separator=",">
+                        #{opticCableSectionId}
+                    </foreach>
+                </if>
+            </if>
+
+        </where>
+
+    </update>
+
+    <!--根据光缆段id查询光缆段gis信息-->
+    <select id="queryOpticCableSectionRfidInfoByOpticCableSectionId" resultMap="OpticCableSectionRfIdInfoResultMap">
+        SELECT
+        ocsri.optic_status_id,
+        ocsri.optic_cable_section_id,
+        ocsri.rfid_code,
+        ocsri.position,
+        ocsri.ruried_depth,
+        ocsri.temperature,
+        ocsri.vibrate,
+        ocsri.distance_starting_position,
+        ocsri.rfid_seq,
+        ocsri.rfid_seq as gisSort,
+        ocsri.remark
+        FROM
+        optic_cable_section_rfid_info ocsri
+        <where>
+            ocsri.is_deleted = 0
+            <!--光缆段ids-->
+            <if test="opticCableSectionIds != null and opticCableSectionIds.size() > 0">
+                <if test="opticCableSectionIds.size() == 1">
+                    AND ocsri.optic_cable_section_id =
+                    <foreach collection="opticCableSectionIds" item="opticCableSectionId">
+                        #{opticCableSectionId}
+                    </foreach>
+                </if>
+                <if test="opticCableSectionIds.size() > 1">
+                    AND ocsri.optic_cable_section_id IN
+                    <foreach collection="opticCableSectionIds" item="opticCableSectionId" open="(" close=")"
+                             separator=",">
+                        #{opticCableSectionId}
+                    </foreach>
+                </if>
+            </if>
+
+        </where>
+    </select>
+
+    <!--根据id光缆段gis坐标微调-->
+    <update id="updateOpticCableSectionRfidInfoPositionById"
+            parameterType="com.fiberhome.filink.rfid.req.rfid.UpdateOpticCableSectionRfidInfoReq">
+        UPDATE
+        optic_cable_section_rfid_info ocsri
+        SET
+        ocsri.position = #{position}
+        <where>
+            ocsri.is_deleted = 0
+            AND
+            ocsri.optic_status_id = #{opticStatusId}
+        </where>
+    </update>
+
+    <!--校验RfIdCode是否已存在-->
+    <select id="checkRfidCodeListIsExist" resultType="java.lang.String">
+        SELECT ocsri.rfid_code
+        FROM
+        optic_cable_section_rfid_info ocsri
+        <where>
+            ocsri.rfid_code = #{rfidCode}
+            AND
+            ocsri.is_deleted = 0
+        </where>
+    </select>
+
+    <!--删除gis信息-->
+    <update id="deleteOpticCableSectionRfidById">
+        <foreach collection="opticCableSectionRfidInfoList" index="index" item="opticCableSectionRfidInfo"
+                 separator=";">
+            UPDATE optic_cable_section_rfid_info
+            SET is_deleted = '1',
+            update_time = #{opticCableSectionRfidInfo.updateTime},
+            update_user = #{opticCableSectionRfidInfo.updateUser}
+            WHERE optic_status_id = #{opticCableSectionRfidInfo.opticStatusId}
+            AND is_deleted = '0'
+        </foreach>
+    </update>
+
+</mapper>

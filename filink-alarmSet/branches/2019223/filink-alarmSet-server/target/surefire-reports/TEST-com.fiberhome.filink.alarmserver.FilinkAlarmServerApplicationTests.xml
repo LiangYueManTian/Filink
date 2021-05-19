@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.fiberhome.filink.alarmserver.FilinkAlarmServerApplicationTests" time="0.028" tests="1" errors="1" skipped="0" failures="0">
+  <properties>
+    <property name="idea.version" value="2017.2.4"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="D:\java\jdk\jre\bin"/>
+    <property name="java.vm.version" value="25.201-b09"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="D:\code\10-Sys Code\filink-alarmSet\branches\2019223\filink-alarmSet-server"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="D:\code\10-Sys Code\filink-alarmSet\branches\2019223\filink-alarmSet-server"/>
+    <property name="java.runtime.version" value="1.8.0_201-b09"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="D:\java\jdk\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\ADMINI~1\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="classworlds.conf" value="D:\apache-maven-3.5.0\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="GBK"/>
+    <property name="java.library.path" value="D:\java\jdk\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\java\jdk\bin;D:\java\jdk\jre\bin;D:\TortoiseSVN\bin;D:\apache-maven-3.5.0\bin;D:\mongodb\bin;."/>
+    <property name="maven.conf" value="D:\apache-maven-3.5.0/conf"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.1"/>
+    <property name="library.jansi.path" value="D:\apache-maven-3.5.0\lib\jansi-native\windows64"/>
+    <property name="user.home" value="C:\Users\Administrator"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="Administrator"/>
+    <property name="java.class.path" value="D:\apache-maven-3.5.0\boot\plexus-classworlds-2.5.2.jar;D:\idea\IntelliJ IDEA 2017.2.4\lib\idea_rt.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="D:\java\jdk\jre"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2017.2.4 --update-snapshots -s D:\apache-maven-3.5.0\conf\settings.xml deploy"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="zh"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_201"/>
+    <property name="java.ext.dirs" value="D:\java\jdk\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="D:\java\jdk\jre\lib\resources.jar;D:\java\jdk\jre\lib\rt.jar;D:\java\jdk\jre\lib\sunrsasign.jar;D:\java\jdk\jre\lib\jsse.jar;D:\java\jdk\jre\lib\jce.jar;D:\java\jdk\jre\lib\charsets.jar;D:\java\jdk\jre\lib\jfr.jar;D:\java\jdk\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="D:\apache-maven-3.5.0"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="initializationError" classname="com.fiberhome.filink.alarmserver.FilinkAlarmServerApplicationTests" time="0.028">
+    <error message="Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test" type="java.lang.IllegalStateException"><![CDATA[java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
+	at org.springframework.util.Assert.state(Assert.java:70)
+	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.getOrFindConfigurationClasses(SpringBootTestContextBootstrapper.java:202)
+	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.processMergedContextConfiguration(SpringBootTestContextBootstrapper.java:137)
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildMergedContextConfiguration(AbstractTestContextBootstrapper.java:409)
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildDefaultMergedContextConfiguration(AbstractTestContextBootstrapper.java:323)
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildMergedContextConfiguration(AbstractTestContextBootstrapper.java:277)
+	at org.springframework.test.context.support.AbstractTestContextBootstrapper.buildTestContext(AbstractTestContextBootstrapper.java:112)
+	at org.springframework.boot.test.context.SpringBootTestContextBootstrapper.buildTestContext(SpringBootTestContextBootstrapper.java:82)
+	at org.springframework.test.context.TestContextManager.<init>(TestContextManager.java:120)
+	at org.springframework.test.context.TestContextManager.<init>(TestContextManager.java:105)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTestContextManager(SpringJUnit4ClassRunner.java:152)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.<init>(SpringJUnit4ClassRunner.java:143)
+	at org.springframework.test.context.junit4.SpringRunner.<init>(SpringRunner.java:49)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.junit.internal.builders.AnnotatedBuilder.buildRunner(AnnotatedBuilder.java:104)
+	at org.junit.internal.builders.AnnotatedBuilder.runnerForClass(AnnotatedBuilder.java:86)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.builders.AllDefaultPossibilitiesBuilder.runnerForClass(AllDefaultPossibilitiesBuilder.java:26)
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)
+	at org.junit.internal.requests.ClassRequest.getRunner(ClassRequest.java:33)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+]]></error>
+    <system-out><![CDATA[20:42:23,216 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.groovy]
+20:42:23,216 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+20:42:23,216 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/D:/code/10-Sys%20Code/filink-alarmSet/branches/2019223/filink-alarmSet-server/target/classes/logback.xml]
+20:42:23,833 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - debug attribute not set
+20:42:23,834 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+20:42:23,840 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [STDOUT]
+20:42:23,908 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+20:42:23,911 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [INFO_FILE]
+20:42:23,920 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1780132728 - No compression will be used
+20:42:23,921 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1780132728 - Will use the pattern logs/alarmSet-info-%d{yyyyMMdd}.log.%i for the active file
+20:42:23,923 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@462d5aee - The date pattern is 'yyyyMMdd' from file name pattern 'logs/alarmSet-info-%d{yyyyMMdd}.log.%i'.
+20:42:23,923 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@462d5aee - Roll-over at midnight.
+20:42:23,926 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@462d5aee - Setting initial period to Tue Feb 26 20:39:18 CST 2019
+20:42:23,927 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@462d5aee - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
+20:42:23,927 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@462d5aee - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+20:42:23,930 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+20:42:23,930 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+20:42:23,930 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+20:42:23,931 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - Active log file name: logs/alarmSet-info.log
+20:42:23,931 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[INFO_FILE] - File property is set to [logs/alarmSet-info.log]
+20:42:23,932 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+20:42:23,932 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [ERROR_FILE]
+20:42:23,934 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1773206895 - No compression will be used
+20:42:23,935 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1773206895 - Will use the pattern logs/alarmSet-error-%d{yyyyMMdd}.log.%i for the active file
+20:42:23,935 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@757942a1 - The date pattern is 'yyyyMMdd' from file name pattern 'logs/alarmSet-error-%d{yyyyMMdd}.log.%i'.
+20:42:23,935 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@757942a1 - Roll-over at midnight.
+20:42:23,936 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@757942a1 - Setting initial period to Tue Feb 26 20:39:18 CST 2019
+20:42:23,936 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@757942a1 - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
+20:42:23,936 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@757942a1 - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+20:42:23,936 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - This appender no longer admits a layout as a sub-component, set an encoder instead.
+20:42:23,936 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - To ensure compatibility, wrapping your layout in LayoutWrappingEncoder.
+20:42:23,936 |-WARN in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - See also http://logback.qos.ch/codes.html#layoutInsteadOfEncoder for details
+20:42:23,936 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - Active log file name: logs/alarmSet-error.log
+20:42:23,936 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[ERROR_FILE] - File property is set to [logs/alarmSet-error.log]
+20:42:23,937 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.apache.kafka] to WARN
+20:42:23,937 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [akka] to WARN
+20:42:23,938 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.springframework] to WARN
+20:42:23,938 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to INFO
+20:42:23,938 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [INFO_FILE] to Logger[ROOT]
+20:42:23,938 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [ERROR_FILE] to Logger[ROOT]
+20:42:23,938 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[ROOT]
+20:42:23,938 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+20:42:23,939 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@4a87761d - Registering current configuration as safe fallback point
+
+]]></system-out>
+  </testcase>
+</testsuite>

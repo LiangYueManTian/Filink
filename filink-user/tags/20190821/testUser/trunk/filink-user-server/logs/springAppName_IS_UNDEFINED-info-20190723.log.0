@@ -1,0 +1,60 @@
+2019-07-23 16:39:14.788 [main] INFO  c.f.f.u.s.impl.ImportServiceImpl
+                -添加用户配置信息 false
+2019-07-23 16:39:14.869 [main] INFO  c.f.f.u.s.impl.ImportServiceImpl
+                -添加用户配置信息 true
+2019-07-23 16:39:14.891 [main] INFO  c.f.f.u.s.impl.ImportServiceImpl
+                -添加用户配置信息 true
+2019-07-23 16:39:15.996 [main] INFO  c.f.f.userserver.utils.SendKafkaMsg
+                -发送kafka消息
+2019-07-23 16:40:02.668 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -进入了处理登录错误的方法....
+2019-07-23 16:40:02.669 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -dealLoginFail userParameter User{id='null', userCode='null', userNickname='null', userName='123', userStatus='null', deptId='null', roleId='null', address='null', phoneNumber='null', email='null', password='null', countValidityTime=null, userDesc='null', lastLoginTime=null, lastLoginIp='null', loginType='null', maxUsers=null, deleted='null', createUser='null', createTime=null, updateUser='null', updateTime=null, area='null'}
+2019-07-23 16:40:02.684 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -进入了处理登录错误的方法....
+2019-07-23 16:40:02.687 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -dealLoginFail userParameter User{id='null', userCode='null', userNickname='null', userName='123', userStatus='null', deptId='null', roleId='null', address='null', phoneNumber='null', email='null', password='null', countValidityTime=null, userDesc='null', lastLoginTime=null, lastLoginIp='null', loginType='null', maxUsers=null, deleted='null', createUser='null', createTime=null, updateUser='null', updateTime=null, area='null'}
+2019-07-23 16:40:02.687 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -key:127.0.0.1^^null
+2019-07-23 16:40:02.689 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -timeList [123234]
+2019-07-23 16:40:02.692 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -进入了处理登录错误的方法....
+2019-07-23 16:40:02.693 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -dealLoginFail userParameter User{id='null', userCode='null', userNickname='null', userName='123', userStatus='null', deptId='null', roleId='null', address='null', phoneNumber='null', email='null', password='null', countValidityTime=null, userDesc='null', lastLoginTime=null, lastLoginIp='null', loginType='null', maxUsers=null, deleted='null', createUser='null', createTime=null, updateUser='null', updateTime=null, area='null'}
+2019-07-23 16:40:02.693 [main] INFO  c.f.f.u.s.impl.UserExtraServiceImpl
+                -key:127.0.0.1^^null
+2019-07-23 16:40:04.130 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -登录的用户信息:User{id='123', userCode='null', userNickname='null', userName='234', userStatus='null', deptId='null', roleId='null', address='null', phoneNumber='null', email='null', password='null', countValidityTime='null', userDesc='null', lastLoginTime=null, lastLoginIp='null', loginIp='127.0.0.1', loginType='null', maxUsers=null, deleted='null', unlockTime=null, createUser='null', createTime=null, updateUser='null', updateTime=null, area='null', loginSourse='null', loginTime=12345, pushId='null', countryCode=null, role=null, department=null, token='null', appKey='null', expireTime=null}
+2019-07-23 16:40:04.166 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -登录的用户信息:User{id='123', userCode='null', userNickname='null', userName='234', userStatus='null', deptId='123', roleId='null', address='null', phoneNumber='null', email='null', password='null', countValidityTime='null', userDesc='null', lastLoginTime=null, lastLoginIp='null', loginIp='127.0.0.1', loginType='null', maxUsers=null, deleted='null', unlockTime=null, createUser='null', createTime=null, updateUser='null', updateTime=null, area='null', loginSourse='null', loginTime=12345, pushId='null', countryCode=null, role=Role{id='123', roleName='null', roleDesc='null', deleted='null', remark='null', createUser='null', createTime=null, updateUser='null', updateTime=null}, department=Department{id='123', deptName='null', deptChargeUser='null', deptPhoneNum='null', address='null', deptType='null', deptFatherId='null', deptLevel='null', deleted='null', remark='null', createUser='null', createTime=null, updateUser='null', updateTime=null}, token='null', appKey='null', expireTime=null}
+2019-07-23 16:40:04.167 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -loginIp:127.0.0.1 
+2019-07-23 16:40:04.168 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -开始获取区域信息
+2019-07-23 16:40:04.168 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -账号的有效期:1800
+2019-07-23 16:40:04.168 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -userId_token:123redis_split123
+2019-07-23 16:40:04.882 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -开始获取区域信息
+2019-07-23 16:40:08.059 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -开始获取区域信息
+2019-07-23 16:40:08.062 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -开始获取区域信息
+2019-07-23 16:40:08.064 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -开始获取区域信息
+2019-07-23 16:40:08.917 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -userId + UserConst.REDIS_SPLIT + token =123redis_split456 
+2019-07-23 16:40:09.437 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -userId:123
+2019-07-23 16:40:09.439 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -token:123
+2019-07-23 16:40:09.439 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -key:false
+2019-07-23 16:40:09.443 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -userId:123
+2019-07-23 16:40:09.443 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -token:123
+2019-07-23 16:40:09.444 [main] INFO  c.f.f.u.service.impl.UserServiceImpl
+                -key:true

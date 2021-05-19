@@ -1,0 +1,212 @@
+<div #container id="container"></div>
+<!--设施详情展示-->
+<div *ngIf="isShowFacilityPanel" class="facility-panel">
+  <nz-tabset [nzTabPosition]="'top'" [nzSelectedIndex]="selectedIndex">
+    <nz-tab [nzTitle]="indexLanguage.facilityDetailPanelTitle">
+      <app-facility-detail-panel [facilityId]="selectFacilityId"></app-facility-detail-panel>
+    </nz-tab>
+    <nz-tab [nzTitle]="indexLanguage.facilityAlarmPanelTitle">
+      <app-facility-alarm-panel [facilityId]="selectFacilityId"></app-facility-alarm-panel>
+    </nz-tab>
+    <nz-tab [nzTitle]="indexLanguage.facilityLogPanelTitle">
+      <app-log-order-panel [facilityId]="selectFacilityId"></app-log-order-panel>
+    </nz-tab>
+  </nz-tabset>
+  <!--<div class="facility-panel-close" (click)="closeFacilityPanel()">-->
+  <!--<i nz-icon type="close" theme="outline"></i>-->
+  <!--</div>-->
+</div>
+<!--搜索位置-->
+<div class="search">
+  <input nz-dropdown #input [(ngModel)]="searchKey" (keyup.enter)="location()"/>
+  <div class="location-icon" (click)="location()"></div>
+</div>
+<!--刷新按钮-->
+<div class="refresh-btn" (click)="refresh()"  title="{{indexLanguage.refresh}}">
+  <div class="icon-refresh"></div>
+</div>
+<!--展开收起按钮-->
+<div class="unfold-btn" (click)="expandAndFold()">
+  <div class="icon-up"
+       title="{{control.isExpand ? indexLanguage.fold : indexLanguage.expand}}"
+       [ngClass]="control.isExpand ? 'icon-expand' : 'icon-collapse'">
+  </div>
+</div>
+<div class="filter-top">
+  <!--设施类型-->
+  <div class="facility-type" [ngClass]="{marr10: control.isExpandFacilityType || control.isExpandFacilityStatus}">
+    <div *ngIf="!control.isExpandFacilityType" class="facility-type-title" title="{{indexLanguage.facilityTypeTitle}}">
+      <div class="icon-facility-type"  (click)="control.isExpandFacilityType = !control.isExpandFacilityType"></div>
+      <div class="text" (click)="control.isExpandFacilityType = !control.isExpandFacilityType">{{indexLanguage.facilityTypeTitle}}</div>
+      <div class="icon-setting" (click)="openFacilityTypeSetting()"></div>
+    </div>
+    <div *ngIf="control.isExpandFacilityType" class="facility-type-checkbox">
+      <div class="facility-type-title" title="{{indexLanguage.facilityTypeTitle}}">
+        <div class="icon-facility-type" (click)="control.isExpandFacilityType = !control.isExpandFacilityType"></div>
+        <div class="text" (click)="control.isExpandFacilityType = !control.isExpandFacilityType">{{indexLanguage.facilityTypeTitle}}</div>
+        <div class="icon-setting" (click)="openFacilityTypeSetting()"></div>
+      </div>
+      <div class="checkbox">
+        <label nz-checkbox [(ngModel)]="isFacilityTypeAllChecked" (ngModelChange)="facilityTypeChange($event, 0)">
+          <span class="text">{{indexLanguage.allCheck}}</span>
+        </label>
+      </div>
+      <ng-container *ngFor="let type of facilityTypeList">
+        <div class="checkbox">
+          <label nz-checkbox [(ngModel)]="type.checked" (ngModelChange)="facilityTypeChange($event, type.value)">
+            <span class="checkbox-facility-icon" [ngClass]="type.iconClass"></span>
+            <span class="text">{{type.label}}</span>
+          </label>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <!--设施状态-->
+  <div class="facility-status" [ngClass]="{marr10: control.isExpandFacilityStatus}">
+    <div *ngIf="!control.isExpandFacilityStatus"
+         class="facility-status-title"
+         (click)="control.isExpandFacilityStatus = !control.isExpandFacilityStatus"
+         title="{{indexLanguage.facilityStatusTitle}}">
+      <div class="icon-facility-status"></div>
+      <div class="text">{{indexLanguage.facilityStatusTitle}}</div>
+    </div>
+    <div *ngIf="control.isExpandFacilityStatus" class="facility-status-checkbox">
+      <div class="facility-status-title"
+           title="{{indexLanguage.facilityStatusTitle}}"
+           (click)="control.isExpandFacilityStatus = !control.isExpandFacilityStatus">
+        <div class="icon-facility-status"></div>
+        <div class="text" >{{indexLanguage.facilityStatusTitle}}</div>
+      </div>
+      <div class="checkbox">
+        <label nz-checkbox [(ngModel)]="isFacilityStatusAllChecked" (ngModelChange)="facilityStatusChange($event, 0)">
+          <span class="text">{{indexLanguage.allCheck}}</span>
+        </label>
+      </div>
+      <ng-container *ngFor="let status of facilityStatusList">
+        <div class="checkbox">
+          <label nz-checkbox [(ngModel)]="status.checked" (ngModelChange)="facilityStatusChange($event, status.value)">
+            <span class="text c-w" [ngStyle]="{'backgroundColor': status.bgColor}">{{status.label}}</span>
+          </label>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<!--逻辑区域-->
+<div class="logic-area">
+  <div *ngIf="!control.isExpandLogicArea" (click)="openLogicArea()" class="logic-area-title" title="{{indexLanguage.selectArea}}">
+    <div class="icon-logic-area"></div>
+    <div class="text">{{indexLanguage.selectArea}}</div>
+  </div>
+  <div *ngIf="control.isExpandLogicArea" class="app-logic-area">
+    <app-logic-area #logicAreaComponent (logicAreaEvent)="logicAreaEvent($event)"></app-logic-area>
+  </div>
+</div>
+<!--设施列表-->
+<div class="facility-list" [ngStyle]="{top: control.isExpandLogicArea ? '312px' : '80px'}">
+  <div *ngIf="!control.isExpandFacilityList" (click)="openFacilityList()"  class="facility-list-title" title="{{indexLanguage.facilitiesList}}">
+    <div class="icon-facility-list"></div>
+    <div class="text">{{indexLanguage.facilitiesList}}</div>
+  </div>
+  <div *ngIf="control.isExpandFacilityList" class="app-facility-list" (click)="closeOverlayInfoWindow()">
+    <app-facility-list #facilityListComponent (facilityListEvent)="facilityListEvent($event)"></app-facility-list>
+  </div>
+</div>
+<!--地图设置-->
+<div class="map-setting">
+  <div class="map-setting-title" title="{{indexLanguage.mapSetting}}">
+    <div class="icon-map-setting" (click)="openMapSetting()"></div>
+    <!--<div class="text" (click)="openMapSetting()">{{indexLanguage.mapSetting}}</div>-->
+  </div>
+</div>
+
+<div class="map-type-control">
+  <div [ngClass]="mapTypeId === 'roadmap' ? 'map-type-title-s' : 'map-type-title'"
+       (click)="setMapType('roadmap')" title="{{indexLanguage.roadMapTitle}}">{{indexLanguage.roadMap}}</div>
+  <div [ngClass]="mapTypeId === 'satellite' ? 'map-type-title-s' : 'map-type-title'"
+       (click)="setMapType('satellite')" title="{{indexLanguage.satelliteMapTitle}}">{{indexLanguage.satelliteMap}}</div>
+</div>
+
+<!--设置弹框-->
+<div *ngIf="isShowPrompt" class="prompt-container">
+
+  <div class="prompt-content-container">
+    <div class="header">
+      <div class="header-title">{{promptTitle}}</div>
+      <div class="header-close" (click)="closePrompt()">
+        <i nz-icon type="close" theme="outline"></i>
+      </div>
+    </div>
+    <div class="content">
+      <!--设施类型配置-->
+      <div *ngIf="promptControl.isShowFacilityTypeConfig" class="facility-type-config-container">
+        <div class="facility-type-config-box">
+          <div class="facility-type-config-item facility-type-config-title">
+            <div class="text">
+              {{commonLanguage.options}}
+            </div>
+            <div class="split-line"></div>
+            <div class="text">
+              {{indexLanguage.runState}}
+            </div>
+          </div>
+          <div class="facility-type-config-item" *ngFor="let type of facilityTypeConfig">
+            <div class="text">{{type.label}}</div>
+            <div class="checkbox">
+              <label nz-checkbox [(ngModel)]="type.checked">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--地图配置-->
+      <div *ngIf="promptControl.isShowMapConfig" class="map-config-container">
+        <div class="map-config-box">
+          <div class="map-config-item">
+            <div class="map-config-item-text">{{indexLanguage.iconSize}}</div>
+            <div class="map-config-item-content">
+              <nz-select style="width: 100%;" [(ngModel)]="facilityIconSizeValue"  nzPlaceHolder="{{indexLanguage.pleaseSelect}}">
+                <ng-container *ngFor="let option of facilityIconSizeConfig">
+                  <nz-option nzValue="{{option.value}}" nzLabel="{{option.label}}"></nz-option>
+                </ng-container>
+              </nz-select>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="btn-container">
+        <button class="link-button" nz-button nzType="primary" style="margin-right: 20px" (click)="confirm()">{{commonLanguage.confirm}}
+        </button>
+        <button class="link-button" nz-button nzType="danger" (click)="closePrompt()">{{commonLanguage.cancel}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--提示框-->
+<div *ngIf="isShowInfoWindow" class="info-window-container" [ngStyle]="{left: infoWindowLeft, top: infoWindowTop}">
+  <div *ngIf="infoData.type === 'c'" class="info-window-c">
+    <div class="info-window-item" *ngFor="let data of infoData.data">
+      <div class="info-window-item-icon"  [ngClass]="data.className"></div>
+      <div class="info-window-item-name">{{data.deviceTypeName}}</div>
+      <div class="info-window-item-count">{{data.count}}</div>
+    </div>
+  </div>
+  <div *ngIf="infoData.type === 'm'" class="info-window-m">
+    <div class="info-window-m-name">
+      <div class="info-window-m-icon" [ngClass]="infoData.data.className"></div>
+      <!--<div class="info-window-m-icon"></div>-->
+      <div>{{infoData.data.name}}</div>
+    </div>
+    <div>{{infoData.data.number}}</div>
+    <div>{{infoData.data.address}}</div>
+  </div>
+</div>
+
+<!--聚合点设施详情-->
+<div *ngIf="isShowClustererFacilityTable" class="clusterer-facility-table">
+  <app-clusterer-facility-list [facilityList]="clustererFacilityList" (facilityListEvent)="openFacilityPanel($event)"></app-clusterer-facility-list>
+</div>

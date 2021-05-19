@@ -1,0 +1,63 @@
+test: hello
+
+#注册服务
+eureka:
+  client:
+    service-url:
+      #      向两个eureka注册
+      defaultZone: http://10.5.24.144:8761/eureka/,http://10.5.24.144:8762/eureka/
+
+server:
+  port: 9301
+
+
+spring:
+  application:
+    name: filink-device-server
+
+  zipkin:
+    base-url: http://10.5.24.144:9411
+  sleuth:
+    sampler:
+#    监控开发百分比  默认是0.1  开发环境设置成1
+      percentage: 1
+  cloud:
+    bus:
+      trace:
+        enabled: true
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.24.144:9092
+          zkNodes: 10.5.24.144:2181
+      
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+    test:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+
+#  配置feign使用熔断
+feign:
+  hystrix:
+    enabled: true
+
+
+# feign有超时时间的设置，要单独配置ribbon才能生效
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000

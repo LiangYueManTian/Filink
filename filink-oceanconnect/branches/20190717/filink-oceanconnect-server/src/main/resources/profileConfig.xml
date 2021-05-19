@@ -1,0 +1,35 @@
+<config>
+    <platforms>
+        <platform appId="LAvZgES4UJRWkEyleTpm1JVDq7ga">
+            <upload>
+                <service id="upload" isBase64="true">
+                    <data>msgbody</data>
+                </service>
+            </upload>
+            <down>
+                <service id="down" isBase64="true">
+                    <method id="ControlCMD">
+                        <data>command</data>
+                    </method>
+                </service>
+            </down>
+        </platform>
+
+        <platform appId="HEpXTGPZ4WaUY7sSvSXpqhH_oW4a">
+            <upload>
+                <service id="UpMessages" isBase64="false">
+                    <length>dataLen</length>
+                    <data>datas</data>
+                </service>
+            </upload>
+            <down>
+                <service id="UpMessages" isBase64="false">
+                    <method id="SEND_DATA">
+                        <length>dataLen</length>
+                        <data>datas</data>
+                    </method>
+                </service>
+            </down>
+        </platform>
+    </platforms>
+</config>

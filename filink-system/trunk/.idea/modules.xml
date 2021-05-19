@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/filink-system.iml" filepath="$PROJECT_DIR$/filink-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-about/filink-system-about.iml" filepath="$PROJECT_DIR$/filink-system-about/filink-system-about.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-api/filink-system-api.iml" filepath="$PROJECT_DIR$/filink-system-api/filink-system-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-boxhead/filink-system-boxhead.iml" filepath="$PROJECT_DIR$/filink-system-boxhead/filink-system-boxhead.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-commons/filink-system-commons.iml" filepath="$PROJECT_DIR$/filink-system-commons/filink-system-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-commonsapi/filink-system-commonsapi.iml" filepath="$PROJECT_DIR$/filink-system-commonsapi/filink-system-commonsapi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-dprotocol/filink-system-dprotocol.iml" filepath="$PROJECT_DIR$/filink-system-dprotocol/filink-system-dprotocol.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-dump/filink-system-dump.iml" filepath="$PROJECT_DIR$/filink-system-dump/filink-system-dump.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-export/filink-system-export.iml" filepath="$PROJECT_DIR$/filink-system-export/filink-system-export.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-language/filink-system-language.iml" filepath="$PROJECT_DIR$/filink-system-language/filink-system-language.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-license/filink-system-license.iml" filepath="$PROJECT_DIR$/filink-system-license/filink-system-license.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-menu/filink-system-menu.iml" filepath="$PROJECT_DIR$/filink-system-menu/filink-system-menu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-parameter/filink-system-parameter.iml" filepath="$PROJECT_DIR$/filink-system-parameter/filink-system-parameter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-protocol/filink-system-protocol.iml" filepath="$PROJECT_DIR$/filink-system-protocol/filink-system-protocol.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-screen/filink-system-screen.iml" filepath="$PROJECT_DIR$/filink-system-screen/filink-system-screen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-security/filink-system-security.iml" filepath="$PROJECT_DIR$/filink-system-security/filink-system-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-system-server/filink-system-server.iml" filepath="$PROJECT_DIR$/filink-system-server/filink-system-server.iml" />
+    </modules>
+  </component>
+</project>

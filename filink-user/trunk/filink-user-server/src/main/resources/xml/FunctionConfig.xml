@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="1501101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add user user name is ${userName}</detailInfoTemplate>
+			<optName>addUser</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了用户:${userName}</detailInfoTemplate>
+			<optName>新增用户</optName>
+		</language>
+	</functionCode>
+		<functionCode functionId="1501102">
+			<language type="US">
+				<detailInfoTemplate>${optUserName}update user user name is ${userName}</detailInfoTemplate>
+				<optName>updateUser</optName>
+			</language>
+			<language type="CN">
+				<detailInfoTemplate>${optUserName}修改了用户:${userName}</detailInfoTemplate>
+				<optName>修改用户</optName>
+			</language>
+		</functionCode>
+	<functionCode functionId="1501103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete area area name is ${userName}</detailInfoTemplate>
+			<optName>deleteArea</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了用户:${userName}</detailInfoTemplate>
+			<optName>删除用户</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1501104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} update password</detailInfoTemplate>
+			<optName>updatePWD</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 修改了密码</detailInfoTemplate>
+			<optName>修改密码</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1501105">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} reset ${userName} password</detailInfoTemplate>
+			<optName>resetPWD</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 重置了${userName}的密码</detailInfoTemplate>
+			<optName>重置密码</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1501106">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} force  ${userName} offline </detailInfoTemplate>
+			<optName>forceOffline</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 强制 ${userName} 下线</detailInfoTemplate>
+			<optName>强制下线</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1501107">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} import user</detailInfoTemplate>
+			<optName>importUser</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导入了用户信息</detailInfoTemplate>
+			<optName>导入用户</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1502103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete role role name is ${roleName}</detailInfoTemplate>
+			<optName>deleteRole</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了角色:${roleName}</detailInfoTemplate>
+			<optName>删除角色</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1502101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add role and permission, role name is ${roleName}</detailInfoTemplate>
+			<optName>addRoleAndPermission</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了角色和权限，角色名为:${roleName}</detailInfoTemplate>
+			<optName>新增角色和权限</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1502102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update role and permission, role name is ${roleName}</detailInfoTemplate>
+			<optName>updateRoleAndPermission</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了角色和权限，角色名为:${roleName}</detailInfoTemplate>
+			<optName>修改角色和权限</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1503101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add department department name is ${deptName}</detailInfoTemplate>
+			<optName>addDepartment</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了部门:${deptName}</detailInfoTemplate>
+			<optName>新增部门</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1503102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update department department name is ${deptName}</detailInfoTemplate>
+			<optName>updateDepartment</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了部门:${deptName}</detailInfoTemplate>
+			<optName>修改部门</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1503103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete department department name is ${deptName}</detailInfoTemplate>
+			<optName>deleteDepartment</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了部门:${deptName}</detailInfoTemplate>
+			<optName>删除部门</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1504101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} login success</detailInfoTemplate>
+			<optName>login</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 登录成功</detailInfoTemplate>
+			<optName>登录</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1504102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} logout success</detailInfoTemplate>
+			<optName>logout</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 注销</detailInfoTemplate>
+			<optName>注销</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1504103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} Downtime offline</detailInfoTemplate>
+			<optName>login</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 超时下线</detailInfoTemplate>
+			<optName>超时下线</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1505101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} add unifyAuth unifyauth name is ${name}</detailInfoTemplate>
+			<optName>addUnifyAuth</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 新增统一授权${name}</detailInfoTemplate>
+			<optName>添加统一授权</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1506101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} add tempAuth tempauth name is ${name}</detailInfoTemplate>
+			<optName>addTempAuth</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 新增临时授权${name}</detailInfoTemplate>
+			<optName>添加临时授权</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1507101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} export User List</detailInfoTemplate>
+			<optName>exportUserList</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 导出用户列表</detailInfoTemplate>
+			<optName>导出用户列表</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1508101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} forbidden user ${optUserName}</detailInfoTemplate>
+			<optName>forbiddentUser</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 禁用用户 ${userName}</detailInfoTemplate>
+			<optName>禁用用户</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1508102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} unlock user ${optUserName}</detailInfoTemplate>
+			<optName>unlockUser</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 解锁用户 ${userName}</detailInfoTemplate>
+			<optName>解锁用户</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1508103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} forbidden expired user ${optUserName}</detailInfoTemplate>
+			<optName>forbiddentExpiredUser</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName} 禁用过期用户 ${userName}</detailInfoTemplate>
+			<optName>禁用过期用户</optName>
+		</language>
+	</functionCode>
+
+</functionCodes>

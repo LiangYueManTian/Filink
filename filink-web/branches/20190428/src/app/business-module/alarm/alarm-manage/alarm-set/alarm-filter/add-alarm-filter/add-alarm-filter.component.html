@@ -1,0 +1,17 @@
+<div class="user-detail">
+  <div>
+    <span class="pageTitle">
+      {{pageTitle}}
+    </span>
+  </div>
+</div>
+<div>
+  <xc-form [column]="formColumn" (formInstance)="formInstance($event)"></xc-form>
+  <div style="padding-left: 20px;padding-top:40px; padding-bottom:10px;">
+    <button class="link-button" nz-button nzType="primary"
+            [nzLoading]="isLoading" style="margin-right: 20px"
+            (click)="submit()">确定
+    </button>
+    <button class="link-button" nz-button nzType="danger" (click)="cancel()">取消</button>
+  </div>
+</div>

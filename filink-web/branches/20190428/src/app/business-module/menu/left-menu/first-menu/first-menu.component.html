@@ -1,0 +1,37 @@
+<div class="first-menu">
+  <ul class="first-ul" *ngIf="!isCollapsed">
+    <ng-container *ngFor="let item of menuList">
+      <li *ngIf="!(item.children && item.children.length > 0)"
+          (click)="itemClick(item, '')"
+          [ngClass]="{'bgc':item.menuName === menuName}">
+        <p>
+          <span>{{item.menuName}}</span>
+          <i  [ngClass]="['icon','menu-icon-first','iconfont', item.imageUrl + '']"></i>
+        </p>
+      </li>
+
+      <li *ngIf="item.children && item.children.length > 0" (mouseenter)="expandItem(item)">
+        <p>
+          <span>{{item.menuName}}</span>
+          <i  [ngClass]="['icon','menu-icon', 'iconfont',item.imageUrl]"></i>
+          <i *ngIf="!item.expand" nz-icon type="up" theme="outline" class="up-down"></i>
+          <i *ngIf="item.expand" nz-icon type="down" theme="outline" class="up-down"></i>
+        </p>
+          <ul class="second-ul" *ngIf="item.expand" @fadeIn>
+            <li *ngFor="let el of item.children"
+                (click)="itemClick(el, item.menuName)"
+                [ngClass]="{'bgc':el.menuName === menuName}">
+              <p>{{el.menuName}}</p>
+            </li>
+          </ul>
+      </li>
+    </ng-container>
+  </ul>
+
+  <ul class="collapsed" *ngIf="isCollapsed">
+    <li *ngFor="let item of menuList"  [ngClass]="{'bgc':item.menuName === firstMenuName}">
+      <i  [ngClass]="['icon', 'iconfont', item.imageUrl + '']"></i>
+    </li>
+  </ul>
+</div>
+

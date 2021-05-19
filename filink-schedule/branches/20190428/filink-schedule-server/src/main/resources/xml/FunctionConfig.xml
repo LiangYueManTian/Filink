@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="2301105">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} deleted the ${taskName}</detailInfoTemplate>
+			<optName>Delete expired export tasks</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了${taskName}</detailInfoTemplate>
+			<optName>删除过期导出任务</optName>
+		</language>
+	</functionCode>
+</functionCodes>

@@ -1,0 +1,14 @@
+<div class="log-order-panel-container">
+  <div class="facility-log">
+    <div class="facility-log-title">
+      <div class="facility-log-title-text">{{indexLanguage.facilityLog}}</div>
+      <div class="facility-log-title-more" (click)="goToFacilityLogList()">{{commonLanguage.more}}>></div>
+    </div>
+    <div class="facility-log-table">
+      <xc-table [dataSet]="facilityLogDataSet"
+                [pageBean]="pageBean"
+                [tableConfig]="facilityLogTableConfig">
+      </xc-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.securitystrategy.dao.IpRangeDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.securitystrategy.bean.IpRange">
+        <id column="range_id" property="rangeId" />
+        <result column="ip_type" property="ipType" />
+        <result column="start_ip" property="startIp" />
+        <result column="end_ip" property="endIp" />
+        <result column="mask" property="mask" />
+        <result column="range_status" property="rangeStatus" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+    <!--查询所有启用IP范围-->
+    <select id="queryIpRangeAll" resultMap="BaseResultMap">
+        SELECT range_id, ip_type, start_ip, end_ip, mask, range_status FROM ip_range
+        WHERE  is_deleted != 1 AND range_status = 1 ORDER BY create_time DESC
+    </select>
+    <!--根据IP类型查询所有IP范围-->
+    <select id="queryRangesByType" resultMap="BaseResultMap" parameterType="com.fiberhome.filink.securitystrategy.bean.IpRange">
+        SELECT range_id, ip_type, start_ip, end_ip, mask FROM ip_range
+        WHERE  ip_type = #{ipType} AND is_deleted != 1
+        <if test="rangeId != null ">
+            AND range_id != #{rangeId}
+        </if>
+    </select>
+    <!--插入IP范围-->
+    <insert id="addIpRange" parameterType="com.fiberhome.filink.securitystrategy.bean.IpRange">
+        INSERT INTO ip_range
+        (
+        range_id, ip_type, start_ip, end_ip, mask, create_user
+        )
+        VALUES
+        (
+        #{rangeId}, #{ipType}, #{startIp}, #{endIp}, #{mask}, #{createUser}
+        )
+    </insert>
+    <!--根据ID查询IP范围-->
+    <select id="queryRangesById" resultMap="BaseResultMap" parameterType="java.util.List">
+        SELECT range_id, ip_type, start_ip, end_ip, range_status FROM ip_range
+        WHERE  is_deleted != 1 AND range_id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+    <!--根据ID查询IP范围-->
+    <select id="queryIpRangeById" resultMap="BaseResultMap" parameterType="string">
+        SELECT range_id, ip_type, start_ip, end_ip, mask, range_status FROM ip_range
+        WHERE  is_deleted != 1 AND range_id = #{rangeId}
+    </select>
+    <!--删除IP范围-->
+    <update id="deleteRangesByIds">
+        UPDATE ip_range
+        SET is_deleted = #{isDeleted}, update_user = #{updateUser}
+        WHERE  range_id IN
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+    <!--全部启用或禁用-->
+    <update id="updateAllRangesStatus" parameterType="string">
+        UPDATE ip_range
+        SET range_status = #{rangeStatus}, update_user = #{updateUser}
+        WHERE is_deleted != '1'
+    </update>
+    <!--启用或禁用-->
+    <update id="updateRangesStatus">
+        UPDATE ip_range
+        SET  range_status = #{rangeStatus}, update_user = #{updateUser}
+        WHERE is_deleted != '1'
+        AND range_id IN
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+</mapper>

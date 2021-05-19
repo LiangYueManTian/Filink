@@ -1,0 +1,60 @@
+<form class="user-login-form" nz-form [formGroup]="validateForm">
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group [nzPrefix]="prefixUser">
+        <input class="username" formControlName="userName" nz-input placeholder="请输入用户名" (blur)="initHint('userName')">
+      </nz-input-group>
+      <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">
+        请输入正确的用户名</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group [nzPrefix]="prefixLock">
+        <input class="password" formControlName="password" nz-input type="password" placeholder="请输入登入密码" (blur)="initHint('password')">
+      </nz-input-group>
+      <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">
+        用户名或密码错误</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group [nzPrefix]="prefixCode">
+      <input class="auth-code" formControlName="authCode" nz-input placeholder="请输入验证码" (blur)="initHint('authCode')">
+      <span class="timer"><img class="yz-code" [src]="base64" (click)="random()"/></span>
+      </nz-input-group>
+      <nz-form-explain *ngIf="validateForm.get('authCode').dirty && validateForm.get('authCode').errors">验证码输入错误</nz-form-explain>
+    </nz-form-control>
+
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzOffset]="2" class="remember-item">
+      <label nz-checkbox formControlName="remember" class="remember" style="width: 100px">记住密码</label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <button class="login-button"
+              [disabled]="!validateForm.valid || loginLoading"
+              (click)="submit()"
+              nz-button
+              nzType="primary"
+              [nzLoading]="loginLoading">登录</button>
+    </nz-form-control>
+  </nz-form-item>
+
+</form>
+<ng-template #prefixUser>
+  <img src="../../../../assets/img/login/icon_user.png" alt="">
+</ng-template>
+<ng-template #prefixLock>
+  <img src="../../../../assets/img/login/icon_password.png" alt="">
+</ng-template>
+<ng-template #prefixCode>
+  <img src="../../../../assets/img/login/icon_yzm.png" alt="">
+</ng-template>
+

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowbusinessserver.dao.procinspection.ProcInspectionDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcInspection">
+        <id column="proc_inspection_id" property="procInspectionId" />
+        <result column="proc_id" property="procId" />
+        <result column="inspection_area_id" property="inspectionAreaId" />
+        <result column="inspection_area_name" property="inspectionAreaName" />
+        <result column="inspection_task_id" property="inspectionTaskId" />
+        <result column="inspection_task_record_id" property="inspectionTaskRecordId" />
+        <result column="inspection_start_time" property="inspectionStartTime" />
+        <result column="inspection_end_time" property="inspectionEndTime" />
+        <result column="inspection_device_count" property="inspectionDeviceCount" />
+        <result column="inspection_completed_count" property="inspectionCompletedCount" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <resultMap id="ExtResultMap" extends="BaseResultMap" type="com.fiberhome.filink.workflowbusinessserver.resp.procinspection.ProcInspectionResp">
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        proc_inspection_id, proc_id, inspection_area_id, inspection_area_name,
+        inspection_task_id, inspection_task_record_id, inspection_start_time,
+        inspection_end_time, inspection_device_count, inspection_completed_count, is_deleted,
+        create_user, create_time, update_user, update_time
+    </sql>
+
+    <!-- 逻辑删除巡检工单 -->
+    <update id="logicDeleteProcInspection" parameterType="java.util.Map">
+        update proc_inspection set is_deleted = #{isDeleted, jdbcType=VARCHAR}
+        <if test="isDeleted == '1'">
+            ,inspection_device_count = 0, inspection_completed_count = 0
+        </if>
+        where 1=1
+        and proc_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 批量修改设施数量 -->
+    <update id="updateProcInspectionDeviceCountBatch" parameterType="java.util.List">
+      update proc_inspection
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="inspection_device_count =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.inspectionDeviceCount != null">
+                        when proc_id=#{item.procId} then #{item.inspectionDeviceCount}
+                    </if>
+                </foreach>
+            </trim>
+
+            <trim prefix="inspection_completed_count =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.inspectionCompletedCount != null">
+                        when proc_id=#{item.procId} then #{item.inspectionCompletedCount}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where 1=1
+        <!--工单ids-->
+        <if test="list != null and list.size() > 0">
+            <if test="list.size() == 1">
+                AND proc_id =
+                <foreach collection="list" item="item">
+                    #{item.procId}
+                </foreach>
+            </if>
+            <if test="list.size() > 1">
+                AND proc_id IN
+                <foreach collection="list" item="item" open="(" close=")" separator=",">
+                    #{item.procId}
+                </foreach>
+            </if>
+        </if>
+    </update>
+
+    <select id="selectInspectionProcByProcId" resultMap="BaseResultMap" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcInspection">
+      select
+      <include refid="Base_Column_List" />
+      from proc_inspection
+      where 1=1
+      <if test="procId != null and procId != ''">
+          and proc_id = #{procId, jdbcType=VARCHAR}
+      </if>
+      and is_deleted = '0'
+    </select>
+
+    <select id="selectInspectionProcByProcIds" resultMap="BaseResultMap" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcInspection">
+        select
+        <include refid="Base_Column_List" />
+        from proc_inspection
+        where 1=1
+        <if test="procIds != null">
+            AND proc_id IN
+            <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                #{procId}
+            </foreach>
+        </if>
+        and is_deleted = '0'
+    </select>
+
+    <select id="selectInspectionProcForProcIds" resultMap="BaseResultMap" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq">
+        select
+        <include refid="Base_Column_List" />
+        from proc_inspection
+        where 1=1
+        <!--工单ids-->
+        <if test="procIds != null and procIds.size() > 0">
+            <if test="procIds.size() == 1">
+                AND proc_id =
+                <foreach collection="procIds" item="procId">
+                    #{procId}
+                </foreach>
+            </if>
+            <if test="procIds.size() > 1">
+                AND proc_id IN
+                <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                    #{procId}
+                </foreach>
+            </if>
+        </if>
+        and is_deleted = #{isDeleted}
+    </select>
+
+
+    <select id="queryProcInspectionInfo" resultMap="BaseResultMap" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select
+        <include refid="Base_Column_List" />
+        from proc_inspection
+        where 1=1
+        and is_deleted = '0'
+        <if test="bizCondition.inspectionTaskId != null">
+            and inspection_task_id = #{bizCondition.inspectionTaskId, jdbcType=VARCHAR}
+        </if>
+        <if test="pageCondition.beginNum != null and pageCondition.pageSize != null">
+            LIMIT
+            #{pageCondition.beginNum},#{pageCondition.pageSize}
+        </if>
+    </select>
+
+    <select id="queryProcInspectionInfoCount" resultType="integer" parameterType="com.fiberhome.filink.bean.QueryCondition">
+        select count(*) from proc_inspection
+        where 1=1
+        and is_deleted = '0'
+        <if test="bizCondition.inspectionTaskId != null">
+            and inspection_task_id = #{bizCondition.inspectionTaskId, jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <!-- 查询工单信息 -->
+    <select id="queryProcInspectionByProcInspectionId" resultMap="ExtResultMap" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcInspection">
+      select
+        <include refid="Base_Column_List" />
+        from proc_inspection
+        where 1=1
+        and is_deleted = '0'
+        and proc_id = #{procId}
+    </select>
+
+</mapper>

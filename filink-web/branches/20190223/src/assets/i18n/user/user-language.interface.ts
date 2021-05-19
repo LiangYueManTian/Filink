@@ -1,0 +1,67 @@
+export interface UserLanguageInterface {
+    serialNumber: string;
+    userNickname: string;
+    userName: string;
+    userCode: string;
+    userStatus: string;
+    deptId: string;
+    department: string;
+    unit: string;
+    address: string;
+    phonenumber: string;
+    email: string;
+    roleId: string;
+    role: string;
+    area: string;
+    countValidityTime: string;
+    loginType: string;
+    maxUsers: string;
+    userdesc: string;
+    lastLoginTime: string;
+    lastLoginIp: string;
+    operate: string;
+    resetPassword: string;
+    deleteHandle: string;
+    update: string;
+    addUser: string;
+    batchDelete: string;
+    enable: string;
+    disable: string;
+    newPWD: string;
+    confirmPWD: string;
+    year: string;
+    month: string;
+    day: string;
+    tips: string;
+    defaultUserTips: string;
+    addUserSuccess: string;
+    addUserFail: string;
+    modifyUserSuccess: string;
+    modifyUserFail: string;
+    deleteUserSuccess: string;
+    deleteUserFail: string;
+    usersDeleteTips: string;
+    userCodeTips1: string;
+    userCodeTips2: string;
+    phoneNumberTip1: string;
+    phoneNumberTips2: string;
+    emailTips: string;
+    maxUsersTips: string;
+    resetPasswordTitle: string;
+    resetPasswordContent: string;
+    cancelText: string;
+    okText: string;
+    singleUser: string;
+    multiUser: string;
+    departmentSelect: string;
+    user: string;
+    deleteOnlineUserTips: string;
+    deleteOnlineUserSuccessTips: string;
+    deleteOnlineUserFailTips: string;
+    resetSuccessTips: string;
+    resetFailTips: string;
+    nameLengthTips: string;
+}
+
+
+

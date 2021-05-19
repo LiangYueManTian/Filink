@@ -1,0 +1,38 @@
+
+
+server:
+  port: 8001
+
+
+
+spring:
+  http:
+    multipart:
+      max-file-size: 100MB # 最大支持文件大小
+      max-request-size: 100MB # 最大支持请求大小
+  jmx:
+    enabled: false
+  application:
+    name: filink-oss-server
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: 10.5.24.224:9092
+          zkNodes: 10.5.24.224:2181
+language:
+  environment: CN
+#FastDFS配置信息
+fdfs:
+  so-timeout: 1500
+  connect-timeout: 600
+  basePath: http://10.5.24.224:9090/
+  thumbImage:
+    width: 150
+    height: 150
+  tracker-list:
+    - 10.5.24.224:22122
+

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="1301101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} add area area name is ${areaAndPrentName}</detailInfoTemplate>
+			<optName>addArea</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了区域:${areaAndPrentName}</detailInfoTemplate>
+			<optName>新增区域</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1301102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} update area area name is ${areaAndPrentName}</detailInfoTemplate>
+			<optName>updateArea</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了区域:${areaAndPrentName}</detailInfoTemplate>
+			<optName>修改区域</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1301103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} delete area area name is ${areaAndPrentName}</detailInfoTemplate>
+			<optName>deleteArea</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了区域:${areaAndPrentName}</detailInfoTemplate>
+			<optName>删除区域</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1301104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} associated the area ${areaAndPrentName} with the facility ${deviceName}</detailInfoTemplate>
+			<optName>AssociatedFacility</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}将区域${areaAndPrentName}关联了设施:${deviceName}</detailInfoTemplate>
+			<optName>关联设施</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1301105">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Area list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>区域列表导出</optName>
+		</language>
+	</functionCode>
+
+
+	<functionCode functionId="1301201">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add device device name is ${deviceName}</detailInfoTemplate>
+			<optName>addDevice</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了设施:${deviceName}</detailInfoTemplate>
+			<optName>新增设施</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301202">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update device device name is ${deviceName}</detailInfoTemplate>
+			<optName>updateDevice</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了设施:${deviceName}</detailInfoTemplate>
+			<optName>修改设施</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301203">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}device device device name is ${deviceName}</detailInfoTemplate>
+			<optName>deleteDevice</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了设施:${deviceName}</detailInfoTemplate>
+			<optName>删除设施</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301204">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}export device device name is ${listName}</detailInfoTemplate>
+			<optName>exportDevice</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>设施列表导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301301">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add parts parts name is ${partName}</detailInfoTemplate>
+			<optName>addParts</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了配件:${partName}</detailInfoTemplate>
+			<optName>新增配件</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301302">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update parts parts name is ${partName}</detailInfoTemplate>
+			<optName>updateParts</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了配件:${partName}</detailInfoTemplate>
+			<optName>修改配件</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301303">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete parts parts name is ${partName}</detailInfoTemplate>
+			<optName>deleteParts</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了配件:${partName}</detailInfoTemplate>
+			<optName>删除配件</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301304">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}export parts parts name is ${listName}</detailInfoTemplate>
+			<optName>exportParts</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>配件列表导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301401">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add devicePic devicePic name is ${picName}</detailInfoTemplate>
+			<optName>add</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增了图片:${picName}</detailInfoTemplate>
+			<optName>新增图片</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301402">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete devicePic devicePic name is ${picName}</detailInfoTemplate>
+			<optName>delete</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除了图片:${picName}</detailInfoTemplate>
+			<optName>删除图片</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301403">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}batch downLoad devicePic devicePic name is ${picName}</detailInfoTemplate>
+			<optName>update</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}批量下载图片:${picName}</detailInfoTemplate>
+			<optName>下载图片</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301501">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exported device logs named ${listName}</detailInfoTemplate>
+			<optName>exportDeviceLog</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>设施日志导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301601">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exported device count named ${listName}</detailInfoTemplate>
+			<optName>exportDeviceCount</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>设施数量统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301602">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exported device status count named ${listName}</detailInfoTemplate>
+			<optName>exportDeviceStatusCount</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>设施状态数量统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301603">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exported device deploy count named ${listName}</detailInfoTemplate>
+			<optName>exportDeployStatusCount</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>部署状态数量统计导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301604">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exported unlocking top N named ${listName}</detailInfoTemplate>
+			<optName>unlockingTopNumCount</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>开锁次数topN导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1301605">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exported device sensor top N named ${listName}</detailInfoTemplate>
+			<optName>deviceSensorTopNumCount</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>设施传感器topN导出</optName>
+		</language>
+	</functionCode>
+</functionCodes>

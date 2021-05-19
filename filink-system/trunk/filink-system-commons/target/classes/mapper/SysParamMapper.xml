@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.systemcommons.dao.SysParamDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.systemcommons.bean.SysParam">
+        <id column="param_id" property="paramId" />
+        <result column="param_type" property="paramType" />
+        <result column="present_value" property="presentValue" />
+        <result column="default_value" property="defaultValue" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+    <!--根据类型查询相应参数信息-->
+    <select id="queryParamByType" parameterType="string" resultMap="BaseResultMap">
+        SELECT param_id, param_type, present_value, default_value FROM sys_param WHERE param_type = #{paramType}
+    </select>
+    <!--根据ID查询相应参数信息-->
+    <select id="queryParamById" parameterType="string" resultMap="BaseResultMap">
+        SELECT param_id, param_type, present_value, default_value FROM sys_param WHERE param_id = #{paramId}
+    </select>
+    <!--根据类型更新参数信息-->
+    <update id="updateParamByType" parameterType="com.fiberhome.filink.systemcommons.bean.SysParam">
+        UPDATE sys_param SET present_value = #{presentValue},update_user =#{updateUser} WHERE param_type = #{paramType}
+    </update>
+    <!--根据ID更新参数信息-->
+    <update id="updateParamById" parameterType="com.fiberhome.filink.systemcommons.bean.SysParam">
+        UPDATE sys_param SET present_value = #{presentValue},update_user =#{updateUser} WHERE param_id = #{paramId}
+    </update>
+</mapper>

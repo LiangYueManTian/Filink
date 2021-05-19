@@ -1,0 +1,264 @@
+<deviceConfig>
+    <!--校验规则-->
+    <rules>
+        <!--电量-->
+        <rule id="electricity">
+            <ruleParam pattern="^(\d|[1-9]\d|100)$"/>
+            <ruleParam required="true"/>
+        </rule>
+        <!--高温阈值-->
+        <rule id="highTemperature">
+            <ruleParam pattern="^(\d|[1-9]\d|100)$"/>
+            <ruleParam required="true"/>
+        </rule>
+        <!--低温阈值-->
+        <rule id="lowTemperature">
+            <ruleParam pattern="^((-(\d|[1-4]\d|50))|(\d|[1]\d|20))$"/>
+            <ruleParam required="true"/>
+        </rule>
+        <!--倾斜-->
+        <rule id="lean">
+            <ruleParam pattern="^(([0-8]?[0-9]|90))$"/>
+            <ruleParam required="true"/>
+        </rule>
+        <!--湿度-->
+        <rule id="humidity">
+            <ruleParam pattern="^(\d|[1-9]\d|100)$"/>
+            <ruleParam required="true"/>
+        </rule>
+        <rule id="heartbeatCycle">
+            <ruleParam required="true"/>
+        </rule>
+        <rule id="unlockAlarmCycle">
+            <ruleParam required="true"/>
+        </rule>
+        <rule id="exceptionHeartbeatCycle">
+            <ruleParam required="true"/>
+        </rule>
+        <rule id="pixel">
+            <ruleParam required="true"/>
+        </rule>
+        <rule id="restartTime">
+            <ruleParam required="true"/>
+        </rule>
+    </rules>
+
+    <devices>
+        <!--人井-->
+        <device deviceType="030" code="filink">
+            <details>
+                <detailParam id="1" name="设施详情"/>
+                <detailParam id="2" name="设施操作"/>
+                <detailParam id="3" name="智能门禁详情"/>
+                <detailParam id="4" name="设施告警"/>
+                <detailParam id="5" name="设施日志"/>
+                <detailParam id="6" name="设施图片"/>
+                <detailParam id="7" name="设施工单"/>
+            </details>
+
+            <configurations>
+                <configuration id="threshold" name="阈值">
+                    <configurationParam id="electricity" name="电量告警阈值" type="input" code="0x111" unit="%"
+                                        placeholder="0-100" default="60"/>
+                    <configurationParam id="highTemperature" name="高温告警阈值" type="input" code="0x111" unit="℃"
+                                        placeholder="0-100" default="70"/>
+                    <configurationParam id="lowTemperature" name="低温告警阈值" type="input" code="0x111" unit="℃"
+                                        placeholder="-50-20" default="20"/>
+                    <configurationParam id="humidity" name="湿度阈值" type="input" code="0x111" unit="%" placeholder="0-100"
+                                        default="80"/>
+                </configuration>
+                <configuration id="cycle" name="周期">
+                    <configurationParam id="heartbeatCycle" name="心跳周期" type="select" code="0x444" default="1440">
+                        <selectParam id="5" name="5分钟"/>
+                        <selectParam id="10" name="10分钟"/>
+                        <selectParam id="240" name="4小时"/>
+                        <selectParam id="480" name="8小时"/>
+                        <selectParam id="720" name="12小时"/>
+                        <selectParam id="1440" name="24小时"/>
+                        <selectParam id="2880" name="48小时"/>
+                        <selectParam id="10080" name="一周"/>
+                    </configurationParam>
+                    <configurationParam id="workTime" name="未关锁告警时长" type="select" code="0x555" default="240">
+                        <selectParam id="5" name="5分钟"/>
+                        <selectParam id="10" name="10分钟"/>
+                        <selectParam id="30" name="30分钟"/>
+                        <selectParam id="60" name="1小时"/>
+                        <selectParam id="120" name="2小时"/>
+                        <selectParam id="180" name="3小时"/>
+                        <selectParam id="240" name="4小时"/>
+                        <selectParam id="300" name="5小时"/>
+                        <selectParam id="360" name="6小时"/>
+                        <selectParam id="420" name="7小时"/>
+                        <selectParam id="480" name="8小时"/>
+                    </configurationParam>
+                </configuration>
+            </configurations>
+        </device>
+
+        <!--光交箱-->
+        <device deviceType="001" code="filink">
+            <details>
+                <detailParam id="1" name="设施详情"/>
+                <detailParam id="2" name="设施操作"/>
+                <detailParam id="3" name="智能门禁详情"/>
+                <detailParam id="4" name="设施告警"/>
+                <detailParam id="5" name="设施日志"/>
+                <detailParam id="6" name="设施图片"/>
+                <detailParam id="7" name="设施工单"/>
+                <detailParam id="8" name="智能标签"/>
+            </details>
+
+            <configurations>
+                <configuration id="threshold" name="阈值">
+                    <configurationParam id="electricity" name="电量告警阈值" type="input" code="0x111" unit="%"
+                                        placeholder="0-100" default="60"/>
+                    <configurationParam id="highTemperature" name="高温告警阈值" type="input" code="0x111" unit="℃"
+                                        placeholder="0-100" default="70"/>
+                    <configurationParam id="lowTemperature" name="低温告警阈值" type="input" code="0x111" unit="℃"
+                                        placeholder="-50-20" default="20"/>
+                    <configurationParam id="lean" name="倾斜阈值" type="input" code="0x111" unit="°" placeholder="0-90"
+                                        default="10"/>
+                    <configurationParam id="humidity" name="湿度阈值" type="input" code="0x111" unit="%" placeholder="0-100"
+                                        default="80"/>
+                </configuration>
+                <configuration id="cycle" name="周期">
+                    <configurationParam id="heartbeatCycle" name="心跳周期" type="select" code="0x444" default="1440">
+                        <selectParam id="5" name="5分钟"/>
+                        <selectParam id="10" name="10分钟"/>
+                        <selectParam id="240" name="4小时"/>
+                        <selectParam id="480" name="8小时"/>
+                        <selectParam id="720" name="12小时"/>
+                        <selectParam id="1440" name="24小时"/>
+                        <selectParam id="2880" name="48小时"/>
+                        <selectParam id="10080" name="一周"/>
+                    </configurationParam>
+                    <configurationParam id="workTime" name="未关门告警时长" type="select" code="0x555" default="240">
+                        <selectParam id="5" name="5分钟"/>
+                        <selectParam id="10" name="10分钟"/>
+                        <selectParam id="30" name="30分钟"/>
+                        <selectParam id="60" name="1小时"/>
+                        <selectParam id="120" name="2小时"/>
+                        <selectParam id="180" name="3小时"/>
+                        <selectParam id="240" name="4小时"/>
+                        <selectParam id="300" name="5小时"/>
+                        <selectParam id="360" name="6小时"/>
+                        <selectParam id="420" name="7小时"/>
+                        <selectParam id="480" name="8小时"/>
+                    </configurationParam>
+                    <configurationParam id="exceptionHeartbeatCycle" name="异常心跳周期" type="select" code="0x666"
+                                        default="1440">
+                        <selectParam id="5" name="5分钟"/>
+                        <selectParam id="10" name="10分钟"/>
+                        <selectParam id="240" name="4小时"/>
+                        <selectParam id="480" name="8小时"/>
+                        <selectParam id="720" name="12小时"/>
+                        <selectParam id="1440" name="24小时"/>
+                        <selectParam id="2880" name="48小时"/>
+                        <selectParam id="10080" name="一周"/>
+                    </configurationParam>
+                </configuration>
+            </configurations>
+        </device>
+
+        <!--配线架-->
+        <device deviceType="060" code="filink">
+            <details>
+                <detailParam id="1" name="设施详情"/>
+                <detailParam id="2" name="设施操作"/>
+                <detailParam id="6" name="设施图片"/>
+                <detailParam id="7" name="设施工单"/>
+                <detailParam id="8" name="智能标签"/>
+            </details>
+        </device>
+
+        <!--接头盒-->
+        <device deviceType="090" code="filink">
+            <details>
+                <detailParam id="1" name="设施详情"/>
+                <detailParam id="2" name="设施操作"/>
+                <detailParam id="6" name="设施图片"/>
+                <detailParam id="7" name="设施工单"/>
+                <detailParam id="8" name="智能标签"/>
+            </details>
+        </device>
+
+        <!--分纤箱-->
+        <!--<device deviceType="150" code="filink">-->
+        <!--<details>-->
+        <!--<detailParam id="1" name="设施详情"/>-->
+        <!--&lt;!&ndash;<detailParam id="4" name="设施告警"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<detailParam id="5" name="设施日志"/>&ndash;&gt;-->
+        <!--<detailParam id="6" name="设施图片"/>-->
+        <!--<detailParam id="7" name="设施工单"/>-->
+        <!--</details>-->
+        <!--</device>-->
+
+        <!--室外柜-->
+        <device deviceType="210" code="filink">
+            <details>
+                <detailParam id="1" name="设施详情"/>
+                <detailParam id="2" name="设施操作"/>
+                <detailParam id="3" name="智能门禁详情"/>
+                <detailParam id="4" name="设施告警"/>
+                <detailParam id="5" name="设施日志"/>
+                <detailParam id="6" name="设施图片"/>
+                <detailParam id="7" name="设施工单"/>
+            </details>
+
+            <configurations>
+                <configuration id="threshold" name="阈值">
+                    <configurationParam id="electricity" name="电量告警阈值" type="input" code="0x111" unit="%"
+                                        placeholder="0-100" default="60"/>
+                    <configurationParam id="highTemperature" name="高温告警阈值" type="input" code="0x111" unit="℃"
+                                        placeholder="0-100" default="70"/>
+                    <configurationParam id="lowTemperature" name="低温告警阈值" type="input" code="0x111" unit="℃"
+                                        placeholder="-50-20" default="20"/>
+                    <configurationParam id="lean" name="倾斜阈值" type="input" code="0x111" unit="°" placeholder="0-90"
+                                        default="10"/>
+                    <configurationParam id="humidity" name="湿度阈值" type="input" code="0x111" unit="%" placeholder="0-100"
+                                        default="80"/>
+                </configuration>
+                <configuration id="cycle" name="周期">
+                    <configurationParam id="heartbeatCycle" name="心跳周期" type="select" code="0x444" default="1440">
+                        <selectParam id="5" name="5分钟"/>
+                        <selectParam id="10" name="10分钟"/>
+                        <selectParam id="240" name="4小时"/>
+                        <selectParam id="480" name="8小时"/>
+                        <selectParam id="720" name="12小时"/>
+                        <selectParam id="1440" name="24小时"/>
+                        <selectParam id="2880" name="48小时"/>
+                        <selectParam id="10080" name="一周"/>
+                    </configurationParam>
+                    <configurationParam id="workTime" name="未关门告警时长" type="select" code="0x555" default="240">
+                        <selectParam id="5" name="5分钟"/>
+                        <selectParam id="10" name="10分钟"/>
+                        <selectParam id="30" name="30分钟"/>
+                        <selectParam id="60" name="1小时"/>
+                        <selectParam id="120" name="2小时"/>
+                        <selectParam id="180" name="3小时"/>
+                        <selectParam id="240" name="4小时"/>
+                        <selectParam id="300" name="5小时"/>
+                        <selectParam id="360" name="6小时"/>
+                        <selectParam id="420" name="7小时"/>
+                        <selectParam id="480" name="8小时"/>
+                    </configurationParam>
+                    <configurationParam id="exceptionHeartbeatCycle" name="异常心跳周期" type="select" code="0x666"
+                                        default="1440">
+                        <selectParam id="5" name="5分钟"/>
+                        <selectParam id="10" name="10分钟"/>
+                        <selectParam id="240" name="4小时"/>
+                        <selectParam id="480" name="8小时"/>
+                        <selectParam id="720" name="12小时"/>
+                        <selectParam id="1440" name="24小时"/>
+                        <selectParam id="2880" name="48小时"/>
+                        <selectParam id="10080" name="一周"/>
+                    </configurationParam>
+                </configuration>
+            </configurations>
+        </device>
+
+
+    </devices>
+</deviceConfig>
+
+

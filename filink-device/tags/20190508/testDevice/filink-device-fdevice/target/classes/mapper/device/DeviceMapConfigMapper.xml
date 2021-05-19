@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.fdevice.dao.device.DeviceMapConfigDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.fdevice.bean.device.DeviceMapConfig">
+        <id column="config_id" property="configId" />
+        <result column="config_type" property="configType" />
+        <result column="device_type" property="deviceType" />
+        <result column="config_value" property="configValue" />
+        <result column="user_id" property="userId" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 查询映射结果 -->
+    <resultMap id="ResultMapTemp" type="com.fiberhome.filink.fdevice.dto.DeviceMapConfigDto">
+        <result column="config_value" property="deviceIconSize" />
+        <collection property="deviceConfig" ofType="com.fiberhome.filink.fdevice.bean.device.DeviceMapConfig" javaType="java.util.ArrayList"
+                    select="queryDeviceConfig" column="user_id">
+        </collection>
+    </resultMap>
+
+    <!--查询用户配置信息-->
+    <select id="queryDeviceMapConfig" resultMap="ResultMapTemp" parameterType="string">
+        SELECT  user_id,config_value FROM device_map_config WHERE user_id = #{userId} AND config_type = '2' AND is_deleted != '1'
+    </select>
+    <!--查询用户所有设施类型配置信息-->
+    <select id="queryDeviceConfig" resultMap="BaseResultMap" parameterType="string">
+        SELECT device_type,config_value FROM device_map_config
+        WHERE config_type = '1' AND user_id = #{userId} AND is_deleted != '1'
+        ORDER BY device_type DESC
+    </select>
+
+
+    <!--批量更新用户设施类型启用状态-->
+    <update id="bathUpdateDeviceConfig">
+        UPDATE device_map_config
+        SET config_value = CASE device_type
+        <foreach collection="configlist" item="item" index="index" separator="" open="" close="">
+            when #{item.deviceType} then #{item.configValue}
+        </foreach>
+        END
+        WHERE user_id = #{userId} AND is_deleted != '1'
+        AND device_type in
+        <foreach collection="configlist" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item.deviceType,jdbcType=VARCHAR }
+        </foreach>
+    </update>
+
+    <!--更新用户地图设施图标尺寸-->
+    <update id="updateDeviceIconSize" parameterType="com.fiberhome.filink.fdevice.bean.device.DeviceMapConfig">
+        UPDATE device_map_config SET config_value = #{configValue} WHERE user_id = #{userId} AND config_type = '2' AND is_deleted != '1'
+    </update>
+
+    <!--新增首页地图设施配置-->
+    <insert id="insertConfigBatch" parameterType="java.util.List">
+        INSERT INTO device_map_config
+        (
+        config_id, config_type, device_type, config_value, user_id, create_user
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.configId}, #{item.configType}, #{item.deviceType}, #{item.configValue}, #{item.userId},  #{item.createUser}
+            )
+        </foreach>
+    </insert>
+
+    <!--删除首页地图设施配置-->
+    <update id="deletedConfigByUserIds" parameterType="java.util.List">
+        UPDATE device_map_config SET is_deleted = '1' WHERE user_id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+</mapper>

@@ -1,0 +1,33 @@
+<div class="map-container" #map></div>
+<!--提示框-->
+<div *ngIf="isShowInfoWindow" class="info-window-container" [ngStyle]="{left: infoWindowLeft, top: infoWindowTop}">
+  <div *ngIf="infoData.type === 'c'" class="info-window-c" [ngClass]="{'width-items': infoData.data.length > 1}">
+    <div class="info-window-item" *ngFor="let data of infoData.data">
+      <div class="info-window-item-icon" [ngClass]="data.className"></div>
+      <div class="info-window-item-name">{{data.deviceTypeName}}</div>
+      <div class="info-window-item-count">{{data.count}}</div>
+    </div>
+  </div>
+  <div *ngIf="infoData.type === 'm'" class="info-window-m">
+    <div class="info-window-m-name">
+      <div class="info-window-m-icon" [ngClass]="infoData.data.className"></div>
+      <!--<div class="info-window-m-icon"></div>-->
+      <div>{{infoData.data.name}}</div>
+    </div>
+    <div>{{infoData.data.number}}</div>
+    <div>{{infoData.data.address}}</div>
+  </div>
+</div>
+
+<!--搜索位置-->
+<div class="search" *ngIf="mapType === 'google'">
+  <input nz-dropdown #input [(ngModel)]="searchKey" (keyup.enter)="location()"/>
+  <div class="iconfont icon-fiLink fiLink-search location-icon" (click)="location()"></div>
+</div>
+
+<div class="map-type-control" *ngIf="mapType === 'google'">
+  <div [ngClass]="mapTypeId === 'roadmap' ? 'map-type-title-s' : 'map-type-title'"
+       (click)="setMapType('roadmap')" title="{{indexLanguage.roadMapTitle}}">{{indexLanguage.roadMap}}</div>
+  <div [ngClass]="mapTypeId === 'satellite' ? 'map-type-title-s' : 'map-type-title'"
+       (click)="setMapType('satellite')" title="{{indexLanguage.satelliteMapTitle}}">{{indexLanguage.satelliteMap}}</div>
+</div>

@@ -1,0 +1,65 @@
+package com.fiberhome.filink.workflowbusinessserver.export.procclear;
+
+import com.fiberhome.filink.bean.QueryCondition;
+import com.fiberhome.filink.exportapi.job.AbstractExport;
+import com.fiberhome.filink.workflowbusinessserver.dao.procclear.ProcClearFailureDao;
+import com.fiberhome.filink.workflowbusinessserver.resp.ProcBaseResp;
+import com.fiberhome.filink.workflowbusinessserver.service.impl.procbase.ProcBaseServiceImpl;
+import com.fiberhome.filink.workflowbusinessserver.service.impl.procclear.ProcClearFailureServiceImpl;
+import com.fiberhome.filink.workflowbusinessserver.utils.common.ProcBaseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+/**
+ * 销障工单历史列表导出类
+ *
+ * @author chaofanrong@wistronits.com
+ */
+@Component
+public class ClearFailureProcHistoryExport extends AbstractExport {
+
+    @Autowired
+    private ProcClearFailureServiceImpl procClearFailureService;
+
+    @Autowired
+    private ProcBaseServiceImpl procBaseService;
+
+    @Autowired
+    private ProcClearFailureDao procClearFailureDao;
+
+    @Override
+    protected List queryData(QueryCondition queryCondition) {
+
+        //转换剩余天数
+        queryCondition = ProcBaseUtil.addLastDaysToCondition(queryCondition);
+
+        //设施工单类型为销障工单
+        procClearFailureService.setProcTypeToClearFailure(queryCondition);
+
+        //获取拥有权限信息
+        procBaseService.getPermissionsInfoForExport(queryCondition);
+
+        List<ProcBaseResp> procBaseRespList = procClearFailureDao.queryListProcClearHisProcByPage(queryCondition);
+        // 构造页面需要数据
+        List<ProcBaseResp> resultList = procBaseService.convertProcInfoToProcResp(procBaseRespList);
+        return resultList;
+    }
+
+    @Override
+    protected Integer queryCount(QueryCondition queryCondition) {
+
+        //转换剩余天数
+        queryCondition = ProcBaseUtil.addLastDaysToCondition(queryCondition);
+
+        //设施工单类型为销障工单
+        procClearFailureService.setProcTypeToClearFailure(queryCondition);
+
+        //获取拥有权限信息
+        procBaseService.getPermissionsInfo(queryCondition);
+        Integer count = procClearFailureDao.queryCountListProcClearHisProc(queryCondition);
+        return count;
+    }
+
+}

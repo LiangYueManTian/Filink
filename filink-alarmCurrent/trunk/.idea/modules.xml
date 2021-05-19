@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/filink-alarmCurrent.iml" filepath="$PROJECT_DIR$/filink-alarmCurrent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-alarmCurrent-api/filink-alarmCurrent-api.iml" filepath="$PROJECT_DIR$/filink-alarmCurrent-api/filink-alarmCurrent-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-alarmCurrent-server/filink-alarmCurrent-server.iml" filepath="$PROJECT_DIR$/filink-alarmCurrent-server/filink-alarmCurrent-server.iml" />
+    </modules>
+  </component>
+</project>

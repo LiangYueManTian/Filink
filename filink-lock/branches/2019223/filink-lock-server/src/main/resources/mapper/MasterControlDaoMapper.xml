@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.lockserver.dao.MasterControlDao">
+    <!--保存主控参数信息-->
+    <insert id="saveControlParams" parameterType="control">
+        <selectKey keyProperty="controlId" resultType="String" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
+        insert into
+        control_info
+        (control_id,device_id,software_version,hardware_version,config_value,sync_status,actual_value,control_type,is_deleted)
+        values
+        (#{controlId},
+        #{deviceId},
+        #{softwareVersion},
+        #{hardwareVersion},
+        #{configValue},
+        #{syncStatus},
+        #{actualValue},
+        #{controlType},
+        0)
+    </insert>
+
+    <!--根据设施id修改主控信息-->
+    <update id="updateControlParamsByDeviceId" parameterType="Control">
+        update
+        control_info
+        <set>
+            <if test="configValue != null and configValue != ''">
+              config_value = #{configValue},
+            </if>
+            <if test="syncStatus != null and syncStatus != ''">
+                sync_status = #{syncStatus},
+            </if>
+            <if test="actualValue != null and actualValue != ''">
+                actual_value = #{actualValue},
+            </if>
+            <if test="hardwareVersion != null and hardwareVersion != ''">
+                hardware_version = #{hardwareVersion},
+            </if>
+            <if test="softwareVersion != null and softwareVersion != ''">
+                software_version = #{softwareVersion},
+            </if>
+        </set>
+        where
+        device_id = #{deviceId}
+        and
+        is_deleted = 0
+    </update>
+
+    <!--根据设施id查询主控信息-->
+    <select id="getControlByDeviceId" parameterType="String" resultMap="controlMap">
+        select
+        control_id,device_id,software_version,hardware_version,config_value,sync_status,actual_value,control_type
+        from
+        control_info
+        where
+        device_id = #{deviceId}
+        and
+        is_deleted = 0
+
+    </select>
+
+    <!--批量更新设施配置策略-->
+    <update id="batchSetConfig">
+        update
+        control_info
+        set
+        config_value = #{configValue},
+        sync_status = #{syncStatus}
+        where
+        device_id in
+        <foreach collection="deviceIds" open="(" separator="," close=")" item="deviceId">
+            #{deviceId}
+        </foreach>
+    </update>
+
+
+    <select id="getControlCountByDeviceIds" resultType="Long">
+        select
+        count(control_id)
+        from
+        control_info
+        where device_id in
+        <foreach collection="list" open="(" separator="," close=")" item="deviceId">
+            #{deviceId}
+        </foreach>
+    </select>
+
+    <resultMap id="controlMap" type="Control">
+        <id column="control_id" property="controlId"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="config_value" property="configValue"/>
+        <result column="sync_status" property="syncStatus"/>
+        <result column="actual_value" property="actualValue"/>
+        <result column="software_version" property="softwareVersion"/>
+        <result column="hardware_version" property="hardwareVersion"/>
+        <result column="control_type" property="controlType"/>
+    </resultMap>
+</mapper>

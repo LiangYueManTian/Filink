@@ -1,0 +1,63 @@
+#xTable {
+  position: relative;
+}
+
+.resize-proxy {
+  position: absolute;
+  left: 200px;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  height: calc(100% - 74px);
+  border-left: 1px solid #000c17;
+}
+
+.resize-proxy-height {
+  height: 100% !important;
+}
+
+.table-dragging {
+  user-select: none;
+}
+
+:host ::ng-deep .ant-table-filter-icon, .ant-table-thead > tr > th .anticon-filter {
+  right: 7px !important;
+}
+
+.table-drag-line {
+  width: 1px;
+  position: absolute;
+  padding: 7px 0;
+  height: 100%;
+  right: 0;
+  top: 0;
+  div {
+    background: #cccccc;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.column-setting-list {
+  position: relative;
+  left: -50%;
+}
+
+.table-left-button {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(-20px);
+  .left-button{
+    margin-right: 10px;
+  }
+}
+
+.table-left-button-position {
+  bottom: -70px;
+}
+
+.row-active {
+  color: red;
+}

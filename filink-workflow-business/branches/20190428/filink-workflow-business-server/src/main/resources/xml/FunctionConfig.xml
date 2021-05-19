@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="1602101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add clearFailureProc clearFailureProc name is ${title}</detailInfoTemplate>
+			<optName>addClearFailureProc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增销障工单:${title}</detailInfoTemplate>
+			<optName>新增销障工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1602102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update clearFailureProc clearFailureProc name is ${title}</detailInfoTemplate>
+			<optName>updateClearFailureProc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改销障工单:${title}</detailInfoTemplate>
+			<optName>修改销障工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1602103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete clearFailureProc clearFailureProc name is ${title}</detailInfoTemplate>
+			<optName>deleteClearFailureProc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除销障工单:${title}</detailInfoTemplate>
+			<optName>删除销障工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1602108">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}regenerate clearFailureProc clearFailureProc name is ${title}</detailInfoTemplate>
+			<optName>regenerateClearFailureProc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}重新生成销障工单:${title}</detailInfoTemplate>
+			<optName>重新生成销障工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1603106">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Inspection task list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>未完工销障工单导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1603107">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Inspection task list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>历史销障工单导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1604101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}add inspectionTask:${inspectionTaskName}</detailInfoTemplate>
+			<optName>addInspectionTask</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增巡检任务:${inspectionTaskName}</detailInfoTemplate>
+			<optName>新增巡检任务</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1604102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update inspectionTask:${inspectionTaskName}</detailInfoTemplate>
+			<optName>updateInspectionTask</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改巡检任务:${inspectionTaskName}</detailInfoTemplate>
+			<optName>修改巡检任务</optName>
+		</language>
+	</functionCode>
+	<functionCode functionId="1604103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete inspectionTask:${inspectionTaskName}</detailInfoTemplate>
+			<optName>deleteInspectionTask</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除巡检任务:${inspectionTaskName}</detailInfoTemplate>
+			<optName>删除巡检任务</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1604104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}open inspectionTask:${inspectionTaskName}</detailInfoTemplate>
+			<optName>openInspectionTask</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}开启巡检任务:${inspectionTaskName}</detailInfoTemplate>
+			<optName>开启巡检任务</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1604105">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}close inspectionTask:${inspectionTaskName}</detailInfoTemplate>
+			<optName>closeInspectionTask</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}关闭巡检任务:${inspectionTaskName}</detailInfoTemplate>
+			<optName>关闭巡检任务</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1604106">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Inspection task list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>巡检任务列表导出</optName>
+		</language>
+	</functionCode>
+
+
+	<functionCode functionId="1603101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}insert inspectionProc:${title}</detailInfoTemplate>
+			<optName>insertInspectionProc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}新增巡检工单:${title}</detailInfoTemplate>
+			<optName>新增巡检工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1603102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update inspectionProc:${title}</detailInfoTemplate>
+			<optName>updateInspectionProc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改巡检工单:${title}</detailInfoTemplate>
+			<optName>修改巡检工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1603103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}delete inspectionProc:${title}</detailInfoTemplate>
+			<optName>deleteInspectionProc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}删除巡检工单:${title}</detailInfoTemplate>
+			<optName>删除巡检工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1603104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Unfinished inspection proc List export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>未完工巡检工单列表导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1603105">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} exports the ${listName}</detailInfoTemplate>
+			<optName>Completed inspection record list export</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}导出了${listName}</detailInfoTemplate>
+			<optName>已完工巡检记录列表导出</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1603108">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} regenerate inspection proc:${title}</detailInfoTemplate>
+			<optName>regenerateInspectionProc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}重新生成巡检工单:${title}</detailInfoTemplate>
+			<optName>重新生成巡检工单</optName>
+		</language>
+	</functionCode>
+
+
+	<functionCode functionId="1601101">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}assign clear failure proc:${title}</detailInfoTemplate>
+			<optName>assign clear failure proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}指派销障工单:${title}</detailInfoTemplate>
+			<optName>指派销障工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601102">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}revoke clear failure proc:${title}</detailInfoTemplate>
+			<optName>revoke clear failure proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}撤回销障工单:${title}</detailInfoTemplate>
+			<optName>撤回销障工单</optName>
+		</language>
+	</functionCode>
+
+
+	<functionCode functionId="1601103">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} clear failure proc check single back:${title}</detailInfoTemplate>
+			<optName>clear failure proc check single back</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}销障工单退单确认:${title}</detailInfoTemplate>
+			<optName>销障工单退单确认</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601104">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} clear failure proc single back proc:${title}</detailInfoTemplate>
+			<optName>clear failure proc single back</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}销障工单退单:${title}</detailInfoTemplate>
+			<optName>销障工单退单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601105">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} download clear failure proc:${title}</detailInfoTemplate>
+			<optName>download clear failure proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}下载销障工单:${title}</detailInfoTemplate>
+			<optName>下载销障工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601106">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} turn clear failure proc:${title}</detailInfoTemplate>
+			<optName>turn clear failure proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}转派销障工单:${title}</detailInfoTemplate>
+			<optName>转派销障工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601107">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} clear failure return proc:${title}</detailInfoTemplate>
+			<optName>clear failure return proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}销障工单回单:${title}</detailInfoTemplate>
+			<optName>销障工单回单</optName>
+		</language>
+	</functionCode>
+
+
+	<functionCode functionId="1601108">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}assign inspection proc:${title}</detailInfoTemplate>
+			<optName>assign inspection proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}指派巡检工单:${title}</detailInfoTemplate>
+			<optName>指派巡检工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601109">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}revoke inspection proc:${title}</detailInfoTemplate>
+			<optName>revoke inspection proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}撤回巡检工单:${title}</detailInfoTemplate>
+			<optName>撤回巡检工单</optName>
+		</language>
+	</functionCode>
+
+
+	<functionCode functionId="1601110">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} inspection proc check single back:${title}</detailInfoTemplate>
+			<optName>inspection proc check single back</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}巡检工单退单确认:${title}</detailInfoTemplate>
+			<optName>巡检工单退单确认</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601111">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} inspection proc single back proc:${title}</detailInfoTemplate>
+			<optName>inspection proc single back</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}巡检工单退单:${title}</detailInfoTemplate>
+			<optName>巡检工单退单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601112">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} download inspection proc:${title}</detailInfoTemplate>
+			<optName>download inspection proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}下载巡检工单:${title}</detailInfoTemplate>
+			<optName>下载巡检工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601113">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} turn inspection proc:${title}</detailInfoTemplate>
+			<optName>turn inspection proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}转派巡检工单:${title}</detailInfoTemplate>
+			<optName>转派巡检工单</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1601114">
+		<language type="US">
+			<detailInfoTemplate>${optUserName} inspection return proc:${title}</detailInfoTemplate>
+			<optName>inspection return proc</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}巡检工单回单:${title}</detailInfoTemplate>
+			<optName>巡检工单回单</optName>
+		</language>
+	</functionCode>
+
+</functionCodes>

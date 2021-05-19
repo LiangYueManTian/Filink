@@ -1,0 +1,15 @@
+2019-03-18 16:34:45.471 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter
+                -
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Embedded servlet container failed to start. Port 9205 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 9205 or configure this application to listen on another port.
+

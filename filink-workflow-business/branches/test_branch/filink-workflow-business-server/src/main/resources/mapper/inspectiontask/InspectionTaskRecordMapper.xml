@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowbusinessserver.dao.inspectiontask.InspectionTaskRecordDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.workflowbusinessserver.bean.inspectiontask.InspectionTaskRecord">
+        <id column="inspection_task_record_id" property="inspectionTaskRecordId" />
+        <result column="inspection_task_id" property="inspectionTaskId" />
+        <result column="inspection_task_name" property="inspectionTaskName" />
+        <result column="task_period" property="taskPeriod" />
+        <result column="proc_plan_date" property="procPlanDate" />
+        <result column="task_start_time" property="taskStartTime" />
+        <result column="task_end_time" property="taskEndTime" />
+        <result column="inspection_area_id" property="inspectionAreaId" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+</mapper>

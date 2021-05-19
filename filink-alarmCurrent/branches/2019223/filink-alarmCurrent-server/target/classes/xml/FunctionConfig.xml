@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functionCodes>
+	<functionCode functionId="1701401">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update current alarm note current alarm note name is ${alarmName}
+			</detailInfoTemplate>
+			<optName>updateAlarmRemark</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了当前告警备注:${alarmName}</detailInfoTemplate>
+			<optName>修改当前告警备注</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701402">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update the confirmation status of the current alarm
+				the confirmation status of the current alarm name is ${alarmName}
+			</detailInfoTemplate>
+			<optName>updateAlarmConfirmStatus</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了当前告警的确认状态:${alarmName}</detailInfoTemplate>
+			<optName>修改当前告警的确认状态</optName>
+		</language>
+	</functionCode>
+
+	<functionCode functionId="1701403">
+		<language type="US">
+			<detailInfoTemplate>${optUserName}update Clear status of the current alarm
+				Clear status of the current alarm name is ${alarmName}
+			</detailInfoTemplate>
+			<optName>updateAlarmCleanStatus</optName>
+		</language>
+		<language type="CN">
+			<detailInfoTemplate>${optUserName}修改了当前告警的清除状态:${alarmName}</detailInfoTemplate>
+			<optName>修改当前告警的清除状态</optName>
+		</language>
+	</functionCode>
+</functionCodes>

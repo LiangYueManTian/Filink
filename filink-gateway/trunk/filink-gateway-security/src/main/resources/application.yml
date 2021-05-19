@@ -1,0 +1,8 @@
+security:
+  oauth2:
+    client:
+      client-id: filink
+      client-secret: filink
+
+readLogFilePath : /yy_filink/filink_log/gatewayLog/
+readListExcelPath : D:/export

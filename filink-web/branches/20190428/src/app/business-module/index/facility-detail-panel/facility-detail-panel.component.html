@@ -1,0 +1,114 @@
+<div class="facility-detail-panel-container">
+  <div class="detail">
+    <div class="detail-top">
+      <div class="info">
+        <div class="title">
+          <div class="facility-type-icon" [ngStyle]="{'background-image': facilityInfo['iconUrl']}">
+          </div>
+          <div class="facility-type-and-name hidden" title="{{facilityInfo['facilityName']}}">
+            {{facilityInfo['facilityName']}}
+          </div>
+        </div>
+        <div class="facility-status">
+          <!--<div class="online-status">-->
+          <!--<div class="icon"></div>-->
+          <!--<span>{{facilityInfo['facilityStatus']}}</span>-->
+          <!--</div>-->
+          <div class="facility-status-text"
+               title="{{facilityInfo['facilityName']}}"
+               [ngStyle]="{'background-color': facilityInfo['facilityStatusObj']['bgColor']}">
+            {{facilityInfo['facilityStatusObj']['text']}}
+          </div>
+          <div class="deploy-status">
+            <div class="icon" [ngClass]="facilityInfo['deployStatus']['class']"></div>
+            <span title="{{facilityInfo['deployStatus']['name']}}">{{facilityInfo['deployStatus']['name']}}</span>
+          </div>
+        </div>
+        <div class="facility-number" title="{{facilityInfo['deviceCode']}}">
+          <!--<div class="facility-number-title">{{indexLanguage.facilityNumber}}</div>-->
+          <div>{{facilityInfo['deviceCode']}}</div>
+        </div>
+      </div>
+      <div class="pic">
+        <img class="info-img" *ngIf="devicePicUrl" (click)="clickImage()" [src]="devicePicUrl"
+             alt="">
+        <div [ngClass]="isCollected ? 'fiLink-collected' : 'fiLink-collect'"
+             (click)="collectionChange()"
+             class="iconfont icon-fiLink icon-collection-color collection">
+        </div>
+      </div>
+    </div>
+    <div class="detail-bottom">
+      <div class="detail-bottom-item">
+        <div class="detail-bottom-item-title">{{indexLanguage.area}}</div>
+        <div class="detail-bottom-item-value hidden"
+             title="{{facilityInfo.areaInfo['areaName']}}">
+          {{facilityInfo.areaInfo['areaName']}}
+        </div>
+      </div>
+      <div class="detail-bottom-item">
+        <div class="detail-bottom-item-title">{{indexLanguage.responsibleUnit}}</div>
+        <div class="detail-bottom-item-value hidden" title="{{facilityInfo.areaInfo['accountabilityUnitName']}}">
+          {{facilityInfo.areaInfo['accountabilityUnitName']}}
+        </div>
+      </div>
+      <div class="detail-bottom-item">
+        <div class="detail-bottom-item-title">{{indexLanguage.address}}</div>
+        <div class="detail-bottom-item-value hidden" title="{{facilityInfo['address']}}">
+          {{facilityInfo['address']}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="monitor-info">
+    <div class="monitor-info-title">
+      <div>{{indexLanguage.monitorInfo}}</div>
+      <div class="line">
+        <nz-select *ngIf="isShowSelect"
+                   style="width: 120px;margin-top: -10px;float: right;"
+                   [(ngModel)]="selectedControlId"
+                   (ngModelChange)="changeControl($event)"
+                   nzSize="small"
+                   nzAllowClear="false"
+                   [nzPlaceHolder]="indexLanguage.pleaseSelect">
+          <nz-option *ngFor="let control of controlOption" [nzValue]="control.value" [nzLabel]="control.label"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div class="monitor-info-list">
+      <ng-container *ngFor="let item of monitorInfoList">
+        <div class="monitor-info-item">
+          <div class="monitor-info-title">{{item.text}}</div>
+          <div class="monitor-info-icon" [ngClass]="item.iconClass"></div>
+          <div class="monitor-info-text">{{item.value}}</div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="lock-status">
+    <div class="lock-status-title-name">
+      <div>{{indexLanguage.lockStatus}}</div>
+      <div class="line"></div>
+    </div>
+    <div class="lock-status-list">
+      <ng-container *ngFor="let item of doorAndLockList">
+        <div class="lock-status-item">
+          <div class="lock-status-title hidden" title="{{item.doorName}}">{{item.doorName}}</div>
+          <div class="lock-status-icon"
+               [ngClass]="item.doorStatusClassName">
+          </div>
+          <div class="lock-status-title hidden" title="{{item.lockName}}">{{item.lockName}}</div>
+          <div class="lock-status-icon"
+               [ngClass]="item.lockStatusClassName"
+               (click)="clickLock(item)">
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="heartbeat-info">
+    <div class="heartbeat-info-icon"></div>
+    <div class="heartbeat-info-time">{{heartbeatTime}}</div>
+    <div class="heartbeat-info-more" (click)="goToFacilityDetailById()">{{commonLanguage.more}}>></div>
+  </div>
+</div>

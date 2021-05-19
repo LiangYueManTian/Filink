@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.lockserver.dao.ControlDao">
+
+    <resultMap id="controlMap" type="com.fiberhome.filink.lockserver.bean.ControlParam">
+        <id column="control_id" property="controlId"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="host_id" property="hostId"/>
+        <result column="host_name" property="hostName"/>
+        <result column="host_type" property="hostType"/>
+        <result column="host_ip" property="hostIp"/>
+        <result column="host_port" property="hostPort"/>
+        <result column="mac_addr" property="macAddr"/>
+        <result column="source_type" property="sourceType"/>
+        <result column="product_id" property="productId"/>
+        <result column="platform_id" property="platformId"/>
+        <result column="cloud_platform" property="cloudPlatform"/>
+        <result column="sim_card_type" property="simCardType"/>
+        <result column="imei" property="imei"/>
+        <result column="imsi" property="imsi"/>
+        <result column="software_version" property="softwareVersion"/>
+        <result column="hardware_version" property="hardwareVersion"/>
+        <result column="doors" property="doors"/>
+        <result column="config_value" property="configValue"/>
+        <result column="actual_value" property="actualValue"/>
+        <result column="sync_status" property="syncStatus"/>
+        <result column="device_status" property="deviceStatus"/>
+        <result column="deploy_status" property="deployStatus"/>
+        <result column="active_status" property="activeStatus"/>
+        <result column="version_update_time" property="versionUpdateTime"/>
+    </resultMap>
+
+    <!--主控字段-->
+    <sql id="controlColumn">
+        control_id,host_id,host_name,device_id,config_value,sync_status,actual_value,
+        software_version,hardware_version,host_type,host_ip,host_port,product_id,
+        mac_addr,source_type,platform_id,cloud_platform,sim_card_type,imei,imsi,doors,
+        device_status,deploy_status,active_status,version_update_time
+    </sql>
+
+    <!--根据主控id删除电子锁主控-->
+    <update id="deleteLockAndContorlByControlId" parameterType="string">
+         UPDATE lock_info l JOIN control_info c ON c.host_id=l.control_id
+         SET l.is_deleted = 1 , c.is_deleted = 1
+         WHERE c.host_id = #{controlId}
+    </update>
+
+    <!--根据设施id删除电子锁主控-->
+    <update id="deleteControlByDeviceIds" parameterType="string">
+        UPDATE lock_info l JOIN control_info c ON c.host_id=l.control_id
+        SET l.is_deleted = 1 , c.is_deleted = 1
+        WHERE c.device_id in
+        <foreach collection="deviceIds" open="(" separator="," close=")" item="deviceId">
+            #{deviceId}
+        </foreach>
+    </update>
+
+    <!--保存主控参数信息-->
+    <insert id="addControlParams" parameterType="com.fiberhome.filink.lockserver.bean.ControlParam">
+        insert into control_info
+        (<include refid="controlColumn"></include>)
+        values
+        (
+        #{controlId},#{hostId},#{hostName},#{deviceId},#{configValue},#{syncStatus},#{actualValue},
+        #{softwareVersion},#{hardwareVersion},#{hostType},#{hostIp},#{hostPort},#{productId},
+        #{macAddr},#{sourceType},#{platformId},#{cloudPlatform},#{simCardType},#{imei},#{imsi},#{doors},
+        '1','1','0',#{versionUpdateTime}
+        )
+
+    </insert>
+
+
+    <!--根据主控id更新主控信息-->
+    <update id="updateControlParams" parameterType="com.fiberhome.filink.lockserver.bean.ControlParam">
+        update
+        control_info
+        <set>
+            <if test="hostName != null and hostName != ''">
+                host_name = #{hostName},
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                device_id = #{deviceId},
+            </if>
+            <if test="configValue != null and configValue != ''">
+                config_value = #{configValue},
+            </if>
+            <if test="syncStatus != null and syncStatus != ''">
+                sync_status = #{syncStatus},
+            </if>
+            <if test="actualValue != null and actualValue != ''">
+                actual_value = #{actualValue},
+            </if>
+            <if test="hardwareVersion != null and hardwareVersion != ''">
+                hardware_version = #{hardwareVersion},
+            </if>
+            <if test="softwareVersion != null and softwareVersion != ''">
+                software_version = #{softwareVersion},
+            </if>
+            <if test="hostType != null and hostType != ''">
+                host_type = #{hostType},
+            </if>
+            <if test="hostIp != null and hostIp != ''">
+                host_ip = #{hostIp},
+            </if>
+            <if test="hostPort != null and hostPort != ''">
+                host_port = #{hostPort},
+            </if>
+            <if test="macAddr != null and macAddr != ''">
+                mac_addr = #{macAddr},
+            </if>
+            <if test="sourceType != null and sourceType != ''">
+                source_type = #{sourceType},
+            </if>
+            <if test="platformId != null and platformId != ''">
+                platform_id = #{platformId},
+            </if>
+            <if test="cloudPlatform != null and cloudPlatform != ''">
+                cloud_platform = #{cloudPlatform},
+            </if>
+            <if test="simCardType != null and simCardType != ''">
+                sim_card_type = #{simCardType},
+            </if>
+            <if test="imei != null and imei != ''">
+                imei = #{imei},
+            </if>
+            <if test="imsi != null and imsi != ''">
+                imsi = #{imsi},
+            </if>
+            <if test="doors != null and doors != ''">
+                doors = #{doors},
+            </if>
+            <if test="activeStatus != null and activeStatus != ''">
+                active_status = #{activeStatus},
+            </if>
+            <if test="versionUpdateTime != null and versionUpdateTime != ''">
+                version_update_time = #{versionUpdateTime},
+            </if>
+        </set>
+        where
+        host_id = #{hostId}
+        and
+        is_deleted = 0
+    </update>
+
+
+    <!--根据设施id查询主控信息-->
+    <select id="getControlByDeviceId" parameterType="String" resultMap="controlMap">
+        select
+        <include refid="controlColumn"></include>
+        from
+        control_info
+        where
+        device_id = #{deviceId}
+        and
+        is_deleted = 0
+    </select>
+
+    <!--根据分页条件查询出有主控信息及门锁信息的设施的id集合-->
+    <select id="deviceIdListByPage" resultType="java.lang.String">
+        SELECT c.device_id FROM control_info c JOIN lock_info l ON l.control_id = c.host_id AND l.lock_id != ""
+        WHERE c.is_deleted =0 AND l.is_deleted =0
+        <if test="deviceIds!=null and deviceIds.size()>0 ">
+            AND c.device_id IN
+            <foreach collection="deviceIds" open="(" separator="," close=")" item="deviceId">
+                #{deviceId}
+            </foreach>
+        </if>
+        GROUP BY device_id
+        LIMIT #{pageCondition.beginNum},#{pageCondition.pageSize}
+    </select>
+
+    <!--查询出有主控信息及门锁信息的设施的id集合-->
+    <select id="deviceIdList" resultType="java.lang.String">
+        SELECT c.device_id FROM control_info  c JOIN lock_info l ON l.control_id = c.host_id AND l.lock_id != ""
+        WHERE c.is_deleted =0 AND l.is_deleted =0
+        GROUP BY device_id
+    </select>
+
+    <!--根据设施id和主控名称查询主控信息-->
+    <select id="getControlByDeviceIdAndControlName" parameterType="com.fiberhome.filink.lockserver.bean.ControlParam"
+            resultMap="controlMap">
+        select
+        <include refid="controlColumn"></include>
+        from
+        control_info
+        where
+        device_id = #{deviceId}
+        and
+        host_name = #{hostName}
+        and
+        is_deleted = 0
+    </select>
+
+
+    <!--更新主控的设施状态或部署状态-->
+    <update id="updateControlStatus" parameterType="com.fiberhome.filink.lockserver.bean.ControlParam">
+        update
+        control_info
+        <set>
+            <if test="deviceStatus != '' and deviceStatus != null">
+                device_status = #{deviceStatus},
+            </if>
+            <if test="deployStatus != '' and deployStatus != null">
+                deploy_status = #{deployStatus},
+            </if>
+        </set>
+        where
+        host_id = #{hostId}
+        and
+        is_deleted =0
+    </update>
+
+    <!--根据设施id更新主控的部署状态-->
+    <update id="updateDeployStatusByDeviceId" parameterType="com.fiberhome.filink.lockserver.bean.ControlParam">
+        UPDATE control_info SET deploy_status = #{deployStatus}
+        WHERE device_id in
+        <foreach collection="deviceIds" open="(" close=")" separator="," item="deviceId">
+            #{deviceId}
+        </foreach>
+        AND is_deleted =0
+    </update>
+
+    <!--根据主控id获取设施id-->
+    <select id="getDeviceIdByControlId" parameterType="string" resultType="string">
+        select
+        device_id
+        from
+        control_info
+        where
+        host_id = #{controlId}
+        and
+        is_deleted = 0
+    </select>
+
+    <!--根据主控id获取该主控关联设施的最高级别的设施状态-->
+    <select id="getDeviceStatusById" parameterType="string" resultMap="controlMap">
+          SELECT MAX(i1.device_status) AS device_status,i1.device_id FROM control_info i1
+         JOIN control_info i2 ON i1.device_id = i2.device_id
+         WHERE i2.host_id =#{controlId} AND i1.is_deleted = 0 AND i2.is_deleted = 0
+    </select>
+
+    <!--根据主控id获取该主控关联设施的部署状态-->
+    <select id="getDeployStatusById" parameterType="string" resultMap="controlMap">
+          SELECT DISTINCT i1.deploy_status,i1.device_id FROM control_info i1
+         JOIN control_info i2 ON i1.device_id = i2.device_id
+         WHERE i2.host_id =#{controlId} AND i1.is_deleted = 0 AND i2.is_deleted = 0
+    </select>
+
+
+    <!--根据主控id获取主控信息-->
+    <select id="getControlParamById" parameterType="string" resultMap="controlMap">
+        select
+        <include refid="controlColumn"></include>
+        from
+        control_info
+        where
+        host_id = #{controlId}
+        and
+        is_deleted = 0
+
+    </select>
+
+    <!--查询电子锁主控信息-->
+    <select id="queryControlParam" parameterType="com.fiberhome.filink.lockserver.bean.ControlReq"
+            resultMap="controlMap">
+        select
+        <include refid="controlColumn"></include>
+        from
+        control_info
+        <where>
+            <if test="deviceId != null and deviceId != ''">
+                device_id = #{deviceId}
+            </if>
+            <if test="controlId != null and controlId != ''">
+                AND host_id = #{controlId}
+            </if>
+            AND is_deleted = 0
+        </where>
+
+    </select>
+
+    <!--批量更新设施配置策略-->
+    <update id="batchSetConfig">
+        update
+        control_info
+        set
+        config_value = #{configValue},
+        sync_status = #{syncStatus}
+        where
+        device_id in
+        <foreach collection="deviceIds" open="(" separator="," close=")" item="deviceId">
+            #{deviceId}
+        </foreach>
+    </update>
+
+</mapper>

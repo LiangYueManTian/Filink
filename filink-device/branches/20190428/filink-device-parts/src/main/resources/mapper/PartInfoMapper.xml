@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.parts.dao.PartInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="baseResultMap" type="com.fiberhome.filink.parts.bean.PartInfo">
+        <id column="part_id" property="partId"/>
+        <result column="part_name" property="partName"/>
+        <result column="part_type" property="partType"/>
+        <result column="part_code" property="partCode"/>
+        <result column="remark" property="remark"/>
+        <result column="trustee" property="trustee"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!--配件信息所有字段-->
+    <sql id="partInfoAllColumn">
+        a.part_id,a.part_name,a.part_type,a.part_code,a.remark,a.trustee,a.is_deleted,
+        a.create_time,a.create_user,a.update_time,a.update_user
+    </sql>
+
+    <!--根据名称查询配件-->
+    <select id="selectByName" parameterType="string" resultMap="baseResultMap">
+        SELECT <include refid="partInfoAllColumn"></include> FROM part_info a
+        WHERE part_name = #{partName}
+        and is_deleted != 1
+    </select>
+
+    <!--校验设施代号-->
+    <select id="checkPartsCode" resultMap="baseResultMap" parameterType="string">
+        SELECT <include refid="partInfoAllColumn"></include> FROM part_info a
+        WHERE part_code = #{partsCode}
+        and is_deleted != 1
+    </select>
+
+    <!--插入配件-->
+    <insert id="insertParts" parameterType="com.fiberhome.filink.parts.bean.PartInfo" useGeneratedKeys="true"
+            keyProperty="ID">
+        INSERT INTO part_info
+        (
+        part_id, part_name, part_type, part_code, remark, trustee, create_user,create_time
+        )
+        VALUES
+        (
+        #{partId},#{partName},#{partType},#{partCode},#{remark},#{trustee},#{createUser},#{createTime}
+        )
+
+        <!--<selectKey resultType="string" order="BEFORE" keyProperty="partId">
+            select replace(uuid(),'-','') from dual
+        </selectKey>-->
+    </insert>
+
+    <insert id="insertUnit" parameterType="list">
+        INSERT INTO part_dept_info
+        (
+        part_id, dept_id
+        )
+        VALUES
+        <foreach collection="units" item="unit" separator="," index="index">
+            (#{partId}, #{unit})
+        </foreach>
+    </insert>
+
+    <delete id="deletePartDeptByPartId" parameterType="string">
+        DELETE FROM part_dept_info WHERE part_id = #{partId}
+    </delete>
+
+    <update id="deletePartByIds" parameterType="list">
+        UPDATE part_info SET
+        is_deleted = 1
+        WHERE part_id IN
+        <foreach collection="array" item="item" separator="," index="index" open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="selectPartsById" parameterType="string" resultMap="baseResultMap">
+        SELECT <include refid="partInfoAllColumn"></include> FROM part_info a
+        WHERE part_id = #{partId}
+        and is_deleted != 1
+    </select>
+
+    <select id="getDeptId" resultType="java.lang.String" parameterType="string">
+        SELECT dept_id FROM part_dept_info
+        WHERE part_id = #{partsId}
+    </select>
+
+    <select id="selectPartsByIds" parameterType="list" resultMap="baseResultMap">
+        SELECT <include refid="partInfoAllColumn"></include> FROM part_info a
+        WHERE part_id IN
+        <foreach collection="array" item="item" index="index" separator="," close=")" open="(">
+            #{item}
+        </foreach>
+        and is_deleted != 1
+    </select>
+
+    <select id="selectPartsPage" resultMap="baseResultMap">
+        select <include refid="partInfoAllColumn"></include>
+        from part_info a
+        <where>
+            <if test="filterList!=null and filterList.size()>0 ">
+                <foreach collection="filterList" item="filter"  separator="and" >
+                    <choose>
+                        <when test="filter.filterField == 'partId' and filter.operator == 'in' " >
+                            a.part_id in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="(" close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'partName' and filter.operator == 'like' " >
+                            a.part_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'partType' and filter.operator == 'in' " >
+                            a.part_type in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="(" close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'departmentIdList' and filter.operator == 'in' " >
+                            <!--部门ID集合可能为空-->
+                            <if test="filter.filterValue != null and filter.filterValue.size()>0 " >
+                                exists (select 1 from part_dept_info b where a.part_id = b.part_id and b.dept_id in
+                                <foreach collection="filter.filterValue" item="item" separator="," index="index" open="(" close=")">
+                                    #{item}
+                                </foreach>
+                                )
+                            </if>
+                            <if test="filter.filterValue == null or filter.filterValue.size() ==0" >
+                                1=0
+                            </if>
+                        </when>
+                        <when test="filter.filterField == 'trusteeIdList' and filter.operator == 'in' " >
+                            <!--委托人ID集合可能为空-->
+                            <if test="filter.filterValue != null and filter.filterValue.size()>0 " >
+                                a.trustee in
+                                <foreach collection="filter.filterValue" item="item" separator="," index="index" open="(" close=")">
+                                    #{item}
+                                </foreach>
+                            </if>
+                            <if test="filter.filterValue == null or filter.filterValue.size()==0">
+                                1=0
+                            </if>
+                        </when>
+                        <when test="filter.filterField == 'ctime' and filter.operator == 'gte' " >
+                            UNIX_TIMESTAMP(a.create_time) <![CDATA[ >= ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'ctime' and filter.operator == 'lte' " >
+                            UNIX_TIMESTAMP(a.create_time) <![CDATA[ <= ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'utime' and filter.operator == 'gte' " >
+                            UNIX_TIMESTAMP(a.update_time) <![CDATA[ >= ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'utime' and filter.operator == 'lte' " >
+                            UNIX_TIMESTAMP(a.update_time) <![CDATA[ <= ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'remark' and filter.operator == 'like' " >
+                            a.remark like '%${filter.filterValue}%'
+                        </when>
+                    </choose>
+                </foreach>
+            </if>
+            AND a.is_deleted != '1'
+        </where>
+        <if test="sort != null and sort.sortField != null and sort.sortField != '' ">
+            <choose>
+                <when test="sort.sortField == 'partName'">
+                    ORDER BY a.part_name
+                </when>
+                <when test="sort.sortField == 'partType'">
+                    ORDER BY a.part_type
+                </when>
+                <when test="sort.sortField == 'createTime' or sort.sortField == 'ctime'">
+                    ORDER BY a.create_time
+                </when>
+                <when test="sort.sortField == 'updateTime' or sort.sortField == 'utime'">
+                    ORDER BY a.update_time
+                </when>
+                <when test="sort.sortField == 'remark'">
+                    ORDER BY a.remark
+                </when>
+            </choose>
+            <choose>
+                <when test="sort.sortRule == 'desc'">
+                    DESC
+                </when>
+                <otherwise>
+                    ASC
+                </otherwise>
+            </choose>
+        </if>
+        LIMIT #{page.beginNum}, #{page.pageSize}
+    </select>
+
+    <select id="selectPartsCount" resultType="java.lang.Integer">
+        select count(*) from part_info a
+        <where>
+            <if test="filterList!=null and filterList.size()>0 ">
+                <foreach collection="filterList" item="filter"  separator="and" >
+                    <choose>
+                        <when test="filter.filterField == 'partId' and filter.operator == 'in' " >
+                            a.part_id in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="(" close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'partName' and filter.operator == 'like' " >
+                            a.part_name like '%${filter.filterValue}%'
+                        </when>
+                        <when test="filter.filterField == 'partType' and filter.operator == 'in' " >
+                            a.part_type in
+                            <foreach collection="filter.filterValue" item="item" separator="," index="index" open="(" close=")">
+                                #{item}
+                            </foreach>
+                        </when>
+                        <when test="filter.filterField == 'departmentIdList' and filter.operator == 'in' " >
+                            <!--部门ID集合可能为空-->
+                            <if test="filter.filterValue != null and filter.filterValue.size()>0 " >
+                                exists (select 1 from part_dept_info b where a.part_id = b.part_id and b.dept_id in
+                                <foreach collection="filter.filterValue" item="item" separator="," index="index" open="(" close=")">
+                                    #{item}
+                                </foreach>
+                                )
+                            </if>
+                            <if test="filter.filterValue == null or filter.filterValue.size() ==0" >
+                                1=0
+                            </if>
+                        </when>
+                        <when test="filter.filterField == 'trusteeIdList' and filter.operator == 'in' " >
+                            <!--委托人ID集合可能为空-->
+                            <if test="filter.filterValue != null and filter.filterValue.size()>0 " >
+                                a.trustee in
+                                <foreach collection="filter.filterValue" item="item" separator="," index="index" open="(" close=")">
+                                    #{item}
+                                </foreach>
+                            </if>
+                            <if test="filter.filterValue == null or filter.filterValue.size()==0">
+                                1=0
+                            </if>
+                        </when>
+                        <when test="filter.filterField == 'ctime' and filter.operator == 'gte' " >
+                            UNIX_TIMESTAMP(a.create_time) <![CDATA[ >= ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'ctime' and filter.operator == 'lte' " >
+                            UNIX_TIMESTAMP(a.create_time) <![CDATA[ <= ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'utime' and filter.operator == 'gte' " >
+                            UNIX_TIMESTAMP(a.update_time) <![CDATA[ >= ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'utime' and filter.operator == 'lte' " >
+                            UNIX_TIMESTAMP(a.update_time) <![CDATA[ <= ]]> #{filter.filterValue}/1000
+                        </when>
+                        <when test="filter.filterField == 'remark' and filter.operator == 'like' " >
+                            a.remark like '%${filter.filterValue}%'
+                        </when>
+                    </choose>
+                </foreach>
+            </if>
+            AND a.is_deleted != '1'
+        </where>
+    </select>
+</mapper>

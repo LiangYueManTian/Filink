@@ -1,0 +1,58 @@
+.facility-list-container {
+  background-color: white;
+  $text-margin: 0 5px;
+  display: flex;
+  position: relative;
+  .facility-list-container-left {
+    width: 100%;
+    .facility-list-title {
+      width: 100%;
+      display: flex;
+      padding: 5px;
+      height: 30px;
+      align-items: center;
+      .icon-facility-list {
+        width: 20px;
+        height: 20px;
+        background: url("../../../../assets/img/index/icon-facility-list.png") no-repeat center 100%;
+      }
+      .text {
+        margin: $text-margin;
+        color: #ff6027;
+        flex: 1;
+      }
+    }
+    ul {
+      li {
+        padding-left: 30px;
+        height: 30px;
+        line-height: 30px;
+        &:hover {
+          background-color: #ebf9f9;
+        }
+      }
+    }
+  }
+  .facility-table {
+    position: absolute;
+    left: 190px;
+    top: 32px;
+    width: 480px;
+    height: 287px;
+    border: 1px solid #d9d9d9;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+  }
+}
+
+.c-selected {
+  background-color: #EBFAF8;
+}
+
+.checkbox-facility-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -3px;
+  margin-right: 5px;
+}

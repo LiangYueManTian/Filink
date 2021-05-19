@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/filink-device.iml" filepath="$PROJECT_DIR$/filink-device.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-device-api/filink-device-api.iml" filepath="$PROJECT_DIR$/filink-device-api/filink-device-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-device-fdevice/filink-device-fdevice.iml" filepath="$PROJECT_DIR$/filink-device-fdevice/filink-device-fdevice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-device-parts/filink-device-parts.iml" filepath="$PROJECT_DIR$/filink-device-parts/filink-device-parts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-device-picture/filink-device-picture.iml" filepath="$PROJECT_DIR$/filink-device-picture/filink-device-picture.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-device-server/filink-device-server.iml" filepath="$PROJECT_DIR$/filink-device-server/filink-device-server.iml" />
+    </modules>
+  </component>
+</project>

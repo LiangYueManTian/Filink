@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.demoserver.dao.UserDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.demoserver.bean.User">
+        <id column="id" property="id" />
+        <result column="user_code" property="userCode" />
+        <result column="user_nickname" property="userNickname" />
+        <result column="user_name" property="userName" />
+        <result column="user_status" property="userStatus" />
+        <result column="dept_id" property="deptId" />
+        <result column="role_id" property="roleId" />
+        <result column="address" property="address" />
+        <result column="phone_number" property="phoneNumber" />
+        <result column="email" property="email" />
+        <result column="password" property="password" />
+        <result column="count_validity_time" property="countValidityTime" />
+        <result column="user_desc" property="userDesc" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="last_login_ip" property="lastLoginIp" />
+        <result column="login_type" property="loginType" />
+        <result column="unlocked_time" property="unlockedTime" />
+        <result column="login_sourse" property="loginSourse" />
+        <result column="max_users" property="maxUsers" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="area" property="area" />
+        <result column="login_time" property="loginTime" />
+        <result column="loginIp" property="loginIp" />
+        <result column="pushId" property="pushId" />
+        <result column="country_code" property="countryCode" />
+    </resultMap>
+
+</mapper>

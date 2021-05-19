@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowserver.dao.ActProcessDao">
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.workflowserver.bean.ActProcess">
+        <id property="procId" column="proc_id"/>
+        <result property="procType" column="proc_type"/>
+        <result property="procName" column="proc_name"/>
+        <result property="fileName" column="file_name"/>
+        <result property="procAction" column="proc_action"/>
+        <result property="procNamespace" column="proc_namespace"/>
+        <result property="isDeploy" column="is_deploy"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+          proc_id, proc_type, proc_name, file_name, proc_action, proc_namespace, is_deploy
+    </sql>
+
+    <!--查询流程模板配置情况-->
+    <select id="getActProcess" parameterType="com.fiberhome.filink.workflowserver.bean.ActProcess" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from act_process
+        where 1=1
+        <if test="procId != null">
+            and proc_id = #{procId, jdbcType=VARCHAR}
+        </if>
+        <if test="procType != null">
+            and proc_type = #{procType, jdbcType=VARCHAR}
+        </if>
+        <if test="procName != null">
+            and proc_name = #{procName, jdbcType=VARCHAR}
+        </if>
+        <if test="fileName != null">
+            and file_name = #{fileName, jdbcType=VARCHAR}
+        </if>
+        <if test="procAction != null">
+            and proc_action = #{procAction, jdbcType=VARCHAR}
+        </if>
+        <if test="procNamespace != null">
+            and proc_namespace = #{procNamespace, jdbcType=VARCHAR}
+        </if>
+        <if test="isDeploy != null">
+            and is_deploy = #{isDeploy, jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <!-- 修改流程模板状态 -->
+    <update id="updateActProcess" parameterType="com.fiberhome.filink.workflowserver.bean.ActProcess">
+        update act_process
+        <set>
+            <if test="procType != null">
+                proc_type = #{procType, jdbcType=VARCHAR},
+            </if>
+            <if test="procName != null">
+                proc_name = #{procName, jdbcType=VARCHAR},
+            </if>
+            <if test="fileName != null">
+                file_name = #{fileName, jdbcType=VARCHAR},
+            </if>
+            <if test="procAction != null">
+                proc_action = #{procAction, jdbcType=VARCHAR},
+            </if>
+            <if test="procNamespace != null">
+                proc_namespace = #{procNamespace, jdbcType=VARCHAR},
+            </if>
+            <if test="isDeploy != null">
+                is_deploy = #{isDeploy, jdbcType=VARCHAR},
+            </if>
+        </set>
+        where 1=1
+        and proc_id = #{procId, jdbcType=VARCHAR}
+    </update>
+
+</mapper>
+

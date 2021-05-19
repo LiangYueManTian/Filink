@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.userserver.dao.RoleDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.userserver.bean.Role">
+        <id column="id" property="id" />
+        <result column="role_name" property="roleName" />
+        <result column="role_desc" property="roleDesc" />
+        <result column="remark" property="remark" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="default_role" property="defaultRole"/>
+    </resultMap>
+
+    <update id="deleteRoles">
+        UPDATE role SET is_deleted = 1 WHERE id IN
+        <foreach collection="roleIdArray" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <sql id="roleInfo" >
+        role.id,role.role_name,role.role_desc,role.remark,role.create_user,
+        role.create_time,role.update_user,role.update_time,role.is_deleted,role.default_role
+    </sql>
+
+    <select id="queryAllRoles" resultMap="BaseResultMap">
+        SELECT id,role_name FROM role WHERE is_deleted = 0
+    </select>
+
+    <select id="queryRoleByName" resultMap="BaseResultMap">
+        SELECT
+          <include refid="roleInfo"/>
+        FROM
+          role as role
+        WHERE
+          role.role_name like "%${role_name}%"
+    </select>
+
+    <select id="queryRoleByField" parameterType="com.fiberhome.filink.userserver.bean.RoleParamter" resultMap="BaseResultMap">
+        SELECT
+        <include refid="roleInfo"/>
+        FROM
+        role as role
+        <where>
+            role.is_deleted = 0
+            <if test="roleName != null">
+                AND role.role_name LIKE "%${roleName}%"
+            </if>
+            <if test="roleDesc != null">
+                AND role.role_desc LIKE "%${roleDesc}%"
+            </if>
+            <if test="remark != null">
+                AND role.remark LIKE "%${remark}%"
+            </if>
+        </where>
+        <if test="sortProperties != null and sort != null">
+            ORDER BY role.${sortProperties} ${sort}
+        </if>
+        <if test="sort == null">
+            ORDER BY role.create_time DESC
+        </if>
+        LIMIT #{startNum},#{pageSize}
+    </select>
+
+    <select id="queryRoleNumber" parameterType="com.fiberhome.filink.userserver.bean.RoleParamter" resultType="Long">
+        SELECT
+        count(*)
+        FROM
+        role as role
+        <where>
+            role.is_deleted = 0
+            <if test="roleName != null">
+                AND role.role_name LIKE "%${roleName}%"
+            </if>
+            <if test="roleDesc != null">
+                AND role.role_desc LIKE "%${roleDesc}%"
+            </if>
+            <if test="remark != null">
+                AND role.remark LIKE "%${remark}%"
+            </if>
+        </where>
+        <if test="sortProperties != null and sort != null">
+            ORDER BY role.${sortProperties} ${sort}
+        </if>
+        <if test="sort == null">
+            ORDER BY role.create_time DESC
+        </if>
+    </select>
+
+    <select id="verityRoleByName" resultMap="BaseResultMap">
+        SELECT
+          <include refid="roleInfo"/>
+        FROM
+          role as role
+        WHERE
+          role.role_name = #{roleName} AND  role.is_deleted = 0
+    </select>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.userserver.dao.RoleDeviceTypeDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.userserver.bean.RoleDeviceType">
+        <id column="id" property="id" />
+        <result column="roleId" property="roleId" />
+        <result column="deviceTypeId" property="deviceTypeId" />
+        <result column="createTime" property="createTime" />
+        <result column="parentId" property="parentId" />
+
+        <collection property="childDeviceTypeList" ofType="com.fiberhome.filink.userserver.bean.RoleDeviceType"
+                    javaType="java.util.ArrayList" select="selectFullDeviceType"
+                    column="id">
+        </collection>
+    </resultMap>
+
+    <sql id="deviceTypeInfo">
+        deviceType.id,deviceType.roleId,deviceType.deviceTypeId,deviceType.createTime,deviceType.parentId
+    </sql>
+
+    <select id="selectFullDeviceType" parameterType="string"  resultMap="BaseResultMap">
+        SELECT
+        <include refid="deviceTypeInfo"/>
+        FROM
+        role_devicetype AS devicetype
+        LEFT JOIN role_devicetype AS devicetype2 ON devicetype2.id = devicetype.parentId
+        WHERE devicetype2.id = #{id}
+    </select>
+
+
+    <insert id="batchAddRoleDeviceType">
+        INSERT INTO `role_devicetype` (
+        `id`,`roleId`,`deviceTypeId`,`createTime`,`parentId`
+        )
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.id},#{item.roleId},#{item.deviceTypeId},#{item.createTime},#{item.parentId})
+        </foreach>
+    </insert>
+
+    <delete id="batchDeleteByRoleId">
+        DELETE
+        FROM
+          role_devicetype
+        WHERE
+          roleId = #{roleId}
+    </delete>
+</mapper>

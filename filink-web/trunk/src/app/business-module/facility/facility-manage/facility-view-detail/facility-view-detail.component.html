@@ -1,0 +1,45 @@
+<div class="facility-view-title" style="">{{language.facilityDetail}}
+</div>
+<div class="detail-height">
+  <div class="view-item" *ngIf="detailCodeShow.infrastructureDetails">
+    <!--基础设施详情-->
+    <app-infrastructure-details [deviceId]="deviceId"></app-infrastructure-details>
+  </div>
+  <div class="view-item" *ngIf="detailCodeShow.basicOperation">
+    <!--基本设施操作-->
+    <app-basic-operation [deviceId]="deviceId"
+                         [deviceType]="deviceType"
+                         [deviceName]="deviceName"
+                         [hasControl]="detailCodeShow.hasControl"
+                         [intelligentLabelDetail]="detailCodeShow.intelligentLabelDetail"
+                         [serialNum]="serialNum"></app-basic-operation>
+  </div>
+  <div class="view-item" *ngIf="detailCodeShow.hasGuard">
+    <!--智能门禁详情-->
+    <app-intelligent-entrance-guard [deviceId]="deviceId" [serialNum]="serialNum"
+                                    [deviceType]="deviceType"></app-intelligent-entrance-guard>
+  </div>
+  <div class="view-item" *ngIf="detailCodeShow.intelligentLabelDetail">
+    <!--智能标签详情-->
+    <app-intelligent-label-detail [deviceId]="deviceId" [deviceType]="deviceType"></app-intelligent-label-detail>
+  </div>
+  <div class="view-item" *ngIf="detailCodeShow.facilityAlarm">
+    <!--设施告警-->
+    <app-facility-alarm [deviceId]="deviceId"></app-facility-alarm>
+  </div>
+  <div class="view-item" *ngIf="detailCodeShow.facilityWorkOrder">
+    <!--设施工单-->
+    <app-facility-work-order  [hasControl]="detailCodeShow.hasControl"  [deviceId]="deviceId"></app-facility-work-order>
+  </div>
+  <div class="view-item" *ngIf="detailCodeShow.facilityViewDetailLog">
+    <!--设施的日志-->
+    <app-facility-view-detail-log   [hasControl]="detailCodeShow.hasControl"  [deviceId]="deviceId"></app-facility-view-detail-log>
+  </div>
+  <div class="view-item" style="margin-bottom: 15px" *ngIf="detailCodeShow.facilityImgView">
+    <!--设施图片-->
+    <app-facility-img-view [deviceId]="deviceId"></app-facility-img-view>
+  </div>
+
+
+  <!--<div class="view-item" style="padding: 20px" *ngIf="detailCode.length===0">无数据！</div>-->
+</div>

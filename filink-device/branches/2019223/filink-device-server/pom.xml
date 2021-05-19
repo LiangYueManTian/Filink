@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>filink-device-server</artifactId>
+    <version>0.0.1-RELEASE</version>
+    <name>filink-device-server</name>
+    <description>设施服务</description>
+    <packaging>jar</packaging>
+
+
+    <parent>
+        <groupId>com.fiberhome.filink</groupId>
+        <artifactId>filink-device</artifactId>
+        <version>0.0.1-RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fiberhome.filink</groupId>
+            <artifactId>filink-device-fdevice</artifactId>
+            <version>0.0.1-RELEASE</version>
+        </dependency>
+
+        <!--监控中心-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>1.5.7</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.fiberhome.filink</groupId>-->
+            <!--<artifactId>filink-device-parts</artifactId>-->
+            <!--<version>0.0.1-RELEASE</version>-->
+        <!--</dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

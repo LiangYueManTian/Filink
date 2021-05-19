@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.alarmcurrentserver.dao.AlarmContinousDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.fiberhome.filink.alarmcurrentserver.bean.AlarmContinous">
+        <result column="id" property="id"/>
+        <result column="alarm_continous_time" property="alarmContinousTime"/>
+        <result column="alarm_cmpare" property="alarmCmpare"/>
+    </resultMap>
+
+    <insert id="addAlarmContinous">
+        INSERT INTO alarm_continous (id,alarm_continous_time,alarm_cmpare) VALUE
+        (
+        #{id},
+        #{alarmContinousTime},
+        #{alarmCmpare}
+        )
+    </insert>
+
+    <sql id="BaseResultSql">
+        id,alarm_continous_time,alarm_cmpare
+    </sql>
+
+
+    <delete id="batchDeleteAlarmContinous">
+        DELETE FROM alarm_continous WHERE id IN
+        <foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="batchUpdateAlarmContinous">
+         UPDATE alarm_continous SET alarm_continous_time=#{alarmContinousTime},alarm_cmpare=#{alarmCmpare}
+            WHERE id=#{id}
+    </update>
+
+
+    <select id="queryAlarmContinousById" parameterType="com.fiberhome.filink.alarmcurrentserver.bean.AlarmContinous"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseResultSql"/>
+        FROM alarm_continous WHERE id=#{id}
+    </select>
+
+</mapper>

@@ -1,0 +1,2255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fiberhome.filink.workflowbusinessserver.dao.procbase.ProcBaseDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="ProcBaseMap" type="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcBase">
+        <result column="proc_id" property="procId" />
+        <result column="proc_type" property="procType" />
+        <result column="title" property="title" />
+        <result column="remark" property="remark" />
+        <result column="assign" property="assign" />
+        <result column="dept_type" property="deptType" />
+        <result column="status" property="status" />
+        <result column="single_back_reason" property="singleBackReason" />
+        <result column="single_back_user_defined_reason" property="singleBackUserDefinedReason" />
+        <result column="processing_scheme" property="processingScheme" />
+        <result column="processing_user_defined_scheme" property="processingUserDefinedScheme" />
+        <result column="expected_completed_time" property="expectedCompletedTime" />
+        <result column="reality_completed_time" property="realityCompletedTime" />
+        <result column="error_reason" property="errorReason" />
+        <result column="error_user_defined_reason" property="errorUserDefinedReason" />
+        <result column="turn_reason" property="turnReason" />
+        <result column="proc_resource_type" property="procResourceType" />
+        <result column="is_check_single_back" property="isCheckSingleBack" />
+        <result column="is_told" property="isTold" />
+        <result column="ref_alarm" property="refAlarm" />
+        <result column="ref_alarm_name" property="refAlarmName" />
+        <result column="ref_alarm_code" property="refAlarmCode" />
+        <result column="is_create_alarm" property="isCreateAlarm" />
+        <result column="regenerate_id" property="regenerateId" />
+        <result column="device_id" property="deviceId" />
+        <result column="device_name" property="deviceName" />
+        <result column="device_area_id" property="deviceAreaId" />
+        <result column="device_area_name" property="deviceAreaName" />
+        <result column="device_type" property="deviceType" />
+        <result column="accountability_dept" property="accountabilityDept" />
+        <result column="accountability_dept_name" property="accountabilityDeptName" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <resultMap extends="ProcBaseMap" id="ProcBaseRespMap" type="com.fiberhome.filink.workflowbusinessserver.resp.ProcBaseResp">
+        <result column="inspection_start_time" property="inspectionStartDate"/>
+        <result column="inspection_end_time" property="inspectionEndDate"/>
+        <result column="inspection_completed_count" property="inspectionCompletedCount"/>
+        <result column="inspection_device_count" property="inspectionDeviceCount"/>
+        <result column="last_days" property="lastDays"/>
+    </resultMap>
+
+    <resultMap extends="ProcBaseMap" id="ProcBaseInfoBeanMap" type="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcBaseInfoBean">
+
+    </resultMap>
+
+    <!-- 工单关联设施查询映射结果 -->
+    <resultMap id="ProcRelatedDeviceMap" type="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcRelatedDevice">
+        <result column="proc_related_device_id" property="procRelatedDeviceId" />
+        <result column="proc_id" property="procId" />
+        <result column="device_id" property="deviceId" />
+        <result column="device_name" property="deviceName" />
+        <result column="device_type" property="deviceType" />
+        <result column="device_area_id" property="deviceAreaId" />
+        <result column="device_area_name" property="deviceAreaName" />
+        <result column="select_device_type" property="selectDeviceType" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 工单关联部门查询映射结果 -->
+    <resultMap id="ProcRelatedDepartmentMap" type="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcRelatedDepartment">
+        <result column="proc_related_dept_id" property="procRelatedDeptId" />
+        <result column="proc_id" property="procId" />
+        <result column="accountability_dept" property="accountabilityDept" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+
+    <!-- app下载查询映射结果 -->
+    <resultMap extends="ProcBaseMap" id="ProcBaseRespForAppMap" type="com.fiberhome.filink.workflowbusinessserver.resp.app.procbase.ProcBaseRespForApp">
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      SELECT
+        pb.proc_id,
+        pb.proc_type,
+        pb.title,
+        pb.remark,
+        pb.assign,
+        pb.dept_type,
+        pb.status,
+        pb.single_back_reason,
+        pb.single_back_user_defined_reason,
+        pb.processing_scheme,
+        pb.processing_user_defined_scheme,
+        pb.expected_completed_time,
+        pb.reality_completed_time,
+        pb.error_reason,
+        pb.error_user_defined_reason,
+        pb.turn_reason,
+        pb.proc_resource_type,
+        pb.is_check_single_back,
+        pb.is_told,
+        pb.ref_alarm,
+        pb.ref_alarm_name,
+        pb.is_create_alarm,
+        pb.regenerate_id,
+        pb.is_deleted,
+        pb.create_user,
+        pb.create_time,
+        pb.update_user,
+        pb.update_time
+    </sql>
+
+    <!--级联查询-->
+    <select id="queryProcRelateDeviceByProcIds" parameterType="java.util.Map" resultMap="ProcRelatedDeviceMap">
+        SELECT
+        t.proc_id,
+        t.device_id,
+        t.device_name,
+        t.device_type,
+        t.device_area_id,
+        t.device_area_name
+        FROM
+        proc_related_device t
+        <where>
+            1 = 1
+            <!--工单id-->
+            <if test="list != null">
+                AND t.proc_id  in
+                <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            AND t.is_deleted = '0'
+        </where>
+    </select>
+
+    <!--根据工单编号查询部门信息-->
+    <select id="queryProcRelateDeptByProcIds" parameterType="java.util.Map" resultMap="ProcRelatedDepartmentMap">
+        SELECT
+        t.proc_id,t.accountability_dept
+        FROM
+        proc_related_department t
+        <where>
+            1 = 1
+            <if test="list != null and list.size() > 0">
+                <if test="list.size() == 1">
+                    AND t.proc_id =
+                    <foreach item="item"  collection="list">
+                        #{item}
+                    </foreach>
+                </if>
+                <if test="list.size() > 1">
+                    AND t.proc_id in
+                    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                        <if test="(index % 999) == 998">NULL ) OR t.proc_id IN (</if>
+                        #{item}
+                    </foreach>
+                </if>
+            </if>
+            AND t.is_deleted = '0'
+        </where>
+    </select>
+
+    <!-- 巡检任务关联工单 -->
+    <sql id="queryListRelatedProcInspectionTaskId">
+        FROM
+        proc_base pb
+            left join proc_inspection pi on pi.proc_id = pb.proc_id
+        <!--当有查询设施条件或有排序条件时，才需要连表-->
+        <if test="(bizCondition.deviceIds != null and bizCondition.deviceIds.size() > 0)
+        or (bizCondition.deviceType != null and bizCondition.deviceType != '')
+        or (bizCondition.deviceTypes != null and bizCondition.deviceTypes.size() > 0)
+        or (bizCondition.deviceAreaIds != null and bizCondition.deviceAreaIds.size() > 0)
+        or (sortCondition.sortField != null and sortCondition.sortField != '')
+        ">
+            LEFT JOIN proc_related_device prd ON pb.proc_id = prd.proc_id
+        </if>
+
+        <!--当有查询部门条件或有排序条件时，才需要连表-->
+        <if test="bizCondition.accountabilityDeptList != null and bizCondition.accountabilityDeptList.size() > 0
+         or (sortCondition.sortField != null and sortCondition.sortField != '')
+         ">
+            LEFT JOIN proc_related_department prdept ON pb.proc_id = prdept.proc_id
+        </if>
+        <where>
+            pb.is_deleted = '0'
+            <if test="bizCondition.inspectionTaskId != null and bizCondition.inspectionTaskId != ''">
+                and pi.inspection_task_id = #{bizCondition.inspectionTaskId}
+            </if>
+            <!-- 工单列表公共where条件 -->
+            <include refid="whereBySqlFroProcBase"></include>
+
+        </where>
+    </sql>
+
+    <!--工单未完工列表查询共用sql-->
+    <sql id="queryProcListByUnfinished">
+        FROM
+        proc_base pb
+        <if test="(bizCondition.procType != null and bizCondition.procType == 'inspection')">
+            left join proc_inspection pi on pi.proc_id = pb.proc_id
+        </if>
+        <!--当有查询设施条件或有排序条件时，才需要连表-->
+        <if test="(bizCondition.deviceIds != null and bizCondition.deviceIds.size() > 0)
+        or (bizCondition.deviceType != null and bizCondition.deviceType != '')
+        or (bizCondition.deviceName != null and bizCondition.deviceName != '')
+        or (bizCondition.deviceTypes != null and bizCondition.deviceTypes.size() > 0)
+        or (bizCondition.deviceAreaIds != null and bizCondition.deviceAreaIds.size() > 0)
+        or (bizCondition.deviceAreaName != null and bizCondition.deviceAreaName != '')
+        or (bizCondition.permissionDeviceTypes != null and bizCondition.permissionDeviceTypes.size() > 0)
+        or (bizCondition.permissionAreaIds != null and bizCondition.permissionAreaIds.size() > 0)
+        or (sortCondition.sortField != null and sortCondition.sortField != '')
+        ">
+            LEFT JOIN proc_related_device prd ON pb.proc_id = prd.proc_id
+        </if>
+
+        <!--当有查询部门条件或有排序条件时，才需要连表-->
+        <if test="bizCondition.accountabilityDeptList != null and bizCondition.accountabilityDeptList.size() > 0
+         or (bizCondition.permissionDeptIds != null and bizCondition.permissionDeptIds.size() > 0)
+         or (sortCondition.sortField != null and sortCondition.sortField != '')
+         ">
+            LEFT JOIN proc_related_department prdept ON pb.proc_id = prdept.proc_id
+        </if>
+        <where>
+            pb.is_deleted = '0'
+            <!--未完工列表状态-->
+            AND ((pb.status = 'assigned')
+            OR (pb.status IN('processing','pending','singleBack','turnProcessing') AND pb.is_check_single_back = '0'
+              <if test="bizCondition.permissionDeptIds != null and bizCondition.permissionDeptIds.size() > 0">
+                  <if test="bizCondition.permissionDeptIds.size() == 1">
+                      AND prdept.accountability_dept =
+                      <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId">
+                          #{permissionDeptId}
+                      </foreach>
+                  </if>
+                  <if test="bizCondition.permissionDeptIds.size() > 1">
+                      AND prdept.accountability_dept = IN
+                      <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId" open="(" close=")" separator=",">
+                          #{permissionDeptId}
+                      </foreach>
+                  </if>
+              </if>
+            ))
+
+            <!-- 工单列表公共where条件 -->
+            <include refid="whereBySqlFroProcBase"></include>
+
+        </where>
+    </sql>
+
+
+    <!--工单历史列表查询共用sql-->
+    <sql id="queryProcListByHis">
+        FROM
+        proc_base pb
+        <!--当有查询设施条件时，才需要连表-->
+        <if test="(bizCondition.deviceIds != null and bizCondition.deviceIds.size() > 0)
+        or (bizCondition.deviceType != null and bizCondition.deviceType != '')
+        or (bizCondition.deviceTypes != null and bizCondition.deviceTypes.size() > 0)
+        or (bizCondition.deviceName != null and bizCondition.deviceName != '')
+        or (bizCondition.deviceAreaName != null and bizCondition.deviceAreaName != '')
+        or (bizCondition.deviceAreaIds != null and bizCondition.deviceAreaIds.size() > 0)
+        or (bizCondition.permissionDeviceTypes != null and bizCondition.permissionDeviceTypes.size() > 0)
+        or (bizCondition.permissionAreaIds != null and bizCondition.permissionAreaIds.size() > 0)
+        or (sortCondition.sortField != null and sortCondition.sortField != '')
+        ">
+            LEFT JOIN proc_related_device prd ON pb.proc_id = prd.proc_id
+        </if>
+
+        <!--当有查询部门条件时，才需要连表-->
+        <if test="bizCondition.accountabilityDeptList != null and bizCondition.accountabilityDeptList.size() > 0
+        or (bizCondition.permissionDeptIds != null and bizCondition.permissionDeptIds.size() > 0)
+        or (sortCondition.sortField != null and sortCondition.sortField != '')
+        ">
+            LEFT JOIN proc_related_department prdept ON pb.proc_id = prdept.proc_id
+        </if>
+        <if test="bizCondition.procType != null and bizCondition.procType == 'inspection'
+        or (sortCondition.sortField != null and sortCondition.sortField != '')
+        ">
+            left join proc_inspection pi on pi.proc_id = pb.proc_id
+        </if>
+
+        <where>
+            pb.is_deleted = '0'
+            <!--历史列表状态-->
+            AND (pb.status = 'completed' OR (pb.status = 'singleBack' and pb.is_check_single_back = '1'))
+
+            <!--权限部门ids筛选-->
+            <if test="bizCondition.permissionDeptIds != null and bizCondition.permissionDeptIds.size() > 0">
+                <if test="bizCondition.permissionDeptIds.size() == 1">
+                    AND prdept.accountability_dept =
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+                <if test="bizCondition.permissionDeptIds.size() > 1">
+                    AND prdept.accountability_dept = IN
+                    <foreach collection="bizCondition.permissionDeptIds" item="permissionDeptId" open="(" close=")" separator=",">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 工单列表公共where条件 -->
+            <include refid="whereBySqlFroProcBase"></include>
+        </where>
+    </sql>
+
+    <!-- 工单列表公共where条件 -->
+    <sql id="whereBySqlFroProcBase">
+        <!--工单ids-->
+        <if test="bizCondition.procIds != null and bizCondition.procIds.size() > 0">
+            <if test="bizCondition.procIds.size() == 1">
+                AND pb.proc_id =
+                <foreach collection="bizCondition.procIds" item="procId">
+                    #{procId}
+                </foreach>
+            </if>
+            <if test="bizCondition.procIds.size() > 1">
+                AND pb.proc_id IN
+                <foreach collection="bizCondition.procIds" item="procId" open="(" close=")" separator=",">
+                    #{procId}
+                </foreach>
+            </if>
+        </if>
+        <!--工单名称-->
+        <if test="bizCondition.title != null and bizCondition.title != ''">
+            AND pb.title LIKE CONCAT('%',#{bizCondition.title},'%')
+        </if>
+        <!--工单状态-->
+        <if test="bizCondition.status != null and bizCondition.status != ''">
+            AND pb.status = #{bizCondition.status}
+        </if>
+        <!--工单状态-->
+        <if test="bizCondition.statusList != null and bizCondition.statusList.size() > 0">
+            <if test="bizCondition.statusList.size() == 1">
+                AND pb.status =
+                <foreach collection="bizCondition.statusList" item="status">
+                    #{status}
+                </foreach>
+            </if>
+            <if test="bizCondition.statusList.size() > 1">
+                AND pb.status IN
+                <foreach collection="bizCondition.statusList" item="status" open="(" close=")" separator=",">
+                    #{status}
+                </foreach>
+            </if>
+        </if>
+
+        <!--工单类型-->
+        <if test="bizCondition.procType != null and bizCondition.procType != ''">
+            AND pb.proc_type = #{bizCondition.procType}
+        </if>
+        <!--关联告警-->
+        <if test="bizCondition.refAlarm != null and bizCondition.refAlarm != ''">
+            AND pb.ref_alarm = #{bizCondition.refAlarm}
+        </if>
+
+        <!--关联告警codes-->
+        <if test="bizCondition.refAlarmCodes != null and bizCondition.refAlarmCodes.size() > 0">
+            <if test="bizCondition.refAlarmCodes.size() == 1">
+                AND pb.ref_alarm_code =
+                <foreach collection="bizCondition.refAlarmCodes" item="refAlarmCode">
+                    #{refAlarmCode}
+                </foreach>
+            </if>
+            <if test="bizCondition.refAlarmCodes.size() > 1">
+                AND pb.ref_alarm_code IN
+                <foreach collection="bizCondition.refAlarmCodes" item="refAlarmCode" open="(" close=")" separator=",">
+                    #{refAlarmCode}
+                </foreach>
+            </if>
+        </if>
+
+        <!--退单原因-->
+        <if test="bizCondition.concatSingleBackReason != null and bizCondition.concatSingleBackReason != ''">
+            AND pb.single_back_reason = #{bizCondition.concatSingleBackReason}
+        </if>
+
+        <!--退单原因（多选）-->
+        <if test="bizCondition.concatSingleBackReasons != null and bizCondition.concatSingleBackReasons.size() > 0">
+            <if test="bizCondition.concatSingleBackReasons.size() == 1">
+                AND pb.single_back_reason =
+                <foreach collection="bizCondition.concatSingleBackReasons" item="concatSingleBackReason">
+                    #{concatSingleBackReason}
+                </foreach>
+            </if>
+            <if test="bizCondition.concatSingleBackReasons.size() > 1">
+                AND pb.single_back_reason IN
+                <foreach collection="bizCondition.concatSingleBackReasons" item="concatSingleBackReason" open="(" close=")" separator=",">
+                    #{concatSingleBackReason}
+                </foreach>
+            </if>
+        </if>
+
+        <!--故障原因-->
+        <if test="bizCondition.concatErrorReason != null and bizCondition.concatErrorReason != ''">
+            AND pb.error_reason = #{bizCondition.concatErrorReason})
+        </if>
+
+        <!--故障原因（多选）-->
+        <if test="bizCondition.concatErrorReasons != null and bizCondition.concatErrorReasons.size() > 0">
+            <if test="bizCondition.concatErrorReasons.size() == 1">
+                AND pb.error_reason =
+                <foreach collection="bizCondition.concatErrorReasons" item="concatErrorReason">
+                    #{concatErrorReason}
+                </foreach>
+            </if>
+            <if test="bizCondition.concatErrorReasons.size() > 1">
+                AND pb.error_reason IN
+                <foreach collection="bizCondition.concatErrorReasons" item="concatErrorReason" open="(" close=")" separator=",">
+                    #{concatErrorReason}
+                </foreach>
+            </if>
+        </if>
+
+        <!--处理方案-->
+        <if test="bizCondition.concatProcessingScheme != null and bizCondition.concatProcessingScheme != ''">
+            AND pb.processing_scheme = #{bizCondition.concatProcessingScheme})
+        </if>
+
+        <!--处理方案（多选）-->
+        <if test="bizCondition.concatProcessingSchemes != null and bizCondition.concatProcessingSchemes.size() > 0">
+            <if test="bizCondition.concatProcessingSchemes.size() == 1">
+                AND pb.processing_scheme =
+                <foreach collection="bizCondition.concatProcessingSchemes" item="concatProcessingScheme">
+                    #{concatProcessingScheme}
+                </foreach>
+            </if>
+            <if test="bizCondition.concatProcessingSchemes.size() > 1">
+                AND pb.processing_scheme IN
+                <foreach collection="bizCondition.concatProcessingSchemes" item="concatProcessingScheme" open="(" close=")" separator=",">
+                    #{concatProcessingScheme}
+                </foreach>
+            </if>
+        </if>
+
+        <!--备注-->
+        <if test="bizCondition.remark != null and bizCondition.remark != ''">
+            AND pb.remark LIKE CONCAT('%',#{bizCondition.remark},'%')
+        </if>
+        <!--设施ids-->
+        <if test="bizCondition.deviceIds != null and bizCondition.deviceIds.size() > 0">
+            <if test="bizCondition.deviceIds.size() == 1">
+                AND prd.device_id =
+                <foreach collection="bizCondition.deviceIds" item="deviceId">
+                    #{deviceId}
+                </foreach>
+            </if>
+            <if test="bizCondition.deviceIds.size() > 1">
+                AND prd.device_id IN
+                <foreach collection="bizCondition.deviceIds" item="deviceId" open="(" close=")" separator=",">
+                    #{deviceId}
+                </foreach>
+            </if>
+        </if>
+        <!--设施type-->
+        <if test="bizCondition.deviceType != null and bizCondition.deviceType != ''">
+            AND prd.device_type = #{bizCondition.deviceType}
+        </if>
+        <!--设施类型（多选）-->
+        <if test="bizCondition.deviceTypes != null and bizCondition.deviceTypes.size() > 0">
+            <if test="bizCondition.deviceTypes.size() == 1">
+                AND prd.device_type =
+                <foreach collection="bizCondition.deviceTypes" item="deviceType">
+                    #{deviceType}
+                </foreach>
+            </if>
+            <if test="bizCondition.deviceTypes.size() > 1">
+                AND prd.device_type IN
+                <foreach collection="bizCondition.deviceTypes" item="deviceType" open="(" close=")" separator=",">
+                    #{deviceType}
+                </foreach>
+            </if>
+        </if>
+
+        <!-- 责任人 -->
+        <if test="bizCondition.assigns != null and bizCondition.assigns.size() > 0">
+            <if test="bizCondition.assigns.size() == 1">
+                AND pb.assign =
+                <foreach collection="bizCondition.assigns" item="assign">
+                    #{assign}
+                </foreach>
+            </if>
+            <if test="bizCondition.assigns.size() > 1">
+                AND pb.assign IN
+                <foreach collection="bizCondition.assigns" item="assign" open="(" close=")" separator=",">
+                    #{assign}
+                </foreach>
+            </if>
+        </if>
+
+        <!--设施名称-->
+        <if test="bizCondition.deviceName != null and bizCondition.deviceName != ''">
+            AND prd.device_name LIKE CONCAT('%',#{bizCondition.deviceName},'%')
+        </if>
+
+        <!--巡检工单数量-->
+        <if test="bizCondition.inspectionDeviceCount != null
+        and bizCondition.inspectionDeviceCountOperateValue != null and bizCondition.inspectionDeviceCountOperateValue != ''">
+            AND pi.inspection_device_count <![CDATA[${bizCondition.inspectionDeviceCountOperateValue}]]> #{bizCondition.inspectionDeviceCount}
+        </if>
+        <!--设施区域ids-->
+        <if test="bizCondition.deviceAreaIds != null and bizCondition.deviceAreaIds.size() > 0">
+            <if test="bizCondition.deviceAreaIds.size() == 1">
+                AND prd.device_area_id =
+                <foreach collection="bizCondition.deviceAreaIds" item="deviceAreaId">
+                    #{deviceAreaId}
+                </foreach>
+            </if>
+            <if test="bizCondition.deviceAreaIds.size() > 1">
+                AND prd.device_area_id IN
+                <foreach collection="bizCondition.deviceAreaIds" item="deviceAreaId" open="(" close=")" separator=",">
+                    #{deviceAreaId}
+                </foreach>
+            </if>
+        </if>
+
+        <!--设施区域名称-->
+        <if test="bizCondition.deviceAreaName != null and bizCondition.deviceAreaName != ''">
+            AND prd.device_area_name LIKE CONCAT('%',#{bizCondition.deviceAreaName},'%')
+        </if>
+
+        <!--部门ids-->
+        <if test="bizCondition.accountabilityDeptList != null and bizCondition.accountabilityDeptList.size() > 0">
+            <if test="bizCondition.accountabilityDeptList.size() == 1">
+                AND prdept.accountability_dept =
+                <foreach collection="bizCondition.accountabilityDeptList" item="accountabilityDept">
+                    #{accountabilityDept}
+                </foreach>
+            </if>
+            <if test="bizCondition.accountabilityDeptList.size() > 1">
+                AND prdept.accountability_dept IN
+                <foreach collection="bizCondition.accountabilityDeptList" item="accountabilityDept" open="(" close=")" separator=",">
+                    #{accountabilityDept}
+                </foreach>
+            </if>
+        </if>
+
+        <!--转派原因-->
+        <if test="bizCondition.turnReason != null and bizCondition.turnReason != ''">
+            AND pb.turn_reason LIKE CONCAT('%',#{bizCondition.turnReason},'%')
+        </if>
+
+        <!--剩余天数-->
+        <if test="bizCondition.lastDays != null
+                and bizCondition.lastDaysOperateValue != null and bizCondition.lastDaysOperateValue != ''">
+            and UNIX_TIMESTAMP(pb.expected_completed_time)
+            <![CDATA[ ${bizCondition.lastDaysOperateValue} ]]>
+            #{bizCondition.lastDays}
+        </if>
+
+        <!--创建时间-->
+        <if test="bizCondition.cTimes != null and bizCondition.cTimes.size() > 0">
+            <foreach collection="bizCondition.cTimes" item="cTime" index="index">
+                <if test="index == 0">
+                    AND UNIX_TIMESTAMP(pb.create_time) &gt;= #{cTime}
+                </if>
+                <if test="index == 1">
+                    AND UNIX_TIMESTAMP(pb.create_time) &lt;= #{cTime}
+                </if>
+            </foreach>
+        </if>
+
+        <!--期望完工时间-->
+        <if test="bizCondition.ecTimes != null and bizCondition.ecTimes.size() > 0">
+            <foreach collection="bizCondition.ecTimes" item="ecTime" index="index">
+                <if test="index == 0">
+                    AND UNIX_TIMESTAMP(pb.expected_completed_time) &gt;= #{ecTime}
+                </if>
+                <if test="index == 1">
+                    AND UNIX_TIMESTAMP(pb.expected_completed_time) &lt;= #{ecTime}
+                </if>
+            </foreach>
+        </if>
+
+        <!--实际完工时间-->
+        <if test="bizCondition.rcTimes != null and bizCondition.rcTimes.size() > 0">
+            <foreach collection="bizCondition.rcTimes" item="rcTime" index="index">
+                <if test="index == 0">
+                    AND UNIX_TIMESTAMP(pb.reality_completed_time) &gt;= #{rcTime}
+                </if>
+                <if test="index == 1">
+                    AND UNIX_TIMESTAMP(pb.reality_completed_time) &lt;= #{rcTime}
+                </if>
+            </foreach>
+        </if>
+
+
+        <!--巡检开始时间-->
+        <if test="bizCondition.inspectionStartTimes != null and bizCondition.inspectionStartTimes.size() > 0">
+            <foreach collection="bizCondition.inspectionStartTimes" item="inspectionStartTime" index="index">
+                <if test="index == 0">
+                    AND UNIX_TIMESTAMP(pi.inspection_start_time) &gt;= #{inspectionStartTime}
+                </if>
+                <if test="index == 1">
+                    AND UNIX_TIMESTAMP(pi.inspection_start_time) &lt;= #{inspectionStartTime}
+                </if>
+            </foreach>
+        </if>
+
+        <!--巡检结束时间-->
+        <if test="bizCondition.inspectionEndTimes != null and bizCondition.inspectionEndTimes.size() > 0">
+            <foreach collection="bizCondition.inspectionEndTimes" item="inspectionEndTime" index="index">
+                <if test="index == 0">
+                    AND UNIX_TIMESTAMP(pi.inspection_end_time) &gt;= #{inspectionEndTime}
+                </if>
+                <if test="index == 1">
+                    AND UNIX_TIMESTAMP(pi.inspection_end_time) &lt;= #{inspectionEndTime}
+                </if>
+            </foreach>
+        </if>
+
+        <!--权限设施types-->
+        <if test="bizCondition.permissionDeviceTypes != null and bizCondition.permissionDeviceTypes.size() > 0">
+            <if test="bizCondition.permissionDeviceTypes.size() == 1">
+                AND prd.device_type =
+                <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType">
+                    #{permissionDeviceType}
+                </foreach>
+            </if>
+            <if test="bizCondition.permissionDeviceTypes.size() > 1">
+                AND prd.device_type IN
+                <foreach collection="bizCondition.permissionDeviceTypes" item="permissionDeviceType" open="(" close=")" separator=",">
+                    #{permissionDeviceType}
+                </foreach>
+            </if>
+        </if>
+
+        <!--权限区域ids-->
+        <if test="bizCondition.permissionAreaIds != null and bizCondition.permissionAreaIds.size() > 0">
+            <if test="bizCondition.permissionAreaIds.size() == 1">
+                AND prd.device_area_id =
+                <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId">
+                    #{permissionAreaId}
+                </foreach>
+            </if>
+            <if test="bizCondition.permissionAreaIds.size() > 1">
+                AND prd.device_area_id IN
+                <foreach collection="bizCondition.permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                    #{permissionAreaId}
+                </foreach>
+            </if>
+        </if>
+
+        <!--时间过滤条件-->
+        <!--<if test="filterConditions != null and filterConditions.size() > 0">
+            <foreach collection="filterConditions" item="filterCondition">
+                <if test="filterCondition.filterField != null and filterCondition.filterField != ''">
+                    &lt;!&ndash;创建时间&ndash;&gt;
+                    <if test="filterCondition.filterField == 'createTime'">
+                        AND pb.create_time ${filterCondition.operator} #{filterCondition.filterValue}
+                    </if>
+                    &lt;!&ndash;期望完工时间&ndash;&gt;
+                    <if test="filterCondition.filterField == 'expectedCompletedTime'">
+                        AND pb.expected_completed_time ${filterCondition.operator} #{filterCondition.filterValue}
+                    </if>
+                    &lt;!&ndash;巡检开始时间&ndash;&gt;
+                    <if test="filterCondition.filterField == 'inspectionStartTime'">
+                        AND pi.inspection_start_time ${filterCondition.operator} #{filterCondition.filterValue}
+                    </if>
+                    &lt;!&ndash;巡检结束时间&ndash;&gt;
+                    <if test="filterCondition.filterField == 'inspectionEndTime'">
+                        AND pi.inspection_end_time ${filterCondition.operator} #{filterCondition.filterValue}
+                    </if>
+                </if>
+            </foreach>
+        </if>-->
+
+    </sql>
+
+    <!--工单列表排序共用sql-->
+    <sql id="orderBySql">
+        <!--排序-->
+        <if test="sortCondition.sortField != null and sortCondition.sortField != '' ">
+            <if test="sortCondition.sortField == 'inspectionStartTime'">
+                ORDER BY pi.inspection_start_time
+            </if>
+            <if test="sortCondition.sortField == 'inspectionEndTime'">
+                ORDER BY pi.inspection_end_time
+            </if>
+            <if test="sortCondition.sortField == 'inspectionDeviceCount'">
+                ORDER BY pi.inspection_device_count
+            </if>
+            <if test="sortCondition.sortField == 'inspectionCompletedCount'">
+                ORDER BY pi.inspection_completed_count
+            </if>
+
+            <!--工单名称-->
+            <if test="sortCondition.sortField == 'title'">
+                ORDER BY pb.title
+            </if>
+            <!--工单状态-->
+            <if test="sortCondition.sortField == 'status'">
+                ORDER BY pb.status
+            </if>
+            <!--设施名称-->
+            <if test="sortCondition.sortField == 'deviceName'">
+                ORDER BY prd.device_name
+            </if>
+            <!--设施类型-->
+            <if test="sortCondition.sortField == 'deviceType'">
+                ORDER BY prd.device_type
+            </if>
+            <!--设施区域-->
+            <if test="sortCondition.sortField == 'deviceAreaName'">
+                ORDER BY prd.device_area_name
+            </if>
+            <!--创建时间-->
+            <if test="sortCondition.sortField == 'cTime'">
+                ORDER BY pb.create_time
+            </if>
+            <!--创建时间-->
+            <if test="sortCondition.sortField == 'createTime'">
+                ORDER BY pb.create_time
+            </if>
+            <!--关联告警-->
+            <if test="sortCondition.sortField == 'refAlarmName'">
+                ORDER BY pb.ref_alarm_name
+            </if>
+            <!--责任单位-->
+            <if test="sortCondition.sortField == 'accountabilityDeptName'">
+                ORDER BY prdept.accountability_dept
+            </if>
+            <!--期望完工时间-->
+            <if test="sortCondition.sortField == 'ecTime'">
+                ORDER BY pb.expected_completed_time
+            </if>
+            <!--实际完工时间-->
+            <if test="sortCondition.sortField == 'rcTime'">
+                ORDER BY pb.reality_completed_time
+            </if>
+            <!--退单原因-->
+            <if test="sortCondition.sortField == 'concatSingleBackReason'">
+                ORDER BY pb.single_back_reason
+            </if>
+            <!--备注-->
+            <if test="sortCondition.sortField == 'remark'">
+                ORDER BY pb.remark
+            </if>
+            <!--转派原因-->
+            <if test="sortCondition.sortField == 'turnReason'">
+                ORDER BY pb.turn_reason
+            </if>
+            <!--故障原因-->
+            <if test="sortCondition.sortField == 'concatErrorReason'">
+                ORDER BY pb.error_reason
+            </if>
+            <!--处理方案-->
+            <if test="sortCondition.sortField == 'concatProcessingScheme'">
+                ORDER BY pb.processing_scheme
+            </if>
+
+            <!--剩余天数-->
+            <if test="sortCondition.sortField == 'lastDays'">
+                ORDER BY FLOOR((UNIX_TIMESTAMP(pb.expected_completed_time) - #{bizCondition.nowDateTime}) / 60 / 60 / 24)
+            </if>
+
+            <if test="sortCondition.sortRule != null and sortCondition.sortRule != ''">
+                ${sortCondition.sortRule}
+            </if>
+        </if>
+    </sql>
+
+    <!--根据名称查询工单-->
+    <select id="queryTitleIsExists" resultMap="ProcBaseMap">
+        SELECT
+        t.proc_id
+        FROM
+        <!--${tableName} t-->
+        proc_inspection t
+        <where>
+            t.is_deleted = '0'
+            <if test="title != null and title != ''">
+                AND t.title = #{title}
+            </if>
+        </where>
+        union all
+        SELECT
+        t.proc_id
+        FROM
+        <!--${tableName} t-->
+        proc_clear_failure t
+        <where>
+            t.is_deleted = '0'
+            <if test="title != null and title != ''">
+                AND t.title = #{title}
+            </if>
+        </where>
+    </select>
+
+    <!--根据id查询工单-->
+    <select id="queryProcessByProcId" parameterType="map" resultMap="ProcBaseRespMap">
+        SELECT
+        t.proc_id,
+        t.proc_type,
+        t.title,
+        t.remark,
+        t.assign,
+        t.dept_type,
+        t.status,
+        t.single_back_reason,
+        t.single_back_user_defined_reason,
+        t.processing_scheme,
+        t.processing_user_defined_scheme,
+        t.expected_completed_time,
+        t.reality_completed_time,
+        t.error_reason,
+        t.error_user_defined_reason,
+        t.turn_reason,
+        t.proc_resource_type,
+        t.is_check_single_back,
+        t.is_told,
+        t.ref_alarm,
+        t.ref_alarm_code,
+        t.ref_alarm_name,
+        t.is_create_alarm,
+        t.regenerate_id,
+        t.device_id,
+        t.device_name,
+        t.device_area_id,
+        t.device_area_name,
+        t.device_type,
+        t.accountability_dept,
+        t.accountability_dept_name,
+        t.is_deleted,
+        t.create_user,
+        t.create_time,
+        t.update_user,
+        t.update_time
+        <if test="nowDateTime != null">
+            ,FLOOR(
+            (UNIX_TIMESTAMP(t.expected_completed_time) - #{nowDateTime}) / 60 / 60 /24
+            ) as last_days
+        </if>
+
+        FROM
+        <!--${tableName} t-->
+        proc_inspection t
+        <where>
+            t.is_deleted = '0'
+            AND t.proc_id = #{procId}
+        </where>
+        union all
+        select
+        t.proc_id,
+        t.proc_type,
+        t.title,
+        t.remark,
+        t.assign,
+        t.dept_type,
+        t.status,
+        t.single_back_reason,
+        t.single_back_user_defined_reason,
+        t.processing_scheme,
+        t.processing_user_defined_scheme,
+        t.expected_completed_time,
+        t.reality_completed_time,
+        t.error_reason,
+        t.error_user_defined_reason,
+        t.turn_reason,
+        t.proc_resource_type,
+        t.is_check_single_back,
+        t.is_told,
+        t.ref_alarm,
+        t.ref_alarm_code,
+        t.ref_alarm_name,
+        t.is_create_alarm,
+        t.regenerate_id,
+        t.device_id,
+        t.device_name,
+        t.device_area_id,
+        t.device_area_name,
+        t.device_type,
+        t.accountability_dept,
+        t.accountability_dept_name,
+        t.is_deleted,
+        t.create_user,
+        t.create_time,
+        t.update_user,
+        t.update_time
+        <if test="nowDateTime != null">
+            ,FLOOR(
+            (UNIX_TIMESTAMP(t.expected_completed_time) - #{nowDateTime}) / 60 / 60 /24
+            ) as last_days
+        </if>
+        FROM
+        <!--${tableName} t-->
+        proc_clear_failure t
+        <where>
+        t.is_deleted = '0'
+        AND t.proc_id = #{procId}
+        </where>
+    </select>
+
+    <!-- 根据工单编号集合查询工单信息 -->
+    <select id="queryProcessByProcIds" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq" resultMap="ProcBaseMap">
+        <include refid="Base_Column_List" />
+        from proc_inspection pb
+        <where>
+            pb.is_deleted = #{isDeleted}
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND pb.proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND pb.proc_id IN
+                    <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+        union all
+        <include refid="Base_Column_List" />
+        from proc_clear_failure pb
+        <where>
+            pb.is_deleted = #{isDeleted}
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND pb.proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND pb.proc_id IN
+                    <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!--查询工单关联设施-->
+    <select id="queryProcRelateDevice" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq" resultMap="ProcRelatedDeviceMap">
+        SELECT
+        t.proc_related_device_id,
+        t.proc_id,
+        t.device_id,
+        t.device_name,
+        t.device_type,
+        t.device_area_id,
+        t.device_area_name,
+        t.select_device_type
+        FROM
+        proc_related_device t
+        <where>
+            t.is_deleted = '0'
+            <!--工单id-->
+            <if test="procId != null and procId != ''">
+                AND t.proc_id = #{procId}
+            </if>
+
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND t.proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND t.proc_id in
+                    <foreach collection="procIds" index="index" item="procId" open="(" separator="," close=")">
+                        <if test="(index % 999) == 998">NULL ) OR t.proc_id IN (</if>
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--设施ids-->
+            <if test="deviceIds != null and deviceIds.size() > 0">
+                <if test="deviceIds.size() == 1">
+                    AND t.device_id =
+                    <foreach collection="deviceIds" item="deviceId">
+                        #{deviceId}
+                    </foreach>
+                </if>
+                <if test="deviceIds.size() > 1">
+                    AND t.device_id IN
+                    <foreach collection="deviceIds" item="deviceId" open="(" close=")" separator=",">
+                        #{deviceId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--设施type-->
+            <if test="deviceType != null and deviceType != ''">
+                AND t.device_type = #{deviceType}
+            </if>
+
+            <!--设施区域ids-->
+            <if test="deviceAreaIds != null and deviceAreaIds.size() > 0">
+                <if test="deviceAreaIds.size() == 1">
+                    AND t.device_area_id =
+                    <foreach collection="deviceAreaIds" item="deviceAreaId">
+                        #{deviceAreaId}
+                    </foreach>
+                </if>
+                <if test="deviceAreaIds.size() > 1">
+                    AND t.device_area_id IN
+                    <foreach collection="deviceAreaIds" item="deviceAreaId" open="(" close=")" separator=",">
+                        #{deviceAreaId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!--查询工单关联部门-->
+    <select id="queryProcRelateDept" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq" resultMap="ProcRelatedDepartmentMap">
+        SELECT
+        t.proc_related_dept_id,t.proc_id,t.accountability_dept
+        FROM
+        proc_related_department t
+        <where>
+            t.is_deleted = '0'
+            <!--工单id-->
+            <if test="procId != null and procId != ''">
+                AND t.proc_id = #{procId}
+            </if>
+
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND t.proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND t.proc_id in
+                    <foreach collection="procIds" index="index" item="procId" open="(" separator="," close=")">
+                        <if test="(index % 999) == 998">NULL ) OR t.proc_id IN (</if>
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--部门ids-->
+            <if test="accountabilityDeptList != null and accountabilityDeptList.size() > 0">
+                <if test="accountabilityDeptList.size() == 1">
+                    AND t.accountability_dept =
+                    <foreach collection="accountabilityDeptList" item="accountabilityDept">
+                        #{accountabilityDept}
+                    </foreach>
+                </if>
+                <if test="accountabilityDeptList.size() > 1">
+                    AND t.accountability_dept IN
+                    <foreach collection="accountabilityDeptList" item="accountabilityDept" open="(" close=")" separator=",">
+                        #{accountabilityDept}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!--新增工单-->
+    <insert id="addProcBase" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq" useGeneratedKeys="true" keyProperty="procId" keyColumn="role_id">
+        INSERT INTO
+        <!--${tableName}-->
+        proc_base
+        (
+        proc_id, proc_type, title, remark, assign, dept_type, status, single_back_reason,
+        processing_scheme, expected_completed_time, reality_completed_time, error_reason,turn_reason,proc_resource_type,is_told,ref_alarm,ref_alarm_name,ref_alarm_code,
+        create_user,create_time,update_user,update_time
+        )
+        VALUES
+        (
+        #{procId},#{procType},#{title},#{remark},#{assign},#{deptType},#{status},#{singleBackReason},
+        #{processingScheme},#{expectedCompletedTime},#{realityCompletedTime},#{errorReason},#{turnReason},#{procResourceType},#{isTold},
+        #{refAlarm},#{refAlarmName},#{refAlarmCode},#{createUser},#{createTime},#{updateUser},#{updateTime}
+        )
+        <!--<selectKey resultType="string" order="BEFORE" keyProperty="procId">
+            select replace(uuid(),'-','') from dual
+        </selectKey>-->
+
+    </insert>
+
+    <!--新增工单关联设施信息-->
+    <insert id="addProcRelateDevice" parameterType="com.fiberhome.filink.workflowbusinessserver.resp.ProcessInfo">
+        INSERT INTO
+        proc_related_device
+        (
+        proc_related_device_id,
+        proc_id,
+        device_id,
+        device_area_id,
+        device_name,
+        device_area_name,
+        device_type,
+        select_device_type,
+        create_user,
+        create_time,
+        update_user,
+        update_time
+        )
+        VALUES
+        <foreach collection="procRelatedDevices" item="procRelatedDevice" index="index" open="" close="" separator=",">
+            (
+            #{procRelatedDevice.procRelatedDeviceId},
+            #{procBase.procId},
+            #{procRelatedDevice.deviceId},
+            #{procRelatedDevice.deviceAreaId},
+            #{procRelatedDevice.deviceName},
+            #{procRelatedDevice.deviceAreaName},
+            #{procRelatedDevice.deviceType},
+            #{procRelatedDevice.selectDeviceType},
+            #{procRelatedDevice.createUser},
+            #{procRelatedDevice.createTime},
+            #{procRelatedDevice.updateUser},
+            #{procRelatedDevice.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <!--保存工单关联部门信息-->
+    <insert id="addProcRelateDept" parameterType="com.fiberhome.filink.workflowbusinessserver.resp.ProcessInfo">
+        INSERT INTO
+        proc_related_department
+        (
+        proc_related_dept_id,
+        proc_id,
+        accountability_dept,
+        create_user,
+        create_time,
+        update_user,
+        update_time
+        )
+        VALUES
+        <foreach collection="procRelatedDepartments" item="procRelatedDepartment" index="index" open="" close="" separator=",">
+            (
+            #{procRelatedDepartment.procRelatedDeptId},
+            #{procBase.procId},
+            #{procRelatedDepartment.accountabilityDept},
+            #{procRelatedDepartment.createUser},
+            #{procRelatedDepartment.createTime},
+            #{procRelatedDepartment.updateUser},
+            #{procRelatedDepartment.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <!--删除工单关联设施信息-->
+    <delete id="deleteProcRelateDeviceByProcId" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcBase">
+        DELETE FROM proc_related_device
+        <where>
+            <if test="procId != null and procId != ''">
+                proc_id = #{procId}
+            </if>
+        </where>
+    </delete>
+
+    <!--修改工单关联设施信息isdeleted状态-->
+    <update id="updateProcRelateDeviceIsDeletedByProcId" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcBase">
+        UPDATE proc_related_device t
+        SET
+        t.is_deleted = #{isDeleted},
+        t.update_user = #{updateUser},
+        t.update_time = #{updateTime}
+        <where>
+            <if test="procId != null and procId != ''">
+                proc_id = #{procId}
+            </if>
+        </where>
+    </update>
+
+    <!--批量修改工单关联设施信息isdeleted状态-->
+    <update id="updateProcRelateDeviceIsDeletedByProcIds" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq">
+        UPDATE proc_related_device t
+        SET
+        t.is_deleted = #{isDeleted},
+        t.update_user = #{updateUser},
+        t.update_time = #{updateTime}
+        <where>
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND proc_id IN
+                    <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </update>
+
+    <!--删除工单关联部门信息-->
+    <update id="deleteProcRelateDeptByProcId" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcBase">
+        DELETE FROM proc_related_department
+        <where>
+            <if test="procId != null and procId != ''">
+                proc_id = #{procId}
+            </if>
+        </where>
+    </update>
+
+    <!--修改工单关联部门信息isdeleted状态-->
+    <update id="updateProcRelateDeptIsDeletedByProcId" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcBase">
+        UPDATE proc_related_department t
+        SET
+        t.is_deleted = #{isDeleted},
+        t.update_user = #{updateUser},
+        t.update_time = #{updateTime}
+        <where>
+            <if test="procId != null and procId != ''">
+                proc_id = #{procId}
+            </if>
+        </where>
+    </update>
+
+    <!--修改工单关联部门信息删除状态-->
+    <update id="updateProcRelateDeptIsDeletedByProcIds" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq">
+        UPDATE proc_related_department t
+        SET
+        t.is_deleted = #{isDeleted},
+        t.update_user = #{updateUser},
+        t.update_time = #{updateTime}
+        <where>
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND proc_id IN
+                    <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </update>
+
+    <update id="updateProcBaseStatusById" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcBase">
+      update proc_base set status = #{status, jdbcType=VARCHAR}
+      where 1=1
+      and proc_id = #{procId, jdbcType=VARCHAR}
+    </update>
+
+    <select id="queryListRelatedProcByInspectionTaskIdPage" parameterType="com.fiberhome.filink.bean.QueryCondition" resultMap="ProcBaseRespMap">
+      SELECT
+        DISTINCT
+        pb.proc_id,
+        pb.proc_type,
+        pb.title,
+        pb.remark,
+        pb.assign,
+        pb.dept_type,
+        pb.`status`,
+        pb.single_back_reason,
+        pb.processing_scheme,
+        pb.expected_completed_time,
+        pb.reality_completed_time,
+        pb.error_reason,
+        pb.proc_resource_type,
+        pb.turn_reason,
+        pb.is_told,
+        pb.ref_alarm,
+        pb.ref_alarm_name,
+        pb.is_deleted,
+        pb.create_user,
+        pb.create_time,
+        pb.update_user,
+        <if test="bizCondition.procType != null and bizCondition.procType == 'inspection'">
+            pi.inspection_start_time,
+            pi.inspection_end_time,
+            pi.inspection_device_count,
+            pi.inspection_completed_count,
+        </if>
+        pb.update_time
+        <!--共用sql-->
+        <include refid="queryListRelatedProcInspectionTaskId" />
+        <!--工单共用排序字段-->
+        <include refid="orderBySql"></include>
+        <if test="pageCondition.beginNum != null and pageCondition.pageSize != null">
+            LIMIT
+            #{pageCondition.beginNum},#{pageCondition.pageSize}
+        </if>
+    </select>
+
+    <!--查询巡检任务关联巡检工单总数-->
+    <select id="queryCountListRelatedProcByInspectionTaskId" parameterType="com.fiberhome.filink.bean.QueryCondition" resultType="integer">
+        SELECT
+        count(DISTINCT pb.proc_id)
+        <!--共用sql-->
+        <include refid="queryListRelatedProcInspectionTaskId"></include>
+    </select>
+
+    <!--分页查询工单未完工列表-->
+    <select id="queryListProcUnfinishedProcByPage" parameterType="com.fiberhome.filink.bean.QueryCondition" resultMap="ProcBaseRespMap">
+        SELECT DISTINCT
+        pb.proc_id,
+        pb.proc_type,
+        pb.title,
+        pb.remark,
+        pb.assign,
+        pb.dept_type,
+        pb.`status`,
+        pb.single_back_reason,
+        pb.single_back_user_defined_reason,
+        pb.processing_scheme,
+        pb.processing_user_defined_scheme,
+        pb.expected_completed_time,
+        pb.reality_completed_time,
+        pb.error_reason,
+        pb.error_user_defined_reason,
+        pb.proc_resource_type,
+        pb.turn_reason,
+        pb.is_told,
+        pb.ref_alarm,
+        pb.ref_alarm_name,
+        pb.ref_alarm_code,
+        pb.is_deleted,
+        pb.create_user,
+        pb.create_time,
+        pb.update_user,
+        <if test="bizCondition.procType != null and bizCondition.procType == 'inspection'">
+            pi.inspection_start_time,
+            pi.inspection_end_time,
+            pi.inspection_device_count,
+            pi.inspection_completed_count,
+        </if>
+        pb.update_time,
+        <if test="bizCondition.nowDateTime != null">
+            FLOOR(
+            (UNIX_TIMESTAMP(pb.expected_completed_time) - #{bizCondition.nowDateTime}) / 60 / 60 /24
+            ) as last_days
+        </if>
+
+        <!--共用sql-->
+        <include refid="queryProcListByUnfinished"></include>
+        <!--工单共用排序字段-->
+        <include refid="orderBySql"></include>
+
+        <!--默认排序创建时间倒序-->
+        <if test="sortCondition.sortField == null">
+            ORDER BY pb.create_time DESC
+        </if>
+
+        <if test="pageCondition.beginNum != null and pageCondition.pageSize != null">
+            LIMIT
+            #{pageCondition.beginNum},#{pageCondition.pageSize}
+        </if>
+    </select>
+
+    <!--查询工单未完工列表总数-->
+    <select id="queryCountListProcUnfinishedProc" parameterType="com.fiberhome.filink.bean.QueryCondition" resultType="integer">
+        SELECT
+        count(DISTINCT pb.proc_id)
+        <!--共用sql-->
+        <include refid="queryProcListByUnfinished"></include>
+    </select>
+
+    <!--分页查询工单历史列表-->
+    <select id="queryListProcHisProcByPage" parameterType="com.fiberhome.filink.bean.QueryCondition" resultMap="ProcBaseRespMap">
+        SELECT DISTINCT
+        pb.proc_id,
+        pb.proc_type,
+        pb.title,
+        pb.remark,
+        pb.assign,
+        pb.dept_type,
+        pb.`status`,
+        pb.single_back_reason,
+        pb.single_back_user_defined_reason,
+        pb.processing_scheme,
+        pb.processing_user_defined_scheme,
+        pb.expected_completed_time,
+        pb.reality_completed_time,
+        pb.error_reason,
+        pb.error_user_defined_reason,
+        pb.proc_resource_type,
+        pb.turn_reason,
+        pb.is_check_single_back,
+        pb.is_told,
+        pb.ref_alarm,
+        pb.ref_alarm_name,
+        pb.ref_alarm_code,
+        <if test="bizCondition.procType != null and bizCondition.procType == 'inspection'">
+            pi.inspection_start_time,
+            pi.inspection_end_time,
+            pi.inspection_device_count,
+            pi.inspection_completed_count,
+        </if>
+        pb.is_deleted,
+        pb.create_user,
+        pb.create_time,
+        pb.update_user,
+        pb.update_time
+        <!--共用sql-->
+        <include refid="queryProcListByHis"></include>
+        <!--工单共用排序字段-->
+        <include refid="orderBySql"></include>
+
+        <!--默认排序实际完成时间倒序-->
+        <if test="sortCondition.sortField == null">
+            ORDER BY pb.reality_completed_time DESC
+        </if>
+
+        <if test="pageCondition.beginNum != null and pageCondition.pageSize != null">
+            LIMIT
+            #{pageCondition.beginNum},#{pageCondition.pageSize}
+        </if>
+    </select>
+
+    <!--查询工单历史列表总数-->
+    <select id="queryCountListProcHisProc" parameterType="com.fiberhome.filink.bean.QueryCondition" resultType="integer">
+        SELECT
+          count(DISTINCT pb.proc_id)
+        <!--共用sql-->
+        <include refid="queryProcListByHis"></include>
+    </select>
+
+
+    <!--工单历史列表设施类型统计的工单信息类型-->
+    <select id="queryListGroupByDeviceType" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq" resultType="java.util.HashMap">
+        SELECT
+        device.device_type deviceType,
+        COUNT(DISTINCT device.proc_id) num
+        FROM
+        proc_related_device device
+        INNER JOIN proc_base base ON device.proc_id = base.proc_id
+        <where>
+            AND (base.status = 'completed' OR (base.status = 'singleBack' and base.is_check_single_back = '1'))
+            <if test="procType != null and procType != ''">
+                AND base.proc_type = #{procType}
+            </if>
+
+            <!--权限设施types-->
+            <if test="permissionDeviceTypes != null and permissionDeviceTypes.size() > 0 ">
+                <if test="permissionDeviceTypes.size() == 1">
+                    AND device.device_type =
+                    <foreach collection="permissionDeviceTypes" item="permissionDeviceType">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+                <if test="permissionDeviceTypes.size() > 1">
+                    AND device.device_type IN
+                    <foreach collection="permissionDeviceTypes" item="permissionDeviceType" open="(" close=")" separator=",">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--权限区域ids-->
+            <if test="permissionAreaIds != null and permissionAreaIds.size() > 0 ">
+                <if test="permissionAreaIds.size() == 1">
+                    AND device.device_type =
+                    <foreach collection="permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="permissionAreaIds.size() > 1">
+                    AND device.device_type IN
+                    <foreach collection="permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--权限工单ids-->
+            <if test="permissionProcIds != null and permissionProcIds.size() > 0">
+                <if test="permissionProcIds.size() == 1">
+                    AND base.proc_id =
+                    <foreach collection="permissionProcIds" item="permissionProcId">
+                        #{permissionProcId}
+                    </foreach>
+                </if>
+                <if test="permissionProcIds.size() > 1">
+                    AND base.proc_id IN
+                    <foreach collection="permissionProcIds" item="permissionProcIds" open="(" close=")" separator=",">
+                        #{permissionProcId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+        GROUP BY
+        device.device_type
+    </select>
+
+
+    <!--修改工单基础信息-->
+    <update id="updateProcBaseById" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq">
+        UPDATE
+        proc_base
+        SET
+            title = #{title},
+            assign = #{assign},
+            dept_type = #{deptType},
+            single_back_reason = #{singleBackReason},
+            processing_scheme = #{processingScheme},
+            processing_user_defined_scheme = #{processingUserDefinedScheme},
+            expected_completed_time = #{expectedCompletedTime},
+            reality_completed_time = #{realityCompletedTime},
+            error_reason = #{errorReason},
+            turn_reason = #{turnReason},
+            is_told = #{isTold},
+            ref_alarm = #{refAlarm},
+            ref_alarm_name = #{refAlarmName},
+            ref_alarm_code = #{refAlarmCode},
+            remark = #{remark},
+            update_user = #{updateUser},
+            update_time = #{updateTime}
+        <where>
+            is_deleted = '0'
+            <if test="procId != null and procId != ''">
+                AND proc_id = #{procId}
+            </if>
+        </where>
+    </update>
+
+    <!--修改工单备注信息-->
+    <update id="updateProcBaseRemarkById" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq">
+        UPDATE
+        proc_base
+        SET
+        remark = #{remark},
+        update_user = #{updateUser},
+        update_time = #{updateTime}
+        <where>
+            is_deleted = '0'
+            <if test="procId != null and procId != ''">
+                AND proc_id = #{procId}
+            </if>
+        </where>
+    </update>
+
+    <!--删除工单基础信息-->
+    <update id="updateProcBaseIsDeletedByIds" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq">
+        UPDATE
+        <!--${tableName} t-->
+        proc_base t
+        SET
+        t.is_deleted = #{isDeleted},
+        t.update_user = #{updateUser},
+        t.update_time = #{updateTime}
+        <where>
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND proc_id IN
+                    <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteProcRelatedDepartmentByProcId" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcRelatedDepartment">
+        <if test="procId != null and procId != ''">
+          delete from  proc_related_department
+          where 1=1
+          and proc_id = #{procId}
+        </if>
+    </delete>
+
+
+    <!--工单列表状态统计-->
+    <select id="queryCountProcByStatus" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq" resultType="java.lang.String">
+        SELECT
+        t.`status` status
+        FROM
+        proc_base t
+        <where>
+            t.is_deleted = '0'
+            <!--工单类型-->
+            <if test="procType != null and procType != ''">
+                AND t.proc_type = #{procType}
+            </if>
+
+            <!--状态-->
+            <if test="status != null and status != ''">
+                AND t.status = #{status}
+            </if>
+
+            <!--确认退单-->
+            <if test="isCheckSingleBack != null and isCheckSingleBack != ''">
+                AND t.is_check_single_back = #{isCheckSingleBack}
+            </if>
+
+            <!--今日新增-->
+            <if test="todayStartTime != null and todayStartTime != '' and todayEndTime != null and todayEndTime != ''">
+                <!--未完工列表状态-->
+                AND t.status IN('assigned','processing','pending','singleBack','turnProcessing')
+                AND t.is_check_single_back = '0'
+                AND t.create_time &gt;= #{todayStartTime} AND t.create_time &lt;= #{todayEndTime}
+            </if>
+
+            <!--确认退单-->
+            <if test="isCheckSingleBack != null and isCheckSingleBack != ''">
+                AND t.is_check_single_back = #{isCheckSingleBack}
+            </if>
+
+            <!--权限工单ids-->
+            <if test="permissionProcIds != null and permissionProcIds.size() > 0">
+                <if test="permissionProcIds.size() == 1">
+                    AND t.proc_id =
+                    <foreach collection="permissionProcIds" item="permissionProcId">
+                        #{permissionProcId}
+                    </foreach>
+                </if>
+                <if test="permissionProcIds.size() > 1">
+                    AND t.proc_id IN
+                    <foreach collection="permissionProcIds" item="permissionProcId" open="(" close=")" separator=",">
+                        #{permissionProcId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+
+    <!--工单列表分组统计-->
+    <select id="queryCountProcByGroup" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq" resultType="java.util.HashMap">
+        SELECT
+        t.${groupField},
+        COUNT(t.${groupField}) num
+        FROM
+        proc_base t
+        <where>
+            t.is_deleted = '0'
+            <!--工单类型-->
+            <if test="procType != null and procType != ''">
+                AND t.proc_type = #{procType}
+            </if>
+
+            <!--历史列表工单状态-->
+            AND (t.status = 'completed' OR (t.status = 'singleBack' and t.is_check_single_back = '1'))
+
+            <!--权限工单ids-->
+            <if test="permissionProcIds != null and permissionProcIds.size() > 0">
+                <if test="permissionProcIds.size() == 1">
+                    AND t.proc_id =
+                    <foreach collection="permissionProcIds" item="permissionProcId">
+                        #{permissionProcId}
+                    </foreach>
+                </if>
+                <if test="permissionProcIds.size() > 1">
+                    AND t.proc_id IN
+                    <foreach collection="permissionProcIds" item="permissionProcId" open="(" close=")" separator=",">
+                        #{permissionProcId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+
+        <!--分组字段-->
+        <if test="groupField != null and groupField != ''">
+            GROUP BY t.${groupField}
+        </if>
+    </select>
+
+    <!-- 查询超时工单信息 -->
+    <select id="queryProcBaseInfoList" resultMap="ProcBaseInfoBeanMap" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcBase">
+      select pb.proc_id,
+        pb.proc_type,
+        pb.title,
+        pb.remark,
+        pb.assign,
+        pb.dept_type,
+        pb.`status`,
+        pb.single_back_reason,
+        pb.processing_scheme,
+        pb.expected_completed_time,
+        pb.reality_completed_time,
+        pb.error_reason,
+        pb.proc_resource_type,
+        pb.turn_reason,
+        pb.is_check_single_back,
+        pb.is_told,
+        pb.ref_alarm,
+        pb.ref_alarm_name,
+        pb.is_deleted,
+        pb.create_user,
+        pb.create_time,
+        pb.update_user
+        from proc_inspection pb
+        where 1=1
+        and pb.status in ('pending', 'processing', 'turnProcessing' , 'singleBack')
+        and pb.is_deleted = '0'
+        and pb.is_create_alarm = '0'
+        <if test="expectedCompletedTime != null">
+            and pb.expected_completed_time &lt;= #{expectedCompletedTime}
+        </if>
+        <if test="procType != null">
+            and pb.proc_type = #{procType, jdbcType=VARCHAR}
+        </if>
+        union all
+        select pb.proc_id,
+        pb.proc_type,
+        pb.title,
+        pb.remark,
+        pb.assign,
+        pb.dept_type,
+        pb.`status`,
+        pb.single_back_reason,
+        pb.processing_scheme,
+        pb.expected_completed_time,
+        pb.reality_completed_time,
+        pb.error_reason,
+        pb.proc_resource_type,
+        pb.turn_reason,
+        pb.is_check_single_back,
+        pb.is_told,
+        pb.ref_alarm,
+        pb.ref_alarm_name,
+        pb.is_deleted,
+        pb.create_user,
+        pb.create_time,
+        pb.update_user
+        from proc_clear_failure pb
+        where 1=1
+        and pb.status in ('pending', 'processing', 'turnProcessing' , 'singleBack')
+        and pb.is_deleted = '0'
+        and pb.is_create_alarm = '0'
+        <if test="expectedCompletedTime != null">
+            and pb.expected_completed_time &lt;= #{expectedCompletedTime}
+        </if>
+        <if test="procType != null">
+            and pb.proc_type = #{procType, jdbcType=VARCHAR}
+        </if>
+
+    </select>
+
+    <!-- 查询巡检任务任务有没有没有巡检完的数据 -->
+    <select id="selectProcBaseListByProcInspection" resultMap="ProcBaseMap" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procinspection.ProcInspection">
+      <include refid="Base_Column_List"/>
+        from proc_base pb
+        left join proc_inspection pn on pb.proc_id = pn.proc_id
+        where 1=1
+        AND pn.inspection_task_id = #{inspectionTaskId}
+        AND pb.status IN('assigned','processing','pending','turnProcessing')
+        AND pb.is_deleted = '0'
+    </select>
+
+
+    <!--新增告警id及工单id-->
+    <insert id="addProcRelatedAlarm" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcRelatedAlarm">
+        INSERT INTO proc_related_alarm (
+            proc_related_alarm_id,
+            proc_id,
+            ref_alarm_id,
+            ref_alarm_code
+        )
+        VALUES
+        (
+            #{procRelatedAlarmId},
+            #{procId},
+            #{refAlarmId},
+            #{refAlarmCode}
+        )
+    </insert>
+
+    <!--app获取工单基础信息-->
+    <select id="queryProcBaseListForApp" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq" resultMap="ProcBaseRespForAppMap">
+        SELECT DISTINCT
+            pb.proc_id,
+            pb.proc_type,
+            pb.title,
+            pb.status,
+            pb.remark,
+            pb.assign,
+            pb.ref_alarm,
+            pb.ref_alarm_name,
+            pb.ref_alarm_code,
+            pb.create_time,
+            pb.expected_completed_time,
+            pb.ref_alarm,
+            pb.ref_alarm_name
+        FROM
+          proc_base pb
+
+        LEFT JOIN proc_related_device prd ON pb.proc_id = prd.proc_id
+        LEFT JOIN proc_related_department prdept ON pb.proc_id = prdept.proc_id
+
+        <where>
+            <!--工单执行人-->
+            1=1 and ((pb.assign IS NULL and status = 'pending')
+            <!--工单执行人等于当前用户时可以被下载-->
+            <if test="assign != null and assign != ''">
+                or (assign = #{assign} and status = 'turnProcessing')
+            </if>
+            )
+            <!--工单ids-->
+            <if test="procIds != null and procIds.size() > 0">
+                <if test="procIds.size() == 1">
+                    AND pb.proc_id =
+                    <foreach collection="procIds" item="procId">
+                        #{procId}
+                    </foreach>
+                </if>
+                <if test="procIds.size() > 1">
+                    AND pb.proc_id IN
+                    <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                        #{procId}
+                    </foreach>
+                </if>
+            </if>
+
+            <!--工单类型-->
+            <if test="procType != null and procType != ''">
+                AND pb.proc_type = #{procType}
+            </if>
+
+
+            <!-- 设施类型 -->
+            <if test="permissionDeviceTypes != null and permissionDeviceTypes.size() > 0 ">
+                <if test="permissionDeviceTypes.size() == 1">
+                    AND prd.device_type =
+                    <foreach collection="permissionDeviceTypes" item="permissionDeviceType">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+                <if test="permissionDeviceTypes.size() > 1">
+                    AND prd.device_type IN
+                    <foreach collection="permissionDeviceTypes" item="permissionDeviceType" open="(" close=")" separator=",">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+            </if>
+
+            <!-- 区域权限 -->
+            <if test="permissionAreaIds != null and permissionAreaIds.size() > 0 ">
+                <if test="permissionAreaIds.size() == 1">
+                    AND prd.device_area_id =
+                    <foreach collection="permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="permissionAreaIds.size() > 1">
+                    AND prd.device_area_id IN
+                    <foreach collection="permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+            <!-- 部门权限 -->
+            <if test="permissionDeptIds != null and permissionDeptIds.size() > 0 ">
+                <if test="permissionDeptIds.size() == 1">
+                    AND prdept.accountability_dept =
+                    <foreach collection="permissionDeptIds" item="permissionDeptId">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+                <if test="permissionDeptIds.size() > 1">
+                    AND prdept.accountability_dept IN
+                    <foreach collection="permissionDeptIds" item="permissionDeptId" open="(" close=")" separator=",">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+            </if>
+            AND pb.is_deleted = '0'
+        </where>
+        ORDER BY pb.create_time ASC
+        LIMIT 0,${batchDownloadProcNum}
+    </select>
+
+    <!-- app工单下载修改工单的责任人 -->
+    <update id="updateProcBaseAssignBatch" parameterType="java.util.Map" >
+      update proc_base
+        set
+        assign = #{procBase.assign},
+        dept_type = #{procBase.deptType},
+        update_user = #{procBase.updateUser},
+        update_time = #{procBase.updateTime}
+        where 1=1
+        and is_deleted = '0'
+        and proc_id in
+        <foreach collection="list" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 查询告警关联的工单信息 -->
+    <select id="queryExistsProcForAlarmList" resultMap="ProcBaseMap" parameterType="java.util.List">
+        select proc_id,ref_alarm  from proc_base
+        where 1=1
+        <if test="refAlarmList != null and refAlarmList.size() > 0 ">
+            <if test="refAlarmList.size() == 1">
+                and ref_alarm =
+                <foreach collection="refAlarmList" item="refAlarm">
+                    #{refAlarm}
+                </foreach>
+            </if>
+            <if test="refAlarmList.size() > 1">
+                AND ref_alarm IN
+                <foreach collection="refAlarmList" item="refAlarm" open="(" close=")" separator=",">
+                    #{refAlarm}
+                </foreach>
+            </if>
+        </if>
+        and is_deleted = '0'
+        AND status IN('assigned','processing','pending','singleBack','turnProcessing') and is_check_single_back = '0'
+    </select>
+
+    <!-- 根据用户编号查询存在未完工的工单信息 -->
+    <select id="queryExistsProcForUserList" resultMap="ProcBaseMap" parameterType="java.util.List">
+        select proc_id
+        from proc_base
+        where 1=1
+        <if test="userIdList != null and userIdList.size() > 0 ">
+            <if test="userIdList.size() == 1">
+                and assign =
+                <foreach collection="userIdList" item="userId">
+                    #{userId}
+                </foreach>
+            </if>
+            <if test="userIdList.size() > 1">
+                AND assign IN
+                <foreach collection="userIdList" item="userId" open="(" close=")" separator=",">
+                    #{userId}
+                </foreach>
+            </if>
+        </if>
+        and is_deleted = '0'
+        AND status IN('assigned','processing','pending','singleBack','turnProcessing') and is_check_single_back = '0'
+    </select>
+
+
+    <!-- 权限过滤 -->
+    <select id="queryPermissionsInfo" resultType="string" >
+        SELECT DISTINCT
+          pb.proc_id
+        FROM
+          proc_base pb
+        LEFT JOIN proc_related_device prd ON pb.proc_id = prd.proc_id
+        LEFT JOIN proc_related_department prdept ON pb.proc_id = prdept.proc_id
+        <where>
+            pb.is_deleted = '0'
+            <if test="permissionDeviceTypes != null and permissionDeviceTypes.size() > 0 ">
+                <if test="permissionDeviceTypes.size() == 1">
+                    AND prd.device_type =
+                    <foreach collection="permissionDeviceTypes" item="permissionDeviceType">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+                <if test="permissionDeviceTypes.size() > 1">
+                    AND prd.device_type IN
+                    <foreach collection="permissionDeviceTypes" item="permissionDeviceType" open="(" close=")" separator=",">
+                        #{permissionDeviceType}
+                    </foreach>
+                </if>
+            </if>
+            <if test="permissionAreaIds != null and permissionAreaIds.size() > 0 ">
+                <if test="permissionAreaIds.size() == 1">
+                    AND prd.device_area_id =
+                    <foreach collection="permissionAreaIds" item="permissionAreaId">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+                <if test="permissionAreaIds.size() > 1">
+                    AND prd.device_area_id IN
+                    <foreach collection="permissionAreaIds" item="permissionAreaId" open="(" close=")" separator=",">
+                        #{permissionAreaId}
+                    </foreach>
+                </if>
+            </if>
+            <if test="permissionDeptIds != null and permissionDeptIds.size() > 0 ">
+                <if test="permissionDeptIds.size() == 1">
+                    AND prdept.accountability_dept =
+                    <foreach collection="permissionDeptIds" item="permissionDeptId">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+                <if test="permissionDeptIds.size() > 1">
+                    AND prdept.accountability_dept IN
+                    <foreach collection="permissionDeptIds" item="permissionDeptId" open="(" close=")" separator=",">
+                        #{permissionDeptId}
+                    </foreach>
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <!-- 修改信息为已经生成工单超时告警 -->
+    <update id="updateCreateAlarmInfo" parameterType="java.util.Map">
+        update proc_base set is_create_alarm = '1', update_time = #{updateTime}
+        where 1=1
+        <if test="procIds != null and procIds.size() > 0">
+            <if test="procIds.size() == 1">
+                AND proc_id =
+                <foreach item="item"  collection="procIds">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="procIds.size() > 1">
+                AND proc_id in
+                <foreach collection="procIds" index="index" item="item" open="(" separator="," close=")">
+                    <if test="(index % 999) == 998">NULL ) OR proc_id IN (</if>
+                    #{item}
+                </foreach>
+            </if>
+        </if>
+    </update>
+
+    <!-- 修改巡检工单生成工单超时告警 -->
+    <update id="updateInspectionCreateAlarmInfo" parameterType="java.util.Map">
+        update proc_inspection set is_create_alarm = '1', update_time = #{updateTime}
+        where 1=1
+        <if test="procIds != null and procIds.size() > 0">
+            <if test="procIds.size() == 1">
+                AND proc_id =
+                <foreach item="item"  collection="procIds">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="procIds.size() > 1">
+                AND proc_id in
+                <foreach collection="procIds" index="index" item="item" open="(" separator="," close=")">
+                    <if test="(index % 999) == 998">NULL ) OR proc_id IN (</if>
+                    #{item}
+                </foreach>
+            </if>
+        </if>
+    </update>
+
+
+    <!-- 修改销障工单生成工单超时告警 -->
+    <update id="updateClearCreateAlarmInfo" parameterType="java.util.Map">
+        update proc_clear_failure set is_create_alarm = '1', update_time = #{updateTime}
+        where 1=1
+        <if test="procIds != null and procIds.size() > 0">
+            <if test="procIds.size() == 1">
+                AND proc_id =
+                <foreach item="item"  collection="procIds">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="procIds.size() > 1">
+                AND proc_id in
+                <foreach collection="procIds" index="index" item="item" open="(" separator="," close=")">
+                    <if test="(index % 999) == 998">NULL ) OR proc_id IN (</if>
+                    #{item}
+                </foreach>
+            </if>
+        </if>
+    </update>
+
+    <!-- 查询关联设施信息 -->
+    <select id="selectRelatedDeviceListInfo" resultMap="ProcRelatedDeviceMap"  parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.procrelated.LogicDeleteRelatedDeviceBatch" >
+        select proc_id, device_id, proc_related_device_id
+        from proc_related_device
+        where 1=1
+        <if test="deviceIdList != null and deviceIdList.size() > 0" >
+            <if test="deviceIdList.size() == 1">
+                AND device_id =
+                <foreach collection="deviceIdList" item="deviceId">
+                    #{deviceId}
+                </foreach>
+            </if>
+            <if test="deviceIdList.size() > 1">
+                AND device_id IN
+                <foreach collection="deviceIdList" item="deviceId" open="(" close=")" separator=",">
+                    #{deviceId}
+                </foreach>
+            </if>
+        </if>
+        and is_deleted = #{isDeleted}
+    </select>
+
+
+    <!-- 查询关联设施信息 -->
+    <select id="selectRelatedDeviceListForProcIds" resultMap="ProcRelatedDeviceMap"  parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq" >
+        select proc_id, device_id, proc_related_device_id
+        from proc_related_device
+        where 1=1
+        <if test="procIds != null and procIds.size() > 0" >
+            <if test="procIds.size() == 1">
+                AND proc_id =
+                <foreach collection="procIds" item="procId">
+                    #{procId}
+                </foreach>
+            </if>
+            <if test="procIds.size() > 1">
+                AND proc_id IN
+                <foreach collection="procIds" item="procId" open="(" close=")" separator=",">
+                    #{procId}
+                </foreach>
+            </if>
+        </if>
+        and is_deleted = #{isDeleted}
+    </select>
+
+    <!-- 逻辑删除关联设施 -->
+    <update id="logicDeleteRelatedDevice" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.procrelated.LogicDeleteRelatedDeviceBatch" >
+      update proc_related_device set is_deleted = #{isDeleted}
+      where 1=1
+      <if test="relatedDeviceList != null and relatedDeviceList.size() > 0">
+          <if test="relatedDeviceList.size() == 1">
+              AND proc_related_device_id =
+              <foreach collection="relatedDeviceList" item="relatedDevice">
+                  #{relatedDevice}
+              </foreach>
+          </if>
+          <if test="relatedDeviceList.size() > 1">
+              AND proc_related_device_id IN
+              <foreach collection="relatedDeviceList" item="relatedDevice" open="(" close=")" separator=",">
+                  #{relatedDevice}
+              </foreach>
+          </if>
+      </if>
+    </update>
+
+    <!-- 根据部门ids获取工单关联部门信息 -->
+    <select id="queryProcListByDeptIds" resultMap="ProcRelatedDepartmentMap">
+        SELECT t.proc_id,t.accountability_dept
+        FROM proc_related_department t
+         <where>
+             is_deleted = '0'
+             <if test="deptIds != null and deptIds.size() > 0">
+                 <if test="deptIds.size() == 1">
+                     AND accountability_dept =
+                     <foreach collection="deptIds" item="deptId">
+                         #{deptId}
+                     </foreach>
+                 </if>
+                 <if test="deptIds.size() > 1">
+                     AND accountability_dept IN
+                     <foreach collection="deptIds" item="deptId" open="(" close=")" separator=",">
+                         #{deptId}
+                     </foreach>
+                 </if>
+             </if>
+         </where>
+    </select>
+
+    <!--工单回单修改信息-->
+    <update id="receiptProcBaseById" parameterType="com.fiberhome.filink.workflowbusinessserver.req.procbase.ProcBaseReq">
+        UPDATE
+        proc_base
+        SET
+            processing_scheme = #{processingScheme},
+            processing_user_defined_scheme = #{processingUserDefinedScheme},
+            reality_completed_time = #{realityCompletedTime},
+            error_user_defined_reason = #{errorUserDefinedReason},
+            error_reason = #{errorReason},
+            update_user = #{updateUser},
+            update_time = #{updateTime}
+        <where>
+            is_deleted = '0'
+            <if test="procId != null and procId != ''">
+                AND proc_id = #{procId}
+            </if>
+        </where>
+    </update>
+
+
+    <!-- 用于新增数据信息 -->
+    <!--批量新增工单关联设施信息-->
+    <insert id="addProcRelateDeviceToBatch" parameterType="java.util.List">
+        INSERT INTO
+        proc_related_device
+        (
+        proc_related_device_id,
+        proc_id,
+        device_id,
+        device_area_id,
+        device_name,
+        device_area_name,
+        device_type,
+        select_device_type,
+        create_user,
+        create_time,
+        update_user,
+        update_time
+        )
+        VALUES
+        <foreach collection="list" item="procRelatedDevice" index="index" open="" close="" separator=",">
+            (
+            #{procRelatedDevice.procRelatedDeviceId},
+            #{procRelatedDevice.procId},
+            #{procRelatedDevice.deviceId},
+            #{procRelatedDevice.deviceAreaId},
+            #{procRelatedDevice.deviceName},
+            #{procRelatedDevice.deviceAreaName},
+            #{procRelatedDevice.deviceType},
+            #{procRelatedDevice.selectDeviceType},
+            #{procRelatedDevice.createUser},
+            #{procRelatedDevice.createTime},
+            #{procRelatedDevice.updateUser},
+            #{procRelatedDevice.updateTime}
+            )
+        </foreach>
+    </insert>
+
+
+    <!-- 查询全部工单数据 -->
+    <select id ="selectAllProcBase" resultMap="ProcBaseMap" parameterType="com.fiberhome.filink.workflowbusinessserver.bean.procbase.ProcBase">
+        <include refid="Base_Column_List" /> from proc_base pb
+    </select>
+
+    <!--保存工单关联部门信息-->
+    <insert id="addProcRelateDeptToBatch" parameterType="java.util.List">
+        INSERT INTO
+        proc_related_department
+        (
+        proc_related_dept_id,
+        proc_id,
+        accountability_dept,
+        create_user,
+        create_time,
+        update_user,
+        update_time
+        )
+        VALUES
+        <foreach collection="list" item="procRelatedDepartment" index="index" open="" close="" separator=",">
+            (
+            #{procRelatedDepartment.procRelatedDeptId},
+            #{procRelatedDepartment.procId},
+            #{procRelatedDepartment.accountabilityDept},
+            #{procRelatedDepartment.createUser},
+            #{procRelatedDepartment.createTime},
+            #{procRelatedDepartment.updateUser},
+            #{procRelatedDepartment.updateTime}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/filink-alarmHistory.iml" filepath="$PROJECT_DIR$/filink-alarmHistory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-alarmHistory-api/filink-alarmHistory-api.iml" filepath="$PROJECT_DIR$/filink-alarmHistory-api/filink-alarmHistory-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filink-alarmHistory-server/filink-alarmHistory-server.iml" filepath="$PROJECT_DIR$/filink-alarmHistory-server/filink-alarmHistory-server.iml" />
+    </modules>
+  </component>
+</project>

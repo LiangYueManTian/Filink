@@ -1,0 +1,26 @@
+<nz-modal nzTitle="选择模板"
+          [nzFooter]="modalFooter"
+          nzWidth="1000px"
+          [nzVisible]="true">
+  <nz-tabset
+    [nzTabBarStyle]="{width: '410px'}"
+  >
+    <nz-tab nzTitle="箱架模板">
+      <app-box-template>
+
+      </app-box-template>
+    </nz-tab>
+    <nz-tab nzTitle="框模板">
+      <app-frame-template>
+
+      </app-frame-template>
+    </nz-tab>
+    <nz-tab nzTitle="盘模板">
+      <app-board-template></app-board-template>
+    </nz-tab>
+  </nz-tabset>
+</nz-modal>
+
+<ng-template #modalFooter>
+  <button nz-button nzType="primary" class="link-button" (click)="handleOk()" >保存模板</button>
+</ng-template>

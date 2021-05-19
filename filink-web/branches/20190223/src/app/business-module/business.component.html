@@ -1,0 +1,113 @@
+<nz-layout class="index-layout">
+  <nz-sider [(nzCollapsed)]="isCollapsed"
+            nzWidth="190"
+            nzCollapsedWidth="50"
+            (mouseenter)="isCollapsed = false"
+            (mouseleave)="isCollapsed = true">
+  <!--<nz-sider [(nzCollapsed)]="isCollapsed" >-->
+    <!--todo logo-->
+
+    <div  [ngClass]="isCollapsed?'logo-1':'logo'">
+      <img *ngIf="isCollapsed" src="../../assets/img/layout/FiLink_logo1.png" alt="logo" class="logo-img">
+      <img *ngIf="!isCollapsed" src="../../assets/img/layout/FiLink_logo2.png" alt="logo">
+    </div>
+
+    <!--todo 左侧菜单-->
+    <app-first-menu
+      [menuList]="menuList"
+      [isCollapsed]="isCollapsed"
+      (changeThreeMenu)="showThreeMenu($event)"
+    ></app-first-menu>
+    <!--<ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">-->
+      <!--<ng-container *ngFor="let item of menuList">-->
+        <!--<li *ngIf="item.children && item.children.length > 0" nz-submenu>-->
+          <!--<span title>-->
+            <!--<i nz-icon [type]="'appstore'"></i>-->
+            <!--<span>{{item.menuName}}</span>-->
+          <!--</span>-->
+          <!--<ul>-->
+            <!--<ng-container *ngFor="let el of item.children">-->
+              <!--<li *ngIf="!(el.children && el.children.length)" nz-menu-item (click)="routerLink(el.menuHref)">-->
+                <!--<span title>-->
+                  <!--<i nz-icon [type]="'appstore'"></i>-->
+                  <!--<span>{{el.menuName}}</span>-->
+                <!--</span>-->
+              <!--</li>-->
+
+              <!--<li *ngIf="el.children && el.children.length" nz-menu-item (click)="showThreeMenu(el)">-->
+                <!--<span title>-->
+                  <!--<i nz-icon [type]="'appstore'"></i>-->
+                  <!--<span>{{el.menuName}}</span>-->
+                <!--</span>-->
+              <!--</li>-->
+            <!--</ng-container>-->
+            <!--&lt;!&ndash;<app-filink-menu *ngIf="item.children && item.children.length > 0" [menuList]="item.children"></app-filink-menu>&ndash;&gt;-->
+          <!--</ul>-->
+        <!--</li>-->
+
+        <!--<li *ngIf="!(item.children && item.children.length > 0)" nz-menu-item [routerLink]="item.menuHref">-->
+          <!--<span title>-->
+            <!--<i nz-icon [type]="'appstore'"></i>-->
+            <!--<span>{{item.menuName}}</span>-->
+          <!--</span>-->
+        <!--</li>-->
+      <!--</ng-container>-->
+    <!--</ul>-->
+  </nz-sider>
+
+  <!--todo 右侧-->
+  <nz-layout>
+    <!--todo 头部用户信息-->
+    <nz-header class="header-layout">
+      <div class="top-menu">
+        <ul class="top-menu-ul">
+          <li><div [ngStyle]="colorInfo['1']"></div><span>{{redAlarmCount}}</span></li>
+          <li><div [ngStyle]="colorInfo['2']"></div><span>{{orangeAlarmCount}}</span></li>
+          <li><div [ngStyle]="colorInfo['3']"></div><span>{{yellowAlarmCount}}</span></li>
+          <li><div [ngStyle]="colorInfo['4']"></div><span>{{blueAlarmCount}}</span></li>
+        </ul>
+
+        <div class="user-info">
+            <span style="position: relative">
+              <i style="position: relative;top: -25px" class="icon fiLink-user-menu iconfont"></i>
+              <p class="user-nickname" [title]="userInfo.userNickname">{{userInfo.userNickname}}</p>
+            </span>
+            <ul>
+              <li (click)="updatePassword()">
+                <span class="span-border">密码修改</span>
+              </li>
+              <li>
+                <span (click)="logout()">注销</span>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </nz-header>
+
+
+    <div class="nz-layout-content">
+
+      <app-three-menu *ngIf="threeMenuInfo.menuName"
+                      [threeMenuList]="threeMenuInfo.children"
+                      [title]="threeMenuInfo.menuName"
+                      #threeMenu
+      ></app-three-menu>
+
+      <!--todo 中间主页面-->
+      <nz-content>
+        <router-outlet></router-outlet>
+      </nz-content>
+    </div>
+
+  </nz-layout>
+</nz-layout>
+
+<!--todo 密码修改-->
+<app-update-password *ngIf="isUpdatePassword"
+   (cancelEvent)="updatePassword()"></app-update-password>
+
+<!-- 告警提示音 -->
+<audio id="audio" controls="controls" loop="false" hidden="true"></audio>
+
+
+

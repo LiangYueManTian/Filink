@@ -1,0 +1,43 @@
+<div class="box-warp">
+  <xc-table
+    [dataSet]="_dataSet"
+    [pageBean]="pageBean"
+    [tableConfig]="tableConfig"
+    (pageChange)="pageChange($event)">
+  </xc-table>
+</div>
+
+<!-- 启用状态 -->
+<ng-template #isNoStartTemp let-data="data">
+  <nz-switch [ngModel]="data.status==='1'"
+    [nzControl]="true"
+    (click)="clickSwitch(data)">
+  </nz-switch>
+  <span *ngIf="data.status === '2'" style="margin-left: 15px">{{language.disable}}</span>
+  <span *ngIf="data.status === '1'" style="margin-left: 15px" >{{language.enable}}</span>
+</ng-template>
+
+<!-- 设施类型 -->
+<ng-template #deviceTypeTemp let-data="data">
+  <span *ngFor="let type of data.alarmOrderRuleDeviceTypeList" class="deviceType">
+      <!--<i [ngClass]="type['iconClass']" class="device-type-icon"></i>-->
+      <span class="status-text" [title]="type['deviceType']">{{type['deviceType']}}</span>
+  </span>
+</ng-template>
+
+<!-- 区域 -->
+<ng-template #areaSelector  let-filterValue = "filterValue" >
+  <app-area [areaConfig]='areaConfig'  [filterValue]="filterValue" ></app-area>
+</ng-template>
+
+<!-- 告警名称 -->
+<ng-template #alarmName let-filterValue = "filterValue">
+  <app-alarm-name [alarmNameConfig]='alarmNameConfig' [filterValue]="filterValue" ></app-alarm-name>
+</ng-template>
+
+<!-- 期待完工时长 -->
+<ng-template #completionTime let-filterValue = "filterValue">
+   <input class="complateionTime" nz-input [(ngModel)]="complateionTimeValue"
+       onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"  
+       onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
+</ng-template>

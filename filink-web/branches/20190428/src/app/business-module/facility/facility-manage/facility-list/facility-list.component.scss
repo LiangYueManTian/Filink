@@ -1,0 +1,37 @@
+@import "../../../../style-module/config";
+
+.box-warp {
+  padding: 10px;
+}
+
+.status-text {
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.facility-alarm-c {
+  color: $status-alarm;
+}
+
+.facility-normal-c {
+  color: $status-normal;
+
+}
+
+.facility-offline-c {
+  color: $status-offline;
+
+}
+
+.facility-lost-c {
+  color: $status-lost;
+
+}
+
+.facility-unknown-c {
+  color: $status-unknown;
+}
+.device-type-icon{
+  vertical-align: middle;
+  font-size: 19px;
+}

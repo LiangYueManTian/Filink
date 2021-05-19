@@ -1,0 +1,26 @@
+2019-07-12 10:28:19.303 [-C-1] ERROR o.a.k.c.c.i.ConsumerCoordinator
+                -User provided listener org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer$1 for group filink_user_server failed on partition revocation
+org.apache.kafka.clients.consumer.CommitFailedException: Commit cannot be completed since the group has already rebalanced and assigned the partitions to another member. This means that the time between subsequent calls to poll() was longer than the configured max.poll.interval.ms, which typically implies that the poll loop is spending too much time message processing. You can address this either by increasing the session timeout or by reducing the maximum size of batches returned in poll() with max.poll.records.
+	at org.apache.kafka.clients.consumer.internals.ConsumerCoordinator.sendOffsetCommitRequest(ConsumerCoordinator.java:600)
+	at org.apache.kafka.clients.consumer.internals.ConsumerCoordinator.commitOffsetsSync(ConsumerCoordinator.java:498)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.commitSync(KafkaConsumer.java:1104)
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.commitIfNecessary(KafkaMessageListenerContainer.java:967)
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.processCommits(KafkaMessageListenerContainer.java:838)
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.commitManualAcks(KafkaMessageListenerContainer.java:650)
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.access$1200(KafkaMessageListenerContainer.java:246)
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer$1.onPartitionsRevoked(KafkaMessageListenerContainer.java:432)
+	at org.apache.kafka.clients.consumer.internals.ConsumerCoordinator.onJoinPrepare(ConsumerCoordinator.java:336)
+	at org.apache.kafka.clients.consumer.internals.AbstractCoordinator.joinGroupIfNeeded(AbstractCoordinator.java:303)
+	at org.apache.kafka.clients.consumer.internals.AbstractCoordinator.ensureActiveGroup(AbstractCoordinator.java:277)
+	at org.apache.kafka.clients.consumer.internals.ConsumerCoordinator.poll(ConsumerCoordinator.java:259)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.pollOnce(KafkaConsumer.java:1013)
+	at org.apache.kafka.clients.consumer.KafkaConsumer.poll(KafkaConsumer.java:979)
+	at org.springframework.kafka.listener.KafkaMessageListenerContainer$ListenerConsumer.run(KafkaMessageListenerContainer.java:556)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.lang.Thread.run(Thread.java:745)
+2019-07-12 17:18:08.335 [qtp1633360815-48] ERROR c.f.f.exportapi.utils.ExportApiUtils
+                -Locales is null >>>
+2019-07-12 17:18:08.336 [qtp1633360815-48] ERROR c.f.f.exportapi.utils.ExportApiUtils
+                -Locales is null >>>

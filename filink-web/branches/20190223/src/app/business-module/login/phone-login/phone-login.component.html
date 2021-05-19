@@ -1,0 +1,23 @@
+<form class="phone-login-form" nz-form [formGroup]="validateForm">
+  <nz-form-item>
+    <nz-form-control>
+      <nz-select>
+        <nz-option *ngFor="let option of areaCodeList" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+      </nz-select>
+      <input class="phone" formControlName="phone" nz-input placeholder="请输入手机号">
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item class="auth-code-item">
+    <nz-form-control>
+      <input class="auth-code" formControlName="authCode" nz-input placeholder="请输入验证码">
+      <span class="timer">获取验证码</span>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <button class="login-button">登录</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

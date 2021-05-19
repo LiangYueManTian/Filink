@@ -1,0 +1,20 @@
+export default {
+  'setColumn': 'Set column',
+  'SelectAllRow': 'Select All Row',
+  'SelectOddRow': 'Select Odd Row',
+  'SelectEvenRow': 'Select Even Row',
+  'Total': 'Total',
+  'items': 'items',
+  'filter': 'filter',
+  'prompt': 'prompt',
+  'promptContent': 'Are you sure to delete it?',
+  'okText': 'ok',
+  'cancelText': 'cancel',
+  'openText': 'ON',
+  'closeText': 'OFF',
+  'noData': 'no data',
+  'add': 'add',
+  'delete': 'delete',
+  'operate': 'operate',
+  'update': 'update'
+};
